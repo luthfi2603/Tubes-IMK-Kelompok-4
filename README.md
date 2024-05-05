@@ -11,12 +11,27 @@ Anggota kelompok:
 2. Dafa Hibrizi (221402091)
 2. Farhan Anfasa Maulana (221402097)
 
-> ### Cara Clone:
-> 1. buka Git Bash, arahkan ke direktori yang diinginkan
-> 2. git clone link_repositori
-> 3. cd nama_repositori
-> 4. composer install
-> 5. cp .env.example .env
-> 6. php artisan key:generate
-> 7. npm install
-> 8. npm run dev
+### Cara Clone:
+
+1. buka Git Bash, arahkan ke direktori yang diinginkan
+2. ```
+   git clone link_repositori
+3. ```
+   cd nama_repositori
+4. ```
+   composer install
+5. ```
+   cp .env.example .env
+6. ```
+   php artisan key:generate
+7. ```
+   npm install
+8. ```
+   npm run dev
+9. ```
+   php artisan migrate:fresh --seed
+10. ```
+    php artisan serve
+11. buka di browser
+    ```
+    127.0.0.1:8000
