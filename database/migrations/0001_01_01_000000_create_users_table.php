@@ -11,7 +11,7 @@ return new class extends Migration {
     public function up(): void {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->char('nomor_telepon', 13)->unique();
+            $table->char('nomor_handphone', 13)->unique();
             $table->string('password');
             $table->enum('status', ['pasien', 'dokter', 'perawat', 'admin']);
             $table->timestamps();

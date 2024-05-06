@@ -1,12 +1,15 @@
 <?php
 
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ViewController;
 use App\Http\Controllers\ProfileController;
 
 Route::get('/', function(){
-    return view('welcome');
+    return view('index');
+});
+
+Route::middleware(['auth', 'role:pasien'])->group(function(){
+
 });
 
 Route::get('/dashboard', function(){
