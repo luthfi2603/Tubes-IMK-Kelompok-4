@@ -1,6 +1,6 @@
 ## Tubes IMK Kelompok 4
 
-Ini adalah repositori tubes IMK kelompok kami, berupa website yang dibangun dengan framework laravel dan tailwind. website nya ini berupa website untuk keperluan klinik, spesifiknya klinik rh61.
+Ini adalah repositori tubes mata kuliah IMK (Interaksi Manusia dan Komputer) kelompok kami, berupa website yang dibangun dengan framework laravel dan tailwind. website nya ini berupa website untuk keperluan klinik, spesifiknya klinik rh61.
 
 Anggota kelompok:
 
@@ -33,15 +33,16 @@ Anggota kelompok:
    npm install
    ```
 8. ```
-   npm run dev
-   ```
-9. ```
    php artisan migrate --seed
    ```
-10. ```
+9. ```
+   npm run dev
+   ```
+10. Buka di terminal baru
+    ```
     php artisan serve
     ```
-11. buka di browser
+12. buka di browser
     ```
     127.0.0.1:8000
     ```
