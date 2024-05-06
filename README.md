@@ -16,22 +16,43 @@ Anggota kelompok:
 1. buka Git Bash, arahkan ke direktori yang diinginkan
 2. ```
    git clone link_repositori
+   ```
 3. ```
    cd nama_repositori
+   ```
 4. ```
    composer install
+   ```
 5. ```
    cp .env.example .env
+   ```
 6. ```
    php artisan key:generate
+   ```
 7. ```
    npm install
+   ```
 8. ```
    npm run dev
+   ```
 9. ```
-   php artisan migrate:fresh --seed
+   php artisan migrate --seed
+   ```
 10. ```
     php artisan serve
+    ```
 11. buka di browser
     ```
     127.0.0.1:8000
+    ```
+
+### Sebagai Kolaborator:
+
+1. Buat branch baru
+```
+git branch -M nama_branch_baru
+```
+2. Push ke remote
+```
+git push origin nama_branch_baru
+```
