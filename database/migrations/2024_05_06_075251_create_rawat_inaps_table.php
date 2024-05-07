@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->foreignId('id_pasien')->constrained('pasiens')->onDelete('restrict')->onUpdate('cascade');
             $table->foreignId('id_dokter')->constrained('dokters')->onDelete('restrict')->onUpdate('cascade');
             $table->foreignId('id_kamar')->constrained('kamars')->onDelete('restrict')->onUpdate('cascade');
-            $table->timestamp('waktu');
+            $table->timestamp('waktu')->useCurrent();
             $table->timestamps();
         });
     }

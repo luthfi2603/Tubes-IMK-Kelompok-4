@@ -30,19 +30,19 @@ Anggota kelompok:
    php artisan key:generate
    ```
 7. ```
-   npm install
-   ```
-8. ```
    php artisan migrate --seed
    ```
+8. ```
+   php artisan storage:link
+   ```
 9. ```
-   npm run dev
+   npm install
    ```
 10. Buka di terminal baru
     ```
     php artisan serve
     ```
-12. buka di browser
+11. buka di browser
     ```
     127.0.0.1:8000
     ```

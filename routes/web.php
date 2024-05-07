@@ -7,6 +7,9 @@ use App\Http\Controllers\ProfileController;
 Route::get('/', function(){
     return view('index');
 });
+Route::get('/verifikasi', function(){
+    return view('verifikasi');
+});
 
 Route::middleware(['auth', 'role:pasien'])->group(function(){
 
