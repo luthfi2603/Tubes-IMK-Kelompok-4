@@ -9,11 +9,10 @@
 </head>
 <body>
     <div class="flex flex-col items-center">
-        <p>Landing Page</p>
-        <div>
-            <a href="{{ route('register') }}">Register</a>
-            <a href="{{ route('login') }}">Login</a>
-        </div>
+        <p class="my-4 font-semibold text-xl">Verifikasi</p>
+        <p>
+            Ketik kode verifikasi yang telah dikirim ke nomor telepon anda
+        </p>
     </div>
 </body>
 </html>

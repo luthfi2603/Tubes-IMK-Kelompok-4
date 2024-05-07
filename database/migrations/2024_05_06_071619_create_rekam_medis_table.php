@@ -11,7 +11,7 @@ return new class extends Migration {
     public function up(): void {
         Schema::create('rekam_medis', function (Blueprint $table) {
             $table->id();
-            $table->timestamp('waktu');
+            $table->timestamp('waktu')->useCurrent();
             $table->foreignId('id_pasien')->constrained('pasiens')->onDelete('restrict')->onUpdate('cascade');
             $table->foreignId('id_dokter')->constrained('dokters')->onDelete('restrict')->onUpdate('cascade');
             $table->text('keluhan');
