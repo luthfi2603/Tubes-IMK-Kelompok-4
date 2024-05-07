@@ -9,6 +9,11 @@
 </head>
 <body>
     <div class="flex flex-col items-center">
+        @if(session()->has('failed'))
+            <div class="mt-4 bg-red-300 py-3 text-white px-9 rounded-lg">
+                {{ session('failed') }}
+            </div>
+        @endif
         <p class="my-4 font-semibold text-xl">Registrasi</p>
         <form method="POST" action="{{ route('register') }}" class="w-9/12 md:w-1/4 flex flex-col items-center">
             @csrf

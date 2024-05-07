@@ -1,6 +1,6 @@
 ## Tubes IMK Kelompok 4
 
-Ini adalah repositori tubes mata kuliah IMK (Interaksi Manusia dan Komputer) kelompok kami, berupa website yang dibangun dengan framework laravel dan tailwind. website nya ini berupa website untuk keperluan klinik, spesifiknya klinik rh61.
+Ini adalah repositori tugas besar (tugas akhir semester) mata kuliah IMK (Interaksi Manusia dan Komputer) kelompok kami, berupa website yang dibangun dengan framework laravel dan tailwind. website nya ini berupa website untuk keperluan klinik, spesifiknya Klinik RH61.
 
 Anggota kelompok:
 
