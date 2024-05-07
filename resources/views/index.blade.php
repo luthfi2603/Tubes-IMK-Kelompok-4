@@ -8,11 +8,11 @@
     <link rel="stylesheet" href="{{ asset('./assets/css/app.css') }}">
 </head>
 <body>
-    <div class="flex flex-col items-center">
-        <p>Landing Page</p>
-        <div>
-            <a href="{{ route('register') }}">Register</a>
-            <a href="{{ route('login') }}">Login</a>
+    <div class="flex flex-col items-center bg-blue-400 text-white h-screen justify-center">
+        <p class="text-4xl">Landing Page</p>
+        <div class="mt-4">
+            <a href="{{ route('register') }}" class="mr-3 rounded-xl py-1 px-6 bg-white text-blue-400">Register</a>
+            <a href="{{ route('login') }}" class="rounded-xl py-1 px-6 bg-white text-blue-400">Login</a>
         </div>
     </div>
 </body>

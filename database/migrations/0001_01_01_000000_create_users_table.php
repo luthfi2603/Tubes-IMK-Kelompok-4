@@ -11,10 +11,10 @@ return new class extends Migration {
     public function up(): void {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->char('nomor_handphone', 13)->unique();
+            $table->char('nomor_handphone', 15)->unique();
             $table->string('foto')->nullable();
-            $table->string('password')->nullable();
             $table->enum('status', ['pasien', 'dokter', 'perawat', 'admin']);
+            $table->string('password')->nullable();
             $table->timestamps();
         });
 
