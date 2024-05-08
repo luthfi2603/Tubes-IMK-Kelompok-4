@@ -14,7 +14,7 @@ class AuthenticatedSessionController extends Controller {
      * Display the login view.
      */
     public function create(): View {
-        return view('auth.login');
+        return view('login');
     }
 
     /**
@@ -25,7 +25,24 @@ class AuthenticatedSessionController extends Controller {
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('dashboard', absolute: false))->with('notif', true);
+        $role = auth()->user()->status;
+        switch($role){
+            case "pasien":
+                return redirect()->intended(route('dashboard.pasien'));
+                break;
+            case "dokter":
+                return redirect()->intended(route('dashboard.pasien'));
+                break;
+            case "perawat":
+                return redirect()->intended('/');
+                break;
+            case "admin":
+                return redirect()->intended('/');
+                break;
+            default:
+                return redirect()->intended('/');
+                break;
+        }
     }
 
     /**
@@ -39,5 +56,23 @@ class AuthenticatedSessionController extends Controller {
         $request->session()->regenerateToken();
 
         return redirect('/');
+    }
+
+    /**
+     * Display the login view.
+     */
+    public function create0(): View {
+        return view('auth.login');
+    }
+
+    /**
+     * Handle an incoming authentication request.
+     */
+    public function store0(LoginRequest $request): RedirectResponse {
+        $request->authenticate();
+
+        $request->session()->regenerate();
+
+        return redirect()->intended(route('dashboard', absolute: false))->with('notif', true);
     }
 }
