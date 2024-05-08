@@ -20,7 +20,7 @@
             <input type="hidden" name="nomor_handphone" value="{{ session()->get('request')['nomor_handphone_dimodifikasi'] }}">
             <div class="flex flex-col mb-3 w-full">
                 <label for="kode_verifikasi">Kode OTP</label>
-                <input type="number" name="kode_verifikasi" id="kode_verifikasi" class="@error('kode_verifikasi') bg-red-500 placeholder-white @enderror" placeholder="Masukkan kode otp" value="{{ old('kode_verifikasi') }}" autofocus>
+                <input type="number" name="kode_verifikasi" id="kode_verifikasi" class="@error('kode_verifikasi') bg-red-500 placeholder-white @enderror" placeholder="Masukkan kode otp" autofocus>
                 @error('kode_verifikasi')
                     <div class="bg-red-300 text-white">
                         {{ $message }}

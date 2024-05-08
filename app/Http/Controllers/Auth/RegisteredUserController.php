@@ -32,7 +32,7 @@ class RegisteredUserController extends Controller {
 
         if($user !== NULL){ // kalau user nya ada
             if($user->password !== NULL){ // kalau password nya ada
-                return back()->with('failed', 'Registrasi gagal, akun sudah ada');
+                return back()->withInput()->with('failed', 'Registrasi gagal, akun sudah ada');
             }
         }
 
@@ -83,7 +83,7 @@ class RegisteredUserController extends Controller {
                 ->verifications
                 ->create($nomorHP, "sms");
         }catch(\Throwable $th){
-            return back()->with('failed', 'Registrasi gagal, tidak dapat mengirim kode OTP');
+            return back()->withInput()->with('failed', 'Registrasi gagal, tidak dapat mengirim kode OTP');
         }
 
         $request = $request->all();
@@ -161,7 +161,7 @@ class RegisteredUserController extends Controller {
 
             session()->forget('request');
     
-            return redirect('/');
+            return redirect(route('login'));
         }else{
             return back()->with('failed', 'Kode OTP salah!');
         }
