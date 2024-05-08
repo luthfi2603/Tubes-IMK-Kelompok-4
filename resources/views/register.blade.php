@@ -28,7 +28,7 @@
             </div>
             <div class="flex flex-col mb-3 w-full">
                 <label for="nomor_handphone">Nomor Handphone</label>
-                <input type="number" name="nomor_handphone" id="nomor_handphone" class="@error('nomor_handphone') bg-red-500 placeholder-white @enderror" placeholder="08XXXXXXXX" value="{{ old('nomor_handphone') }}">
+                <input type="number" pattern="^\d+$" name="nomor_handphone" id="nomor_handphone" class="@error('nomor_handphone') bg-red-500 placeholder-white @enderror" placeholder="08XXXXXXXX" value="{{ old('nomor_handphone') }}">
                 @error('nomor_handphone')
                     <div class="bg-red-300 text-white">
                         {{ $message }}
@@ -111,6 +111,7 @@
                 @enderror
             </div>
             <button type="submit" class="px-4 py-2 bg-gray-400 rounded-xl text-white mb-4 mt-1">Daftar</button>
+            <p class="mb-4">Sudah punya akun? <a href="{{ route('login') }}" class="text-blue-500">Login</a></p>
         </form>
     </div>
 </body>

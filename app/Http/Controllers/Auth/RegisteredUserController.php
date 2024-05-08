@@ -15,24 +15,16 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Auth\Events\Registered;
 
 class RegisteredUserController extends Controller {
-    /**
-     * Display the registration view.
-     */
     public function create(): View {
         return view('register');
     }
 
-    /**
-     * Handle an incoming registration request.
-     *
-     * @throws \Illuminate\Validation\ValidationException
-     */
     public function store(Request $request): RedirectResponse {
         $user = User::where('nomor_handphone', $request->nomor_handphone)->first();
 
         if($user !== NULL){ // kalau user nya ada
             if($user->password !== NULL){ // kalau password nya ada
-                return back()->withInput()->with('failed', 'Registrasi gagal, akun sudah ada');
+                return back()->withInput()->with('failed', 'Registrasi gagal, nomor handphone sudah terdaftar');
             }
         }
 
@@ -60,7 +52,7 @@ class RegisteredUserController extends Controller {
 
         $request->validate([
             'nama' => ['required', 'string', 'max:255'],
-            'nomor_handphone' => ['required', 'numeric', 'min_digits:11', 'max_digits:15'],
+            'nomor_handphone' => ['required', 'numeric', 'min_digits:11', 'max_digits:15', 'regex:/^[0-9]+$/'],
             'alamat' => ['required', 'string', 'max:255'],
             'jenis_kelamin' => ['required', 'in:P,L'],
             'tanggal_lahir' => ['required', 'date'],
@@ -102,7 +94,7 @@ class RegisteredUserController extends Controller {
         return view('verifikasi');
     }
 
-    public function prosesVerifikasi(Request $request){
+    public function storeVerifikasi(Request $request){
         $messages = [
             'kode_verifikasi.required' => 'Silahkan masukkan kode OTP.',
             'kode_verifikasi.numeric' => 'Kode OTP yang dimasukkan harus berupa angka.',
@@ -165,6 +157,121 @@ class RegisteredUserController extends Controller {
         }else{
             return back()->with('failed', 'Kode OTP salah!');
         }
+    }
+
+    public function createVerifikasiNomorHandphone(){
+        return view('verifikasi-nomor-handphone');
+    }
+
+    public function storeVerifikasiNomorHandphone(Request $request){
+        $messages = [
+            'nomor_handphone.required' => 'Silahkan masukkan nomor handphone.',
+            'nomor_handphone.min_digits' => 'Nomor handphone harus terdiri dari minimal :min digit.',
+            'nomor_handphone.max_digits' => 'Nomor handphone harus terdiri dari maksimal :max digit.',
+        ];
+
+        $request->validate([
+            'nomor_handphone' => ['required', 'numeric', 'min_digits:11', 'max_digits:15', 'regex:/^[0-9]+$/']
+        ], $messages);
+
+        $user = User::where('nomor_handphone', $request->nomor_handphone)->first();
+
+        if($user !== NULL){ // kalau user nya ada
+            if(substr(trim($request->nomor_handphone), 0, 1) == '0'){
+                $nomorHP = '+62'.substr(trim($request->nomor_handphone), 1);
+            }
+    
+            try {
+                $token = getenv("TWILIO_AUTH_TOKEN");
+                $twilioSid = getenv("TWILIO_SID");
+                $twilioVerifySid = getenv("TWILIO_VERIFY_SID");
+
+                $twilio = new Client($twilioSid, $token);
+                $twilio->verify->v2->services($twilioVerifySid)
+                    ->verifications
+                    ->create($nomorHP, "sms");
+            }catch(\Throwable $th){
+                return back()->withInput()->with('failed', 'Registrasi gagal, tidak dapat mengirim kode OTP');
+            }
+        }else{
+            return back()->with('failed', 'Nomor handphone tidak terdaftar');
+        }
+
+        $request0 = [];
+        $request0['nomor_handphone_dimodifikasi'] = $nomorHP;
+        $request0['nomor_handphone'] = $request->nomor_handphone;
+
+        session()->put('request', $request0);
+
+        return redirect(route('verifikasi'));
+    }
+
+    public function storeVerifikasiOtpResetPassword(Request $request){
+        $messages = [
+            'kode_verifikasi.required' => 'Silahkan masukkan kode OTP.',
+            'kode_verifikasi.numeric' => 'Kode OTP yang dimasukkan harus berupa angka.',
+            'kode_verifikasi.min_digits' => 'Kode OTP harus terdiri dari minimal :min digit.',
+            'kode_verifikasi.max_digits' => 'Kode OTP harus terdiri dari maksimal :max digit.',
+            'nomor_handphone.required' => 'Silahkan masukkan nomor handphone.',
+            'nomor_handphone.min_digits' => 'Nomor handphone harus terdiri dari minimal :min digit.',
+            'nomor_handphone.max_digits' => 'Nomor handphone harus terdiri dari maksimal :max digit.',
+        ];
+
+        $request->validate([
+            'kode_verifikasi' => ['required', 'numeric', 'min_digits:6', 'max_digits:6'],
+            'nomor_handphone' => ['required', 'string'],
+        ], $messages);
+
+        $token = getenv("TWILIO_AUTH_TOKEN");
+        $twilioSid = getenv("TWILIO_SID");
+        $twilioVerifySid = getenv("TWILIO_VERIFY_SID");
+
+        try {
+            $twilio = new Client($twilioSid, $token);
+            $verification = $twilio->verify->v2->services($twilioVerifySid)
+                ->verificationChecks
+                ->create(['code' => $request->kode_verifikasi, 'to' => $request->nomor_handphone]);
+        }catch(\Throwable $th){
+            return back()->with('failed', 'Durasi kode OTP sudah habis!');
+        }
+
+        if($verification->valid){
+            return redirect(route('reset.password'));
+        }else{
+            return back()->with('failed', 'Kode OTP salah!');
+        }
+    }
+
+    public function createResetPassword(){
+        if(session()->get('request') == null){
+            return redirect(route('verifikasi.nomor.handphone'));
+        }
+
+        return view('reset-password');
+    }
+    
+    public function storeResetPassword(Request $request){
+        $messages = [
+            'konfirmasi_password.required' => 'Kolom konfirmasi password harus diisi.',
+            'konfirmasi_password.same' => 'Konfirmasi password dan password harus sama.',
+            'konfirmasi_password.min' => 'Konfirmasi password harus terdiri dari minimal :min karakter.',
+            'konfirmasi_password.max' => 'Konfirmasi password tidak boleh melebihi :max karakter.'
+        ];
+
+        $request->validate([
+            'password' => ['required', 'same:konfirmasi_password', 'min:8', 'max:255'],
+            'konfirmasi_password' => ['required', 'same:password', 'min:8', 'max:255']
+        ], $messages);
+
+        $user = User::where('nomor_handphone', session()->get('request')['nomor_handphone'])->first();
+
+        $user->update([
+            'password' => bcrypt($request->password)
+        ]);
+
+        session()->forget('request');
+
+        return redirect(route('login'));
     }
     
     /**
