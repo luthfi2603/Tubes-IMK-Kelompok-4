@@ -7,8 +7,10 @@ use Illuminate\Http\Request;
 
 class ViewController extends Controller {
     public function index(){
-        $users = User::all();
+        return view('index');
+    }
 
-        return $users;
+    public function showDashboardPasien(){
+        return view('dashboard');
     }
 }
