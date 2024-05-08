@@ -14,18 +14,13 @@
                 {{ session('failed') }}
             </div>
         @endif
-        <p class="my-4 font-semibold text-xl">Verifikasi</p>
-        @if(session()->all()['_previous']['url'] == 'http://127.0.0.1:8000/register')
-            <form method="POST" action="{{ route('verifikasi') }}" class="w-9/12 md:w-1/4 flex flex-col items-center">
-        @else
-            <form method="POST" action="{{ route('verifikasi.otp.reset.password') }}" class="w-9/12 md:w-1/4 flex flex-col items-center">
-        @endif
+        <p class="my-4 font-semibold text-xl">Verifikasi Nomor Handphone</p>
+        <form method="POST" action="{{ route('verifikasi.nomor.handphone') }}" class="w-9/12 md:w-1/4 flex flex-col items-center">
             @csrf
-            <input type="hidden" name="nomor_handphone" value="{{ session()->get('request')['nomor_handphone_dimodifikasi'] }}">
             <div class="flex flex-col mb-3 w-full">
-                <label for="kode_verifikasi">Kode OTP</label>
-                <input type="number" name="kode_verifikasi" id="kode_verifikasi" class="@error('kode_verifikasi') bg-red-500 placeholder-white @enderror" placeholder="Masukkan kode otp" autofocus>
-                @error('kode_verifikasi')
+                <label for="nomor_handphone">Nomor Handphone</label>
+                <input type="number" name="nomor_handphone" id="nomor_handphone" class="@error('nomor_handphone') bg-red-500 placeholder-white @enderror" placeholder="Masukkan nomor handphone anda" autofocus>
+                @error('nomor_handphone')
                     <div class="bg-red-300 text-white">
                         {{ $message }}
                     </div>

@@ -19,7 +19,7 @@
             @csrf
             <div class="flex flex-col mb-3 w-full">
                 <label for="nomor_handphone">Nomor Handphone</label>
-                <input type="number" name="nomor_handphone" id="nomor_handphone" class="@error('nomor_handphone') bg-red-500 placeholder-white @enderror" placeholder="Masukkan Nomor Handphone Kamu" value="{{ old('nomor_handphone') }}" autofocus>
+                <input type="number" name="nomor_handphone" id="nomor_handphone" class="@error('nomor_handphone') bg-red-500 placeholder-white @enderror" placeholder="Masukkan nomor handphone kamu" value="{{ old('nomor_handphone') }}" autofocus>
                 @error('nomor_handphone')
                     <div class="bg-red-300 text-white">
                         {{ $message }}
@@ -28,14 +28,16 @@
             </div>
             <div class="flex flex-col mb-3 w-full">
                 <label for="password">Password</label>
-                <input type="password" name="password" id="password" class="@error('password') bg-red-500 placeholder-white @enderror" placeholder="Masukkan Nomor Handphone Kamu" value="{{ old('password') }}" autofocus>
+                <input type="password" name="password" id="password" class="@error('password') bg-red-500 placeholder-white @enderror" placeholder="Masukkan password kamu" value="{{ old('password') }}">
                 @error('password')
                     <div class="bg-red-300 text-white">
                         {{ $message }}
                     </div>
                 @enderror
             </div>
+            <a href="{{ route('verifikasi.nomor.handphone') }}" class="mb-3">Lupa Password</a>
             <button type="submit" class="px-4 py-2 bg-gray-400 rounded-xl text-white mb-4 mt-1">Masuk</button>
+            <p>Sudah punya akun? <a href="{{ route('register') }}" class="text-blue-500">Register</a></p>
         </form>
     </div>
 </body>
