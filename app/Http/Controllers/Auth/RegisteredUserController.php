@@ -112,7 +112,8 @@ class RegisteredUserController extends Controller {
         ], $messages);
 
         if($request->kode_verifikasi != '123456'){
-            return back()->with('failed', 'Kode OTP salah!');
+            // return back()->with('failed', 'Kode OTP salah!');
+            return response()->json(['failed' => 'Kode OTP Salah']);
         }
 
         $token = getenv("TWILIO_AUTH_TOKEN");
@@ -158,7 +159,8 @@ class RegisteredUserController extends Controller {
 
             session()->forget('request');
     
-            return redirect(route('login'))->with('success', 'Akun berhasil dibuat, silahkan login');
+            // return redirect(route('login'))->with('success', 'Akun berhasil dibuat, silahkan login');
+            return response()->json(['success' => 'Akun berhasil dibuat, silahkan login']);
         /* }else{
             return back()->with('failed', 'Kode OTP salah!');
         } */

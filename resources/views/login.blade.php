@@ -18,6 +18,7 @@
                 {{ session('success') }}
             </div>
         @endif
+        <div id="success" class="mt-4 bg-green-300 py-3 text-white px-9 rounded-lg hidden"></div>
         <p class="my-4 font-semibold text-xl">Login</p>
         <form method="POST" action="{{ route('login') }}" class="w-9/12 md:w-1/4 flex flex-col items-center">
             @csrf
@@ -44,5 +45,14 @@
             <p>Sudah punya akun? <a href="{{ route('register') }}" class="text-blue-500">Register</a></p>
         </form>
     </div>
+    <script>
+        const successMessage = localStorage.getItem('successMessage');
+        if(successMessage){
+            document.getElementById('success').classList.remove('hidden');
+            document.getElementById('success').innerHTML = successMessage
+
+            localStorage.removeItem('successMessage');
+        }
+    </script>
 </body>
 </html>

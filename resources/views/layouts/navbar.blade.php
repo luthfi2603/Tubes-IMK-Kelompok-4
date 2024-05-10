@@ -170,7 +170,8 @@
                         <a href="#" class="flex items-center text-[13px] py-1.5 px-4 text-gray-600 hover:text-[#f84525] hover:bg-gray-50">Settings</a>
                     </li>
                     <li>
-                        <form method="POST" action="">
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
                             <a role="menuitem" class="flex items-center text-[13px] py-1.5 px-4 text-gray-600 hover:text-[#f84525] hover:bg-gray-50 cursor-pointer"
                                 onclick="event.preventDefault();
                                 this.closest('form').submit();">
