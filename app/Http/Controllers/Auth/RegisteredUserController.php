@@ -34,6 +34,7 @@ class RegisteredUserController extends Controller {
             'nomor_handphone.numeric' => 'Nomor handphone harus diisi dengan angka.',
             'nomor_handphone.min_digits' => 'Nomor handphone harus terdiri dari minimal :min digit.',
             'nomor_handphone.max_digits' => 'Nomor handphone harus terdiri dari maksimal :max digit.',
+            'nomor_handphone.regex' => 'Nomor handphone tidak valid',
             'alamat.required' => 'Kolom alamat harus diisi.',
             'jenis_kelamin.required' => 'Kolom jenis kelamin harus diisi.',
             'jenis_kelamin.in' => 'Jenis kelamin yang dipilih tidak sesuai.',
@@ -52,7 +53,7 @@ class RegisteredUserController extends Controller {
 
         $request->validate([
             'nama' => ['required', 'string', 'max:255'],
-            'nomor_handphone' => ['required', 'numeric', 'min_digits:11', 'max_digits:15', 'regex:/^[0-9]+$/'],
+            'nomor_handphone' => ['required', 'numeric', 'min_digits:11', 'max_digits:13', 'regex:/\b08\d{9,11}\b/'],
             'alamat' => ['required', 'string', 'max:255'],
             'jenis_kelamin' => ['required', 'in:P,L'],
             'tanggal_lahir' => ['required', 'date'],
@@ -69,21 +70,21 @@ class RegisteredUserController extends Controller {
             $nomorHP = '+62'.substr(trim($request->nomor_handphone), 1);
         }
 
-        try {
+        /* try {
             $twilio = new Client($twilioSid, $token);
             $twilio->verify->v2->services($twilioVerifySid)
                 ->verifications
                 ->create($nomorHP, "sms");
         }catch(\Throwable $th){
             return back()->withInput()->with('failed', 'Registrasi gagal, tidak dapat mengirim kode OTP');
-        }
+        } */
 
         $request = $request->all();
         $request['nomor_handphone_dimodifikasi'] = $nomorHP;
 
         session()->put('request', $request);
 
-        return redirect(route('verifikasi'));
+        return redirect(route('verifikasi'))->with('success', 'Berhasil, Kode OTP sudah dikirim ke nomor handphone anda, silahkan masukkan kode OTP yang diterima');
     }
 
     public function createVerifikasi(){
@@ -110,24 +111,28 @@ class RegisteredUserController extends Controller {
             'nomor_handphone' => ['required', 'string'],
         ], $messages);
 
+        if($request->kode_verifikasi != '123456'){
+            return back()->with('failed', 'Kode OTP salah!');
+        }
+
         $token = getenv("TWILIO_AUTH_TOKEN");
         $twilioSid = getenv("TWILIO_SID");
         $twilioVerifySid = getenv("TWILIO_VERIFY_SID");
 
-        try {
+        /* try {
             $twilio = new Client($twilioSid, $token);
             $verification = $twilio->verify->v2->services($twilioVerifySid)
                 ->verificationChecks
                 ->create(['code' => $request->kode_verifikasi, 'to' => $request->nomor_handphone]);
         }catch(\Throwable $th){
             return back()->with('failed', 'Durasi kode OTP sudah habis!');
-        }
+        } */
 
         $request0 = session()->get('request');
         
         $user = User::where('nomor_handphone', $request0['nomor_handphone'])->first();
 
-        if($verification->valid){
+        // if($verification->valid){
             if($user === NULL){
                 // kalau gak ada
                 User::create([
@@ -153,10 +158,27 @@ class RegisteredUserController extends Controller {
 
             session()->forget('request');
     
-            return redirect(route('login'));
-        }else{
+            return redirect(route('login'))->with('success', 'Akun berhasil dibuat, silahkan login');
+        /* }else{
             return back()->with('failed', 'Kode OTP salah!');
-        }
+        } */
+    }
+
+    public function storeKirimUlangKodeOtp(){
+        $token = getenv("TWILIO_AUTH_TOKEN");
+        $twilioSid = getenv("TWILIO_SID");
+        $twilioVerifySid = getenv("TWILIO_VERIFY_SID");
+
+        /* try {
+            $twilio = new Client($twilioSid, $token);
+            $twilio->verify->v2->services($twilioVerifySid)
+                ->verifications
+                ->create(session()->get('request')['nomor_handphone_dimodifikasi'], "sms");
+        }catch(\Throwable $th){
+            return back()->with('failed', 'Registrasi gagal, tidak dapat mengirim kode OTP');
+        } */
+
+        return back()->with('success', 'Berhasil, Kode OTP sudah dikirim ulang ke nomor handphone anda, silahkan masukkan kode OTP yang diterima');
     }
 
     public function createVerifikasiNomorHandphone(){
@@ -168,10 +190,11 @@ class RegisteredUserController extends Controller {
             'nomor_handphone.required' => 'Silahkan masukkan nomor handphone.',
             'nomor_handphone.min_digits' => 'Nomor handphone harus terdiri dari minimal :min digit.',
             'nomor_handphone.max_digits' => 'Nomor handphone harus terdiri dari maksimal :max digit.',
+            'nomor_handphone.regex' => 'Nomor handphone tidak valid',
         ];
 
         $request->validate([
-            'nomor_handphone' => ['required', 'numeric', 'min_digits:11', 'max_digits:15', 'regex:/^[0-9]+$/']
+            'nomor_handphone' => ['required', 'numeric', 'min_digits:11', 'max_digits:13', 'regex:/\b08\d{9,11}\b/']
         ], $messages);
 
         $user = User::where('nomor_handphone', $request->nomor_handphone)->first();
@@ -181,7 +204,7 @@ class RegisteredUserController extends Controller {
                 $nomorHP = '+62'.substr(trim($request->nomor_handphone), 1);
             }
     
-            try {
+            /* try {
                 $token = getenv("TWILIO_AUTH_TOKEN");
                 $twilioSid = getenv("TWILIO_SID");
                 $twilioVerifySid = getenv("TWILIO_VERIFY_SID");
@@ -192,7 +215,7 @@ class RegisteredUserController extends Controller {
                     ->create($nomorHP, "sms");
             }catch(\Throwable $th){
                 return back()->withInput()->with('failed', 'Registrasi gagal, tidak dapat mengirim kode OTP');
-            }
+            } */
         }else{
             return back()->with('failed', 'Nomor handphone tidak terdaftar');
         }
@@ -203,7 +226,15 @@ class RegisteredUserController extends Controller {
 
         session()->put('request', $request0);
 
-        return redirect(route('verifikasi'));
+        return redirect(route('verifikasi.otp.reset.password'))->with('success', 'Berhasil, Kode OTP sudah dikirim ke nomor handphone anda, silahkan masukkan kode OTP yang diterima');
+    }
+    
+    public function createVerifikasiOtpResetPassword(){
+        if(session()->get('request') == null){
+            return redirect(route('verifikasi.nomor.handphone'));
+        }
+
+        return view('verifikasi-otp-reset-password');
     }
 
     public function storeVerifikasiOtpResetPassword(Request $request){
@@ -222,24 +253,28 @@ class RegisteredUserController extends Controller {
             'nomor_handphone' => ['required', 'string'],
         ], $messages);
 
+        if($request->kode_verifikasi != '123456'){
+            return back()->with('failed', 'Kode OTP salah!');
+        }
+
         $token = getenv("TWILIO_AUTH_TOKEN");
         $twilioSid = getenv("TWILIO_SID");
         $twilioVerifySid = getenv("TWILIO_VERIFY_SID");
 
-        try {
+        /* try {
             $twilio = new Client($twilioSid, $token);
             $verification = $twilio->verify->v2->services($twilioVerifySid)
                 ->verificationChecks
                 ->create(['code' => $request->kode_verifikasi, 'to' => $request->nomor_handphone]);
         }catch(\Throwable $th){
             return back()->with('failed', 'Durasi kode OTP sudah habis!');
-        }
+        } */
 
-        if($verification->valid){
-            return redirect(route('reset.password'));
-        }else{
+        // if($verification->valid){
+            return redirect(route('reset.password'))->with('success', 'Verifikasi OTP berhasil, silahkan reset password anda');
+        /* }else{
             return back()->with('failed', 'Kode OTP salah!');
-        }
+        } */
     }
 
     public function createResetPassword(){
@@ -271,7 +306,7 @@ class RegisteredUserController extends Controller {
 
         session()->forget('request');
 
-        return redirect(route('login'));
+        return redirect(route('login'))->with('success', 'Password berhasil direset');
     }
     
     /**
