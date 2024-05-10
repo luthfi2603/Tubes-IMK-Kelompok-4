@@ -24,7 +24,7 @@ class LoginRequest extends FormRequest {
      */
     public function rules(): array {
         return [
-            'nomor_handphone' => ['required', 'numeric', 'min_digits:11', 'max_digits:15'],
+            'nomor_handphone' => ['required', 'numeric', 'min_digits:11', 'max_digits:13', 'regex:/\b08\d{9,11}\b/'],
             'password' => ['required', 'string'],
         ];
     }
