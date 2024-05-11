@@ -16,6 +16,9 @@ Route::middleware(['auth', 'role:pasien'])->group(function(){
 Route::get('/dokter', function(){
     return view('dokter');
 });
+Route::get('/informasi', function(){
+    return view('informasi');
+});
 
 /* Route::middleware('auth')->group(function(){
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

@@ -52,14 +52,6 @@
 <!-- end side nav -->
 
 <main class="w-full md:w-[calc(100%-256px)] md:ml-64 bg-[#F5f5f5] min-h-screen transition-all main">
-    <style>
-        @media (min-width: 768px) {
-          .main.active {
-            margin-left: 0;
-            width: 100%;
-          }
-        }
-      </style>
     <!-- navbar -->
     <div class="py-2 px-6 bg-[#f8f4f3] flex items-center shadow-md shadow-black/9 sticky top-0 left-0 z-30">
         <button type="button" class="text-lg text-gray-900 font-semibold sidebar-toggle">
@@ -74,7 +66,7 @@
                 <div class="dropdown-menu shadow-md shadow-black/5 z-30 hidden max-w-xs w-full bg-white rounded-md border border-gray-100">
                     <form action="" class="p-4 border-b border-b-gray-100">
                         <div class="relative w-full">
-                            <input type="text" class="py-2 pr-4 pl-10 bg-gray-50 w-full outline-none border border-gray-100 rounded-md text-sm focus:border-blue-500" placeholder="Search...">
+                            <input name="search" type="text" class="py-2 pr-4 pl-10 bg-gray-50 w-full outline-none border border-gray-100 rounded-md text-sm focus:border-blue-500" placeholder="Search...">
                             <i class="ri-search-line absolute top-1/2 left-4 -translate-y-1/2 text-gray-900"></i>
                         </div>
                     </form>

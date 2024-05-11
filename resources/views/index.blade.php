@@ -24,16 +24,16 @@
 
         <div class="flex justify-center">
             <div class="my-12 font-body font-bold text-[#0a0a0a] text-3xl">
-                <h1>Manage Your Health and</h1>
+                <h1>Kelola Kesehatan Anda dan</h1>
                 <div class="flex justify-center">
-                    <span class="block">Happy Future</span>
+                    <span class="block">Masa Depan yang Bahagia</span>
                 </div>
             </div>
         </div>
 
         <div class="flex justify-center mb-12">
             <a href="{{ route('register') }}" class="bg-[#222C67] hover:bg-[#525985] text-[#f5f5f5] font-bold py-2 px-4 border-b-4 border-[#222C67] hover:border-[#525985] rounded font-body">
-                Get Started
+                Ayo mulai
             </a>
         </div>
     </div>
