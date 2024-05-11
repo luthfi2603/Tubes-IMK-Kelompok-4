@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Validator;
 
 class RegisteredUserController extends Controller {
     public function create(): View {
@@ -62,15 +63,15 @@ class RegisteredUserController extends Controller {
             'konfirmasi_password' => ['required', 'same:password', 'min:8', 'max:255']
         ], $messages);
 
-        $token = getenv("TWILIO_AUTH_TOKEN");
-        $twilioSid = getenv("TWILIO_SID");
-        $twilioVerifySid = getenv("TWILIO_VERIFY_SID");
-
         if(substr(trim($request->nomor_handphone), 0, 1) == '0'){
             $nomorHP = '+62'.substr(trim($request->nomor_handphone), 1);
         }
 
         /* try {
+            $token = getenv("TWILIO_AUTH_TOKEN");
+            $twilioSid = getenv("TWILIO_SID");
+            $twilioVerifySid = getenv("TWILIO_VERIFY_SID");
+            
             $twilio = new Client($twilioSid, $token);
             $twilio->verify->v2->services($twilioVerifySid)
                 ->verifications
@@ -106,21 +107,25 @@ class RegisteredUserController extends Controller {
             'nomor_handphone.max_digits' => 'Nomor handphone harus terdiri dari maksimal :max digit.',
         ];
 
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'kode_verifikasi' => ['required', 'numeric', 'min_digits:6', 'max_digits:6'],
             'nomor_handphone' => ['required', 'string'],
         ], $messages);
+
+        if($validator->fails()){
+            return response()->json(['errors' => $validator->errors()]);
+        }
 
         if($request->kode_verifikasi != '123456'){
             // return back()->with('failed', 'Kode OTP salah!');
             return response()->json(['failed' => 'Kode OTP Salah']);
         }
 
-        $token = getenv("TWILIO_AUTH_TOKEN");
-        $twilioSid = getenv("TWILIO_SID");
-        $twilioVerifySid = getenv("TWILIO_VERIFY_SID");
-
         /* try {
+            $token = getenv("TWILIO_AUTH_TOKEN");
+            $twilioSid = getenv("TWILIO_SID");
+            $twilioVerifySid = getenv("TWILIO_VERIFY_SID");
+
             $twilio = new Client($twilioSid, $token);
             $verification = $twilio->verify->v2->services($twilioVerifySid)
                 ->verificationChecks
@@ -167,11 +172,11 @@ class RegisteredUserController extends Controller {
     }
 
     public function storeKirimUlangKodeOtp(){
-        $token = getenv("TWILIO_AUTH_TOKEN");
-        $twilioSid = getenv("TWILIO_SID");
-        $twilioVerifySid = getenv("TWILIO_VERIFY_SID");
-
         /* try {
+            $token = getenv("TWILIO_AUTH_TOKEN");
+            $twilioSid = getenv("TWILIO_SID");
+            $twilioVerifySid = getenv("TWILIO_VERIFY_SID");
+
             $twilio = new Client($twilioSid, $token);
             $twilio->verify->v2->services($twilioVerifySid)
                 ->verifications
@@ -250,20 +255,25 @@ class RegisteredUserController extends Controller {
             'nomor_handphone.max_digits' => 'Nomor handphone harus terdiri dari maksimal :max digit.',
         ];
 
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'kode_verifikasi' => ['required', 'numeric', 'min_digits:6', 'max_digits:6'],
             'nomor_handphone' => ['required', 'string'],
         ], $messages);
 
-        if($request->kode_verifikasi != '123456'){
-            return back()->with('failed', 'Kode OTP salah!');
+        if($validator->fails()){
+            return response()->json(['errors' => $validator->errors()]);
         }
 
-        $token = getenv("TWILIO_AUTH_TOKEN");
-        $twilioSid = getenv("TWILIO_SID");
-        $twilioVerifySid = getenv("TWILIO_VERIFY_SID");
+        if($request->kode_verifikasi != '123456'){
+            // return back()->with('failed', 'Kode OTP salah!');
+            return response()->json(['failed' => 'Kode OTP Salah']);
+        }
 
         /* try {
+            $token = getenv("TWILIO_AUTH_TOKEN");
+            $twilioSid = getenv("TWILIO_SID");
+            $twilioVerifySid = getenv("TWILIO_VERIFY_SID");
+
             $twilio = new Client($twilioSid, $token);
             $verification = $twilio->verify->v2->services($twilioVerifySid)
                 ->verificationChecks
@@ -273,7 +283,8 @@ class RegisteredUserController extends Controller {
         } */
 
         // if($verification->valid){
-            return redirect(route('reset.password'))->with('success', 'Verifikasi OTP berhasil, silahkan reset password anda');
+            // return redirect(route('reset.password'))->with('success', 'Verifikasi OTP berhasil, silahkan reset password anda');
+            return response()->json(['success' => 'Verifikasi OTP berhasil, silahkan reset password anda']);
         /* }else{
             return back()->with('failed', 'Kode OTP salah!');
         } */

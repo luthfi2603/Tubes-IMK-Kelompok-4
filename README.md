@@ -38,11 +38,14 @@ Anggota kelompok:
 9. ```
    npm install
    ```
-10. Buka di terminal baru
+10. ```
+   npm run tw
+   ```
+11. Buka di terminal baru
     ```
     php artisan serve
     ```
-11. buka di browser
+12. buka di browser
     ```
     127.0.0.1:8000
     ```
