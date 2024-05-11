@@ -11,6 +11,15 @@ export default {
 
     theme: {
         extend: {
+            borderRadius: {
+                '4xl': '10rem'
+              },
+              width: {
+                '100': '35rem'
+              },
+              height: {
+                '80': '19rem'
+              },
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
                 body: ['Nunito+Sans'],
