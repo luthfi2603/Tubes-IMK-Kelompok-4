@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ViewController;
 use App\Http\Controllers\ProfileController;
 
-Route::middleware(['auth'])->group(function(){
+Route::middleware(['guest'])->group(function(){
     Route::get('/', [ViewController::class, 'index']);
 });
 
