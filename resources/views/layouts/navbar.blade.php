@@ -1,11 +1,11 @@
 <!--sidenav -->
-<div class="fixed left-0 top-0 w-64 h-full bg-[#E3EBF3] p-4 z-50 sidebar-menu transition-transform">
-    <a href="#" class="flex items-center pb-4 border-b border-b-gray-800" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
-        <img src="{{ asset('assets/img/logo.png') }}" class="w-30 h-24" alt="Logo"></a>
-        </a>
-        <ul class="mt-4">
+<div class="fixed left-0 top-0 w-64 h-full bg-[#E3EBF3] p-4 z-50 sidebar-menu transition-transform -translate-x-full md:translate-x-0">
+    <a href="/" class="flex items-center pb-4 border-b border-b-gray-800" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+        <img src="{{ asset('assets/img/logo.png') }}" class="w-30 h-24" alt="Logo">
+    </a>
+    <ul class="mt-4">
         <li class="mb-1 group">
-            <a href="" class="flex font-semibold items-center py-2 px-4 text-gray-900 hover:bg-[#222C67] hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100">
+            <a href="{{ route('dashboard.pasien') }}" class="flex font-semibold items-center py-2 px-4 text-gray-900 hover:bg-[#222C67] hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100">
                 <i class="ri-home-2-line mr-3 text-lg"></i>
                 <span class="text-sm">Dashboard</span>
             </a>
@@ -48,33 +48,24 @@
         </li>
     </ul>
 </div>
-<div class="fixed top-0 left-0 w-full h-full bg-black/50 z-40 md:hidden sidebar-overlay"></div>
+<div class="fixed top-0 left-0 w-full h-full bg-black/50 z-40 md:hidden sidebar-overlay hidden"></div>
 <!-- end side nav -->
 
-<main class="w-full md:w-[calc(100%-256px)] md:ml-64 bg-[#F5f5f5] min-h-screen transition-all main">
-    <style>
-        @media (min-width: 768px) {
-          .main.active {
-            margin-left: 0;
-            width: 100%;
-          }
-        }
-      </style>
+<main id="main" class="w-full md:w-[calc(100%-256px)] md:ml-64 bg-[#F5f5f5] min-h-screen transition-all main">
     <!-- navbar -->
     <div class="py-2 px-6 bg-[#f8f4f3] flex items-center shadow-md shadow-black/9 sticky top-0 left-0 z-30">
         <button type="button" class="text-lg text-gray-900 font-semibold sidebar-toggle">
             <i class="ri-menu-line"></i>
         </button>
-
         <ul class="ml-auto flex items-center">
-            <li class="mr-1 dropdown">
+            <li class="dropdown">
                 <button type="button" class="dropdown-toggle text-gray-400 mr-4 w-8 h-8 rounded flex items-center justify-center  hover:text-gray-600">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="hover:bg-gray-100 rounded-full" viewBox="0 0 24 24" style="fill: gray;transform: ;msFilter:;"><path d="M19.023 16.977a35.13 35.13 0 0 1-1.367-1.384c-.372-.378-.596-.653-.596-.653l-2.8-1.337A6.962 6.962 0 0 0 16 9c0-3.859-3.14-7-7-7S2 5.141 2 9s3.14 7 7 7c1.763 0 3.37-.66 4.603-1.739l1.337 2.8s.275.224.653.596c.387.363.896.854 1.384 1.367l1.358 1.392.604.646 2.121-2.121-.646-.604c-.379-.372-.885-.866-1.391-1.36zM9 14c-2.757 0-5-2.243-5-5s2.243-5 5-5 5 2.243 5 5-2.243 5-5 5z"></path></svg>                    
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="hover:bg-gray-100 rounded-full mt-[3px]" viewBox="0 0 24 24" style="fill: gray;transform: ;msFilter:;"><path d="M19.023 16.977a35.13 35.13 0 0 1-1.367-1.384c-.372-.378-.596-.653-.596-.653l-2.8-1.337A6.962 6.962 0 0 0 16 9c0-3.859-3.14-7-7-7S2 5.141 2 9s3.14 7 7 7c1.763 0 3.37-.66 4.603-1.739l1.337 2.8s.275.224.653.596c.387.363.896.854 1.384 1.367l1.358 1.392.604.646 2.121-2.121-.646-.604c-.379-.372-.885-.866-1.391-1.36zM9 14c-2.757 0-5-2.243-5-5s2.243-5 5-5 5 2.243 5 5-2.243 5-5 5z"></path></svg>
                 </button>
                 <div class="dropdown-menu shadow-md shadow-black/5 z-30 hidden max-w-xs w-full bg-white rounded-md border border-gray-100">
                     <form action="" class="p-4 border-b border-b-gray-100">
                         <div class="relative w-full">
-                            <input type="text" class="py-2 pr-4 pl-10 bg-gray-50 w-full outline-none border border-gray-100 rounded-md text-sm focus:border-blue-500" placeholder="Search...">
+                            <input name="search" type="text" class="py-2 pr-4 pl-10 bg-gray-50 w-full outline-none border border-gray-100 rounded-md text-sm focus:border-blue-500" placeholder="Search...">
                             <i class="ri-search-line absolute top-1/2 left-4 -translate-y-1/2 text-gray-900"></i>
                         </div>
                     </form>
@@ -137,17 +128,13 @@
                                 </a>
                             </li>
                         </ul>
-                        <ul class="max-h-64 overflow-y-auto hidden" data-tab-for="notification" data-page="messages">
-                        </ul>
+                        <ul class="max-h-64 overflow-y-auto hidden" data-tab-for="notification" data-page="messages"></ul>
                     </div>
                 </div>
             </li>
             <button id="fullscreen-button">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="hover:bg-gray-100 rounded-full" viewBox="0 0 24 24" style="fill: gray;transform: ;msFilter:;">
-                    <path d="M5 5h5V3H3v7h2zm5 14H5v-5H3v7h7zm11-5h-2v5h-5v2h7zm-2-4h2V3h-7v2h5z"></path></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="hover:bg-gray-100 rounded-full" viewBox="0 0 24 24" style="fill: gray;transform: ;msFilter:;"><path d="M5 5h5V3H3v7h2zm5 14H5v-5H3v7h7zm11-5h-2v5h-5v2h7zm-2-4h2V3h-7v2h5z"></path></svg>
             </button>
-            
-
             <li class="dropdown ml-3">
                 <button type="button" class="dropdown-toggle flex items-center">
                     <div class="flex-shrink-0 w-10 h-10 relative">

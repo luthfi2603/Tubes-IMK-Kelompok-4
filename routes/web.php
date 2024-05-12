@@ -10,7 +10,14 @@ Route::middleware(['guest'])->group(function(){
 
 Route::middleware(['auth', 'role:pasien'])->group(function(){
     Route::get('/dashboard', [ViewController::class, 'showDashboardPasien'])
-        ->name('dashboard.pasien');
+    ->name('dashboard.pasien');
+});
+
+Route::get('/dokter', function(){
+    return view('dokter');
+});
+Route::get('/informasi', function(){
+    return view('informasi');
 });
 
 /* Route::middleware('auth')->group(function(){
