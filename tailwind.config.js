@@ -19,8 +19,10 @@ export default {
                 '100': '35rem'
             },
               height: {
-                '80': '19rem'
-            },
+                '80': '19rem',
+                '150': '120vh',
+                '200': '150vh',
+              },
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
                 body: ['Nunito+Sans'],
