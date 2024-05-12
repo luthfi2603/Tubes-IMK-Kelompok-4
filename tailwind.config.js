@@ -7,19 +7,20 @@ export default {
         './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php',
+        './public/assets/js/*.js',
     ],
 
     theme: {
         extend: {
             borderRadius: {
                 '4xl': '10rem'
-              },
-              width: {
+            },
+            width: {
                 '100': '35rem'
-              },
+            },
               height: {
                 '80': '19rem'
-              },
+            },
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
                 body: ['Nunito+Sans'],

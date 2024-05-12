@@ -1,19 +1,24 @@
 const sidebarToggle = document.querySelector('.sidebar-toggle')
 const sidebarOverlay = document.querySelector('.sidebar-overlay')
 const sidebarMenu = document.querySelector('.sidebar-menu')
-const main = document.querySelector('.main')
+const main = document.getElementById('main')
 
 sidebarToggle.addEventListener('click', function (e) {
     e.preventDefault()
-    main.classList.toggle('active')
-    sidebarOverlay.classList.toggle('hidden')
-    sidebarMenu.classList.toggle('-translate-x-full')
+    main.classList.toggle('md:w-full')
+    main.classList.toggle('md:ml-0')
+    sidebarOverlay.classList.toggle('hidden') // untuk mobile
+    sidebarMenu.classList.toggle('md:translate-x-0')
+    sidebarMenu.classList.toggle('md:-translate-x-full')
+    sidebarMenu.classList.toggle('-translate-x-full') // untuk mobile
 })
 sidebarOverlay.addEventListener('click', function (e) {
-    e.preventDefault()
-    main.classList.add('active')
-    sidebarOverlay.classList.add('hidden')
-    sidebarMenu.classList.add('-translate-x-full')
+    main.classList.toggle('md:w-full')
+    main.classList.toggle('md:ml-0')
+    sidebarOverlay.classList.toggle('hidden') // untuk mobile
+    sidebarMenu.classList.toggle('md:translate-x-0')
+    sidebarMenu.classList.toggle('md:-translate-x-full')
+    sidebarMenu.classList.toggle('-translate-x-full') // untuk mobile
 })
 document.querySelectorAll('.sidebar-dropdown-toggle').forEach(function (item) {
     item.addEventListener('click', function (e) {
