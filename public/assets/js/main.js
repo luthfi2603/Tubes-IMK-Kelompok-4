@@ -7,6 +7,8 @@ sidebarToggle.addEventListener('click', function (e) {
     e.preventDefault()
     main.classList.toggle('md:w-full')
     main.classList.toggle('md:ml-0')
+    main.classList.toggle('md:w-[calc(100%-256px)]')
+    main.classList.toggle('md:ml-64')
     sidebarOverlay.classList.toggle('hidden') // untuk mobile
     sidebarMenu.classList.toggle('md:translate-x-0')
     sidebarMenu.classList.toggle('md:-translate-x-full')
@@ -15,6 +17,8 @@ sidebarToggle.addEventListener('click', function (e) {
 sidebarOverlay.addEventListener('click', function (e) {
     main.classList.toggle('md:w-full')
     main.classList.toggle('md:ml-0')
+    main.classList.toggle('md:w-[calc(100%-256px)]')
+    main.classList.toggle('md:ml-64')
     sidebarOverlay.classList.toggle('hidden') // untuk mobile
     sidebarMenu.classList.toggle('md:translate-x-0')
     sidebarMenu.classList.toggle('md:-translate-x-full')
