@@ -11,7 +11,7 @@
 </head>
 <body>
 
-    <body class="h-200 bg-gray-100 text-gray-900 flex justify-center">
+    <body class="min-h-screen bg-gray-100 text-gray-900 flex justify-center">
         <div class="max-w-screen-xl m-0 sm:m-20 bg-white shadow sm:rounded-lg flex justify-center flex-1">
           <div class="lg:w-1/2 xl:w-5/12 p-6 sm:p-12">
             
