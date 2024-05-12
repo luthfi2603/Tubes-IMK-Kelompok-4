@@ -19,6 +19,9 @@ Route::get('/dokter', function(){
 Route::get('/informasi', function(){
     return view('informasi');
 });
+Route::get('/profil', function(){
+    return view('profil');
+});
 
 /* Route::middleware('auth')->group(function(){
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
