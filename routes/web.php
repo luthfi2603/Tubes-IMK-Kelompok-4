@@ -12,6 +12,9 @@ Route::middleware(['guest'])->group(function(){
 Route::middleware(['auth', 'role:pasien'])->group(function(){
     Route::get('/dashboard', [ViewController::class, 'showDashboardPasien'])
     ->name('dashboard.pasien');
+    Route::get('/profil', function(){
+        return view('profil');
+    })->name('profil');
 });
 
 Route::get('/dokter', function(){
@@ -20,8 +23,8 @@ Route::get('/dokter', function(){
 Route::get('/informasi', function(){
     return view('informasi');
 });
-Route::get('/profil', function(){
-    return view('profil');
+Route::get('/register0', function(){
+    return view('register0');
 });
 
 /* Route::middleware('auth')->group(function(){
