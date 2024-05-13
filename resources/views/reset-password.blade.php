@@ -30,6 +30,8 @@
                         {{ $message }}
                     </div>
                 @enderror
+            </div>
+            <div class="flex flex-col mb-3 w-full">
                 <label for="konfirmasi_password">Konfirmasi Password</label>
                 <input type="password" name="konfirmasi_password" id="konfirmasi_password" class="@error('konfirmasi_password') bg-red-500 placeholder-white @enderror" placeholder="Masukkan konfirmasi password baru anda">
                 @error('konfirmasi_password')

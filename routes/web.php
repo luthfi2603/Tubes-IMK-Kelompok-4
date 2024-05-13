@@ -23,6 +23,9 @@ Route::get('/dokter', function(){
 Route::get('/informasi', function(){
     return view('informasi');
 });
+Route::get('/register0', function(){
+    return view('register0');
+});
 
 /* Route::middleware('auth')->group(function(){
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
