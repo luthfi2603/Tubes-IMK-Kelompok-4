@@ -1,13 +1,17 @@
 const waktu = document.getElementById('waktu');
+const kirimUlangTag = document.getElementById('kirim-ulang');
+const kirimUlangTag2 = document.getElementById('kirim-ulang-2');
 let waktuBaru = '10:00';
+let statusKirimUlangKodeOtp = false;
 
-function stopwatch() {
+function stopwatch(){
     let timeArray = waktuBaru.split(':');
     let minutes = parseInt(timeArray[0]);
     let seconds = parseInt(timeArray[1]);
 
     if (minutes === 0 && seconds === 0) {
         clearInterval(interval);
+        statusKirimUlangKodeOtp = true;
         return;
     }
 
@@ -32,15 +36,15 @@ let interval = setInterval(stopwatch, 1000);
 const waktu2 = document.getElementById('waktu-2');
 let waktuBaru2 = '00:30';
 
-function stopwatch2() {
+function stopwatch2(){
     let timeArray = waktuBaru2.split(':');
     let minutes = parseInt(timeArray[0]);
     let seconds = parseInt(timeArray[1]);
 
     if (minutes === 0 && seconds === 0) {
         clearInterval(interval2);
-        document.getElementById('kirim-ulang').classList.remove('hidden');
-        document.getElementById('kirim-ulang-2').classList.add('hidden');
+        kirimUlangTag.classList.remove('hidden');
+        kirimUlangTag2.classList.add('hidden');
         return;
     }
 
@@ -65,6 +69,7 @@ let interval2 = setInterval(stopwatch2, 1000);
 const form = document.getElementsByTagName('form')[0];
 const notif =  document.getElementById('failed');
 const success =  document.getElementById('success');
+const success2 =  document.getElementById('success-2');
 const errorMessage = document.getElementById('error-message');
 
 const kirim =  async (url) => {
@@ -86,9 +91,10 @@ const kirim =  async (url) => {
                 document.location.href = 'reset-password';
             }
         }else if('failed' in data){
-            errorMessage.classList.add('hidden');
             notif.classList.remove('hidden');
-            notif.innerHTML = data.failed
+            notif.innerHTML = data.failed;
+            errorMessage.classList.add('hidden');
+            success2.classList.add('hidden');
             form.reset();
 
             if(success != null){ // kalo ada
@@ -97,8 +103,9 @@ const kirim =  async (url) => {
         }else{
             if('kode_verifikasi' in data.errors){
                 errorMessage.classList.remove('hidden');
-                notif.classList.add('hidden');
                 errorMessage.innerHTML = data.errors.kode_verifikasi;
+                notif.classList.add('hidden');
+                success2.classList.add('hidden');
                 form.reset();
 
                 if(success != null){ // kalo ada
@@ -107,6 +114,51 @@ const kirim =  async (url) => {
             }
         }
     }catch(error){
-        console.log(error)
+        console.error(error)
+    }
+};
+
+const kirimUlang =  async (csrf) => {
+    const form = document.createElement('form');
+    const input = document.createElement('input');
+    input.setAttribute('name', '_token');
+    input.value = csrf;
+    form.appendChild(input);
+
+    const formData = new FormData(form);
+    const response = await fetch('/kirim-ulang-kode-otp', {
+        method: "POST",
+        body: formData
+    });
+
+    try {
+        const data = await response.json();
+
+        if(statusKirimUlangKodeOtp){
+            waktuBaru = '10:00';
+            waktu.innerHTML = '10:00';
+            interval = setInterval(stopwatch, 1000);
+            statusKirimUlangKodeOtp = false;
+        }
+        
+        waktuBaru2 = '00:30';
+        waktu2.innerHTML = '00:30';
+        kirimUlangTag.classList.add('hidden');
+        kirimUlangTag2.classList.remove('hidden');
+        interval2 = setInterval(stopwatch2, 1000);
+
+        success2.classList.add('hidden');
+        setTimeout(() => {
+            success2.classList.remove('hidden');
+            success2.innerHTML = data.success;
+            errorMessage.classList.add('hidden');
+            notif.classList.add('hidden');
+
+            if(success != null){ // kalo ada
+                success.classList.add('hidden');
+            }
+        }, 100);
+    }catch(error){
+        console.error(error);
     }
 };

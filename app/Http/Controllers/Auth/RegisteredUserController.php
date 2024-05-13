@@ -185,7 +185,8 @@ class RegisteredUserController extends Controller {
             return back()->with('failed', 'Registrasi gagal, tidak dapat mengirim kode OTP');
         } */
 
-        return back()->with('success', 'Berhasil, Kode OTP sudah dikirim ulang ke nomor handphone anda, silahkan masukkan kode OTP yang diterima');
+        // return back()->with('success', 'Berhasil, Kode OTP sudah dikirim ulang ke nomor handphone anda, silahkan masukkan kode OTP yang diterima');
+        return response()->json(['success' => 'Berhasil, Kode OTP sudah dikirim ulang ke nomor handphone anda, silahkan masukkan kode OTP yang diterima']);
     }
 
     public function createVerifikasiNomorHandphone(){

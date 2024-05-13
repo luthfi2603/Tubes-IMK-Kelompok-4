@@ -18,7 +18,7 @@ Route::middleware('guest')->group(function(){
     Route::get('verifikasi', [RegisteredUserController::class, 'createVerifikasi'])
                 ->name('verifikasi');
     Route::post('verifikasi', [RegisteredUserController::class, 'storeVerifikasi']);
-    Route::get('kirim-ulang-kode-otp', [RegisteredUserController::class, 'storeKirimUlangKodeOtp'])
+    Route::post('kirim-ulang-kode-otp', [RegisteredUserController::class, 'storeKirimUlangKodeOtp'])
                 ->name('kirim.ulang.kode.otp');
     Route::get('login', [AuthenticatedSessionController::class, 'create'])
                 ->name('login');
