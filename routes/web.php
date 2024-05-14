@@ -34,5 +34,6 @@ Route::get('/register0', function(){
 }); */
 
 Route::get('/admin/datapasien', [AdminController::class, 'datapasien'])->name('data_pasien'); 
+Route::get('/admin/datakaryawan', [AdminController::class, 'datakaryawan'])->name('data_karyawan'); 
 
 require __DIR__.'/auth.php';

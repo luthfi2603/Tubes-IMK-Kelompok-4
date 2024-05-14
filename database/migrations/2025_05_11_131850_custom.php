@@ -15,5 +15,33 @@ return new class extends Migration {
             FROM pasiens a
             INNER JOIN users b ON a.id = b.id;
         ');
+
+        DB::unprepared('
+            DROP VIEW IF EXISTS data_karyawan;
+            CREATE VIEW data_karyawan AS
+            SELECT
+                b.nama, 
+                b.alamat,
+                a.nomor_handphone,
+                a.status
+            FROM users a
+            INNER JOIN dokters b ON a.id = b.id_user 
+            UNION
+            SELECT
+                c.nama, 
+                c.alamat,
+                a.nomor_handphone,
+                a.status
+            FROM users a
+            INNER JOIN perawats c ON a.id = c.id_user 
+            UNION
+            SELECT
+                d.nama, 
+                d.alamat,
+                a.nomor_handphone,
+                a.status
+            FROM users a
+            INNER JOIN admins d ON a.id = d.id_user 
+        ');
     }
 };
