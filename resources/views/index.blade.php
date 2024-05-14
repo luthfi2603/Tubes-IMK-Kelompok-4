@@ -32,7 +32,7 @@
         </div>
 
         <div class="flex justify-center mb-12">
-            <a href="{{ route('register') }}" class="bg-[#222C67] hover:bg-[#525985] text-[#f5f5f5] font-bold py-2 px-4 border-b-4 border-[#222C67] hover:border-[#525985] rounded font-body">
+            <a href="{{ route('login') }}" class="bg-[#222C67] hover:bg-[#525985] text-[#f5f5f5] font-bold py-2 px-4 border-b-4 border-[#222C67] hover:border-[#525985] rounded font-body">
                 Ayo mulai
             </a>
         </div>

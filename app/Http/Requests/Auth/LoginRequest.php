@@ -28,6 +28,19 @@ class LoginRequest extends FormRequest {
             'password' => ['required', 'string'],
         ];
     }
+    
+    public function messages(): array {
+        return [
+            'nomor_handphone.required' => 'Kolom nomor handphone harus diisi.',
+            'nomor_handphone.numeric' => 'Nomor handphone harus diisi dengan angka.',
+            'nomor_handphone.min_digits' => 'Nomor handphone harus terdiri dari minimal :min digit.',
+            'nomor_handphone.max_digits' => 'Nomor handphone harus terdiri dari maksimal :max digit.',
+            'nomor_handphone.regex' => 'Nomor handphone tidak valid',
+            'password.required' => 'Kolom password harus diisi.',
+            'password.min' => 'Password harus terdiri dari minimal :min karakter.',
+            'password.max' => 'Password tidak boleh melebihi :max karakter.',
+        ];
+    }
 
     /**
      * Attempt to authenticate the request's credentials.

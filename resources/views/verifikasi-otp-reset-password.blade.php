@@ -18,6 +18,7 @@
                 {{ session('success') }}
             </div>
         @endif
+        <div id="success-2" class="mt-4 bg-green-300 py-3 text-white px-9 rounded-lg hidden"></div>
         <div id="failed" class="mt-4 bg-red-300 py-3 text-white px-9 rounded-lg hidden"></div>
         <p class="my-4 font-semibold text-xl">Verifikasi</p>
         {{-- @if(session()->all()['_previous']['url'] == 'http://127.0.0.1:8000/register') --}}
@@ -37,7 +38,7 @@
             <p>Masukkan kode OTP dalam waktu 10 menit</p>
             <div>Waktu tersisa <span id="waktu" class="font-bold">10:00</span></div>
             <p id="kirim-ulang-2">Kirim ulang kode OTP dalam <span id="waktu-2" class="font-bold">00:30</span></p>
-            <a id="kirim-ulang" href="{{ route('kirim.ulang.kode.otp') }}" class="font-bold underline text-blue-500 hidden">Kirim Ulang</a>
+            <span onclick="kirimUlang('{{ csrf_token() }}')" id="kirim-ulang" class="font-bold underline text-blue-500 cursor-pointer hidden">Kirim Ulang</span>
             <button onclick="kirim('{{ route('verifikasi.otp.reset.password') }}')" type="button" class="px-4 py-2 bg-gray-400 rounded-xl text-white mb-4 mt-3">Kirim</button>
         </form>
     </div>
