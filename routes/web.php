@@ -1,20 +1,21 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ViewController;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\PasienController;
+use App\Http\Controllers\ProfileController;
 
 Route::middleware(['guest'])->group(function(){
-    Route::get('/', [ViewController::class, 'index']);
+    Route::get('/', function(){
+        return view('index');
+    });
 });
 
 Route::middleware(['auth', 'role:pasien'])->group(function(){
-    Route::get('/dashboard', [ViewController::class, 'showDashboardPasien'])
-    ->name('dashboard.pasien');
-    Route::get('/profil', function(){
-        return view('profil');
-    })->name('profil');
+    Route::get('/dashboard', [PasienController::class, 'showDashboardPasien'])
+        ->name('dashboard.pasien');
+    Route::get('/profil', [PasienController::class, 'editProfil'])
+        ->name('profil.pasien');
 });
 
 Route::get('/dokter', function(){
@@ -25,6 +26,9 @@ Route::get('/informasi', function(){
 });
 Route::get('/register0', function(){
     return view('register0');
+});
+Route::get('/login-as-page', function(){
+    return view('login-as-page');
 });
 
 /* Route::middleware('auth')->group(function(){
