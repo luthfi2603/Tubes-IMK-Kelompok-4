@@ -6,7 +6,7 @@
     <title>Klinik RH61</title>
     <link rel="stylesheet" href="{{ asset('./assets/css/app.css') }}">
 </head>
-<body class="bg-neutral-100 min-h-screen flex flex-col items-center justify-center">
+<body class="bg-neutral-100 min-h-screen flex flex-col items-center">
     <div class="w-full sm:w-[90%] md:w-[50%] lg:w-[40%] xl:w-[30%] 2xl:w-[25%] mx-auto p-4">
         <div class="flex items-center justify-center mb-4">
             <img class="w-full max-w-sm mx-auto" src="{{ asset('assets/img/logo.png') }}" />
