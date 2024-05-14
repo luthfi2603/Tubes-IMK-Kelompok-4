@@ -39,8 +39,8 @@ Anggota kelompok:
    npm install
    ```
 10. ```
-   npm run tw
-   ```
+    npm run tw
+    ```
 11. Buka di terminal baru
     ```
     php artisan serve
