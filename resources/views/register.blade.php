@@ -53,7 +53,7 @@
                             class="mt-5 tracking-wide font-semibold bg-[#374280] text-gray-100 w-full py-4 rounded-lg hover:bg-[#222C67] transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
                             <i class="fa-solid fa-right-to-bracket"></i>
                             <span class="ml-3">
-                                Sign In
+                                Daftar
                             </span>
                         </button>
                         <p class="mt-6 text-sm text-center">
