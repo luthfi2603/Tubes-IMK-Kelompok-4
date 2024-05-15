@@ -68,8 +68,8 @@
                 </div>
             </div>
         </div>
-        <div class="flex-1 bg-[#E3EBF3] hidden lg:flex">
-            <div class="m-12 xl:m-16 w-full h-full bg-contain bg-center bg-no-repeat flex items-center justify-center">
+        <div class="flex-1 bg-[#E3EBF3] hidden lg:flex items-center justify-center">
+            <div class="m-12 xl:m-16 w-full h-full flex items-center justify-center">
                 <img src="{{ asset('assets/img/picture-login.png') }}" alt="">
             </div>
         </div>

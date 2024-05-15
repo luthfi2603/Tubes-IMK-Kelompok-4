@@ -34,7 +34,7 @@
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
                             <div class="content-center">
-                                <label for="nomor_handphone" class="ml-2 text-sm font-bold text-gray-700 tracking-wide">No Telepon</label>
+                                <label for="nomor_handphone" class="ml-2 text-sm font-bold text-gray-700 tracking-wide">No Handphone</label>
                                 <input
                                     class="w-full px-5 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-400 text-sm focus:outline-none focus:border-gray-400 focus:bg-white @error('nomor_handphone') @enderror"
                                     value="{{ old('nomor_handphone') }}" type="text" name="nomor_handphone"
@@ -47,7 +47,7 @@
                             </div>
                             <div class="content-center mt-5 relative">
                                 <label for="password"
-                                    class="ml-2 text-sm font-bold text-gray-700 tracking-wide">Password</label>
+                                    class="ml-2 text-sm font-bold text-gray-700 tracking-wide">Kata Sandi</label>
                                 <input type="password" name="password" id="password"
                                     class="w-full px-5 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-400 text-sm focus:outline-none focus:border-gray-400 focus:bg-white @error('password')  @enderror"
                                     value="{{ old('password') }}" type="password" placeholder="Password" />
@@ -81,8 +81,8 @@
                 </div>
             </div>
         </div>
-        <div class="flex-1 bg-[#E3EBF3] hidden lg:flex">
-            <div class="m-12 xl:m-16 w-full h-full bg-contain bg-center bg-no-repeat flex items-center justify-center">
+        <div class="flex-1 bg-[#E3EBF3] hidden lg:flex items-center justify-center">
+            <div class="m-12 xl:m-16 w-full h-full flex items-center justify-center">
                 <img src="{{ asset('assets/img/picture-login.png') }}" alt="">
             </div>
         </div>
