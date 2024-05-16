@@ -28,10 +28,10 @@ class AuthenticatedSessionController extends Controller {
         $role = auth()->user()->status;
         switch($role){
             case "pasien":
-                return redirect()->intended(route('dashboard.pasien'));
+                return redirect()->intended(route('pasien.dashboard'));
                 break;
             case "dokter":
-                return redirect()->intended(route('dashboard.pasien'));
+                return redirect()->intended(route('pasien.dashboard'));
                 break;
             case "perawat":
                 return redirect()->intended('/');

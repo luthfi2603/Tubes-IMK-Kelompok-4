@@ -5,7 +5,7 @@
     </a>
     <ul class="mt-4">
         <li class="mb-1 group">
-            <a href="{{ route('dashboard.pasien') }}" class="flex font-semibold items-center py-2 px-4 text-gray-900 hover:bg-[#222C67] hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100">
+            <a href="{{ route('pasien.dashboard') }}" class="flex font-semibold items-center py-2 px-4 text-gray-900 hover:bg-[#222C67] hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100">
                 <i class="ri-home-2-line mr-3 text-lg"></i>
                 <span class="text-sm">Dashboard</span>
             </a>
@@ -139,19 +139,23 @@
                 <button type="button" class="dropdown-toggle flex items-center">
                     <div class="flex-shrink-0 w-10 h-10 relative">
                         <div class="p-1 bg-white rounded-full focus:outline-none focus:ring">
-                            <img class="w-8 h-8 rounded-full" src="https://laravelui.spruko.com/tailwind/ynex/build/assets/images/faces/9.jpg" alt=""/>
+                            @if(auth()->user()->foto == null)
+                                <svg id="default" class="w-8 h-8" xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="#222c67"  stroke-width="1"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-user-circle"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M12 10m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /><path d="M6.168 18.849a4 4 0 0 1 3.832 -2.849h4a4 4 0 0 1 3.834 2.855" /></svg>
+                            @else
+                                <img class="w-8 h-8 rounded-full" src="{{ asset('storage/' . auth()->user()->foto) }}" alt="">
+                            @endif
                             <div class="top-0 left-7 absolute w-3 h-3 bg-lime-400 border-2 border-white rounded-full animate-ping"></div>
                             <div class="top-0 left-7 absolute w-3 h-3 bg-lime-500 border-2 border-white rounded-full"></div>
                         </div>
                     </div>
                     <div class="p-2 md:block text-left">
-                        <h2 class="text-sm font-semibold text-gray-800">John Doe</h2>
-                        <p class="text-xs text-gray-500">Administrator</p>
+                        <h2 class="text-sm font-semibold text-gray-800">{{ auth()->user()->pasien->nama }}</h2>
+                        <p class="text-xs text-gray-500">{{ auth()->user()->status }}</p>
                     </div>                
                 </button>
                 <ul class="dropdown-menu shadow-md shadow-black/5 z-30 hidden py-1.5 rounded-md bg-white border border-gray-100 w-full max-w-[140px]">
                     <li>
-                        <a href="{{ route('profil.pasien') }}" class="flex items-center text-[13px] py-1.5 px-4 text-gray-600 hover:text-[#f84525] hover:bg-gray-50">Profile</a>
+                        <a href="{{ route('pasien.profil') }}" class="flex items-center text-[13px] py-1.5 px-4 text-gray-600 hover:text-[#f84525] hover:bg-gray-50">Profil</a>
                     </li>
                     <li>
                         <a href="#" class="flex items-center text-[13px] py-1.5 px-4 text-gray-600 hover:text-[#f84525] hover:bg-gray-50">Settings</a>
@@ -162,7 +166,7 @@
                             <a role="menuitem" class="flex items-center text-[13px] py-1.5 px-4 text-gray-600 hover:text-[#f84525] hover:bg-gray-50 cursor-pointer"
                                 onclick="event.preventDefault();
                                 this.closest('form').submit();">
-                                Log Out
+                                Keluar
                             </a>
                         </form>
                     </li>

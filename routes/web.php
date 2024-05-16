@@ -13,9 +13,17 @@ Route::middleware(['guest'])->group(function(){
 
 Route::middleware(['auth', 'role:pasien'])->group(function(){
     Route::get('/dashboard', [PasienController::class, 'showDashboardPasien'])
-        ->name('dashboard.pasien');
+        ->name('pasien.dashboard');
     Route::get('/profil', [PasienController::class, 'editProfil'])
-        ->name('profil.pasien');
+        ->name('pasien.profil');
+    Route::put('/profil', [PasienController::class, 'updateProfil']);
+    Route::put('/foto-profil', [PasienController::class, 'updateFotoProfil']);
+    Route::delete('/hapus-foto-profil', [PasienController::class, 'hapusFotoProfil']);
+    Route::get('/pasien-verifikasi', [PasienController::class, 'createVerifikasi'])
+        ->name('pasien.verifikasi');
+    Route::post('/pasien-verifikasi', [PasienController::class, 'storeVerifikasi']);
+    Route::post('/kirim-ulang-kode-otp-update-nomor-handphone', [PasienController::class, 'storeKirimUlangKodeOtp'])
+        ->name('kirim.ulang.kode.otp.update.nomor.handphone');
 });
 
 Route::get('/dokter', function(){

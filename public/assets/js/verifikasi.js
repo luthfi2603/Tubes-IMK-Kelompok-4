@@ -86,9 +86,12 @@ const kirim =  async (url) => {
             if(url == 'http://127.0.0.1:8000/verifikasi'){
                 localStorage.setItem('successMessage', data.success);
                 document.location.href = 'login';
-            }else{
+            }else if(url == 'http://127.0.0.1:8000/verifikasi-otp-reset-password'){
                 localStorage.setItem('successMessage', data.success);
                 document.location.href = 'reset-password';
+            }else if(url == 'http://127.0.0.1:8000/pasien-verifikasi'){
+                localStorage.setItem('successMessage', data.success);
+                document.location.href = 'profil';
             }
         }else if('failed' in data){
             notif.classList.remove('hidden');
@@ -118,7 +121,7 @@ const kirim =  async (url) => {
     }
 };
 
-const kirimUlang =  async (csrf) => {
+const kirimUlang =  async (csrf, url) => {
     const form = document.createElement('form');
     const input = document.createElement('input');
     input.setAttribute('name', '_token');
@@ -126,7 +129,7 @@ const kirimUlang =  async (csrf) => {
     form.appendChild(input);
 
     const formData = new FormData(form);
-    const response = await fetch('/kirim-ulang-kode-otp', {
+    const response = await fetch(url, {
         method: "POST",
         body: formData
     });

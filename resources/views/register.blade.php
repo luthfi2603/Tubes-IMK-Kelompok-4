@@ -31,7 +31,7 @@
                             <label class="ml-2 text-sm font-bold text-gray-700 tracking-wide">No Telepon</label>
                             <input
                                 class="w-full px-5 py-3 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-400 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
-                                type="number" placeholder="081234567890" />
+                                type="number" placeholder="Contoh: 081234567890" />
                         </div>
                         <div class="content-center mt-5 relative">
                             <label class="ml-2 text-sm font-bold text-gray-700 tracking-wide">Password</label>
@@ -53,7 +53,7 @@
                             class="mt-5 tracking-wide font-semibold bg-[#374280] text-gray-100 w-full py-4 rounded-lg hover:bg-[#222C67] transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
                             <i class="fa-solid fa-right-to-bracket"></i>
                             <span class="ml-3">
-                                Sign In
+                                Daftar
                             </span>
                         </button>
                         <p class="mt-6 text-sm text-center">

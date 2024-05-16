@@ -42,6 +42,8 @@ class RegisteredUserController extends Controller {
             'tanggal_lahir.required' => 'Kolom tanggal lahir harus diisi.',
             'tanggal_lahir.date' => 'Format tanggal lahir tidak valid.',
             'pekerjaan.required' => 'Kolom pekerjaan harus diisi.',
+            'pekerjaan.regex' => 'Hanya boleh huruf kapital, huruf kecil, dan spasi.',
+            'pekerjaan.max' => 'Maksimal 255 karakter.',
             'password.required' => 'Kolom password harus diisi.',
             'password.same' => 'Password dan konfirmasi password harus sama.',
             'password.min' => 'Password harus terdiri dari minimal :min karakter.',
@@ -58,7 +60,7 @@ class RegisteredUserController extends Controller {
             'alamat' => ['required', 'string', 'max:255'],
             'jenis_kelamin' => ['required', 'in:P,L'],
             'tanggal_lahir' => ['required', 'date'],
-            'pekerjaan' => ['required', 'string', 'max:255'],
+            'pekerjaan' => ['required', 'regex:/^[a-zA-Z\s]+$/', 'max:255'],
             'password' => ['required', 'same:konfirmasi_password', 'min:8', 'max:255'],
             'konfirmasi_password' => ['required', 'same:password', 'min:8', 'max:255']
         ], $messages);
@@ -100,15 +102,14 @@ class RegisteredUserController extends Controller {
         $messages = [
             'kode_verifikasi.required' => 'Silahkan masukkan kode OTP.',
             'kode_verifikasi.numeric' => 'Kode OTP yang dimasukkan harus berupa angka.',
-            'kode_verifikasi.min_digits' => 'Kode OTP harus terdiri dari minimal :min digit.',
-            'kode_verifikasi.max_digits' => 'Kode OTP harus terdiri dari maksimal :max digit.',
+            'kode_verifikasi.digits' => 'Kode OTP harus terdiri dari :digits digit.',
             'nomor_handphone.required' => 'Silahkan masukkan nomor handphone.',
             'nomor_handphone.min_digits' => 'Nomor handphone harus terdiri dari minimal :min digit.',
             'nomor_handphone.max_digits' => 'Nomor handphone harus terdiri dari maksimal :max digit.',
         ];
 
         $validator = Validator::make($request->all(), [
-            'kode_verifikasi' => ['required', 'numeric', 'min_digits:6', 'max_digits:6'],
+            'kode_verifikasi' => ['required', 'numeric', 'digits:6'],
             'nomor_handphone' => ['required', 'string'],
         ], $messages);
 
@@ -249,15 +250,14 @@ class RegisteredUserController extends Controller {
         $messages = [
             'kode_verifikasi.required' => 'Silahkan masukkan kode OTP.',
             'kode_verifikasi.numeric' => 'Kode OTP yang dimasukkan harus berupa angka.',
-            'kode_verifikasi.min_digits' => 'Kode OTP harus terdiri dari minimal :min digit.',
-            'kode_verifikasi.max_digits' => 'Kode OTP harus terdiri dari maksimal :max digit.',
+            'kode_verifikasi.digits' => 'Kode OTP harus terdiri dari :digits digit.',
             'nomor_handphone.required' => 'Silahkan masukkan nomor handphone.',
             'nomor_handphone.min_digits' => 'Nomor handphone harus terdiri dari minimal :min digit.',
             'nomor_handphone.max_digits' => 'Nomor handphone harus terdiri dari maksimal :max digit.',
         ];
 
         $validator = Validator::make($request->all(), [
-            'kode_verifikasi' => ['required', 'numeric', 'min_digits:6', 'max_digits:6'],
+            'kode_verifikasi' => ['required', 'numeric', 'digits:6'],
             'nomor_handphone' => ['required', 'string'],
         ], $messages);
 
