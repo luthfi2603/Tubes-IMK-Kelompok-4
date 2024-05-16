@@ -42,6 +42,8 @@ class RegisteredUserController extends Controller {
             'tanggal_lahir.required' => 'Kolom tanggal lahir harus diisi.',
             'tanggal_lahir.date' => 'Format tanggal lahir tidak valid.',
             'pekerjaan.required' => 'Kolom pekerjaan harus diisi.',
+            'pekerjaan.regex' => 'Hanya boleh huruf kapital, huruf kecil, dan spasi.',
+            'pekerjaan.max' => 'Maksimal 255 karakter.',
             'password.required' => 'Kolom password harus diisi.',
             'password.same' => 'Password dan konfirmasi password harus sama.',
             'password.min' => 'Password harus terdiri dari minimal :min karakter.',
@@ -58,7 +60,7 @@ class RegisteredUserController extends Controller {
             'alamat' => ['required', 'string', 'max:255'],
             'jenis_kelamin' => ['required', 'in:P,L'],
             'tanggal_lahir' => ['required', 'date'],
-            'pekerjaan' => ['required', 'string', 'max:255'],
+            'pekerjaan' => ['required', 'regex:/^[a-zA-Z\s]+$/', 'max:255'],
             'password' => ['required', 'same:konfirmasi_password', 'min:8', 'max:255'],
             'konfirmasi_password' => ['required', 'same:password', 'min:8', 'max:255']
         ], $messages);

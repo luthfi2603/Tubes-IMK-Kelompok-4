@@ -31,7 +31,7 @@
                             <label class="ml-2 text-sm font-bold text-gray-700 tracking-wide">No Telepon</label>
                             <input
                                 class="w-full px-5 py-3 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-400 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
-                                type="number" placeholder="081234567890" />
+                                type="number" placeholder="Contoh: 081234567890" />
                         </div>
                         <div class="content-center mt-5 relative">
                             <label class="ml-2 text-sm font-bold text-gray-700 tracking-wide">Password</label>

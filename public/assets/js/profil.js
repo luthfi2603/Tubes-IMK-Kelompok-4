@@ -8,6 +8,8 @@ const tombolHapusFoto = document.getElementById('hapus-foto');
 const tombolBatal = document.getElementById('batal');
 const tombolSimpan = document.getElementById('simpan');
 const successHtml = document.getElementById('success');
+const successPhp = document.getElementById('success-php');
+const failedPhp = document.getElementById('failed');
 
 tombolUbahFoto.addEventListener('click', () => {
     inputFoto.click();
@@ -94,7 +96,7 @@ const simpan =  async (csrf, jenis) => {
         if('success' in data){
             localStorage.setItem('successMessage', data.success);
 
-            location.reload();
+            document.location.href = '/profil';
         }else{
             if('foto' in data.errors){
                 errorMessage.classList.remove('hidden');
@@ -129,7 +131,7 @@ const hapus =  async () => {
         if('success' in data){
             localStorage.setItem('successMessage', data.success);
 
-            location.reload();
+            document.location.href = '/profil';
         }
     }catch(error){
         console.error(error);
@@ -145,5 +147,15 @@ if(successMessage){
     
     setTimeout(() => {
         successHtml.classList.add('hidden');
+    }, 3000);
+}
+
+if(successPhp){
+    setTimeout(() => {
+        successPhp.classList.add('hidden');
+    }, 3000);
+}else if(failedPhp){
+    setTimeout(() => {
+        failedPhp.classList.add('hidden');
     }, 3000);
 }

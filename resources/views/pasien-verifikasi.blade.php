@@ -38,8 +38,8 @@
             <p>Masukkan kode OTP dalam waktu 10 menit</p>
             <div>Waktu tersisa <span id="waktu" class="font-bold">10:00</span></div>
             <p id="kirim-ulang-2">Kirim ulang kode OTP dalam <span id="waktu-2" class="font-bold">00:30</span></p>
-            <span onclick="kirimUlang('{{ csrf_token() }}', '{{ route('kirim.ulang.kode.otp') }}')" id="kirim-ulang" class="font-bold underline text-blue-500 cursor-pointer hidden">Kirim Ulang</span>
-            <button onclick="kirim('{{ route('verifikasi') }}')" type="button" class="px-4 py-2 bg-gray-400 rounded-xl text-white mb-4 mt-3">Kirim</button>
+            <span onclick="kirimUlang('{{ csrf_token() }}', '{{ route('kirim.ulang.kode.otp.update.nomor.handphone') }}')" id="kirim-ulang" class="font-bold underline text-blue-500 cursor-pointer hidden">Kirim Ulang</span>
+            <button onclick="kirim('{{ route('pasien.verifikasi') }}')" type="button" class="px-4 py-2 bg-gray-400 rounded-xl text-white mb-4 mt-3">Kirim</button>
         </form>
     </div>
     <script src="{{ asset('assets/js/verifikasi.js') }}"></script>

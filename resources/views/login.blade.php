@@ -38,7 +38,7 @@
                                 <input
                                     class="w-full px-5 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-400 text-sm focus:outline-none focus:border-gray-400 focus:bg-white @error('nomor_handphone') @enderror"
                                     value="{{ old('nomor_handphone') }}" type="text" name="nomor_handphone"
-                                    id="nomor_handphone" placeholder="081234567890" autofocus>
+                                    id="nomor_handphone" placeholder="Contoh: 081234567890" autofocus>
                                 @error('nomor_handphone')
                                 <div class="text-white text-bold text-sm" style="color: #B42223">
                                     {{ $message }}

@@ -2,11 +2,11 @@
 
 @section('container')
 @if(session()->has('failed'))
-    <div class="mb-4 bg-red-300 py-3 text-white px-9 rounded-lg">
+    <div id="failed" class="mb-4 bg-red-300 py-3 text-white px-4 rounded-lg">
         {{ session('failed') }}
     </div>
 @elseif(session()->has('success'))
-    <div class="mb-4 bg-green-300 py-3 text-white px-9 rounded-lg">
+    <div id="success-php" class="mb-4 bg-green-300 py-3 text-white px-4 rounded-lg">
         {{ session('success') }}
     </div>
 @endif
@@ -51,18 +51,18 @@
             <div class="w-full flex flex-col md:flex-row gap-4">
                 <div class="flex flex-col w-full">
                     <label class="font-semibold" for="nama">Nama</label>
-                    <input type="text" name="nama" id="nama" class="rounded-lg @error('nama') bg-red-500 placeholder-white @enderror" placeholder="John Doe" value="{{ old('nama', auth()->user()->pasien->nama) }}">
+                    <input type="text" name="nama" id="nama" class="rounded-lg" placeholder="John Doe" value="{{ old('nama', auth()->user()->pasien->nama) }}">
                     @error('nama')
-                        <div class="bg-red-300 text-white">
+                        <div class="text-red-500">
                             {{ $message }}
                         </div>
                     @enderror
                 </div>
                 <div class="flex flex-col w-full">
                     <label class="font-semibold" for="nomor_handphone">Nomor Handphone</label>
-                    <input type="number" pattern="^\d+$" name="nomor_handphone" id="nomor_handphone" class="rounded-lg @error('nomor_handphone') bg-red-500 placeholder-white @enderror" placeholder="08XXXXXXXX" value="{{ old('nomor_handphone', auth()->user()->nomor_handphone) }}">
+                    <input type="number" pattern="^\d+$" name="nomor_handphone" id="nomor_handphone" class="rounded-lg" placeholder="Contoh: 081234567890" value="{{ old('nomor_handphone', auth()->user()->nomor_handphone) }}">
                     @error('nomor_handphone')
-                        <div class="bg-red-300 text-white">
+                        <div class="text-red-500">
                             {{ $message }}
                         </div>
                     @enderror
@@ -71,9 +71,9 @@
             <div class="w-full flex flex-col md:flex-row gap-4">
                 <div class="flex flex-col w-full">
                     <label class="font-semibold" for="alamat">Alamat</label>
-                    <input type="text" name="alamat" id="alamat" class="rounded-lg @error('alamat') bg-red-500 placeholder-white @enderror" placeholder="Jalan Makmur" value="{{ old('alamat', auth()->user()->pasien->alamat) }}">
+                    <input type="text" name="alamat" id="alamat" class="rounded-lg" placeholder="Jalan Ringroad" value="{{ old('alamat', auth()->user()->pasien->alamat) }}">
                     @error('alamat')
-                        <div class="bg-red-300 text-white">
+                        <div class="text-red-500">
                             {{ $message }}
                         </div>
                     @enderror
@@ -100,24 +100,25 @@
             <div class="w-full flex flex-col md:flex-row gap-4">
                 <div class="flex flex-col w-full">
                     <label class="font-semibold" for="tanggal_lahir">Tanggal Lahir</label>
-                    <input type="date" id="tanggal_lahir" class="rounded-lg @error('tanggal_lahir') bg-red-500 placeholder-white @enderror" placeholder="Masukkan Tanggal Lahir" value="{{ old('tanggal_lahir', auth()->user()->pasien->tanggal_lahir) }}" disabled>
+                    <input type="date" id="tanggal_lahir" class="rounded-lg" placeholder="Masukkan Tanggal Lahir" value="{{ old('tanggal_lahir', auth()->user()->pasien->tanggal_lahir) }}" disabled>
                     @error('tanggal_lahir')
-                        <div class="bg-red-300 text-white">
+                        <div class="text-red-500">
                             {{ $message }}
                         </div>
                     @enderror
                 </div>
                 <div class="flex flex-col w-full">
                     <label class="font-semibold" for="pekerjaan">Pekerjaan</label>
-                    <input type="text" name="pekerjaan" id="pekerjaan" class="rounded-lg @error('pekerjaan') bg-red-500 placeholder-white @enderror" placeholder="Pekerjaan" value="{{ old('pekerjaan', auth()->user()->pasien->pekerjaan) }}">
+                    <input type="text" name="pekerjaan" id="pekerjaan" class="rounded-lg" placeholder="Insinyur" value="{{ old('pekerjaan', auth()->user()->pasien->pekerjaan) }}">
                     @error('pekerjaan')
-                        <div class="bg-red-300 text-white">
+                        <div class="text-red-500">
                             {{ $message }}
                         </div>
                     @enderror
                 </div>
             </div>
             <button type="submit" class="border-2 rounded-lg border-[#222C67] text-[#222C67] dark:text-white dark:bg-[#222C67] font-semibold px-6 py-1 mt-4">Ubah</button>
+            <span class="text-gray-500">Untuk mengubah data profil, silahkan ubah data yang ditampilkan lalu tekan tombol <b>ubah</b></span>
         </div>
     </form>
 </div>
