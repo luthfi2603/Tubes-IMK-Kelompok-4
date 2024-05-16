@@ -50,7 +50,7 @@
                                     class="ml-2 text-sm font-bold text-gray-700 tracking-wide">Kata Sandi</label>
                                 <input type="password" name="password" id="password"
                                     class="w-full px-5 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-400 text-sm focus:outline-none focus:border-gray-400 focus:bg-white @error('password')  @enderror"
-                                    value="{{ old('password') }}" type="password" placeholder="Password" />
+                                    value="{{ old('password') }}" type="password" placeholder="Masukkan kata sandi anda" />
                                 <i class="fas fa-eye absolute right-3 top-10 cursor-pointer" id="togglePassword"></i>
                                 @error('password')
                                 <div class="text-white text-bold text-sm" style="color: #B42223">
