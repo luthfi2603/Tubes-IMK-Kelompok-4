@@ -13,4 +13,10 @@ class AdminController extends Controller {
             
         return view ('admin.data-pasien', compact('pasien'));
     }
+    public function datakaryawan(){
+        $karyawan = DB::table('data_karyawan')
+            ->paginate(5);
+            
+        return view ('admin.data-karyawan', compact('karyawan'));
+    }
 }
