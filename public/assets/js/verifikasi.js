@@ -66,7 +66,7 @@ function stopwatch2(){
 // Memanggil stopwatch setiap detik
 let interval2 = setInterval(stopwatch2, 1000);
 
-const form = document.getElementsByTagName('form')[0];
+const form = document.getElementById('form');
 const notif =  document.getElementById('failed');
 const success =  document.getElementById('success');
 const success2 =  document.getElementById('success-2');

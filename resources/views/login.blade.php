@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,21 +9,16 @@
     <link rel="stylesheet" href="{{ asset('./assets/css/app.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
 </head>
-
 <body class="min-h-screen bg-gray-100 text-gray-900 flex justify-center">
     <div class="max-w-screen-xl m-0 sm:m-20 bg-white shadow sm:rounded-lg flex justify-center flex-1">
         <div class="lg:w-1/2 xl:w-5/12 p-6 sm:p-12">
             <div class="mt-12 flex flex-col items-center">
-                @if(session()->has('failed'))
-                <div class="mt-4 bg-red-300 py-3 text-white px-9 rounded-lg">
-                    {{ session('failed') }}
-                </div>
-                @elseif(session()->has('success'))
-                <div class="mb-4 bg-green-300 py-3 text-white px-9 rounded-lg">
-                    {{ session('success') }}
-                </div>
+                @if(session()->has('success'))
+                    <div class="mb-4 bg-green-300 py-3 text-white px-4 rounded-lg w-80">
+                        {{ session('success') }}
+                    </div>
                 @endif
-                <div id="success" class="mb-4 bg-green-300 py-3 text-white px-9 rounded-lg hidden"></div>
+                <div id="success" class="hidden mb-4 bg-green-300 py-3 text-white px-4 rounded-lg w-80"></div>
                 <h2 class="text-3xl font-bold text-[#222C67]">
                     Selamat Datang
                 </h2>
@@ -37,12 +31,12 @@
                                 <label for="nomor_handphone" class="ml-2 text-sm font-bold text-gray-700 tracking-wide">No Handphone</label>
                                 <input
                                     class="w-full px-5 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-400 text-sm focus:outline-none focus:border-gray-400 focus:bg-white @error('nomor_handphone') @enderror"
-                                    value="{{ old('nomor_handphone') }}" type="text" name="nomor_handphone"
+                                    value="{{ old('nomor_handphone') }}" type="number" name="nomor_handphone"
                                     id="nomor_handphone" placeholder="Contoh: 081234567890" autofocus>
                                 @error('nomor_handphone')
-                                <div class="text-white text-bold text-sm" style="color: #B42223">
-                                    {{ $message }}
-                                </div>
+                                    <div class="text-white text-bold text-sm" style="color: #B42223">
+                                        {{ $message }}
+                                    </div>
                                 @enderror
                             </div>
                             <div class="content-center mt-5 relative">
@@ -51,11 +45,11 @@
                                 <input type="password" name="password" id="password"
                                     class="w-full px-5 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-400 text-sm focus:outline-none focus:border-gray-400 focus:bg-white @error('password')  @enderror"
                                     value="{{ old('password') }}" type="password" placeholder="Masukkan kata sandi anda" />
-                                <i class="fas fa-eye absolute right-3 top-10 cursor-pointer" id="togglePassword"></i>
+                                <i class="fas fa-eye absolute right-3 top-10 cursor-pointer" id="toggle-password"></i>
                                 @error('password')
-                                <div class="text-white text-bold text-sm" style="color: #B42223">
-                                    {{ $message }}
-                                </div>
+                                    <div class="text-white text-bold text-sm" style="color: #B42223">
+                                        {{ $message }}
+                                    </div>
                                 @enderror
                             </div>
                             <button
@@ -96,6 +90,6 @@
             localStorage.removeItem('successMessage');
         }
     </script>
+    <script src="{{ asset('assets/js/show-password.js') }}"></script>
 </body>
-
 </html>

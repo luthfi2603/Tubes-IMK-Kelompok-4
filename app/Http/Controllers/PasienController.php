@@ -95,7 +95,7 @@ class PasienController extends Controller {
 
             session()->put('request', $request);
 
-            return redirect(route('pasien.verifikasi'))->with('success', 'Berhasil, Kode OTP sudah dikirim ke nomor handphone anda, silahkan masukkan kode OTP yang diterima');
+            return redirect(route('pasien.verifikasi'))->with('success', 'Berhasil, Kode OTP sudah dikirim ke nomor handphone anda');
         }
 
         return back()->with('success', 'Profil berhasil diubah');
@@ -183,7 +183,7 @@ class PasienController extends Controller {
         } */
 
         // return back()->with('success', 'Berhasil, Kode OTP sudah dikirim ulang ke nomor handphone anda, silahkan masukkan kode OTP yang diterima');
-        return response()->json(['success' => 'Berhasil, Kode OTP sudah dikirim ulang ke nomor handphone anda, silahkan masukkan kode OTP yang diterima']);
+        return response()->json(['success' => 'Berhasil, Kode OTP sudah dikirim ulang ke nomor handphone anda']);
     }
 
     public function updateFotoProfil(Request $request){
