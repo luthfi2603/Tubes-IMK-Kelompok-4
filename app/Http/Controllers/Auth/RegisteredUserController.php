@@ -87,7 +87,7 @@ class RegisteredUserController extends Controller {
 
         session()->put('request', $request);
 
-        return redirect(route('verifikasi'))->with('success', 'Berhasil, Kode OTP sudah dikirim ke nomor handphone anda, silahkan masukkan kode OTP yang diterima');
+        return redirect(route('verifikasi'))->with('success', 'Berhasil, Kode OTP sudah dikirim ke nomor handphone anda');
     }
 
     public function createVerifikasi(){
@@ -187,7 +187,7 @@ class RegisteredUserController extends Controller {
         } */
 
         // return back()->with('success', 'Berhasil, Kode OTP sudah dikirim ulang ke nomor handphone anda, silahkan masukkan kode OTP yang diterima');
-        return response()->json(['success' => 'Berhasil, Kode OTP sudah dikirim ulang ke nomor handphone anda, silahkan masukkan kode OTP yang diterima']);
+        return response()->json(['success' => 'Berhasil, Kode OTP sudah dikirim ulang ke nomor handphone anda']);
     }
 
     public function createVerifikasiNomorHandphone(){
@@ -197,6 +197,7 @@ class RegisteredUserController extends Controller {
     public function storeVerifikasiNomorHandphone(Request $request){
         $messages = [
             'nomor_handphone.required' => 'Silahkan masukkan nomor handphone.',
+            'nomor_handphone.numeric' => 'Nomor handphone harus berupa angka.',
             'nomor_handphone.min_digits' => 'Nomor handphone harus terdiri dari minimal :min digit.',
             'nomor_handphone.max_digits' => 'Nomor handphone harus terdiri dari maksimal :max digit.',
             'nomor_handphone.regex' => 'Nomor handphone tidak valid',
@@ -226,7 +227,7 @@ class RegisteredUserController extends Controller {
                 return back()->withInput()->with('failed', 'Registrasi gagal, tidak dapat mengirim kode OTP');
             } */
         }else{
-            return back()->with('failed', 'Nomor handphone tidak terdaftar');
+            return back()->withInput()->with('failed', 'Nomor handphone tidak terdaftar');
         }
 
         $request0 = [];
@@ -235,7 +236,7 @@ class RegisteredUserController extends Controller {
 
         session()->put('request', $request0);
 
-        return redirect(route('verifikasi.otp.reset.password'))->with('success', 'Berhasil, Kode OTP sudah dikirim ke nomor handphone anda, silahkan masukkan kode OTP yang diterima');
+        return redirect(route('verifikasi.otp.reset.password'))->with('success', 'Berhasil, Kode OTP sudah dikirim ke nomor handphone anda');
     }
     
     public function createVerifikasiOtpResetPassword(){
@@ -310,6 +311,10 @@ class RegisteredUserController extends Controller {
     
     public function storeResetPassword(Request $request){
         $messages = [
+            'password.required' => 'Kolom password harus diisi.',
+            'password.same' => 'Password dan konfirmasi password harus sama.',
+            'password.min' => 'Password harus terdiri dari minimal :min karakter.',
+            'password.max' => 'Password tidak boleh melebihi :max karakter.',
             'konfirmasi_password.required' => 'Kolom konfirmasi password harus diisi.',
             'konfirmasi_password.same' => 'Konfirmasi password dan password harus sama.',
             'konfirmasi_password.min' => 'Konfirmasi password harus terdiri dari minimal :min karakter.',
