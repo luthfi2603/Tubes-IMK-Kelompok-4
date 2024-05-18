@@ -15,6 +15,8 @@ Route::middleware(['guest'])->group(function(){
     Route::get('/login-as-page', function(){
         return view('login-as-page');
     });
+
+    
 });
 
 Route::middleware(['auth', 'role:pasien'])->group(function(){
@@ -36,6 +38,15 @@ Route::middleware(['auth', 'role:pasien'])->group(function(){
     Route::get('/informasi', function(){
         return view('informasi');
     });
+
+    //ini supaya bisa jalan (nanti hapus aja)
+    Route::get('/dashboard-dokter', function(){
+        return view('dokter.dashboard-dokter');
+    });
+    Route::get('/pasien-reset-passsword', function(){
+        return view('pasien-reset-password');
+    });
+
 });
 
 Route::get('/admin/datapasien', [AdminController::class, 'datapasien'])

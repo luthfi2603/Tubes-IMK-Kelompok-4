@@ -6,13 +6,13 @@
     <ul class="mt-4">
         <li class="mb-1 group">
             <a href="{{ route('pasien.dashboard') }}" class="flex font-semibold items-center py-2 px-4 text-gray-900 hover:bg-[#222C67] hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100">
-                <i class="ri-home-2-line mr-3 text-lg"></i>
+                <i class="fa-solid fa-house mr-3 text-lg"></i>
                 <span class="text-md">Dashboard</span>
             </a>
         </li>
         <li class="mb-1 group">
             <a href="" class="flex font-semibold items-center py-2 px-4 text-gray-900 hover:bg-[#222C67] hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100 sidebar-dropdown-toggle">
-                <i class='bx bx-user mr-3 text-lg'></i>
+                <i class="fa-solid fa-calendar-day mr-4 text-lg"></i>
                 <span class="text-md">Appointments</span>
                 <i class="ri-arrow-right-s-line ml-auto group-[.selected]:rotate-90"></i>
             </a>
@@ -27,22 +27,20 @@
         </li>
         <li class="mb-1 group">
             <a href="" class="flex font-semibold items-center py-2 px-4 text-gray-900 hover:bg-[#222C67] hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100">
-                <i class='bx bx-archive mr-3 text-lg'></i>
-                <span class="text-md">Archive</span>
+                <i class="fa-solid fa-notes-medical mr-3 text-lg"></i>
+                <span class="text-md">Reports Logs</span>
             </a>
         </li>
         <li class="mb-1 group">
             <a href="" class="flex font-semibold items-center py-2 px-4 text-gray-900 hover:bg-[#222C67] hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100">
-                <i class='bx bx-bell mr-3 text-lg' ></i>
-                <span class="text-md">Notifications</span>
-                <span class=" md:block px-2 py-0.5 ml-auto text-xs font-medium tracking-wide text-red-600 bg-red-200 rounded-full">5</span>
+                <i class="fa-solid fa-user-doctor mr-4 text-lg"></i>
+                <span class="text-md">Doctors</span>
             </a>
         </li>
         <li class="mb-1 group">
             <a href="" class="flex font-semibold items-center py-2 px-4 text-gray-900 hover:bg-[#222C67] hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100">
-                <i class='bx bx-envelope mr-3 text-lg' ></i>                
-                <span class="text-md">Messages</span>
-                <span class=" md:block px-2 py-0.5 ml-auto text-xs font-medium tracking-wide text-green-600 bg-green-200 rounded-full">2 New</span>
+                <i class="fa-solid fa-gear mr-3 text-lg"></i>             
+                <span class="text-md">Settings</span>
             </a>
         </li>
     </ul>
