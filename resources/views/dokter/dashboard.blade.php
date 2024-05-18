@@ -1,7 +1,7 @@
-@extends('layouts.main')
+@extends('dokter.main')
 
 @section('container')
 <div class="flex flex-col items-center">
-    <p class="text-2xl">Dashboard Pasien</p>
+    <p class="text-2xl">Dashboard Dokter</p>
 </div>
 @endsection

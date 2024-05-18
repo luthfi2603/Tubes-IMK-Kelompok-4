@@ -2,10 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\DokterController;
 use App\Http\Controllers\PasienController;
+use App\Http\Controllers\PerawatController;
 use App\Http\Controllers\ProfileController;
 
-Route::middleware(['guest'])->group(function(){
+Route::middleware(['guest2'])->group(function(){
     Route::get('/', function(){
         return view('index');
     });
@@ -18,23 +20,56 @@ Route::middleware(['guest'])->group(function(){
 });
 
 Route::middleware(['auth', 'role:pasien'])->group(function(){
-    Route::get('/dashboard', [PasienController::class, 'showDashboardPasien'])
-        ->name('pasien.dashboard');
-    Route::get('/profil', [PasienController::class, 'editProfil'])
-        ->name('pasien.profil');
-    Route::put('/profil', [PasienController::class, 'updateProfil']);
-    Route::put('/foto-profil', [PasienController::class, 'updateFotoProfil']);
-    Route::delete('/hapus-foto-profil', [PasienController::class, 'hapusFotoProfil']);
-    Route::get('/pasien-verifikasi', [PasienController::class, 'createVerifikasi'])
-        ->name('pasien.verifikasi');
-    Route::post('/pasien-verifikasi', [PasienController::class, 'storeVerifikasi']);
-    Route::post('/kirim-ulang-kode-otp-update-nomor-handphone', [PasienController::class, 'storeKirimUlangKodeOtp'])
-        ->name('kirim.ulang.kode.otp.update.nomor.handphone');
+    Route::controller(PasienController::class)->group(function(){
+        Route::get('/dashboard', 'showDashboardPasien')
+            ->name('pasien.dashboard');
+        Route::get('/profil', 'editProfil')
+            ->name('pasien.profil');
+        Route::put('/profil', 'updateProfil');
+        Route::put('/foto-profil', 'updateFotoProfil');
+        Route::delete('/hapus-foto-profil', 'hapusFotoProfil');
+        Route::get('/pasien-verifikasi', 'createVerifikasi')
+            ->name('pasien.verifikasi');
+        Route::post('/pasien-verifikasi', 'storeVerifikasi');
+        Route::post('/kirim-ulang-kode-otp-update-nomor-handphone', 'storeKirimUlangKodeOtp')
+            ->name('kirim.ulang.kode.otp.update.nomor.handphone');
+    });
+
     Route::get('/dokter', function(){
         return view('dokter');
     });
     Route::get('/informasi', function(){
         return view('informasi');
+    });
+});
+
+Route::middleware(['auth', 'role:dokter'])->group(function(){
+    Route::prefix('dokter')->group(function(){
+        Route::name('dokter.')->group(function(){
+            Route::controller(DokterController::class)->group(function(){
+                Route::get('/dashboard', 'showDashboardDokter')->name('dashboard');
+            });
+        });
+    });
+});
+
+Route::middleware(['auth', 'role:perawat'])->group(function(){
+    Route::prefix('perawat')->group(function(){
+        Route::name('perawat.')->group(function(){
+            Route::controller(PerawatController::class)->group(function(){
+                Route::get('/dashboard', 'showDashboardPerawat')->name('dashboard');
+            });
+        });
+    });
+});
+
+Route::middleware(['auth', 'role:admin'])->group(function(){
+    Route::prefix('admin')->group(function(){
+        Route::name('admin.')->group(function(){
+            Route::controller(AdminController::class)->group(function(){
+                Route::get('/dashboard', 'showDashboardAdmin')->name('dashboard');
+            });
+        });
     });
 });
 

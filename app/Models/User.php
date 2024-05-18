@@ -41,9 +41,17 @@ class User extends Authenticatable {
         ];
     }
 
-    protected $with = ['pasien'];
+    protected $with = ['pasien', 'dokter', 'perawat'];
 
     public function pasien(): HasOne {
         return $this->hasOne(Pasien::class, 'id_user');
+    }
+    
+    public function dokter(): HasOne {
+        return $this->hasOne(Dokter::class, 'id_user');
+    }
+    
+    public function perawat(): HasOne {
+        return $this->hasOne(Perawat::class, 'id_user');
     }
 }
