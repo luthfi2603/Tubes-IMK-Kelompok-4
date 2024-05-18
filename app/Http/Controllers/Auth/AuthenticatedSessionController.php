@@ -31,13 +31,13 @@ class AuthenticatedSessionController extends Controller {
                 return redirect()->intended(route('pasien.dashboard'));
                 break;
             case "dokter":
-                return redirect()->intended(route('pasien.dashboard'));
+                return redirect()->intended(route('dokter.dashboard'));
                 break;
             case "perawat":
-                return redirect()->intended('/');
+                return redirect()->intended(route('perawat.dashboard'));
                 break;
             case "admin":
-                return redirect()->intended('/');
+                return redirect()->intended(route('admin.dashboard'));
                 break;
             default:
                 return redirect()->intended('/');
