@@ -36,18 +36,18 @@
     </form>
 </div> --}}
 
-
-<!-- Main Content -->
+@if(session()->has('failed'))
+    <div class="bg-red-300 py-3 text-white px-4 rounded-lg">
+        {{ session('failed') }}
+    </div>
+@elseif(session()->has('success'))
+    <div id="success" class="bg-green-300 py-3 text-white px-4 rounded-lg">
+        {{ session('success') }}
+    </div>
+@endif
+<div id="success-2" class="bg-green-300 py-3 text-white px-4 rounded-lg hidden"></div>
+<div id="failed" class="bg-red-300 py-3 text-white px-4 rounded-lg hidden"></div>
 <div class="pb-4 flex flex-col items-center font-body">
-    @if(session()->has('failed'))
-        <div class="mt-4 bg-red-300 py-3 text-white px-9 rounded-lg">
-            {{ session('failed') }}
-        </div>
-    @elseif(session()->has('success'))
-        <div id="success" class="mt-4 bg-green-300 py-3 text-white px-9 rounded-lg">
-            {{ session('success') }}
-        </div>
-    @endif
     <div class="py-3 lg:w-96 sm:w-80 md:w-96 text-center">
         <h1 class="text-3xl font-bold mb-4">Verifikasi No HP</h1>
         <p class="text-gray-600 text-md font-semibold">Silahkan masukkan Kode OTP yang telah terkirim ke nomor handphone yang baru</p>
@@ -77,7 +77,7 @@
                     <p class="mt-5 mb-1">Masukkan kode OTP dalam waktu 10 menit</p>
                     <div class="my-1">Waktu tersisa <span id="waktu" class="font-bold">10:00</span></div>
                     <p id="kirim-ulang-2">Kirim ulang kode OTP dalam <span id="waktu-2" class="font-bold my-1">00:30</span></p>
-                    <span onclick="kirimUlang('{{ csrf_token() }}', '{{ route('kirim.ulang.kode.otp') }}')" id="kirim-ulang" class="font-bold underline text-blue-500 cursor-pointer hidden">Kirim Ulang</span>
+                    <span onclick="kirimUlang('{{ csrf_token() }}', '{{ route('kirim.ulang.kode.otp.update.nomor.handphone') }}')" id="kirim-ulang" class="font-bold underline text-blue-500 cursor-pointer hidden">Kirim Ulang</span>
                 </div>
                 <button onclick="kirim('{{ route('pasien.verifikasi') }}')" type="button"
                     class="mt-5 tracking-wide font-semibold bg-[#374280] text-gray-100 w-full py-4 rounded-lg hover:bg-[#222C67] transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">

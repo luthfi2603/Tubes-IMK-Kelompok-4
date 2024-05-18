@@ -14,11 +14,11 @@
         <div class="lg:w-1/2 xl:w-5/12 p-6 sm:p-12">
             <div class="mt-12 flex flex-col items-center">
                 @if(session()->has('success'))
-                    <div class="mb-4 bg-green-300 py-3 text-white px-4 rounded-lg w-80">
+                    <div class="mb-4 bg-green-300 py-3 text-white px-4 rounded-lg md:w-80">
                         {{ session('success') }}
                     </div>
                 @endif
-                <div id="success" class="hidden mb-4 bg-green-300 py-3 text-white px-4 rounded-lg w-80"></div>
+                <div id="success" class="hidden mb-4 bg-green-300 py-3 text-white px-4 rounded-lg md:w-80"></div>
                 <h2 class="text-3xl font-bold text-[#222C67]">
                     Selamat Datang
                 </h2>

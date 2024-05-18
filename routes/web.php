@@ -17,8 +17,6 @@ Route::middleware(['guest2'])->group(function(){
     Route::get('/login-as-page', function(){
         return view('login-as-page');
     });
-
-    
 });
 
 Route::middleware(['auth', 'role:pasien'])->group(function(){
@@ -29,12 +27,15 @@ Route::middleware(['auth', 'role:pasien'])->group(function(){
             ->name('pasien.profil');
         Route::put('/profil', 'updateProfil');
         Route::put('/foto-profil', 'updateFotoProfil');
-        Route::delete('/hapus-foto-profil', 'hapusFotoProfil');
+        Route::delete('/hapus-foto-profil', 'destroyFotoProfil');
         Route::get('/pasien-verifikasi', 'createVerifikasi')
             ->name('pasien.verifikasi');
         Route::post('/pasien-verifikasi', 'storeVerifikasi');
         Route::post('/kirim-ulang-kode-otp-update-nomor-handphone', 'storeKirimUlangKodeOtp')
             ->name('kirim.ulang.kode.otp.update.nomor.handphone');
+        Route::get('/edit-password', 'editPassword')
+            ->name('password.edit');
+        Route::put('/edit-password', 'updatePassword');
     });
 
     Route::get('/dokter', function(){
@@ -51,7 +52,6 @@ Route::middleware(['auth', 'role:pasien'])->group(function(){
     Route::get('/pasien-reset-passsword', function(){
         return view('pasien-reset-password');
     });
-
 });
 
 Route::middleware(['auth', 'role:dokter'])->group(function(){
