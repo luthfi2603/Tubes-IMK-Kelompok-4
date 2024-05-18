@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Pasien;
 use App\Models\User;
+use App\Models\Pasien;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
@@ -228,7 +229,7 @@ class PasienController extends Controller {
         ]);
     }
 
-    public function hapusFotoProfil(){
+    public function destroyFotoProfil(){
         Storage::delete(auth()->user()->foto);       
 
         User::find(auth()->user()->id)->update([
@@ -238,5 +239,46 @@ class PasienController extends Controller {
         return response()->json([
             'success' => 'Foto profil berhasil dihapus'
         ]);
+    }
+
+    public function editPassword(){
+        return view('edit-password');
+    }
+    
+    public function updatePassword(Request $request){
+        $messages = [
+            'password.required' => 'Kolom password harus diisi.',
+            'password.same' => 'Password dan konfirmasi password harus sama.',
+            'password.min' => 'Password harus terdiri dari minimal :min karakter.',
+            'password.max' => 'Password tidak boleh melebihi :max karakter.',
+            'konfirmasi_password.required' => 'Kolom konfirmasi password harus diisi.',
+            'konfirmasi_password.same' => 'Konfirmasi password dan password harus sama.',
+            'konfirmasi_password.min' => 'Konfirmasi password harus terdiri dari minimal :min karakter.',
+            'konfirmasi_password.max' => 'Konfirmasi password tidak boleh melebihi :max karakter.',
+            'old_password.required' => 'Kolom password lama harus diisi.',
+            'old_password.min' => 'Password lama harus terdiri dari minimal :min karakter.',
+            'old_password.max' => 'Password lama tidak boleh melebihi :max karakter.'
+        ];
+
+        $request->validate([
+            'old_password' => ['required', 'min:8', 'max:255'],
+            'password' => ['required', 'same:konfirmasi_password', 'min:8', 'max:255'],
+            'konfirmasi_password' => ['required', 'same:password', 'min:8', 'max:255']
+        ], $messages);
+
+        $user = User::find(auth()->user()->id);
+        if(Hash::check($request->old_password, $user->password)){
+            if($request->password == $request->old_password){
+                return back()->with('failed', 'Gagal update password, tidak ada perubahan pada password');
+            }
+
+            User::where('id', auth()->user()->id)->update([
+                'password' => bcrypt($request->password)
+            ]);
+
+            return back()->with('success', 'Password berhasil diubah');
+        }
+
+        return back()->with('failed', 'Gagal update password, password lama salah');
     }
 }

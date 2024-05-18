@@ -103,6 +103,8 @@ const kirim =  async (url) => {
             if(success != null){ // kalo ada
                 success.classList.add('hidden');
             }
+
+            window.scrollTo({top: 0, behavior: 'smooth'});
         }else{
             if('kode_verifikasi' in data.errors){
                 errorMessage.classList.remove('hidden');

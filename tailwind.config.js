@@ -25,7 +25,7 @@ export default {
             },
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
-                body: ['Nunito+Sans'],
+                body: ['Nunito Sans'],
                 poppins: ['Poppins']
             },
         },
