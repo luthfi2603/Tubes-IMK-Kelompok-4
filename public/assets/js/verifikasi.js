@@ -153,6 +153,7 @@ const kirimUlang =  async (csrf, url) => {
         interval2 = setInterval(stopwatch2, 1000);
 
         success2.classList.add('hidden');
+        window.scrollTo({top: 0, behavior: 'smooth'});
         setTimeout(() => {
             success2.classList.remove('hidden');
             success2.innerHTML = data.success;

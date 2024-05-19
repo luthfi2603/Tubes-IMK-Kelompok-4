@@ -14,7 +14,7 @@
         <div class="lg:w-1/2 xl:w-5/12 p-6 sm:p-12">
             <div class="mt-12 flex flex-col items-center">
                 @if(session()->has('success'))
-                    <div class="mb-4 bg-green-300 py-3 text-white px-4 rounded-lg md:w-80">
+                    <div class="mb-4 bg-green-300 py-3 text-white px-4 rounded-lg w-full md:w-80">
                         {{ session('success') }}
                     </div>
                 @endif
@@ -34,7 +34,7 @@
                                     value="{{ old('nomor_handphone') }}" type="number" name="nomor_handphone"
                                     id="nomor_handphone" placeholder="Contoh: 081234567890" autofocus>
                                 @error('nomor_handphone')
-                                    <div class="text-white text-bold text-sm" style="color: #B42223">
+                                    <div class="text-[#B42223] text-bold text-sm">
                                         {{ $message }}
                                     </div>
                                 @enderror
@@ -47,13 +47,13 @@
                                     value="{{ old('password') }}" type="password" placeholder="Masukkan kata sandi anda" />
                                 <i class="fas fa-eye absolute right-3 top-10 cursor-pointer" id="toggle-password"></i>
                                 @error('password')
-                                    <div class="text-white text-bold text-sm" style="color: #B42223">
+                                    <div class="text-[#B42223] text-bold text-sm">
                                         {{ $message }}
                                     </div>
                                 @enderror
                             </div>
                             <button
-                                class="mt-5 tracking-wide font-semibold bg-[#374280] text-gray-100 w-full py-4 rounded-lg hover:bg-[#222C67] transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
+                                class="mt-7 tracking-wide font-semibold bg-[#374280] text-gray-100 w-full py-4 rounded-lg hover:bg-[#222C67] transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
                                 <i class="fa-solid fa-right-to-bracket"></i>
                                 <span class="ml-3">
                                     Masuk
