@@ -34,6 +34,33 @@
                                 class="w-full px-5 py-3 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-400 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
                                 type="number" placeholder="Contoh: 081234567890" />
                         </div>
+                        <div class="content-center mt-5">
+                            <label class="ml-2 text-sm font-bold text-gray-700 tracking-wide">Alamat</label>
+                            <input
+                                class="w-full px-5 py-3 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-400 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
+                                type="text" placeholder="Contoh: Jalan Makmur" />
+                        </div>
+                        <div class="content-center mt-5">
+                            <label class="ml-2 text-sm font-bold text-gray-700 tracking-wide">Jenis Kelamin</label>
+                            <div>
+                                <input type="radio" id="L" name="jenis_kelamin" value="L">
+                                <label class="mr-2" for="L">Laki-laki</label>
+                                <input type="radio" id="P" name="jenis_kelamin" value="P">
+                                <label class="label" for="P">Perempuan</label>
+                            </div>
+                        </div>
+                        <div class="content-center mt-5">
+                            <label class="ml-2 text-sm font-bold text-gray-700 tracking-wide">Tanggal Lahir</label>
+                            <input
+                                class="w-full px-5 py-3 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-400 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
+                                type="date" placeholder="Pekerjaan" />
+                        </div>
+                        <div class="content-center mt-5">
+                            <label class="ml-2 text-sm font-bold text-gray-700 tracking-wide">Pekerjaan</label>
+                            <input
+                                class="w-full px-5 py-3 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-400 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
+                                type="text" placeholder="Pekerjaan" />
+                        </div>
                         <div class="content-center mt-5 relative">
                             <label class="ml-2 text-sm font-bold text-gray-700 tracking-wide">Password</label>
                             <input
