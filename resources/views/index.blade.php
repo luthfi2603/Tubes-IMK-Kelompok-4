@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Klinik RH61</title>
-    <link rel="icon" href="{{ asset('./assets/img/logo.png') }}" type="image/png">
-    <link rel="stylesheet" href="{{ asset('./assets/css/app.css') }}">
+    <link rel="icon" href="{{ asset('assets/img/logo.png') }}" type="image/png">
+    <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
 </head>
@@ -32,7 +32,7 @@
         </div>
 
         <div class="flex justify-center mb-12">
-            <a href="{{ route('login') }}" class="bg-[#222C67] hover:bg-[#525985] text-[#f5f5f5] font-bold py-2 px-4 border-b-4 border-[#222C67] hover:border-[#525985] rounded font-body">
+            <a href="{{ route('masuk.sebagai') }}" class="bg-[#222C67] hover:bg-[#525985] text-[#f5f5f5] font-bold py-2 px-4 border-b-4 border-[#222C67] hover:border-[#525985] rounded font-body">
                 Ayo mulai
             </a>
         </div>

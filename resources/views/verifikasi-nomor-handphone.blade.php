@@ -93,11 +93,11 @@
     <script>
         const failed = document.getElementById('failed');
 
-        setTimeout(() => {
-            if(failed != null){
+        if(failed){
+            setTimeout(() => {
                 failed.classList.add('hidden');
-            }
-        }, 3000);
+            }, 3000);
+        }
     </script>
 </body>
 </html>

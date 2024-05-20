@@ -62,12 +62,16 @@
         <div class="lg:w-1/2 xl:w-5/12 p-6 sm:p-12 flex justify-center">
             <div class="mt-12 flex flex-col items-center">
                 @if(session()->has('success'))
-                    <div id="success" class="mb-4 bg-green-300 py-3 text-white px-4 rounded-lg max-w-xs">
+                    <div id="success" class="mb-4 bg-green-300 py-3 text-white px-4 rounded-lg w-full md:w-80">
                         {{ session('success') }}
                     </div>
+                @elseif(session()->has('failed'))
+                    <div id="success" class="mb-4 bg-red-300 py-3 text-white px-4 rounded-lg w-full md:w-80">
+                        {{ session('failed') }}
+                    </div>
                 @endif
-                <div id="success-2" class="hidden mb-4 bg-green-300 py-3 text-white px-4 rounded-lg w-80"></div>
-                <div id="failed" class="hidden mb-4 bg-red-300 py-3 text-white px-4 rounded-lg w-80"></div>
+                <div id="success-2" class="hidden mb-4 bg-green-300 py-3 text-white px-4 rounded-lg w-full md:w-80"></div>
+                <div id="failed" class="hidden mb-4 bg-red-300 py-3 text-white px-4 rounded-lg w-full md:w-80"></div>
                 <h2 class="text-3xl font-bold text-[#222C67]">
                     Verifikasi 
                 </h2>

@@ -51,7 +51,7 @@
             <div class="w-full flex flex-col md:flex-row gap-4">
                 <div class="flex flex-col w-full">
                     <label class="font-semibold" for="nama">Nama</label>
-                    <input type="text" name="nama" id="nama" class="rounded-lg" placeholder="John Doe" value="{{ old('nama', auth()->user()->pasien->nama) }}">
+                    <input type="text" name="nama" id="nama" class="rounded-lg" placeholder="Masukkan nama lengkap" value="{{ old('nama', auth()->user()->pasien->nama) }}">
                     @error('nama')
                         <div class="text-red-500">
                             {{ $message }}
@@ -71,7 +71,7 @@
             <div class="w-full flex flex-col md:flex-row gap-4">
                 <div class="flex flex-col w-full">
                     <label class="font-semibold" for="alamat">Alamat</label>
-                    <input type="text" name="alamat" id="alamat" class="rounded-lg" placeholder="Jalan Ringroad" value="{{ old('alamat', auth()->user()->pasien->alamat) }}">
+                    <input type="text" name="alamat" id="alamat" class="rounded-lg" placeholder="Masukkan alamat" value="{{ old('alamat', auth()->user()->pasien->alamat) }}">
                     @error('alamat')
                         <div class="text-red-500">
                             {{ $message }}
@@ -109,7 +109,7 @@
                 </div>
                 <div class="flex flex-col w-full">
                     <label class="font-semibold" for="pekerjaan">Pekerjaan</label>
-                    <input type="text" name="pekerjaan" id="pekerjaan" class="rounded-lg" placeholder="Insinyur" value="{{ old('pekerjaan', auth()->user()->pasien->pekerjaan) }}">
+                    <input type="text" name="pekerjaan" id="pekerjaan" class="rounded-lg" placeholder="Masukkan pekerjaan" value="{{ old('pekerjaan', auth()->user()->pasien->pekerjaan) }}">
                     @error('pekerjaan')
                         <div class="text-red-500">
                             {{ $message }}

@@ -67,7 +67,7 @@
                     </div>
                 @endif
                 <div id="success-2" class="hidden mb-4 bg-green-300 py-3 text-white px-4 rounded-lg max-w-xs"></div>
-                <div id="failed" class="hidden mb-4 bg-red-300 py-3 text-white px-4 rounded-lg max-w-xs w-80"></div>
+                <div id="failed" class="hidden mb-4 bg-red-300 py-3 text-white px-4 rounded-lg w-full md:w-80"></div>
                 <h2 class="text-3xl font-bold text-[#222C67]">
                     Verifikasi 
                 </h2>
