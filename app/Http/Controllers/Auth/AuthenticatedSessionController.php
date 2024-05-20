@@ -32,7 +32,7 @@ class AuthenticatedSessionController extends Controller {
 
             $request->session()->regenerateToken();
 
-            return redirect()->route('login')->with('failed', 'Mohon maaf, akun anda sudah diblokir, pergi ke admin untuk informasi lebih lanjut');
+            return back()->with('failed', 'Mohon maaf, akun anda sudah diblokir, pergi ke admin untuk informasi lebih lanjut');
         }
 
         $role = auth()->user()->status;

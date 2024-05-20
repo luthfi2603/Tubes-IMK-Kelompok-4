@@ -230,7 +230,7 @@ class PasienController extends Controller {
     }
 
     public function destroyFotoProfil(){
-        Storage::delete(auth()->user()->foto);       
+        Storage::delete(auth()->user()->foto);
 
         User::find(auth()->user()->id)->update([
             'foto' => null
@@ -280,5 +280,15 @@ class PasienController extends Controller {
         }
 
         return back()->with('failed', 'Gagal update password, password lama salah');
+    }
+
+    public function destroyAkun(){
+        if(auth()->user()->foto){
+            Storage::delete(auth()->user()->foto);
+        }
+
+        User::find(auth()->user()->id)->delete();
+
+        return redirect('/');
     }
 }

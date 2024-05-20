@@ -33,6 +33,8 @@ Route::middleware(['auth', 'role:pasien'])->group(function(){
         Route::get('/edit-password', 'editPassword')
             ->name('password.edit');
         Route::put('/edit-password', 'updatePassword');
+        Route::delete('/hapus-akun', 'destroyAkun')
+            ->name('akun.destroy');
     });
 
     Route::get('/dokter', function(){
