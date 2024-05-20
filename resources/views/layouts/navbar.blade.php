@@ -157,9 +157,6 @@
                         <a href="{{ route('pasien.profil') }}" class="flex items-center text-[13px] py-1.5 px-4 text-gray-600 hover:text-[#f84525] hover:bg-gray-50">Profil</a>
                     </li>
                     <li>
-                        <a href="{{ route('password.edit') }}" class="flex items-center text-[13px] py-1.5 px-4 text-gray-600 hover:text-[#f84525] hover:bg-gray-50">Ubah Kata Sandi</a>
-                    </li>
-                    <li>
                         <a href="#" class="flex items-center text-[13px] py-1.5 px-4 text-gray-600 hover:text-[#f84525] hover:bg-gray-50">Settings</a>
                     </li>
                     <li>
