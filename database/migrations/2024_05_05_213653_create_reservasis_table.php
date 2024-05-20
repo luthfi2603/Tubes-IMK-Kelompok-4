@@ -10,10 +10,14 @@ return new class extends Migration {
      */
     public function up(): void {
         Schema::create('reservasis', function (Blueprint $table) {
-            $table->foreignId('id_pasien')->constrained('pasiens')->onDelete('restrict')->onUpdate('cascade');
-            $table->foreignId('id_dokter')->constrained('dokters')->onDelete('restrict')->onUpdate('cascade');
-            $table->timestamp('waktu')->useCurrent();
+            $table->string('nama_pasien');
+            $table->date('tanggal_lahir');
+            $table->string('alamat');
+            $table->char('nomor_handphone', 15);
+            $table->string('nama_dokter');
+            $table->enum('spesialis', ['penyakit_dalam', 'estetika', 'obgyn']);
             $table->enum('status', ['selesai', 'menunggu', 'batal']);
+            $table->timestamps();
         });
     }
 

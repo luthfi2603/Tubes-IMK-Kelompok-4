@@ -5,7 +5,7 @@
     </a>
     <ul class="mt-4">
         <li class="mb-1 group">
-            <a href="{{ route('pasien.dashboard') }}" class="flex font-semibold items-center py-2 px-4 text-gray-900 hover:bg-[#222C67] hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100">
+            <a href="{{ route('pasien.dashboard') }}" class="flex font-semibold items-center py-2 px-4 text-gray-900 hover:bg-[#222C67] hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100 {{ request()->is('dashboard') ? 'bg-[#222C67] text-white' : '' }}">
                 <i class="ri-home-2-line mr-3 text-lg"></i>
                 <span class="text-md">Dashboard</span>
             </a>
@@ -157,7 +157,10 @@
                         <a href="{{ route('pasien.profil') }}" class="flex items-center text-[13px] py-1.5 px-4 text-gray-600 hover:text-[#f84525] hover:bg-gray-50">Profil</a>
                     </li>
                     <li>
-                        <a href="{{ route('password.edit') }}" class="flex items-center text-[13px] py-1.5 px-4 text-gray-600 hover:text-[#f84525] hover:bg-gray-50">Settings</a>
+                        <a href="{{ route('password.edit') }}" class="flex items-center text-[13px] py-1.5 px-4 text-gray-600 hover:text-[#f84525] hover:bg-gray-50">Ubah Kata Sandi</a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center text-[13px] py-1.5 px-4 text-gray-600 hover:text-[#f84525] hover:bg-gray-50">Settings</a>
                     </li>
                     <li>
                         <form method="POST" action="{{ route('logout') }}">

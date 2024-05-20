@@ -17,6 +17,10 @@
                     <div class="mb-4 bg-green-300 py-3 text-white px-4 rounded-lg w-full md:w-80">
                         {{ session('success') }}
                     </div>
+                @elseif(session()->has('failed'))
+                    <div class="mb-4 bg-red-300 py-3 text-white px-4 rounded-lg w-full max-w-xs">
+                        {{ session('failed') }}
+                    </div>
                 @endif
                 <div id="success" class="hidden mb-4 bg-green-300 py-3 text-white px-4 rounded-lg md:w-80"></div>
                 <h2 class="text-3xl font-bold text-[#222C67]">

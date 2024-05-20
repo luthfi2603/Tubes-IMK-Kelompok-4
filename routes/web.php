@@ -11,9 +11,6 @@ Route::middleware(['guest2'])->group(function(){
     Route::get('/', function(){
         return view('index');
     });
-    Route::get('/register0', function(){
-        return view('register0');
-    });
     Route::get('/masuk-sebagai', function(){
         return view('login-as-page');
     })->name('masuk.sebagai');

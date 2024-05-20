@@ -12,7 +12,7 @@ class PasienSeeder extends Seeder {
      */
     public function run(): void {
         Pasien::create([ // 1
-            "nama" => fake()->name(),
+            "nama" => 'Budi Kurniawan',
             "alamat" => fake()->address(),
             "jenis_kelamin" => fake()->randomElement($array = array('P', 'L')),
             "id_user" => "4",
@@ -20,7 +20,7 @@ class PasienSeeder extends Seeder {
             "pekerjaan" => fake()->jobTitle(),
         ]);
         Pasien::create([ // 2
-            "nama" => fake()->name(),
+            "nama" => 'Henky Kurniawan',
             "alamat" => fake()->address(),
             "jenis_kelamin" => fake()->randomElement($array = array('P', 'L')),
             "id_user" => "5",

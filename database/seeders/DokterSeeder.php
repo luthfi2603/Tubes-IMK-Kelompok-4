@@ -12,7 +12,7 @@ class DokterSeeder extends Seeder {
      */
     public function run(): void {
         Dokter::create([ // 1
-            "nama" => fake()->name(),
+            "nama" => 'Clinton Christovel',
             "alamat" => fake()->address(),
             "jenis_kelamin" => fake()->randomElement($array = array('P', 'L')),
             "id_user" => "2",

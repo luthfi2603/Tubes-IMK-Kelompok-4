@@ -12,8 +12,13 @@ class RawatInapSeeder extends Seeder {
      */
     public function run(): void {
         RawatInap::create([ // 1
-            "id_dokter" => "1",
-            "id_pasien" => "2",
+            "nama_pasien" => "Budi Kurniawan",
+            "tanggal_lahir" => fake()->date($format = 'Y-m-d', $max = 'now'),
+            "alamat" => fake()->address(),
+            "nomor_handphone" => "082162166387",
+            "diagnosa" => fake()->paragraph($nbSentences = 3, $variableNbSentences = true),
+            "nama_dokter" => "Clinton Christovel",
+            "spesialis" => fake()->randomElement($array = array('penyakit_dalam', 'estetika', 'obgyn')),
             "id_kamar" => "1",
         ]);
     }

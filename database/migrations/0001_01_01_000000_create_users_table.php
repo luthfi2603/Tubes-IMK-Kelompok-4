@@ -15,6 +15,7 @@ return new class extends Migration {
             $table->string('foto')->nullable();
             $table->enum('status', ['pasien', 'dokter', 'perawat', 'admin']);
             $table->string('password')->nullable();
+            $table->boolean('aktif')->default(1);
             $table->timestamps();
         });
 

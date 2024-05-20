@@ -12,9 +12,9 @@ class AdminSeeder extends Seeder {
      */
     public function run(): void {
         Admin::create([ // 1
-            "nama" => "Muhammad Luthfi",
-            "alamat" => "Jalan Makmur Gang Bakti No. 16B",
-            "jenis_kelamin" => "L",
+            "nama" => fake()->name(),
+            "alamat" => fake()->address(),
+            "jenis_kelamin" => fake()->randomElement($array = array('P', 'L')),
             "id_user" => "1",
         ]);
     }
