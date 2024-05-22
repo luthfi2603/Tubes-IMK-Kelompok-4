@@ -96,4 +96,24 @@ Route::get('/admin/datakaryawan', [AdminController::class, 'datakaryawan'])
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 }); */
 
+Route::get('/admin/dashboard', function() {
+    return view('admin.dashboard');
+});
+Route::get('/admin/main', function() {
+    return view('admin.main');
+});
+Route::get('/admin2/dashboard', function() {
+    return view('admin2.dashboard');
+});
+
+Route::get('/admin3/dashboard', function() {
+    return view('admin3.dashboard');
+});
+
+
+
+
+
+
+
 require __DIR__.'/auth.php';
