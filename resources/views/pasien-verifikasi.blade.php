@@ -57,7 +57,7 @@
     </div>
     <div class="w-full flex-1">
         <div class="mx-auto max-w-xs">
-            <form id="form" onsubmit="return false";>
+            <form id="form" onsubmit="return false;">
                 @csrf
                 <input type="hidden" name="nomor_handphone" value="{{ session()->get('request')['nomor_handphone_dimodifikasi'] }}">
                 <div class="content-center">
@@ -84,6 +84,12 @@
                     <i class="fa-solid fa-right-to-bracket"></i>
                     <span class="ml-3">
                         Kirim
+                    </span>
+                </button>
+                <button onclick="batal('{{ csrf_token() }}')" class="mt-5 tracking-wide font-semibold bg-red-500 text-gray-100 w-full py-4 rounded-lg hover:bg-red-600 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
+                    <i class="fa-solid fa-xmark"></i>
+                    <span class="ml-3">
+                        Batal
                     </span>
                 </button>
             </form>

@@ -74,7 +74,7 @@
                 <p class="w-72 text-center mt-2 text-sm text-gray-500">Silahkan masukkan verifikasi kode yang telah dikirimkan ke nomor handphone anda</p>
                 <div class="w-full flex-1 mt-8">
                     <div class="mx-auto max-w-xs">
-                        <form id="form" onsubmit="return false";>
+                        <form id="form" onsubmit="return false;">
                             @csrf
                             <input type="hidden" name="nomor_handphone" value="{{ session()->get('request')['nomor_handphone_dimodifikasi'] }}">
                             <div class="content-center">

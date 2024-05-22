@@ -11,6 +11,7 @@
     </div>
 @endif
 <div id="success" class="mb-4 bg-green-300 py-3 px-4 text-white rounded-lg hidden"></div>
+<div id="failed-ubah-profil" class="mb-4 bg-red-300 py-3 px-4 text-white rounded-lg hidden"></div>
 <div class="flex flex-col gap-4">
     <p class="text-2xl md:text-3xl font-bold">Profil</p>
     <form method="POST" action="{{ route('pasien.profil') }}" class="flex justify-center md:text-lg">

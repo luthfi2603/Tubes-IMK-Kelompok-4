@@ -35,6 +35,8 @@ Route::middleware(['auth', 'role:pasien'])->group(function(){
         Route::put('/edit-password', 'updatePassword');
         Route::delete('/hapus-akun', 'destroyAkun')
             ->name('akun.destroy');
+        Route::post('/cancel-ubah-profil', 'cancelUbahProfil')
+            ->name('cancel.ubah.profil');
     });
 
     Route::get('/dokter', function(){

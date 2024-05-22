@@ -10,6 +10,7 @@ const tombolSimpan = document.getElementById('simpan');
 const successHtml = document.getElementById('success');
 const successPhp = document.getElementById('success-php');
 const failedPhp = document.getElementById('failed');
+const failedUbahProfil = document.getElementById('failed-ubah-profil');
 
 tombolUbahFoto.addEventListener('click', () => {
     inputFoto.click();
@@ -147,6 +148,18 @@ if(successMessage){
     
     setTimeout(() => {
         successHtml.classList.add('hidden');
+    }, 3000);
+}
+
+const failedMessage = localStorage.getItem('failedMessage');
+if(failedMessage){
+    failedUbahProfil.classList.remove('hidden');
+    failedUbahProfil.innerHTML = failedMessage
+    
+    localStorage.removeItem('failedMessage');
+    
+    setTimeout(() => {
+        failedUbahProfil.classList.add('hidden');
     }, 3000);
 }
 
