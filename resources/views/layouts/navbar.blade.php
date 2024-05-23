@@ -1,4 +1,4 @@
-<!--sidenav -->
+<!-- sidenav -->
 <div class="fixed left-0 top-0 w-64 h-full bg-[#E3EBF3] p-4 z-50 sidebar-menu transition-transform -translate-x-full md:translate-x-0">
     <a href="/" class="flex items-center pb-4 border-b border-b-gray-800" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
         <img src="{{ asset('assets/img/logo.png') }}" class="w-30 h-24" alt="Logo">
@@ -48,7 +48,7 @@
     </ul>
 </div>
 <div class="fixed top-0 left-0 w-full h-full bg-black/50 z-40 md:hidden sidebar-overlay hidden"></div>
-<!-- end side nav -->
+<!-- end sidenav -->
 
 <main id="main" class="w-full md:w-[calc(100%-256px)] md:ml-64 bg-[#F5f5f5] min-h-screen transition-all main">
     <!-- navbar -->
@@ -162,10 +162,11 @@
                     <li>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
-                            <a role="menuitem" class="flex items-center text-[13px] py-1.5 px-4 text-gray-600 hover:text-[#f84525] hover:bg-gray-50 cursor-pointer"
+                            <a role="menuitem" class="flex items-center text-[13px] py-1.5 px-4 text-gray-600 hover:text-[#f84525] hover:fill-[#f84525] hover:bg-gray-50 cursor-pointer"
                                 onclick="event.preventDefault();
                                 this.closest('form').submit();">
-                                Keluar
+                                <svg class="h-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"/></svg>
+                                <span class="ml-1">Keluar</span>
                             </a>
                         </form>
                     </li>

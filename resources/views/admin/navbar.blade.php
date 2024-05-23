@@ -1,17 +1,23 @@
-<!--sidenav -->
+<!-- sidenav -->
 <div class="fixed left-0 top-0 w-64 h-full bg-[#E3EBF3] p-4 z-50 sidebar-menu transition-transform -translate-x-full md:translate-x-0">
     <a href="#" class="flex items-center pb-4 border-b border-b-gray-800" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
         <img src="{{ asset('assets/img/logo.png') }}" class="w-30 h-24" alt="Logo"></a>
-        </a>
-        <ul class="mt-4">
+    </a>
+    <ul class="mt-4">
         <li class="mb-1 group">
-            <a href="/admin/datakaryawan" class="flex font-semibold items-center py-2 px-4 rounded-md text-gray-900 hover:bg-[#222C67] hover:text-gray-100 {{ request()->is('admin/datakaryawan') ? 'bg-[#222C67] text-white' : '' }}">
+            <a href="{{ route('admin.dashboard') }}" class="flex font-semibold items-center py-2 px-4 text-gray-900 hover:bg-[#222C67] hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100 {{ request()->is('admin/dashboard') ? 'bg-[#222C67] text-white' : '' }}">
+                <i class="ri-home-2-line mr-3 text-lg"></i>
+                <span class="text-md">Dashboard</span>
+            </a>
+        </li>
+        <li class="mb-1 group">
+            <a href="{{ route('admin.data.karyawan') }}" class="flex font-semibold items-center py-2 px-4 rounded-md text-gray-900 hover:bg-[#222C67] hover:text-gray-100 {{ request()->is('admin/data-karyawan') ? 'bg-[#222C67] text-white' : '' }}">
                 <svg class="mr-2" xmlns="http://www.w3.org/2000/svg"   width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-users-group"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 13a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M8 21v-1a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v1" /><path d="M15 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M17 10h2a2 2 0 0 1 2 2v1" /><path d="M5 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M3 13v-1a2 2 0 0 1 2 -2h2" /></svg>
                 <span class="text-sm">Daftar Tenaga Kesehatan</span>
             </a>
         </li>
         <li class="mb-1 group">
-            <a href="/admin/datapasien" class="flex font-semibold items-center py-2 px-4 rounded-md text-gray-900 hover:bg-[#222C67] hover:text-gray-100 {{ request()->is('admin/datapasien') ? 'bg-[#222C67] text-white' : '' }}">
+            <a href="{{ route('admin.data.pasien') }}" class="flex font-semibold items-center py-2 px-4 rounded-md text-gray-900 hover:bg-[#222C67] hover:text-gray-100 {{ request()->is('admin/data-pasien') ? 'bg-[#222C67] text-white' : '' }}">
                 <i class='bx bx-user mr-3 text-lg'></i>
                 <span class="text-sm">Daftar Pasien</span>
             </a>
@@ -32,7 +38,7 @@
     </ul>
 </div>
 <div class="fixed top-0 left-0 w-full h-full bg-black/50 z-40 md:hidden sidebar-overlay hidden"></div>
-<!-- end side nav -->
+<!-- end sidenav -->
 
 <main id="main" class="w-full md:w-[calc(100%-256px)] md:ml-64 bg-[#F5f5f5] min-h-screen transition-all main">
     <!-- navbar -->

@@ -79,47 +79,24 @@ Route::middleware(['auth', 'role:admin'])->group(function(){
     Route::prefix('admin')->group(function(){
         Route::name('admin.')->group(function(){
             Route::controller(AdminController::class)->group(function(){
-                Route::get('/dashboard', 'showDashboardAdmin')->name('dashboard');
+                Route::get('/dashboard', 'showDashboardAdmin')
+                    ->name('dashboard');
+                Route::get('/data-pasien', 'dataPasien')
+                    ->name('data.pasien');
+                Route::get('/data-karyawan', 'dataKaryawan')
+                    ->name('data.karyawan');
+                Route::get('/edit-pasien/{nohp}', 'editPasien')
+                    ->name('edit.pasien');
+                Route::put('/edit-pasien/{nohp}', 'updatePasien');
             });
         });
     });
 });
-
-Route::get('/admin/datapasien', [AdminController::class, 'datapasien'])
-    ->name('data_pasien');
-Route::get('/admin/datakaryawan', [AdminController::class, 'datakaryawan'])
-    ->name('data_karyawan');
-Route::get('/admin/editpasien/{nohp}', [AdminController::class, 'editpasien'])
-    ->name('edit.pasien');
-Route::put('/admin/editpasien/{nohp}', [AdminController::class, 'updatePasien']);
-
-
-
 
 /* Route::middleware('auth')->group(function(){
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 }); */
-
-Route::get('/admin/dashboard', function() {
-    return view('admin.dashboard');
-});
-Route::get('/admin/main', function() {
-    return view('admin.main');
-});
-Route::get('/admin2/dashboard', function() {
-    return view('admin2.dashboard');
-});
-
-Route::get('/admin3/dashboard', function() {
-    return view('admin3.dashboard');
-});
-
-
-
-
-
-
 
 require __DIR__.'/auth.php';

@@ -96,8 +96,6 @@
         </div>
     </div>
 </div>
-
-
 @push('scripts')
     <script src="{{ asset('assets/js/verifikasi.js') }}"></script>
 @endpush

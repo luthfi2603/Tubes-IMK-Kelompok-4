@@ -1,6 +1,6 @@
 @extends('admin.main')
-@section('container')
 
+@section('container')
 <div class="container">
     <div class="col-lg-12 pt-3">
         <h1 class="text-2xl font-bold mb-4">Daftar karyawan</h1>
@@ -22,13 +22,13 @@
                         $totalItems = $karyawan->total();
                         $startingNumber = ($currentPage - 1) * $perPage + 1;
                     @endphp
-                    @foreach($karyawan as $datakaryawan)
+                    @foreach($karyawan as $dataKaryawan)
                     <tr class="bg-[#E3EBF3]">
                         <td class="px-4 py-3">{{ $startingNumber++ }}</td>
-                        <td class="px-4 py-3">{{ $datakaryawan->nama }}</td>
-                        <td class="px-4 py-3">{{ $datakaryawan->nomor_handphone }}</td>
-                        <td class="px-4 py-3">{{ $datakaryawan->alamat }}</td>    
-                        <td class="px-4 py-3">{{ $datakaryawan->status }}</td>
+                        <td class="px-4 py-3">{{ $dataKaryawan->nama }}</td>
+                        <td class="px-4 py-3">{{ $dataKaryawan->nomor_handphone }}</td>
+                        <td class="px-4 py-3">{{ $dataKaryawan->alamat }}</td>    
+                        <td class="px-4 py-3">{{ $dataKaryawan->status }}</td>
                     </tr>
                     @endforeach
                 </tbody>
@@ -37,5 +37,4 @@
         </div>
     </div>
 </div>
-
 @endsection

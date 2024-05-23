@@ -2,39 +2,43 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\User;
-use Illuminate\Support\Facades\DB;
 use App\Models\Pasien;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller {
-    public function datapasien(){
+    public function showDashboardAdmin(){
+        return view('admin.dashboard');
+    }
+
+    public function dataPasien(){
         $pasien = DB::table('data_pasien')
             ->paginate(5);
             
-        return view ('admin.data-pasien', compact('pasien'));
+        return view('admin.data-pasien', compact('pasien'));
     }
-    public function datakaryawan(){
+
+    public function dataKaryawan(){
         $karyawan = DB::table('data_karyawan')
             ->paginate(5);
             
-        return view ('admin.datakaryawan', compact('karyawan'));
+        return view('admin.data-karyawan', compact('karyawan'));
     }
 
-    public function editpasien($nohp){
-        $pasien = DB::table('pasiens')
-        ->join('users', 'pasiens.id_user', '=', 'users.id')
-        ->select('users.nomor_handphone', 'pasiens.nama', 'users.id', 'pasiens.alamat', 'pasiens.pekerjaan', 'pasiens.jenis_kelamin', 'pasiens.tanggal_lahir')
-        ->where('users.nomor_handphone', $nohp)
-        ->get();
-        $pasien = $pasien[0];
+    public function editPasien($nohp){
+        $pasien = Pasien::join('users', 'pasiens.id_user', '=', 'users.id')
+            ->select('users.nomor_handphone', 'pasiens.nama', 'users.id', 'pasiens.alamat', 'pasiens.pekerjaan', 'pasiens.jenis_kelamin', 'pasiens.tanggal_lahir')
+            ->where('users.nomor_handphone', $nohp)
+            ->get()
+            ->firstOrFail();
+
         return view('admin.edit-pasien', compact('pasien'));
     }
 
-    public function updatePasien(Request $request, $id)
-    {
+    public function updatePasien(Request $request, $id){
         $user = User::find($id);
+
         if(
             $request->nama == $user->pasien->nama &&
             $request->nomor_handphone == $user->nomor_handphone &&
@@ -43,8 +47,8 @@ class AdminController extends Controller {
             $request->jenis_kelamin == $user->pasien->jenis_kelamin &&
             $request->tanggal_lahir == $user->pasien->tanggal_lahir
         ){
-            return back()->with('failed', 'Gagal diubah, Tidak ada perubahan');
-        }else {// nomor handphone dan yang lain berubah
+            return back()->with('failed', 'Gagal diubah, tidak ada perubahan');
+        }else{ // nomor handphone dan yang lain berubah
             $messages = [
                 'nama.required' => 'Kolom nama harus diisi.',
                 'nama.max' => 'Maksimal 255 karakter.',
@@ -61,10 +65,7 @@ class AdminController extends Controller {
                 'tanggal_lahir.required' => 'Tanggal lahir harus diisi',
                 'jenis_kelamin.required' => 'Jenis kelamin harus dipilih',
             ];
-            $rules = [];
-            if($request->nomor_handphone != $user->nomor_handphone){
-                $rules['nomor_handphone'] = ['required', 'numeric', 'min_digits:11', 'max_digits:13', 'regex:/\b08\d{9,11}\b/', 'unique:users'];
-            }
+
             $rules = [
                 'nama' => ['required', 'string', 'max:255'],
                 'alamat' => ['required', 'string', 'max:255'],
@@ -72,8 +73,13 @@ class AdminController extends Controller {
                 'tanggal_lahir' => ['required', 'date'],
                 'jenis_kelamin' => ['required', 'in:P,L'],
             ];
-            dd($rules);
+
+            if($request->nomor_handphone != $user->nomor_handphone){
+                $rules['nomor_handphone'] = ['required', 'numeric', 'min_digits:11', 'max_digits:13', 'regex:/\b08\d{9,11}\b/', 'unique:users'];
+            }
+
             $request->validate($rules, $messages);
+
             Pasien::where('id_user', $user->id)->update([
                 'nama' => $request->nama,
                 'alamat' => $request->alamat,
@@ -81,13 +87,12 @@ class AdminController extends Controller {
                 'tanggal_lahir' => $request->tanggal_lahir,
                 'jenis_kelamin' => $request->jenis_kelamin,
             ]);
+
             $user->update([
                 'nomor_handphone' => $request->nomor_handphone
             ]);
             
-            return redirect()->route('edit.pasien', $request->nomor_handphone)->with('success', 'Profil berhasil diubah');
+            return redirect()->route('admin.edit.pasien', $request->nomor_handphone)->with('success', 'Data pasien berhasil diubah');
         }
-
     }
-
 }

@@ -17,7 +17,6 @@
                 </div>
             </div>
         </div>
-
         <div class="mt-6">
             <div class="bg-white p-6 rounded-lg shadow-lg">
                 <h3 class="text-lg font-semibold mb-4">Report</h3>
@@ -49,15 +48,12 @@
                 </div>
             </div>
         </div>
-
         <div class="mt-6 grid grid-cols-1 lg:grid-cols-2">
             <div class="">
                 <h2 class="text-2xl font-bold text-gray-700">Today's Appointment</h2>
             </div>
         </div>
-
         <div class="relative w-full max-w-5xl mt-3">
-       
             <div class="flex flex-col pb-5 pt-2 px-3 rounded-xl bg-white shadow-lg w-full">
                 <label for="table-search" class="sr-only">Search</label>
                 <div class="relative my-1">
@@ -68,7 +64,6 @@
                     </div>
                     <input type="text" id="table-search" class="block pt-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-40 bg-gray-100 focus:ring-blue-500 focus:border-blue-500  dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search for items">
                 </div>
-            
                 <table class="min-w-full bg-white">
                     <thead>
                         <tr>
@@ -94,18 +89,14 @@
                         <!-- Repeat the above tr for each row -->
                     </tbody>
                 </table>
-            
+            </div>
         </div>
-        </div>
-
         <div class="mt-6 grid grid-cols-1 lg:grid-cols-2">
             <div class="">
                 <h2 class="text-2xl font-bold text-gray-700">Patients</h2>
             </div>
         </div>
-
         <div class="relative w-full max-w-5xl mt-3">
-       
             <div class="flex flex-col pb-5 pt-2 px-3 rounded-xl bg-white shadow-lg w-full">
                 <label for="table-search" class="sr-only">Search</label>
                 <div class="relative my-1">
@@ -114,9 +105,8 @@
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
                         </svg>
                     </div>
-                    <input type="text" id="table-search" class="block pt-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-40 bg-gray-100 focus:ring-blue-500 focus:border-blue-500  dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search for items">
+                    <input type="text" id="table-search-2" class="block pt-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-40 bg-gray-100 focus:ring-blue-500 focus:border-blue-500  dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search for items">
                 </div>
-            
                 <table class="min-w-full bg-white">
                     <thead>
                         <tr>
@@ -142,21 +132,13 @@
                         <!-- Repeat the above tr for each row -->
                     </tbody>
                 </table>
-            
-        </div>
+            </div>
         </div>  
-
-
     </div>
-
-    
-
-
     <!-- Right Sidebar -->
     <div class="w-full lg:w-1/3">
         <div class="bg-white p-6 rounded-lg shadow-lg">
-          
-        {{-- <div class="bg-white rounded-lg shadow-md p-6 w-80"> --}}
+            {{-- <div class="bg-white rounded-lg shadow-md p-6 w-80"> --}}
             <h2 class="text-2xl font-semibold text-center mb-6">Patients Group</h2>
             <ul class="space-y-4">
                 <li class="flex justify-between items-center">
@@ -194,6 +176,8 @@
                     </div>
                     <span class="text-gray-500">11 Patients</span>
                 </li>
+            </ul>
+            {{-- </div> --}}
         </div>
 
         <div class="max-w-2xl mt-6 mx-auto bg-white shadow-md rounded-lg overflow-hidden">
@@ -343,78 +327,25 @@
                 </table>
             </div>
         </div>
-    
+    </div>
+@push('scripts')
+    <script>
+        // Mengambil elemen tombol dan menu dropdown
+        const optionsButton = document.getElementById('options-button');
+        const optionsMenu = document.getElementById('options-menu');
 
-        
+        // Menambahkan event listener pada tombol
+        optionsButton.addEventListener('click', () => {
+            // Mengubah visibilitas menu dropdown
+            optionsMenu.classList.toggle('hidden');
+        });
 
-</div>
-
-
-<!-- Chart.js -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-    const ctx1 = document.getElementById('patientsChart').getContext('2d');
-    const ctx2 = document.getElementById('genderChart').getContext('2d');
-
-    const patientsChart = new Chart(ctx1, {
-        type: 'line',
-        data: {
-            labels: ['0', '1', '2', '3', '4', '5', '6'],
-            datasets: [
-                {
-                    label: 'This Week',
-                    data: [105, 100, 120, 90, 85, 140, 160],
-                    borderColor: 'rgba(59, 130, 246, 1)',
-                    backgroundColor: 'rgba(59, 130, 246, 0.1)',
-                    fill: true,
-                },
-            ],
-        },
-        options: {
-            responsive: true,
-            scales: {
-                y: {
-                    beginAtZero: true,
-                },
-            },
-        },
-    });
-
-    const genderChart = new Chart(ctx2, {
-        type: 'doughnut',
-        data: {
-            labels: ['Men', 'Women'],
-            datasets: [
-                {
-                    label: 'Gender',
-                    data: [170, 140],
-                    backgroundColor: ['rgba(59, 130, 246, 1)', 'rgba(252, 165, 165, 1)'],
-                },
-            ],
-        },
-        options: {
-            responsive: true,
-        },
-    });
-</script>
-
-<script>
-    // Mengambil elemen tombol dan menu dropdown
-    const optionsButton = document.getElementById('options-button');
-    const optionsMenu = document.getElementById('options-menu');
-
-    // Menambahkan event listener pada tombol
-    optionsButton.addEventListener('click', () => {
-        // Mengubah visibilitas menu dropdown
-        optionsMenu.classList.toggle('hidden');
-    });
-
-    // Menyembunyikan menu dropdown ketika mengklik di luar area menu
-    document.addEventListener('click', (event) => {
-        if (!optionsButton.contains(event.target) && !optionsMenu.contains(event.target)) {
-            optionsMenu.classList.add('hidden');
-        }
-    });
-</script>
-
+        // Menyembunyikan menu dropdown ketika mengklik di luar area menu
+        document.addEventListener('click', (event) => {
+            if (!optionsButton.contains(event.target) && !optionsMenu.contains(event.target)) {
+                optionsMenu.classList.add('hidden');
+            }
+        });
+    </script>
+@endpush
 @endsection
