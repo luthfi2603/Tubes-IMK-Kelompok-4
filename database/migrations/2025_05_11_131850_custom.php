@@ -13,7 +13,7 @@ return new class extends Migration {
                 a.alamat,
                 b.nomor_handphone
             FROM pasiens a
-            INNER JOIN users b ON a.id = b.id;
+            INNER JOIN users b ON a.id_user = b.id;
         ');
 
         DB::unprepared('
