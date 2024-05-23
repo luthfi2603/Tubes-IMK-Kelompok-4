@@ -14,6 +14,7 @@
                         <th class="px-4 py-3 text-start min-w-50">Alamat</th>
                         <th class="px-4 py-3 text-start min-w-30">Janji Temu Selanjutnya</th>
                         <th class="px-4 py-3 text-start min-w-30">Janji Temu Terakhir</th>
+                        <th class="px-4 py-3 text-start min-w-30">Aksi</th>
                     </tr>
                 </thead>
                 <tbody class="text-gray-700">
@@ -31,6 +32,7 @@
                         <td class="px-4 py-3">{{ $datapasien->alamat }}</td> 
                         <td></td>          
                         <td></td>
+                        <td><a href="{{ route('edit.pasien', $datapasien->nomor_handphone) }}">Edit</a></td>
                     </tr>
                     @endforeach
                 </tbody>

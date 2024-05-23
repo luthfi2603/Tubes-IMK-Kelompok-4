@@ -87,6 +87,12 @@ Route::get('/admin/datapasien', [AdminController::class, 'datapasien'])
     ->name('data_pasien');
 Route::get('/admin/datakaryawan', [AdminController::class, 'datakaryawan'])
     ->name('data_karyawan');
+Route::get('/admin/editpasien/{nohp}', [AdminController::class, 'editpasien'])
+    ->name('edit.pasien');
+Route::put('/admin/editpasien/{nohp}', [AdminController::class, 'updatePasien']);
+
+
+
 
 /* Route::middleware('auth')->group(function(){
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
