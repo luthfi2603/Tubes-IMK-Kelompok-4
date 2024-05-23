@@ -1,6 +1,6 @@
 @extends('admin.main')
-@section('container')
 
+@section('container')
 <div class="container">
     <div class="col-lg-12 pt-3">
         <h1 class="text-2xl font-bold mb-4">Daftar Pasien</h1>
@@ -32,7 +32,7 @@
                         <td class="px-4 py-3">{{ $datapasien->alamat }}</td> 
                         <td></td>          
                         <td></td>
-                        <td><a href="{{ route('edit.pasien', $datapasien->nomor_handphone) }}">Edit</a></td>
+                        <td><a href="{{ route('admin.edit.pasien', $datapasien->nomor_handphone) }}">Edit</a></td>
                     </tr>
                     @endforeach
                 </tbody>
@@ -41,5 +41,4 @@
         </div>
     </div>
 </div>
-
 @endsection

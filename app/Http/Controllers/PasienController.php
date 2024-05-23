@@ -291,4 +291,10 @@ class PasienController extends Controller {
 
         return redirect('/');
     }
+
+    public function cancelUbahProfil(){
+        session()->forget('request');
+
+        return response()->json(['failed' => 'Gagal ubah profil']);
+    }
 }
