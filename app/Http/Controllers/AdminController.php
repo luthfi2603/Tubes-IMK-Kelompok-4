@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Pasien;
+use App\Models\RawatInap;
+use App\Models\Reservasi;
+use App\Models\RekamMedis;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -91,12 +94,40 @@ class AdminController extends Controller {
             $user->update([
                 'nomor_handphone' => $request->nomor_handphone
             ]);
+
+            $reservasi = Reservasi::where('nomor_handphone', $user->nomor_handphone)->get();
+            if($reservasi){
+                Reservasi::where('nomor_handphone', $user->nomor_handphone)->update([
+                    'nama_pasien' => $request->nama,
+                    'alamat' => $request->alamat,
+                    'nomor_handphone' => $request->nomor_handphone
+                ]);
+            }
+            
+            $rekamMedis = RekamMedis::where('nomor_handphone', $user->nomor_handphone)->get();
+            if($rekamMedis){
+                RekamMedis::where('nomor_handphone', $user->nomor_handphone)->update([
+                    'nama_pasien' => $request->nama,
+                    'pekerjaan' => $request['pekerjaan'],
+                    'alamat' => $request->alamat,
+                    'nomor_handphone' => $request->nomor_handphone
+                ]);
+            }
+            
+            $rawatInap = RawatInap::where('nomor_handphone', $user->nomor_handphone)->get();
+            if($rawatInap){
+                RawatInap::where('nomor_handphone', $user->nomor_handphone)->update([
+                    'nama_pasien' => $request->nama,
+                    'alamat' => $request->alamat,
+                    'nomor_handphone' => $request->nomor_handphone
+                ]);
+            }
             
             return redirect()->route('admin.edit.pasien', $request->nomor_handphone)->with('success', 'Data pasien berhasil diubah');
         }
     }
-    public function banPasien($nomor_handphone)
-    {
+
+    public function banPasien($nomor_handphone){
         $pasien = User::where('nomor_handphone', $nomor_handphone)->first();
         if ($pasien) {
             $pasien->aktif = 0; // Update aktif to banned
@@ -105,14 +136,13 @@ class AdminController extends Controller {
         return redirect()->route('admin.data.pasien')->with('success', 'Pasien berhasil diblokir');
     }
 
-    public function unbanPasien($nomor_handphone)
-    {
+    public function unbanPasien($nomor_handphone){
         $pasien = User::where('nomor_handphone', $nomor_handphone)->first();
         if ($pasien) {
             $pasien->aktif = 1; // Update status to unbanned
             $pasien->save();
         }
+
         return redirect()->route('admin.data.pasien')->with('success', 'Pasien berhasil diaktifkan kembali');
     }
-
 }
