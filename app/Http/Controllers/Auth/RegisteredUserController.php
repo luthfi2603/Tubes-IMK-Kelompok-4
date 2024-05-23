@@ -91,8 +91,12 @@ class RegisteredUserController extends Controller {
     }
 
     public function createVerifikasi(){
-        if(session()->get('request') == null){
-            return redirect(route('register'));
+        if(session()->get('request') == null){ // kalo ga ada
+            return redirect()->route('register');
+        }else{
+            if(!isset(session()->get('request')['nama'])){ // kalo ga ada key nama
+                return redirect()->route('register');
+            }
         }
 
         return view('verifikasi');
@@ -242,6 +246,10 @@ class RegisteredUserController extends Controller {
     public function createVerifikasiOtpResetPassword(){
         if(session()->get('request') == null){
             return redirect(route('verifikasi.nomor.handphone'))->with('failed', 'Silahkan verifikasi nomor handphone anda terlebih dahulu');
+        }else{
+            if(isset(session()->get('request')['nama'])){ // kalo ada key nama
+                return redirect(route('verifikasi.nomor.handphone'))->with('failed', 'Silahkan verifikasi nomor handphone anda terlebih dahulu');
+            }
         }
 
         return view('verifikasi-otp-reset-password');
@@ -303,6 +311,9 @@ class RegisteredUserController extends Controller {
         }else{ // kalau ada
             if(!isset(session()->get('request')['terverifikasi'])){ // kalo ga ada key terverifikasi
                 return redirect(route('verifikasi.otp.reset.password'))->with('failed', 'Silahkan verifikasi kode OTP terlebih dahulu');
+            }
+            if(isset(session()->get('request')['nama'])){ // kalo ada key nama
+                return redirect(route('verifikasi.nomor.handphone'))->with('failed', 'Silahkan verifikasi nomor handphone anda terlebih dahulu');
             }
         }
 

@@ -25,6 +25,16 @@ class AuthenticatedSessionController extends Controller {
 
         $request->session()->regenerate();
 
+        if(!auth()->user()->aktif){
+            Auth::guard('web')->logout();
+
+            $request->session()->invalidate();
+
+            $request->session()->regenerateToken();
+
+            return back()->with('failed', 'Mohon maaf, akun anda sudah diblokir, pergi ke admin untuk informasi lebih lanjut');
+        }
+
         $role = auth()->user()->status;
         switch($role){
             case "pasien":

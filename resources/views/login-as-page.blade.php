@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Klinik RH61</title>
-    <link rel="stylesheet" href="{{ asset('./assets/css/app.css') }}">
+    <link rel="icon" href="{{ asset('assets/img/logo.png') }}" type="image/png">
+    <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}">
 </head>
 <body class="bg-neutral-100 min-h-screen flex flex-col items-center">
     <div class="mx-auto">
@@ -13,13 +14,13 @@
         </div>
 
         <div class="text-center mb-4">
-            <div class="text-zinc-900 text-xl md:text-2xl font-bold leading-[38px]">Let's get acquainted</div>
-            <div class="text-neutral-400 text-base md:text-lg font-semibold">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec gravida libero vel euismod porttitor.</div>
+            <div class="text-zinc-900 text-xl md:text-2xl font-bold leading-[38px]">Mari bergabung bersama kami</div>
+            <div class="text-neutral-400 text-base md:text-lg font-semibold">Silakan pilih pengguna untuk melanjutkan</div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 mb-8">
             <!-- Patient Card -->
-            <a href="#" class="bg-neutral-100 rounded-[18px] p-4 flex items-center space-x-4 hover:bg-[#bbbbbb] mx-auto">
+            <a href="{{ route('login') }}" class="cursor-pointer bg-neutral-100 rounded-[18px] p-4 flex items-center space-x-4 hover:bg-[#bbbbbb] mx-auto">
                 <div class="size-16 bg-blue-950 rounded-[13px] flex items-center justify-center">
                     <svg xmlns="http://www.w3.org/2000/svg" class="text-white w-10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -30,13 +31,13 @@
                     </svg>
                 </div>
                 <div class="flex-1">
-                    <div class="text-blue-950 text-lg font-medium">I’m a patient</div>
-                    <div class="text-neutral-400 text-base font-medium mt-2">Proin convallis libero ac nisl</div>
+                    <div class="text-blue-950 text-lg font-medium">Sebagai pasien</div>
+                    <div class="text-neutral-400 text-base font-medium mt-2">Pilih untuk lanjut ke halaman pasien</div>
                 </div>
             </a>
 
             <!-- Doctor Card -->
-            <a href="#" class="bg-neutral-100 rounded-[18px] p-4 flex items-center space-x-4 hover:bg-[#bbbbbb] mx-auto">
+            <a href="{{ route('login') }}" class="cursor-pointer bg-neutral-100 rounded-[18px] p-4 flex items-center space-x-4 hover:bg-[#bbbbbb] mx-auto">
                 <div class="size-16 bg-white rounded-[13px] flex items-center justify-center">
                     <svg xmlns="http://www.w3.org/2000/svg" class="text-black w-10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -48,13 +49,13 @@
                     </svg>
                 </div>
                 <div class="flex-1">
-                    <div class="text-black text-lg font-medium">I’m a doctor</div>
-                    <div class="text-neutral-400 text-base font-medium mt-2">Proin convallis libero ac nisl</div>
+                    <div class="text-black text-lg font-medium">Sebagai dokter</div>
+                    <div class="text-neutral-400 text-base font-medium mt-2">Pilih untuk lanjut ke halaman dokter</div>
                 </div>
             </a>
 
-            {{-- Nurce Card --}}
-            <a href="#" class="bg-neutral-100 rounded-[18px] p-4 flex items-center space-x-4 hover:bg-[#bbbbbb] mx-auto">
+            {{-- Nurse Card --}}
+            <a href="{{ route('login') }}" class="cursor-pointer bg-neutral-100 rounded-[18px] p-4 flex items-center space-x-4 hover:bg-[#bbbbbb] mx-auto">
                 <div class="size-16 bg-blue-950 rounded-[13px] flex items-center justify-center">
                     <svg  xmlns="http://www.w3.org/2000/svg"  class="text-white w-10"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-nurse">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -64,13 +65,13 @@
                     </svg>
                 </div>
                 <div class="flex-1">
-                    <div class="text-black text-lg font-medium">I’m a nurse</div>
-                    <div class="text-neutral-400 text-base font-medium mt-2">Proin convallis libero ac nisl</div>
+                    <div class="text-black text-lg font-medium">Sebagai perawat</div>
+                    <div class="text-neutral-400 text-base font-medium mt-2">Pilih untuk lanjut ke halaman perawat</div>
                 </div>
             </a>
 
             {{-- Admin Card --}}
-            <a href="" class="bg-neutral-100 rounded-[18px] p-4 flex items-center space-x-4 hover:bg-[#bbbbbb] mx-auto">
+            <a href="{{ route('login') }}" class="cursor-pointer bg-neutral-100 rounded-[18px] p-4 flex items-center space-x-4 hover:bg-[#bbbbbb] mx-auto">
                 <div class="size-16 bg-white rounded-[13px] flex items-center justify-center">
                     <svg  xmlns="http://www.w3.org/2000/svg"  class="text-black w-10"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-device-desktop-analytics">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -85,14 +86,14 @@
                     </svg>
                 </div>
                 <div class="flex-1">
-                    <div class="text-black text-lg font-medium">I’m an admin</div>
-                    <div class="text-neutral-400 text-base font-medium mt-2">Proin convallis libero ac nisl</div>
+                    <div class="text-black text-lg font-medium">Sebagai Admin</div>
+                    <div class="text-neutral-400 text-base font-medium mt-2">Pilih untuk lanjut ke halaman admin</div>
                 </div>
             </a>
         </div>
 
-        <div class="flex justify-center mb-4 mt-8">
-            <a href="#" class="bg-[#222C67] hover:bg-[#525985] text-[#f5f5f5] font-bold py-2 px-4 border-b-4 border-[#222C67] hover:border-[#525985] rounded font-body">
+        <div class="justify-center my-8 hidden">
+            <a href="{{ route('login') }}" class="bg-[#222C67] hover:bg-[#525985] text-[#f5f5f5] font-bold py-2 px-4 border-b-4 border-[#222C67] hover:border-[#525985] rounded font-body">
                 Lanjutkan
             </a>
         </div>

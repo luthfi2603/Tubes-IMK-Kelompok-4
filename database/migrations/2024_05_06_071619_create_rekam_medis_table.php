@@ -11,8 +11,13 @@ return new class extends Migration {
     public function up(): void {
         Schema::create('rekam_medis', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_pasien')->constrained('pasiens')->onDelete('restrict')->onUpdate('cascade');
-            $table->foreignId('id_dokter')->constrained('dokters')->onDelete('restrict')->onUpdate('cascade');
+            $table->string('nama_pasien');
+            $table->unsignedTinyInteger('umur');
+            $table->string('pekerjaan');
+            $table->string('alamat');
+            $table->char('nomor_handphone', 15);
+            $table->string('nama_dokter');
+            $table->enum('spesialis', ['penyakit_dalam', 'estetika', 'obgyn']);
             $table->text('keluhan');
             $table->text('diagnosa');
             $table->text('therapie');

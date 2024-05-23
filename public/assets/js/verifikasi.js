@@ -153,6 +153,7 @@ const kirimUlang =  async (csrf, url) => {
         interval2 = setInterval(stopwatch2, 1000);
 
         success2.classList.add('hidden');
+        window.scrollTo({top: 0, behavior: 'smooth'});
         setTimeout(() => {
             success2.classList.remove('hidden');
             success2.innerHTML = data.success;
@@ -163,6 +164,32 @@ const kirimUlang =  async (csrf, url) => {
                 success.classList.add('hidden');
             }
         }, 100);
+    }catch(error){
+        console.error(error);
+    }
+};
+
+const batal =  async (csrf) => {
+    const form = document.createElement('form');
+    const inputCsrf = document.createElement('input');
+    inputCsrf.setAttribute('name', '_token');
+    inputCsrf.value = csrf;
+    form.appendChild(inputCsrf);
+
+    const formData = new FormData(form);
+    const response = await fetch('/cancel-ubah-profil', {
+        method: "POST",
+        body: formData
+    });
+
+    try {
+        const data = await response.json();
+
+        if('failed' in data){
+            localStorage.setItem('failedMessage', data.failed);
+
+            document.location.href = '/profil';
+        }
     }catch(error){
         console.error(error);
     }

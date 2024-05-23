@@ -67,14 +67,14 @@
                     </div>
                 @endif
                 <div id="success-2" class="hidden mb-4 bg-green-300 py-3 text-white px-4 rounded-lg max-w-xs"></div>
-                <div id="failed" class="hidden mb-4 bg-red-300 py-3 text-white px-4 rounded-lg max-w-xs w-80"></div>
+                <div id="failed" class="hidden mb-4 bg-red-300 py-3 text-white px-4 rounded-lg w-full md:w-80"></div>
                 <h2 class="text-3xl font-bold text-[#222C67]">
                     Verifikasi 
                 </h2>
                 <p class="w-72 text-center mt-2 text-sm text-gray-500">Silahkan masukkan verifikasi kode yang telah dikirimkan ke nomor handphone anda</p>
                 <div class="w-full flex-1 mt-8">
                     <div class="mx-auto max-w-xs">
-                        <form id="form" onsubmit="return false";>
+                        <form id="form" onsubmit="return false;">
                             @csrf
                             <input type="hidden" name="nomor_handphone" value="{{ session()->get('request')['nomor_handphone_dimodifikasi'] }}">
                             <div class="content-center">

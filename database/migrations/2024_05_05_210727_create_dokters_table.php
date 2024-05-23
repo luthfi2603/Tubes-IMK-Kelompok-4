@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->string('nama');
             $table->string('alamat');
             $table->enum('jenis_kelamin', ['P', 'L']);
-            $table->foreignId('id_user')->constrained('users')->onDelete('restrict')->onUpdate('cascade');
+            $table->foreignId('id_user')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
             $table->enum('spesialis', ['penyakit_dalam', 'estetika', 'obgyn']);
             $table->timestamps();
         });
