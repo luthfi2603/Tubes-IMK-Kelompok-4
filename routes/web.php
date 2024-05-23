@@ -11,12 +11,9 @@ Route::middleware(['guest2'])->group(function(){
     Route::get('/', function(){
         return view('index');
     });
-    Route::get('/register0', function(){
-        return view('register0');
-    });
-    Route::get('/login-as-page', function(){
+    Route::get('/masuk-sebagai', function(){
         return view('login-as-page');
-    });
+    })->name('masuk.sebagai');
 });
 
 Route::middleware(['auth', 'role:pasien'])->group(function(){
@@ -36,6 +33,10 @@ Route::middleware(['auth', 'role:pasien'])->group(function(){
         Route::get('/edit-password', 'editPassword')
             ->name('password.edit');
         Route::put('/edit-password', 'updatePassword');
+        Route::delete('/hapus-akun', 'destroyAkun')
+            ->name('akun.destroy');
+        Route::post('/cancel-ubah-profil', 'cancelUbahProfil')
+            ->name('cancel.ubah.profil');
     });
 
     Route::get('/dokter', function(){
@@ -48,11 +49,33 @@ Route::middleware(['auth', 'role:pasien'])->group(function(){
     //ini supaya bisa jalan (nanti hapus aja)
     Route::get('/dashboard-dokter', function(){
         return view('dokter.dashboard-dokter');
-    });
+    })->name('dokter.dashboard-dokter');
+    ; 
+    Route::get('/appointment-dokter', function(){
+        return view('dokter.appointment-dokter');
+    })->name('dokter.appointment-dokter');
+    
+    Route::get('/doctors-dokter', function(){
+        return view('dokter.doctors-dokter');
+    })->name('dokter.doctors-dokter');
+    
+    Route::get('/report-logs-dokter', function(){
+        return view('dokter.report-logs-dokter');
+    })->name('dokter.report-logs-dokter');
+    
+    Route::get('/detail-dokter', function(){
+        return view('dokter.detail-dokter');
+    })->name('dokter.detail-dokter');
+    
+    Route::get('/setting-dokter', function(){
+        return view('dokter.setting-dokter');
+    })->name('dokter.setting-dokter');
+    
     Route::get('/pasien-reset-passsword', function(){
         return view('pasien-reset-password');
     });
 });
+
 
 Route::middleware(['auth', 'role:dokter'])->group(function(){
     Route::prefix('dokter')->group(function(){
@@ -78,16 +101,23 @@ Route::middleware(['auth', 'role:admin'])->group(function(){
     Route::prefix('admin')->group(function(){
         Route::name('admin.')->group(function(){
             Route::controller(AdminController::class)->group(function(){
-                Route::get('/dashboard', 'showDashboardAdmin')->name('dashboard');
+                Route::get('/dashboard', 'showDashboardAdmin')
+                    ->name('dashboard');
+                Route::get('/data-pasien', 'dataPasien')
+                    ->name('data.pasien');
+                Route::get('/data-karyawan', 'dataKaryawan')
+                    ->name('data.karyawan');
+                Route::get('/edit-pasien/{nohp}', 'editPasien')
+                    ->name('edit.pasien');
+                Route::put('/edit-pasien/{nohp}', 'updatePasien');
+                Route::post('/ban-pasien/{nomor_handphone}','banPasien')
+                    ->name('ban.pasien');
+                Route::post('/unban-pasien/{nomor_handphone}','unbanPasien')
+                    ->name('unban.pasien');
             });
         });
     });
 });
-
-Route::get('/admin/datapasien', [AdminController::class, 'datapasien'])
-    ->name('data_pasien');
-Route::get('/admin/datakaryawan', [AdminController::class, 'datakaryawan'])
-    ->name('data_karyawan');
 
 /* Route::middleware('auth')->group(function(){
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
