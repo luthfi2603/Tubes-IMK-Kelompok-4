@@ -14,7 +14,7 @@ class ReservasiSeeder extends Seeder {
     public function run(): void {
         Reservasi::create([ // 1
             "nama_pasien" => "Budi Kurniawan",
-            "tanggal_lahir" => fake()->date($format = 'Y-m-d', $max = 'now'),
+            "umur" => 20,
             "alamat" => fake()->address(),
             "nomor_handphone" => "082162166387",
             "nama_dokter" => "Clinton Christovel",
@@ -23,12 +23,21 @@ class ReservasiSeeder extends Seeder {
         ]);
         Reservasi::create([ // 2
             "nama_pasien" => "Henky Kurniawan",
-            "tanggal_lahir" => fake()->date($format = 'Y-m-d', $max = 'now'),
+            "umur" => 20,
             "alamat" => fake()->address(),
             "nomor_handphone" => "08983847304",
             "nama_dokter" => "Clinton Christovel",
             "spesialis" => fake()->randomElement($array = array('penyakit_dalam', 'estetika', 'obgyn')),
             "status" => "menunggu",
+        ]);
+        Reservasi::create([ // 3
+            "nama_pasien" => "Susanti Kiranti",
+            "umur" => 27,
+            "alamat" => fake()->address(),
+            "nomor_handphone" => "08983847305",
+            "nama_dokter" => "Clinton Christovel",
+            "spesialis" => fake()->randomElement($array = array('penyakit_dalam', 'estetika', 'obgyn')),
+            "status" => "batal",
         ]);
     }
 }

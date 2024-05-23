@@ -13,7 +13,7 @@ class RawatInapSeeder extends Seeder {
     public function run(): void {
         RawatInap::create([ // 1
             "nama_pasien" => "Budi Kurniawan",
-            "tanggal_lahir" => fake()->date($format = 'Y-m-d', $max = 'now'),
+            "umur" => 20,
             "alamat" => fake()->address(),
             "nomor_handphone" => "082162166387",
             "diagnosa" => fake()->paragraph($nbSentences = 3, $variableNbSentences = true),

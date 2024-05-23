@@ -11,7 +11,7 @@ return new class extends Migration {
     public function up(): void {
         Schema::create('reservasis', function (Blueprint $table) {
             $table->string('nama_pasien');
-            $table->date('tanggal_lahir');
+            $table->unsignedTinyInteger('umur');
             $table->string('alamat');
             $table->char('nomor_handphone', 15);
             $table->string('nama_dokter');

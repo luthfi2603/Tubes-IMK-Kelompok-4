@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Pasien;
+use App\Models\RawatInap;
+use App\Models\RekamMedis;
+use App\Models\Reservasi;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -51,6 +54,31 @@ class PasienController extends Controller {
             ], $messages);
 
             Pasien::where('id_user', $user->id)->update($validated);
+
+            $reservasi = Reservasi::where('nomor_handphone', $user->nomor_handphone)->get();
+            if($reservasi){
+                Reservasi::where('nomor_handphone', $user->nomor_handphone)->update([
+                    'nama_pasien' => $request->nama,
+                    'alamat' => $request->alamat,
+                ]);
+            }
+            
+            $rekamMedis = RekamMedis::where('nomor_handphone', $user->nomor_handphone)->get();
+            if($rekamMedis){
+                RekamMedis::where('nomor_handphone', $user->nomor_handphone)->update([
+                    'nama_pasien' => $request->nama,
+                    'pekerjaan' => $request->pekerjaan,
+                    'alamat' => $request->alamat,
+                ]);
+            }
+            
+            $rawatInap = RawatInap::where('nomor_handphone', $user->nomor_handphone)->get();
+            if($rawatInap){
+                RawatInap::where('nomor_handphone', $user->nomor_handphone)->update([
+                    'nama_pasien' => $request->nama,
+                    'alamat' => $request->alamat,
+                ]);
+            }
         }else{ // nomor handphone dan yang lain berubah
             $messages = [
                 'nama.required' => 'Kolom nama harus diisi.',
@@ -92,6 +120,7 @@ class PasienController extends Controller {
             } */
 
             $request = $request->all();
+            $request['nomor_handphone_lama'] = $user->nomor_handphone;
             $request['nomor_handphone_dimodifikasi'] = $nomorHP;
 
             session()->put('request', $request);
@@ -159,6 +188,34 @@ class PasienController extends Controller {
                 'alamat' => $request['alamat'],
                 'pekerjaan' => $request['pekerjaan'],
             ]);
+
+            $reservasi = Reservasi::where('nomor_handphone', $request['nomor_handphone_lama'])->get();
+            if($reservasi){
+                Reservasi::where('nomor_handphone', $request['nomor_handphone_lama'])->update([
+                    'nama_pasien' => $request['nama'],
+                    'alamat' => $request['alamat'],
+                    'nomor_handphone' => $request['nomor_handphone']
+                ]);
+            }
+            
+            $rekamMedis = RekamMedis::where('nomor_handphone', $request['nomor_handphone_lama'])->get();
+            if($rekamMedis){
+                RekamMedis::where('nomor_handphone', $request['nomor_handphone_lama'])->update([
+                    'nama_pasien' => $request['nama'],
+                    'pekerjaan' => $request['pekerjaan'],
+                    'alamat' => $request['alamat'],
+                    'nomor_handphone' => $request['nomor_handphone']
+                ]);
+            }
+            
+            $rawatInap = RawatInap::where('nomor_handphone', $request['nomor_handphone_lama'])->get();
+            if($rawatInap){
+                RawatInap::where('nomor_handphone', $request['nomor_handphone_lama'])->update([
+                    'nama_pasien' => $request['nama'],
+                    'alamat' => $request['alamat'],
+                    'nomor_handphone' => $request['nomor_handphone']
+                ]);
+            }
             
             session()->forget('request');
     

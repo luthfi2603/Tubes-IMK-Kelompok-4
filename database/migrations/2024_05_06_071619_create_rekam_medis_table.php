@@ -12,7 +12,7 @@ return new class extends Migration {
         Schema::create('rekam_medis', function (Blueprint $table) {
             $table->id();
             $table->string('nama_pasien');
-            $table->date('tanggal_lahir');
+            $table->unsignedTinyInteger('umur');
             $table->string('pekerjaan');
             $table->string('alamat');
             $table->char('nomor_handphone', 15);

@@ -13,7 +13,7 @@ class RekamMedisSeeder extends Seeder {
     public function run(): void {
         RekamMedis::create([ // 1
             "nama_pasien" => "Budi Kurniawan",
-            "tanggal_lahir" => fake()->date($format = 'Y-m-d', $max = 'now'),
+            "umur" => 20,
             "alamat" => fake()->address(),
             "nomor_handphone" => "082162166387",
             "pekerjaan" => fake()->jobTitle(),
