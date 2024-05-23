@@ -1,6 +1,15 @@
 @extends('admin.main')
 
 @section('container')
+@if(session()->has('failed'))
+    <div id="failed" class="mb-4 bg-red-300 py-3 text-white px-4 rounded-lg">
+        {{ session('failed') }}
+    </div>
+@elseif(session()->has('success'))
+    <div id="success-php" class="mb-4 bg-green-300 py-3 text-white px-4 rounded-lg">
+        {{ session('success') }}
+    </div>
+@endif
 <div class="container">
     <div class="col-lg-12 pt-3">
         <h1 class="text-2xl font-bold mb-4">Daftar Pasien</h1>
@@ -32,7 +41,20 @@
                         <td class="px-4 py-3">{{ $datapasien->alamat }}</td> 
                         <td></td>          
                         <td></td>
-                        <td><a href="{{ route('admin.edit.pasien', $datapasien->nomor_handphone) }}">Edit</a></td>
+                        <td><a href="{{ route('admin.edit.pasien', $datapasien->nomor_handphone) }}">Edit</a>
+                            
+                            @if ($datapasien->aktif == 1)
+                                <form action="{{ route('admin.ban.pasien', $datapasien->nomor_handphone) }}" method="POST" style="display:inline;">
+                                    @csrf
+                                    <button type="submit" class="text-red-500">Ban</button>
+                                </form>
+                            @else
+                                <form action="{{ route('admin.unban.pasien', $datapasien->nomor_handphone) }}" method="POST" style="display:inline;">
+                                    @csrf
+                                    <button type="submit" class="text-green-500">Unban</button>
+                                </form>
+                            @endif
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>
