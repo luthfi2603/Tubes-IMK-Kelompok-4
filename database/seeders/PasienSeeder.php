@@ -28,7 +28,7 @@ class PasienSeeder extends Seeder {
             "pekerjaan" => fake()->jobTitle(),
         ]);
         Pasien::create([ // 3
-            "nama" => fake()->name(),
+            "nama" => 'Susanti Kiranti',
             "alamat" => fake()->address(),
             "jenis_kelamin" => fake()->randomElement($array = array('P', 'L')),
             "id_user" => "6",
