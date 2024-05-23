@@ -88,6 +88,10 @@ Route::middleware(['auth', 'role:admin'])->group(function(){
                 Route::get('/edit-pasien/{nohp}', 'editPasien')
                     ->name('edit.pasien');
                 Route::put('/edit-pasien/{nohp}', 'updatePasien');
+                Route::post('/ban-pasien/{nomor_handphone}','banPasien')
+                    ->name('ban.pasien');
+                Route::post('/unban-pasien/{nomor_handphone}','unbanPasien')
+                    ->name('unban.pasien');
             });
         });
     });

@@ -95,4 +95,24 @@ class AdminController extends Controller {
             return redirect()->route('admin.edit.pasien', $request->nomor_handphone)->with('success', 'Data pasien berhasil diubah');
         }
     }
+    public function banPasien($nomor_handphone)
+    {
+        $pasien = User::where('nomor_handphone', $nomor_handphone)->first();
+        if ($pasien) {
+            $pasien->aktif = 0; // Update aktif to banned
+            $pasien->save();
+        }
+        return redirect()->route('admin.data.pasien')->with('success', 'Pasien berhasil diblokir');
+    }
+
+    public function unbanPasien($nomor_handphone)
+    {
+        $pasien = User::where('nomor_handphone', $nomor_handphone)->first();
+        if ($pasien) {
+            $pasien->aktif = 1; // Update status to unbanned
+            $pasien->save();
+        }
+        return redirect()->route('admin.data.pasien')->with('success', 'Pasien berhasil diaktifkan kembali');
+    }
+
 }
