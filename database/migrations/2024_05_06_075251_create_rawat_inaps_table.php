@@ -18,7 +18,7 @@ return new class extends Migration {
             $table->char('nomor_handphone', 15);
             $table->text('diagnosa');
             $table->string('nama_dokter');
-            $table->enum('spesialis', ['penyakit_dalam', 'estetika', 'obgyn']);
+            $table->enum('spesialis', ['Penyakit Dalam', 'Estetika', 'Obgyn']);
             $table->foreignId('id_kamar')->constrained('kamars')->onDelete('restrict')->onUpdate('cascade');
             $table->timestamps();
         });

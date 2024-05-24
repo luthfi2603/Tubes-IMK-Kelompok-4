@@ -2,16 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\User;
+use App\Models\Dokter;
 use App\Models\Pasien;
 use App\Models\RawatInap;
-use App\Models\RekamMedis;
 use App\Models\Reservasi;
+use App\Models\RekamMedis;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Client\ResponseSequence;
+use Twilio\Rest\Serverless\V1\Service\FunctionInstance;
 
 class PasienController extends Controller {
     public function showDashboardPasien(){
@@ -353,5 +358,90 @@ class PasienController extends Controller {
         session()->forget('request');
 
         return response()->json(['failed' => 'Gagal ubah profil']);
+    }
+    
+    public function createReservasi(){
+        $spesialis = Dokter::select('spesialis')
+            ->groupBy('spesialis')
+            ->get();
+
+        return view('reservasi', compact('spesialis'));
+    }
+
+    public function storeDaftarDokter(Request $request){
+        $dokters = DB::table('view_jadwal_dokter')
+            ->where('hari', $request->hari)
+            ->where('spesialis', $request->spesialis)
+            ->orderBy('jam')
+            ->orderBy('nama')
+            ->get();
+
+        return response()->json(['dokters' => $dokters]);
+    }
+
+    public function storeReservasi(Request $request){
+        $messages = [
+            'tanggal.required' => 'Silahkan pilih tanggal.',
+            'tanggal.date' => 'Format tanggal tidak valid.',
+            'spesialis.required' => 'Silahkan pilih spesialis dari dokter yang akan dipilih.',
+            'dokter.required' => 'Silahkan pilih dokter.',
+        ];
+
+        $request->validate([
+            'tanggal' => ['required', 'date'],
+            'spesialis' => ['required', 'string'],
+            'dokter' => ['required', 'string'],
+        ], $messages);
+
+        $auth = auth()->user();
+        $umur = Carbon::parse($auth->pasien->tanggal_lahir)->age;
+        $dataDokter = explode('|', $request->dokter);
+
+        $today = Carbon::today();
+        $carbonDateToCheck = Carbon::parse($request->tanggal);
+        $isDateGreaterThanToday = $carbonDateToCheck->gt($today);
+
+        if(!$isDateGreaterThanToday){ // berarti hari ini
+            $waktuAkhir = explode('-', $dataDokter[1]);
+            $waktuAkhir = $waktuAkhir[1];
+            
+            $carbonTime = Carbon::createFromFormat('H:i', $waktuAkhir);
+            $newTime = $carbonTime->subHour();
+            $currentTime = Carbon::now();
+    
+            $isCurrentTimeLess = $currentTime->lt($newTime);
+            
+            if($isCurrentTimeLess){ // waktu lebih kecil dari 1 jam sebelum
+                Reservasi::create([
+                    'nama_pasien' => $auth->pasien->nama,
+                    'umur' => $umur,
+                    'alamat' => $auth->pasien->alamat,
+                    'nomor_handphone' => $auth->nomor_handphone,
+                    'nama_dokter' => $dataDokter[0],
+                    'spesialis' => $request->spesialis,
+                    'status' => 'Menunggu',
+                    'jenis_kelamin' => $auth->pasien->jenis_kelamin,
+                    'tanggal' => $request->tanggal,
+                    'jam' => $dataDokter[1],
+                ]);
+            }else{
+                return back()->with('failed', 'Waktu reservasi dokter ini sudah terlambat, disarankan daftar 1 jam sebelum waktu dokter habis');
+            }
+        }else{ // masa depan
+            Reservasi::create([
+                'nama_pasien' => $auth->pasien->nama,
+                'umur' => $umur,
+                'alamat' => $auth->pasien->alamat,
+                'nomor_handphone' => $auth->nomor_handphone,
+                'nama_dokter' => $dataDokter[0],
+                'spesialis' => $request->spesialis,
+                'status' => 'Menunggu',
+                'jenis_kelamin' => $auth->pasien->jenis_kelamin,
+                'tanggal' => $request->tanggal,
+                'jam' => $dataDokter[1],
+            ]);
+        }
+
+        return back()->with('success', 'Reservasi berhasil, datanglah sesuai jadwal yang telah dipilih');
     }
 }

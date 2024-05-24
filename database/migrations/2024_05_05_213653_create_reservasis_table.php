@@ -16,9 +16,10 @@ return new class extends Migration {
             $table->string('alamat');
             $table->char('nomor_handphone', 15);
             $table->string('nama_dokter');
-            $table->enum('spesialis', ['penyakit_dalam', 'estetika', 'obgyn']);
-            $table->enum('status', ['selesai', 'menunggu', 'batal']);
-            $table->timestamp('waktu');
+            $table->enum('spesialis', ['Estetika', 'Obgyn', 'Penyakit Dalam']);
+            $table->enum('status', ['Selesai', 'Menunggu', 'Batal']);
+            $table->date('tanggal');
+            $table->char('jam', 11);
             $table->timestamps();
         });
     }

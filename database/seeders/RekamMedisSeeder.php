@@ -19,7 +19,7 @@ class RekamMedisSeeder extends Seeder {
             "nomor_handphone" => "082162166387",
             "pekerjaan" => fake()->jobTitle(),
             "nama_dokter" => "Clinton Christovel",
-            "spesialis" => fake()->randomElement($array = array('penyakit_dalam', 'estetika', 'obgyn')),
+            "spesialis" => fake()->randomElement($array = array('Penyakit Dalam', 'Estetika', 'Obgyn')),
             "keluhan" => fake()->paragraph($nbSentences = 3, $variableNbSentences = true),
             "diagnosa" => fake()->paragraph($nbSentences = 3, $variableNbSentences = true),
             "therapie" => fake()->paragraph($nbSentences = 3, $variableNbSentences = true),

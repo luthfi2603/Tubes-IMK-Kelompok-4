@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Reservasi;
-use Carbon\Carbon;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -19,9 +18,10 @@ class ReservasiSeeder extends Seeder {
             "alamat" => fake()->address(),
             "nomor_handphone" => "082162166387",
             "nama_dokter" => "Clinton Christovel",
-            "spesialis" => fake()->randomElement($array = array('penyakit_dalam', 'estetika', 'obgyn')),
-            "status" => "selesai",
-            "waktu" => Carbon::now(),
+            "spesialis" => fake()->randomElement($array = array('Penyakit Dalam', 'Estetika', 'Obgyn')),
+            "status" => "Selesai",
+            "tanggal" => '2024-05-25',
+            "jam" => '10:00-13:00',
         ]);
         Reservasi::create([ // 2
             "nama_pasien" => "Henky Kurniawan",
@@ -30,9 +30,10 @@ class ReservasiSeeder extends Seeder {
             "alamat" => fake()->address(),
             "nomor_handphone" => "08983847304",
             "nama_dokter" => "Clinton Christovel",
-            "spesialis" => fake()->randomElement($array = array('penyakit_dalam', 'estetika', 'obgyn')),
-            "status" => "menunggu",
-            "waktu" => Carbon::now(),
+            "spesialis" => fake()->randomElement($array = array('Penyakit Dalam', 'Estetika', 'Obgyn')),
+            "status" => "Menunggu",
+            "tanggal" => '2024-05-27',
+            "jam" => '08:00-11:00',
         ]);
         Reservasi::create([ // 3
             "nama_pasien" => "Susanti Kiranti",
@@ -41,9 +42,10 @@ class ReservasiSeeder extends Seeder {
             "alamat" => fake()->address(),
             "nomor_handphone" => "08983847305",
             "nama_dokter" => "Clinton Christovel",
-            "spesialis" => fake()->randomElement($array = array('penyakit_dalam', 'estetika', 'obgyn')),
-            "status" => "batal",
-            "waktu" => Carbon::now(),
+            "spesialis" => fake()->randomElement($array = array('Penyakit Dalam', 'Estetika', 'Obgyn')),
+            "status" => "Batal",
+            "tanggal" => '2024-05-28',
+            "jam" => '15:00-17:00',
         ]);
     }
 }

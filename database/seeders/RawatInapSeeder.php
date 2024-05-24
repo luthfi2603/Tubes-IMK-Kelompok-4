@@ -19,7 +19,7 @@ class RawatInapSeeder extends Seeder {
             "nomor_handphone" => "082162166387",
             "diagnosa" => fake()->paragraph($nbSentences = 3, $variableNbSentences = true),
             "nama_dokter" => "Clinton Christovel",
-            "spesialis" => fake()->randomElement($array = array('penyakit_dalam', 'estetika', 'obgyn')),
+            "spesialis" => fake()->randomElement($array = array('Penyakit Dalam', 'Estetika', 'Obgyn')),
             "id_kamar" => "1",
         ]);
     }

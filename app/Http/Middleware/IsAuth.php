@@ -18,13 +18,13 @@ class IsAuth {
             $role = Auth::user()->status;
 
             switch($role){
-                case 'pasien':
+                case 'Pasien':
                     return redirect()->route('pasien.dashboard');
-                case 'dokter':
+                case 'Dokter':
                     return redirect()->route('dokter.dashboard');
-                case 'perawat':
+                case 'Perawat':
                     return redirect()->route('perawat.dashboard');
-                case 'admin':
+                case 'Admin':
                     return redirect()->route('admin.dashboard');
                 default:
                     abort(404);

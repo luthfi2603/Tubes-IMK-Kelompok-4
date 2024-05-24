@@ -33,8 +33,13 @@ class AdminController extends Controller {
         $pasien = Pasien::join('users', 'pasiens.id_user', '=', 'users.id')
             ->select('users.nomor_handphone', 'pasiens.nama', 'users.id', 'pasiens.alamat', 'pasiens.pekerjaan', 'pasiens.jenis_kelamin', 'pasiens.tanggal_lahir')
             ->where('users.nomor_handphone', $nohp)
-            ->get()
-            ->firstOrFail();
+            ->get();
+
+        if($pasien->isEmpty()){
+            return back();
+        }
+
+        $pasien = $pasien[0];
 
         return view('admin.edit-pasien', compact('pasien'));
     }

@@ -12,7 +12,7 @@ class KamarSeeder extends Seeder {
      */
     public function run(): void {
         Kamar::create([ // 1
-            "status" => fake()->randomElement($array = array('tersedia', 'terpakai')),
+            "status" => fake()->randomElement($array = array('Tersedia', 'Terpakai')),
         ]);
     }
 }
