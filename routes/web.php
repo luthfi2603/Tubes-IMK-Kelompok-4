@@ -49,11 +49,33 @@ Route::middleware(['auth', 'role:pasien'])->group(function(){
     //ini supaya bisa jalan (nanti hapus aja)
     Route::get('/dashboard-dokter', function(){
         return view('dokter.dashboard-dokter');
-    });
+    })->name('dokter.dashboard-dokter');
+    ; 
+    Route::get('/appointment-dokter', function(){
+        return view('dokter.appointment-dokter');
+    })->name('dokter.appointment-dokter');
+    
+    Route::get('/doctors-dokter', function(){
+        return view('dokter.doctors-dokter');
+    })->name('dokter.doctors-dokter');
+    
+    Route::get('/report-logs-dokter', function(){
+        return view('dokter.report-logs-dokter');
+    })->name('dokter.report-logs-dokter');
+    
+    Route::get('/detail-dokter', function(){
+        return view('dokter.detail-dokter');
+    })->name('dokter.detail-dokter');
+    
+    Route::get('/setting-dokter', function(){
+        return view('dokter.setting-dokter');
+    })->name('dokter.setting-dokter');
+    
     Route::get('/pasien-reset-passsword', function(){
         return view('pasien-reset-password');
     });
 });
+
 
 Route::middleware(['auth', 'role:dokter'])->group(function(){
     Route::prefix('dokter')->group(function(){

@@ -20,8 +20,10 @@ export default {
             },
             height: {
                 '80': '19rem',
+                '90': '20rem',
                 '150': '120vh',
                 '200': '150vh',
+                '25': '7rem',
             },
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
