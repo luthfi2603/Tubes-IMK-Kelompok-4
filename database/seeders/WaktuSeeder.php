@@ -15,5 +15,13 @@ class WaktuSeeder extends Seeder {
             "hari" => fake()->randomElement($array = array('senin', 'selasa', 'rabu', 'kamis', 'jumat', 'sabtu', 'minggu')),
             "jam" => "10:00-13:00",
         ]);
+        Waktu::create([ // 2
+            "hari" => fake()->randomElement($array = array('senin', 'selasa', 'rabu', 'kamis', 'jumat', 'sabtu', 'minggu')),
+            "jam" => "13:00-16:00",
+        ]);
+        Waktu::create([ // 3
+            "hari" => fake()->randomElement($array = array('senin', 'selasa', 'rabu', 'kamis', 'jumat', 'sabtu', 'minggu')),
+            "jam" => "08:00-12:00",
+        ]);
     }
 }

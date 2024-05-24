@@ -100,7 +100,8 @@ class AdminController extends Controller {
                 Reservasi::where('nomor_handphone', $user->nomor_handphone)->update([
                     'nama_pasien' => $request->nama,
                     'alamat' => $request->alamat,
-                    'nomor_handphone' => $request->nomor_handphone
+                    'nomor_handphone' => $request->nomor_handphone,
+                    'jenis_kelamin' => $request->jenis_kelamin,
                 ]);
             }
             
@@ -110,7 +111,8 @@ class AdminController extends Controller {
                     'nama_pasien' => $request->nama,
                     'pekerjaan' => $request['pekerjaan'],
                     'alamat' => $request->alamat,
-                    'nomor_handphone' => $request->nomor_handphone
+                    'nomor_handphone' => $request->nomor_handphone,
+                    'jenis_kelamin' => $request->jenis_kelamin,
                 ]);
             }
             
@@ -119,7 +121,8 @@ class AdminController extends Controller {
                 RawatInap::where('nomor_handphone', $user->nomor_handphone)->update([
                     'nama_pasien' => $request->nama,
                     'alamat' => $request->alamat,
-                    'nomor_handphone' => $request->nomor_handphone
+                    'nomor_handphone' => $request->nomor_handphone,
+                    'jenis_kelamin' => $request->jenis_kelamin,
                 ]);
             }
             

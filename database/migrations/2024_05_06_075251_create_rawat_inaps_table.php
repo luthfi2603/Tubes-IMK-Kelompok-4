@@ -13,6 +13,7 @@ return new class extends Migration {
             $table->id();
             $table->string('nama_pasien');
             $table->unsignedTinyInteger('umur');
+            $table->enum('jenis_kelamin', ['P', 'L']);
             $table->string('alamat');
             $table->char('nomor_handphone', 15);
             $table->text('diagnosa');

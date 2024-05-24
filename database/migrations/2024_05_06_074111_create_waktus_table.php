@@ -13,7 +13,6 @@ return new class extends Migration {
             $table->id();
             $table->enum('hari', ['senin', 'selasa', 'rabu', 'kamis', 'jumat', 'sabtu', 'minggu']);
             $table->char('jam', 11);
-            $table->timestamps();
         });
     }
 

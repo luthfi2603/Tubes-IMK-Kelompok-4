@@ -15,5 +15,17 @@ class JadwalDokterSeeder extends Seeder {
             "id_dokter" => "1",
             "id_waktu" => "1",
         ]);
+        JadwalDokter::create([ // 2
+            "id_dokter" => "1",
+            "id_waktu" => "2",
+        ]);
+        JadwalDokter::create([ // 3
+            "id_dokter" => "1",
+            "id_waktu" => "3",
+        ]);
+        JadwalDokter::create([ // 4
+            "id_dokter" => "2",
+            "id_waktu" => "2",
+        ]);
     }
 }

@@ -71,5 +71,11 @@ class UserSeeder extends Seeder {
             'password' => bcrypt('password'),
             'status' => 'pasien',
         ]);
+        User::create([ // 11
+            'nomor_handphone' => '089812347654',
+            // 'foto' => fake()->imageUrl($width = 640, $height = 480),
+            'password' => bcrypt('password'),
+            'status' => 'dokter',
+        ]);
     }
 }
