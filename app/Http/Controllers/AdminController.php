@@ -142,7 +142,63 @@ class AdminController extends Controller {
             $pasien->aktif = 1; // Update status to unbanned
             $pasien->save();
         }
-
         return redirect()->route('admin.data.pasien')->with('success', 'Pasien berhasil diaktifkan kembali');
+    }
+
+    public function tambahPasien(){
+        return view('admin.tambah-pasien');
+    }
+
+    public function storePasien(Request $request){
+        $messages = [
+            'nama.required' => 'Kolom nama harus diisi.',
+            'nomor_handphone.required' => 'Kolom nomor handphone harus diisi.',
+            'nomor_handphone.numeric' => 'Nomor handphone harus diisi dengan angka.',
+            'nomor_handphone.min_digits' => 'Nomor handphone harus terdiri dari minimal :min digit.',
+            'nomor_handphone.max_digits' => 'Nomor handphone harus terdiri dari maksimal :max digit.',
+            'nomor_handphone.regex' => 'Nomor handphone tidak valid',
+            'alamat.required' => 'Kolom alamat harus diisi.',
+            'jenis_kelamin.required' => 'Kolom jenis kelamin harus diisi.',
+            'jenis_kelamin.in' => 'Jenis kelamin yang dipilih tidak sesuai.',
+            'tanggal_lahir.required' => 'Kolom tanggal lahir harus diisi.',
+            'tanggal_lahir.date' => 'Format tanggal lahir tidak valid.',
+            'pekerjaan.required' => 'Kolom pekerjaan harus diisi.',
+            'pekerjaan.regex' => 'Hanya boleh huruf kapital, huruf kecil, dan spasi.',
+            'pekerjaan.max' => 'Maksimal 255 karakter.',
+        ];
+
+        $request->validate([
+            'nama' => ['required', 'string', 'max:255'],
+            'nomor_handphone' => ['required', 'numeric', 'min_digits:11', 'max_digits:13', 'regex:/\b08\d{9,11}\b/'],
+            'alamat' => ['required', 'string', 'max:255'],
+            'jenis_kelamin' => ['required', 'in:P,L'],
+            'tanggal_lahir' => ['required', 'date'],
+            'pekerjaan' => ['required', 'regex:/^[a-zA-Z\s]+$/', 'max:255'],
+        ], $messages);
+
+        $user = User::where('nomor_handphone', $request->nomor_handphone)->first();
+        if($user !== NULL){ // kalau user nya ada
+                return back()->withInput()->with('failed', 'Nomor handphone sudah terdaftar');
+            }
+
+        if(substr(trim($request->nomor_handphone), 0, 1) == '0'){
+                $nomorHP = '+62'.substr(trim($request->nomor_handphone), 1);
+            }
+
+        if($user === NULL){
+                User::create([
+                    'nomor_handphone' => $request['nomor_handphone'],
+                ]);
+    
+                Pasien::create([
+                    'nama' => $request->nama,
+                    'alamat' => $request->alamat,
+                    'jenis_kelamin' => $request->jenis_kelamin,
+                    'tanggal_lahir' => $request->tanggal_lahir,
+                    'pekerjaan' => $request->pekerjaan,
+                    'id_user' => User::latest()->first()->id
+                ]);
+            }
+        return redirect()->route('admin.data.pasien')->with('success', 'Data pasien berhasil ditambahkan!');
     }
 }
