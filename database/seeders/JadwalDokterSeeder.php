@@ -15,5 +15,41 @@ class JadwalDokterSeeder extends Seeder {
             "id_dokter" => "1",
             "id_waktu" => "1",
         ]);
+        JadwalDokter::create([ // 2
+            "id_dokter" => "1",
+            "id_waktu" => "2",
+        ]);
+        JadwalDokter::create([ // 3
+            "id_dokter" => "1",
+            "id_waktu" => "3",
+        ]);
+        JadwalDokter::create([ // 4
+            "id_dokter" => "3",
+            "id_waktu" => "4",
+        ]);
+        JadwalDokter::create([ // 4
+            "id_dokter" => "4",
+            "id_waktu" => "5",
+        ]);
+        JadwalDokter::create([ // 4
+            "id_dokter" => "5",
+            "id_waktu" => "6",
+        ]);
+        JadwalDokter::create([ // 4
+            "id_dokter" => "6",
+            "id_waktu" => "7",
+        ]);
+        JadwalDokter::create([ // 4
+            "id_dokter" => "7",
+            "id_waktu" => "8",
+        ]);
+        JadwalDokter::create([ // 4
+            "id_dokter" => "8",
+            "id_waktu" => "4",
+        ]);
+        JadwalDokter::create([ // 4
+            "id_dokter" => "9",
+            "id_waktu" => "6",
+        ]);
     }
 }

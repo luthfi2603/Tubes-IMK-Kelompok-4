@@ -12,11 +12,14 @@ return new class extends Migration {
         Schema::create('reservasis', function (Blueprint $table) {
             $table->string('nama_pasien');
             $table->unsignedTinyInteger('umur');
+            $table->enum('jenis_kelamin', ['P', 'L']);
             $table->string('alamat');
             $table->char('nomor_handphone', 15);
             $table->string('nama_dokter');
-            $table->enum('spesialis', ['penyakit_dalam', 'estetika', 'obgyn']);
-            $table->enum('status', ['selesai', 'menunggu', 'batal']);
+            $table->enum('spesialis', ['Estetika', 'Obgyn', 'Penyakit Dalam']);
+            $table->enum('status', ['Selesai', 'Menunggu', 'Batal']);
+            $table->date('tanggal');
+            $table->char('jam', 11);
             $table->timestamps();
         });
     }

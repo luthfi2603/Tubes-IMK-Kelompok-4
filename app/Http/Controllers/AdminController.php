@@ -33,8 +33,13 @@ class AdminController extends Controller {
         $pasien = Pasien::join('users', 'pasiens.id_user', '=', 'users.id')
             ->select('users.nomor_handphone', 'pasiens.nama', 'users.id', 'pasiens.alamat', 'pasiens.pekerjaan', 'pasiens.jenis_kelamin', 'pasiens.tanggal_lahir')
             ->where('users.nomor_handphone', $nohp)
-            ->get()
-            ->firstOrFail();
+            ->get();
+
+        if($pasien->isEmpty()){
+            return back();
+        }
+
+        $pasien = $pasien[0];
 
         return view('admin.edit-pasien', compact('pasien'));
     }
@@ -100,7 +105,8 @@ class AdminController extends Controller {
                 Reservasi::where('nomor_handphone', $user->nomor_handphone)->update([
                     'nama_pasien' => $request->nama,
                     'alamat' => $request->alamat,
-                    'nomor_handphone' => $request->nomor_handphone
+                    'nomor_handphone' => $request->nomor_handphone,
+                    'jenis_kelamin' => $request->jenis_kelamin,
                 ]);
             }
             
@@ -110,7 +116,8 @@ class AdminController extends Controller {
                     'nama_pasien' => $request->nama,
                     'pekerjaan' => $request['pekerjaan'],
                     'alamat' => $request->alamat,
-                    'nomor_handphone' => $request->nomor_handphone
+                    'nomor_handphone' => $request->nomor_handphone,
+                    'jenis_kelamin' => $request->jenis_kelamin,
                 ]);
             }
             
@@ -119,7 +126,8 @@ class AdminController extends Controller {
                 RawatInap::where('nomor_handphone', $user->nomor_handphone)->update([
                     'nama_pasien' => $request->nama,
                     'alamat' => $request->alamat,
-                    'nomor_handphone' => $request->nomor_handphone
+                    'nomor_handphone' => $request->nomor_handphone,
+                    'jenis_kelamin' => $request->jenis_kelamin,
                 ]);
             }
             

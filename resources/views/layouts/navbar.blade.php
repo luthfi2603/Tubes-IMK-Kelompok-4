@@ -11,9 +11,15 @@
             </a>
         </li>
         <li class="mb-1 group">
+            <a href="{{ route('reservasi') }}" class="flex font-semibold items-center py-2 px-4 text-gray-900 hover:bg-[#222C67] hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100 {{ request()->is('reservasi') ? 'bg-[#222C67] text-white' : '' }}">
+                <i class="fa-solid fa-calendar-day mr-4 text-lg"></i>
+                <span class="text-md">Reservasi</span>
+            </a>
+        </li>
+        {{-- <li class="mb-1 group">
             <a href="" class="flex font-semibold items-center py-2 px-4 text-gray-900 hover:bg-[#222C67] hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100 sidebar-dropdown-toggle">
                 <i class='bx bx-user mr-3 text-lg'></i>
-                <span class="text-md">Appointments</span>
+                <span class="text-md">Janji Temu</span>
                 <i class="ri-arrow-right-s-line ml-auto group-[.selected]:rotate-90"></i>
             </a>
             <ul class="pl-7 mt-2 hidden group-[.selected]:block">
@@ -24,7 +30,7 @@
                     <a href="" class="text-gray-900 text-md font-semibold flex items-center hover:font-bold hover:text-[#222C67]">Roles</a>
                 </li> 
             </ul>
-        </li>
+        </li> --}}
         <li class="mb-1 group">
             <a href="" class="flex font-semibold items-center py-2 px-4 text-gray-900 hover:bg-[#222C67] hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100">
                 <i class='bx bx-archive mr-3 text-lg'></i>

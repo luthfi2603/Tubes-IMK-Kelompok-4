@@ -44,5 +44,19 @@ return new class extends Migration {
             FROM users a
             INNER JOIN admins d ON a.id = d.id_user 
         ');
+        
+        DB::unprepared('
+            DROP VIEW IF EXISTS view_jadwal_dokter;
+            CREATE VIEW view_jadwal_dokter AS
+            SELECT
+                a.id AS id_dokter,
+                a.nama,
+                a.spesialis,
+                c.hari,
+                c.jam
+            FROM dokters a
+            INNER JOIN jadwal_dokters b ON a.id = b.id_dokter
+            INNER JOIN waktus c ON c.id = b.id_waktu
+        ');
     }
 };

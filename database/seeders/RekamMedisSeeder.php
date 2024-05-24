@@ -14,11 +14,12 @@ class RekamMedisSeeder extends Seeder {
         RekamMedis::create([ // 1
             "nama_pasien" => "Budi Kurniawan",
             "umur" => 20,
+            "jenis_kelamin" => fake()->randomElement($array = array('P', 'L')),
             "alamat" => fake()->address(),
             "nomor_handphone" => "082162166387",
             "pekerjaan" => fake()->jobTitle(),
             "nama_dokter" => "Clinton Christovel",
-            "spesialis" => fake()->randomElement($array = array('penyakit_dalam', 'estetika', 'obgyn')),
+            "spesialis" => fake()->randomElement($array = array('Penyakit Dalam', 'Estetika', 'Obgyn')),
             "keluhan" => fake()->paragraph($nbSentences = 3, $variableNbSentences = true),
             "diagnosa" => fake()->paragraph($nbSentences = 3, $variableNbSentences = true),
             "therapie" => fake()->paragraph($nbSentences = 3, $variableNbSentences = true),

@@ -63,7 +63,7 @@
                     @enderror
                 </div>
                 <div class="flex flex-col w-full">
-                    <label class="font-semibold" for="jenis_kelamin">Jenis Kelamin</label>
+                    <p class="font-semibold">Jenis Kelamin</p>
                     <div>
                         <input type="radio" id="L" name="jenis_kelamin" value="L" {{ old('jenis_kelamin', $pasien->jenis_kelamin) == 'L' ? 'checked' : '' }}>
                         <label class="font-semibold mr-2" for="L">Laki-laki</label>

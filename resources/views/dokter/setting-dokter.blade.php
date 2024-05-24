@@ -1,4 +1,4 @@
-@extends('layouts.main-dokter')
+@extends('dokter.main')
 
 @section('container')
 

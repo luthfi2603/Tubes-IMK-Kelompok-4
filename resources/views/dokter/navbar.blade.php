@@ -5,44 +5,33 @@
     </a>
     <ul class="mt-4">
         <li class="mb-1 group">
-            <a href="{{ route('dokter.dashboard') }}" class="flex font-semibold items-center py-2 px-4 text-gray-900 hover:bg-[#222C67] hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100">
-                <i class="ri-home-2-line mr-3 text-lg"></i>
-                <span class="text-sm">Dashboard</span>
+            <a href="{{ route('dokter.dashboard') }}" class="flex font-semibold items-center py-2 px-4 text-gray-900 hover:bg-[#222C67] hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100 {{ request()->is('dokter/dashboard') ? 'bg-[#222C67] text-white' : '' }}">
+                <i class="fa-solid fa-house mr-3 text-lg"></i>
+                <span class="text-md">Dashboard</span>
             </a>
         </li>
         <li class="mb-1 group">
-            <a href="" class="flex font-semibold items-center py-2 px-4 text-gray-900 hover:bg-[#222C67] hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100 sidebar-dropdown-toggle">
-                <i class='bx bx-user mr-3 text-lg'></i>
-                <span class="text-sm">Appointments</span>
-                <i class="ri-arrow-right-s-line ml-auto group-[.selected]:rotate-90"></i>
-            </a>
-            <ul class="pl-7 mt-2 hidden group-[.selected]:block">
-                <li class="mb-4">
-                    <a href="" class="text-gray-900 text-sm font-semibold flex items-center hover:font-bold hover:text-[#222C67]">All</a>
-                </li> 
-                <li class="mb-4">
-                    <a href="" class="text-gray-900 text-sm font-semibold flex items-center hover:font-bold hover:text-[#222C67]">Roles</a>
-                </li> 
-            </ul>
-        </li>
-        <li class="mb-1 group">
-            <a href="" class="flex font-semibold items-center py-2 px-4 text-gray-900 hover:bg-[#222C67] hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100">
-                <i class='bx bx-archive mr-3 text-lg'></i>
-                <span class="text-sm">Archive</span>
+            <a href="{{ route('dokter.appointment-dokter') }}" class="flex font-semibold items-center py-2 px-4 text-gray-900 hover:bg-[#222C67] hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100 {{ request()->is('dokter/appointment-dokter') ? 'bg-[#222C67] text-white' : '' }}">
+                <i class="fa-solid fa-calendar-day mr-4 text-lg"></i>
+                <span class="text-md">Appointments</span>
             </a>
         </li>
         <li class="mb-1 group">
-            <a href="" class="flex font-semibold items-center py-2 px-4 text-gray-900 hover:bg-[#222C67] hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100">
-                <i class='bx bx-bell mr-3 text-lg' ></i>
-                <span class="text-sm">Notifications</span>
-                <span class=" md:block px-2 py-0.5 ml-auto text-xs font-medium tracking-wide text-red-600 bg-red-200 rounded-full">5</span>
+            <a href="{{ route('dokter.report-logs-dokter') }}" class="flex font-semibold items-center py-2 px-4 text-gray-900 hover:bg-[#222C67] hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100 {{ request()->is('dokter/report-logs-dokter') ? 'bg-[#222C67] text-white' : '' }}">
+                <i class="fa-solid fa-notes-medical mr-3 text-lg"></i>
+                <span class="text-md">Reports Logs</span>
             </a>
         </li>
         <li class="mb-1 group">
-            <a href="" class="flex font-semibold items-center py-2 px-4 text-gray-900 hover:bg-[#222C67] hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100">
-                <i class='bx bx-envelope mr-3 text-lg' ></i>                
-                <span class="text-sm">Messages</span>
-                <span class=" md:block px-2 py-0.5 ml-auto text-xs font-medium tracking-wide text-green-600 bg-green-200 rounded-full">2 New</span>
+            <a href="{{ route('dokter.doctors-dokter') }}" class="flex font-semibold items-center py-2 px-4 text-gray-900 hover:bg-[#222C67] hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100 {{ request()->is('dokter/doctors-dokter') ? 'bg-[#222C67] text-white' : '' }}">
+                <i class="fa-solid fa-user-doctor mr-4 text-lg"></i>
+                <span class="text-md">Doctors</span>
+            </a>
+        </li>
+        <li class="mb-1 group">
+            <a href="{{ route('dokter.setting-dokter') }}" class="flex font-semibold items-center py-2 px-4 text-gray-900 hover:bg-[#222C67] hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100 {{ request()->is('dokter/setting-dokter') ? 'bg-[#222C67] text-white' : '' }}">
+                <i class="fa-solid fa-gear mr-3 text-lg"></i>             
+                <span class="text-md">Settings</span>
             </a>
         </li>
     </ul>
@@ -64,7 +53,7 @@
                 <div class="dropdown-menu shadow-md shadow-black/5 z-30 hidden max-w-xs w-full bg-white rounded-md border border-gray-100">
                     <form action="" class="p-4 border-b border-b-gray-100">
                         <div class="relative w-full">
-                            <input name="search" type="text" class="py-2 pr-4 pl-10 bg-gray-50 w-full outline-none border border-gray-100 rounded-md text-sm focus:border-blue-500" placeholder="Search...">
+                            <input name="search" type="text" class="py-2 pr-4 pl-10 bg-gray-50 w-full outline-none border border-gray-100 rounded-md text-md focus:border-blue-500" placeholder="Search...">
                             <i class="ri-search-line absolute top-1/2 left-4 -translate-y-1/2 text-gray-900"></i>
                         </div>
                     </form>
@@ -148,7 +137,7 @@
                         </div>
                     </div>
                     <div class="p-2 md:block text-left">
-                        <h2 class="text-sm font-semibold text-gray-800">{{ auth()->user()->dokter->nama }}</h2>
+                        <h2 class="text-md font-semibold text-gray-800">{{ auth()->user()->dokter->nama }}</h2>
                         <p class="text-xs text-gray-500">{{ auth()->user()->status }}</p>
                     </div>
                 </button>
