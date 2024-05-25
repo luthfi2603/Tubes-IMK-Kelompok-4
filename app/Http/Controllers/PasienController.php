@@ -452,4 +452,22 @@ class PasienController extends Controller {
 
         return back()->with('success', 'Reservasi berhasil, datanglah sesuai jadwal yang telah dipilih');
     }
+
+    public function indexDokter(){
+        $dokters = DB::table('view_jadwal_dokter')
+            ->select('id_dokter', 'foto', 'nama', 'spesialis')
+            ->orderBy('nama')
+            ->orderBy('hari')
+            ->orderBy('jam')
+            ->groupBy('id_dokter', 'foto', 'nama', 'spesialis')
+            ->get();
+        
+        $jadwals = DB::table('view_jadwal_dokter')
+            ->select('id_dokter', 'hari', 'jam')
+            ->orderBy('hari')
+            ->orderBy('jam')
+            ->get();
+
+        return view('dokter', compact('dokters', 'jadwals'));
+    }
 }

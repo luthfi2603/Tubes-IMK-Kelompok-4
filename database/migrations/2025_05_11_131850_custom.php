@@ -50,6 +50,7 @@ return new class extends Migration {
             CREATE VIEW view_jadwal_dokter AS
             SELECT
                 a.id AS id_dokter,
+                d.foto,
                 a.nama,
                 a.spesialis,
                 c.hari,
@@ -57,6 +58,7 @@ return new class extends Migration {
             FROM dokters a
             INNER JOIN jadwal_dokters b ON a.id = b.id_dokter
             INNER JOIN waktus c ON c.id = b.id_waktu
+            INNER JOIN users d ON d.id = a.id_user
         ');
     }
 };

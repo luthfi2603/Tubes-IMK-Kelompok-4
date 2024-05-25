@@ -43,11 +43,10 @@ Route::middleware(['auth', 'role:Pasien'])->group(function(){
             ->name('buat.reservasi');
         Route::post('/daftar-dokter', 'storeDaftarDokter');
         Route::post('/buat-reservasi', 'storeReservasi');
+        Route::get('/dokter', 'indexDokter')
+            ->name('dokter');
     });
 
-    Route::get('/dokter', function(){
-        return view('dokter');
-    });
     Route::get('/informasi', function(){
         return view('informasi');
     });
