@@ -63,9 +63,13 @@
                                     Masuk
                                 </span>
                             </button>
-                            <p class="mt-6 text-sm text-center">
+                            <div class="mt-6 text-sm flex flex-col items-center">
+                                <label for="remember_me" class="inline-flex items-center">
+                                    <input id="remember_me" type="checkbox" class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800" name="remember">
+                                    <span class="ms-2 text-sm text-indigo-400 hover:text-blue-500">Ingat Saya</span>
+                                </label>
                                 <a href="{{ route('verifikasi.nomor.handphone') }}"
-                                    class="text-indigo-400 hover:text-blue-500">
+                                    class="text-indigo-400 hover:text-blue-500 mt-2">
                                     Lupa kata sandi
                                 </a>
                                 <span class="block mt-2">
@@ -73,7 +77,7 @@
                                         <i class="fa-solid fa-right-to-bracket"></i> Tidak memiliki akun?
                                     </a>
                                 </span>
-                            </p>
+                            </div>
                         </form>
                     </div>
                 </div>

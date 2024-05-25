@@ -110,11 +110,9 @@ Route::middleware(['auth', 'role:Admin'])->group(function(){
                     ->name('ban.pasien');
                 Route::post('/unban-pasien/{nomor_handphone}','unbanPasien')
                     ->name('unban.pasien');
-                Route::get('/tambah-pasien','tambahPasien')
+                Route::get('/tambah-pasien','createPasien')
                     ->name('tambah.pasien');
-                Route::post('/tambah-pasien','storePasien')
-                    ->name('store.pasien');
-                
+                Route::post('/tambah-pasien','storePasien');
             });
         });
     });

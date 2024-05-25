@@ -149,7 +149,7 @@ class RegisteredUserController extends Controller {
                 User::create([
                     'nomor_handphone' => $request0['nomor_handphone'],
                     'password' => bcrypt($request0['password']),
-                    'status' => 'pasien',
+                    'status' => 'Pasien',
                 ]);
     
                 Pasien::create([
