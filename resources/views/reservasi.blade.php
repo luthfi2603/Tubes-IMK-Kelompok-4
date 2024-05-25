@@ -12,48 +12,31 @@
 @endif
 <div class="flex flex-col gap-4">
     <p class="text-2xl md:text-3xl font-bold">Reservasi</p>
-    <form action="{{ route('reservasi') }}" method="POST" class="flex flex-col gap-4">
-        @csrf
-        <div class="flex flex-col">
-            <label for="tanggal">Tanggal Reservasi</label>
-            <input type="date" name="tanggal" id="tanggal" value="{{ old('tanggal') }}">
-            <p id="informasi-hari" class="hidden"></p>
-            @error('tanggal')
-                <div class="text-[#B42223] text-bold text-sm">
-                    {{ $message }}
-                </div>
-            @enderror
+    <a href="{{ route('buat.reservasi') }}" class="bg-blue-500 hover:bg-blue-600 text-white rounded-lg py-2 px-4 w-min text-nowrap">Buat Reservasi</a>
+    @if($reservasis->isEmpty())
+        <div class="mt-4 text-center">
+            <p class="text-xl font-bold">Belum ada reservasi</p>
         </div>
-        <div class="flex flex-col">
-            <label for="spesialis">Spesialis</label>
-            <select name="spesialis" id="spesialis">
-                <option value="">Pilih Spesialis</option>
-                @foreach($spesialis as $item)
-                    <option {{ old('spesialis') === $item->spesialis ? 'selected' : '' }}>{{ $item->spesialis }}</option>
-                @endforeach
-            </select>
-            @error('spesialis')
-                <div class="text-[#B42223] text-bold text-sm">
-                    {{ $message }}
+    @else
+        @foreach($reservasis as $reservasi)
+            <a href="#" class="p-4 border-2 rounded-lg border-[#8E8D8B] shadow-lg">
+                <div class="flex flex-col">
+                    <span>
+                        {{ $reservasi->nama_dokter }}
+                    </span>
+                    <span>
+                        {{ $reservasi->spesialis }}
+                    </span>
+                    <span>
+                        {{ $reservasi->tanggal }}, 
+                        {{ $reservasi->jam }}
+                    </span>
+                    <span>
+                        {{ $reservasi->status }}
+                    </span>
                 </div>
-            @enderror
-        </div>
-        <div class="flex flex-col">
-            <label for="dokter">Dokter</label>
-            <select name="dokter" id="dokter" disabled>
-                <option value="">Pilih Tanggal dan Spesialis Dulu</option>
-            </select>
-            @error('dokter')
-                <div class="text-[#B42223] text-bold text-sm">
-                    {{ $message }}
-                </div>
-            @enderror
-        </div>
-        <button class="bg-green-500 text-white rounded-lg py-2 mt-6">Daftar</button>
-    </form>
+            </a>
+        @endforeach
+    @endif
 </div>
-@push('scripts')
-    <script>const csrf = '{{ csrf_token() }}';</script>
-    <script src="{{ asset('assets/js/reservasi.js') }}"></script>
-@endpush
 @endsection

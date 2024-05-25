@@ -96,10 +96,6 @@ class AdminController extends Controller {
                 'jenis_kelamin' => $request->jenis_kelamin,
             ]);
 
-            $user->update([
-                'nomor_handphone' => $request->nomor_handphone
-            ]);
-
             $reservasi = Reservasi::where('nomor_handphone', $user->nomor_handphone)->get();
             if($reservasi){
                 Reservasi::where('nomor_handphone', $user->nomor_handphone)->update([
@@ -130,6 +126,10 @@ class AdminController extends Controller {
                     'jenis_kelamin' => $request->jenis_kelamin,
                 ]);
             }
+
+            $user->update([
+                'nomor_handphone' => $request->nomor_handphone
+            ]);
             
             return redirect()->route('admin.edit.pasien', $request->nomor_handphone)->with('success', 'Data pasien berhasil diubah');
         }

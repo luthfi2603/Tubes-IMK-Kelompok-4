@@ -37,10 +37,12 @@ Route::middleware(['auth', 'role:Pasien'])->group(function(){
             ->name('akun.destroy');
         Route::post('/cancel-ubah-profil', 'cancelUbahProfil')
             ->name('cancel.ubah.profil');
-        Route::get('/reservasi', 'createReservasi')
+        Route::get('/reservasi', 'indexReservasi')
             ->name('reservasi');
+        Route::get('/buat-reservasi', 'createReservasi')
+            ->name('buat.reservasi');
         Route::post('/daftar-dokter', 'storeDaftarDokter');
-        Route::post('/reservasi', 'storeReservasi');
+        Route::post('/buat-reservasi', 'storeReservasi');
     });
 
     Route::get('/dokter', function(){

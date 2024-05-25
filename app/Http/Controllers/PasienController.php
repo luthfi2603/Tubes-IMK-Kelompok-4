@@ -360,12 +360,20 @@ class PasienController extends Controller {
         return response()->json(['failed' => 'Gagal ubah profil']);
     }
     
+    public function indexReservasi(){
+        $reservasis = Reservasi::where('nomor_handphone', auth()->user()->nomor_handphone)
+            ->latest()
+            ->get();
+
+        return view('reservasi', compact('reservasis'));
+    }
+
     public function createReservasi(){
         $spesialis = Dokter::select('spesialis')
             ->groupBy('spesialis')
             ->get();
 
-        return view('reservasi', compact('spesialis'));
+        return view('buat-reservasi', compact('spesialis'));
     }
 
     public function storeDaftarDokter(Request $request){
