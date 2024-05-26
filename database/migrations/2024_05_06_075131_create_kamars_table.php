@@ -11,7 +11,7 @@ return new class extends Migration {
     public function up(): void {
         Schema::create('kamars', function (Blueprint $table) {
             $table->id();
-            $table->enum('status', ['tersedia', 'terpakai']);
+            $table->enum('status', ['Tersedia', 'Terpakai']);
             $table->timestamps();
         });
     }

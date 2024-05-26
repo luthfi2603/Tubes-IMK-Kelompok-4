@@ -28,7 +28,7 @@
         </div>
         <!-- Button Section -->
         <div class="flex justify-center">
-            <a href="{{ route('masuk.sebagai') }}" class="bg-[#222C67] hover:bg-[#525985] text-[#f5f5f5] text-xl font-bold pt-3 pb-3 px-6 border-[#222C67] hover:border-[#525985] rounded-lg shadow-lg max-[640px]:text-lg max-[640px]:px-3 py-2 md:text-lg">Mulai Sekarang</a>
+            <a href="{{ route('login') }}" class="bg-[#222C67] hover:bg-[#525985] text-[#f5f5f5] text-xl font-bold pt-3 pb -3 px-6 border-[#222C67] hover:border-[#525985] rounded-lg shadow-lg max-[640px]:text-lg max-[640px]:px-3 py-2 md:text-lg">Mulai Sekarang</a>
         </div>
         <!-- Doctors Image Section -->
         <div class="relative flex justify-center py-12">

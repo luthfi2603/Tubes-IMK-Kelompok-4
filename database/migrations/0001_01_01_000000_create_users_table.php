@@ -13,7 +13,7 @@ return new class extends Migration {
             $table->id();
             $table->char('nomor_handphone', 15)->unique();
             $table->string('foto')->nullable();
-            $table->enum('status', ['pasien', 'dokter', 'perawat', 'admin']);
+            $table->enum('status', ['Pasien', 'Dokter', 'Perawat', 'Admin']);
             $table->string('password')->nullable();
             $table->boolean('aktif')->default(1);
             $table->timestamps();

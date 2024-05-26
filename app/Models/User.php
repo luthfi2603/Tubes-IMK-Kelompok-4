@@ -54,4 +54,8 @@ class User extends Authenticatable {
     public function perawat(): HasOne {
         return $this->hasOne(Perawat::class, 'id_user');
     }
+    
+    public function admin(): HasOne {
+        return $this->hasOne(Admin::class, 'id_user');
+    }
 }

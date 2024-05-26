@@ -16,7 +16,7 @@ Route::middleware(['guest2'])->group(function(){
     })->name('masuk.sebagai');
 });
 
-Route::middleware(['auth', 'role:pasien'])->group(function(){
+Route::middleware(['auth', 'role:Pasien'])->group(function(){
     Route::controller(PasienController::class)->group(function(){
         Route::get('/dashboard', 'showDashboardPasien')
             ->name('pasien.dashboard');
@@ -37,6 +37,10 @@ Route::middleware(['auth', 'role:pasien'])->group(function(){
             ->name('akun.destroy');
         Route::post('/cancel-ubah-profil', 'cancelUbahProfil')
             ->name('cancel.ubah.profil');
+        Route::get('/reservasi', 'createReservasi')
+            ->name('reservasi');
+        Route::post('/daftar-dokter', 'storeDaftarDokter');
+        Route::post('/reservasi', 'storeReservasi');
     });
 
     Route::get('/dokter', function(){
@@ -45,49 +49,41 @@ Route::middleware(['auth', 'role:pasien'])->group(function(){
     Route::get('/informasi', function(){
         return view('informasi');
     });
-
-    //ini supaya bisa jalan (nanti hapus aja)
-    Route::get('/dashboard-dokter', function(){
-        return view('dokter.dashboard-dokter');
-    })->name('dokter.dashboard-dokter');
-    ; 
-    Route::get('/appointment-dokter', function(){
-        return view('dokter.appointment-dokter');
-    })->name('dokter.appointment-dokter');
-    
-    Route::get('/doctors-dokter', function(){
-        return view('dokter.doctors-dokter');
-    })->name('dokter.doctors-dokter');
-    
-    Route::get('/report-logs-dokter', function(){
-        return view('dokter.report-logs-dokter');
-    })->name('dokter.report-logs-dokter');
-    
-    Route::get('/detail-dokter', function(){
-        return view('dokter.detail-dokter');
-    })->name('dokter.detail-dokter');
-    
-    Route::get('/setting-dokter', function(){
-        return view('dokter.setting-dokter');
-    })->name('dokter.setting-dokter');
-    
-    Route::get('/pasien-reset-passsword', function(){
-        return view('pasien-reset-password');
-    });
 });
 
 
-Route::middleware(['auth', 'role:dokter'])->group(function(){
+Route::middleware(['auth', 'role:Dokter'])->group(function(){
     Route::prefix('dokter')->group(function(){
         Route::name('dokter.')->group(function(){
             Route::controller(DokterController::class)->group(function(){
-                Route::get('/dashboard', 'showDashboardDokter')->name('dashboard');
+                Route::get('/dashboard', 'showDashboardDokter')
+                    ->name('dashboard');
+                
+                Route::get('/appointment-dokter', function(){
+                    return view('dokter.appointment-dokter');
+                })->name('appointment-dokter');
+                
+                Route::get('/doctors-dokter', function(){
+                    return view('dokter.doctors-dokter');
+                })->name('doctors-dokter');
+                
+                Route::get('/report-logs-dokter', function(){
+                    return view('dokter.report-logs-dokter');
+                })->name('report-logs-dokter');
+                
+                Route::get('/detail-dokter', function(){
+                    return view('dokter.detail-dokter');
+                })->name('detail-dokter');
+                
+                Route::get('/setting-dokter', function(){
+                    return view('dokter.setting-dokter');
+                })->name('setting-dokter');
             });
         });
     });
 });
 
-Route::middleware(['auth', 'role:perawat'])->group(function(){
+Route::middleware(['auth', 'role:Perawat'])->group(function(){
     Route::prefix('perawat')->group(function(){
         Route::name('perawat.')->group(function(){
             Route::controller(PerawatController::class)->group(function(){
@@ -97,7 +93,7 @@ Route::middleware(['auth', 'role:perawat'])->group(function(){
     });
 });
 
-Route::middleware(['auth', 'role:admin'])->group(function(){
+Route::middleware(['auth', 'role:Admin'])->group(function(){
     Route::prefix('admin')->group(function(){
         Route::name('admin.')->group(function(){
             Route::controller(AdminController::class)->group(function(){
@@ -114,6 +110,11 @@ Route::middleware(['auth', 'role:admin'])->group(function(){
                     ->name('ban.pasien');
                 Route::post('/unban-pasien/{nomor_handphone}','unbanPasien')
                     ->name('unban.pasien');
+                Route::get('/tambah-pasien','tambahPasien')
+                    ->name('tambah.pasien');
+                Route::post('/tambah-pasien','storePasien')
+                    ->name('store.pasien');
+                
             });
         });
     });

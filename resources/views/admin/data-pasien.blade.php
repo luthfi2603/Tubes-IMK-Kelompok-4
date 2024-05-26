@@ -12,7 +12,12 @@
 @endif
 <div class="container">
     <div class="col-lg-12 pt-3">
-        <h1 class="text-2xl font-bold mb-4">Daftar Pasien</h1>
+        <div class="flex items-center justify-between">
+            <h1 class="text-2xl font-bold mb-0">Daftar Pasien</h1>
+            <p class="mb-0">
+                <a href="{{ route('admin.tambah.pasien') }}" class="font-bold text-blue-500 hover:underline">Tambah Pasien</a>
+            </p>
+        </div>  
         <div class="overflow-x-auto">
             <table class="min-w-full  rounded-lg overflow-hidden">
                 <thead class="bg-gray-100 text-gray-800 text-sm font-semibold">

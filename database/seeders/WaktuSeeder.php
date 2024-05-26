@@ -12,8 +12,36 @@ class WaktuSeeder extends Seeder {
      */
     public function run(): void {
         Waktu::create([ // 1
-            "hari" => fake()->randomElement($array = array('senin', 'selasa', 'rabu', 'kamis', 'jumat', 'sabtu', 'minggu')),
+            "hari" => fake()->randomElement($array = array('Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu')),
             "jam" => "10:00-13:00",
+        ]);
+        Waktu::create([ // 2
+            "hari" => fake()->randomElement($array = array('Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu')),
+            "jam" => "13:00-16:00",
+        ]);
+        Waktu::create([ // 3
+            "hari" => fake()->randomElement($array = array('Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu')),
+            "jam" => "08:00-12:00",
+        ]);
+        Waktu::create([ // 4
+            "hari" => fake()->randomElement($array = array('Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu')),
+            "jam" => "08:00-12:00",
+        ]);
+        Waktu::create([ // 5
+            "hari" => fake()->randomElement($array = array('Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu')),
+            "jam" => "08:00-12:00",
+        ]);
+        Waktu::create([ // 6
+            "hari" => fake()->randomElement($array = array('Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu')),
+            "jam" => "08:00-12:00",
+        ]);
+        Waktu::create([ // 7
+            "hari" => fake()->randomElement($array = array('Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu')),
+            "jam" => "08:00-12:00",
+        ]);
+        Waktu::create([ // 8
+            "hari" => fake()->randomElement($array = array('Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu')),
+            "jam" => "08:00-12:00",
         ]);
     }
 }
