@@ -8,6 +8,13 @@
             <p class="text-xl font-bold">Dokter tidak ada</p>
         </div>
     @else
+        @php
+            // Fungsi untuk mendapatkan index hari berikutnya
+            function getHariBerikutnya($hari, $urutanHari) {
+                $index = array_search($hari, $urutanHari);
+                return $urutanHari[($index + 1) % 7];
+            }
+        @endphp
         @foreach($dokters as $item)
             <div class="border-gray-300 rounded-2xl flex border-4 shadow-lg">
                 <div class="w-1/4 flex pl-2">
@@ -20,9 +27,14 @@
                 <div class="w-full p-2 md:pr-9">
                     @php
                         $status = false;
+                        $status2 = false;
 
                         $waktus = $jadwals->where('id_dokter', $item->id_dokter);
                         $waktuSaatIni = date('H:i');
+                        $tanggalSaatIni = date('Y-m-d');
+                        $tanggalRekomendasi = $tanggalSaatIni;
+                        $jamRekomendasi = '00:00-00:00';
+
                         $hariInggris = date('l');
                         $hariHari = [
                             'Monday'    => 'Senin',
@@ -34,6 +46,47 @@
                             'Sunday'    => 'Minggu'
                         ];
                         $hariSaatIni = $hariHari[$hariInggris];
+
+                        // Array untuk urutan hari dalam seminggu dalam bahasa Indonesia
+                        $urutanHari = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
+
+                        // Memeriksa jadwal untuk hari ini
+                        foreach ($waktus as $item2) {
+                            if ($hariSaatIni == $item2->hari) {
+                                $waktuDiPisahKeadaan = explode('-', $item2->jam);
+                                $waktuSaatIniTimestamp = strtotime($waktuSaatIni);
+                                $waktuMulai = strtotime($waktuDiPisahKeadaan[0]);
+                                $waktuAkhir = strtotime($waktuDiPisahKeadaan[1]);
+
+                                if ($waktuSaatIniTimestamp >= $waktuMulai && $waktuSaatIniTimestamp <= $waktuAkhir) {
+                                    $status = true;
+                                    $status2 = true;
+                                    $jamRekomendasi = $item2->jam;
+                                    break;
+                                }
+                            }
+                        }
+
+                        // Jika tidak ada jadwal yang sesuai untuk hari ini, cari hari berikutnya
+                        if (!$status2) {
+                            $hariCari = $hariSaatIni;
+                            $selisihHari = 0;
+                            for ($i = 0; $i < 7; $i++) {
+                                $hariCari = getHariBerikutnya($hariCari, $urutanHari);
+                                $selisihHari++;
+                                foreach ($waktus as $item2) {
+                                    if ($hariCari == $item2->hari) {
+                                        $jamRekomendasi = $item2->jam;
+                                        $tanggalRekomendasi = date('Y-m-d', strtotime("+$selisihHari days", strtotime($tanggalSaatIni)));
+                                        break 2; // Keluar dari kedua loop
+                                    }
+                                }
+                            }
+                        }
+
+                        /* echo "Status: " . ($status ? 'true' : 'false') . "\n";
+                        echo "Rekomendasi Jam: " . $jamRekomendasi . "\n";
+                        echo "Rekomendasi Tanggal: " . $tanggalRekomendasi . "\n";
                         
                         foreach ($waktus as $item2) {
                             if($hariSaatIni == $item2->hari){
@@ -42,11 +95,13 @@
                                 $waktuMulai = strtotime($waktuDiPisahKeadaan[0]);
                                 $waktuAkhir = strtotime($waktuDiPisahKeadaan[1]);
 
+                                // kalau jam saat ini di antara
                                 if ($waktuSaatIniTimestamp >= $waktuMulai && $waktuSaatIniTimestamp <= $waktuAkhir) {
                                     $status = true;
+                                    $jamRekomendasi = $item2->jam;
                                 }
                             }
-                        }
+                        } */
 
                         if($status){
                             echo '<div class="md:hidden">
@@ -273,7 +328,7 @@
                         </div>
                     </div>
                     <div class="flex items-center mt-2 md:mt-4 md:justify-end">
-                        <p class="text-blue-900 font-bold leading-none mr-3">Buat janji temu</p>
+                        <a href="/reservasi/buat?tanggal={{ $tanggalRekomendasi }}&spesialis={{ $item->spesialis }}&nama={{ $item->nama }}&waktu={{ $jamRekomendasi }}" class="text-blue-900 font-bold leading-none mr-3">Buat janji temu</a>
                         <svg class="w-[16px] h-[16px] fill-blue-900 mt-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg>
                     </div>
                 </div>

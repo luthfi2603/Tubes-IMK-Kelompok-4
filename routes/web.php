@@ -39,10 +39,10 @@ Route::middleware(['auth', 'role:Pasien'])->group(function(){
             ->name('cancel.ubah.profil');
         Route::get('/reservasi', 'indexReservasi')
             ->name('reservasi');
-        Route::get('/buat-reservasi', 'createReservasi')
+        Route::get('/reservasi/buat', 'createReservasi')
             ->name('buat.reservasi');
         Route::post('/daftar-dokter', 'storeDaftarDokter');
-        Route::post('/buat-reservasi', 'storeReservasi');
+        Route::post('/reservasi/buat', 'storeReservasi');
         Route::get('/dokter', 'indexDokter')
             ->name('dokter');
     });

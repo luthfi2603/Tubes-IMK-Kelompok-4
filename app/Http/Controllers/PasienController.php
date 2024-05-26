@@ -373,7 +373,16 @@ class PasienController extends Controller {
             ->groupBy('spesialis')
             ->get();
 
-        return view('buat-reservasi', compact('spesialis'));
+        $tanggal = request()->query('tanggal');
+        $spesialisQuery = request()->query('spesialis');
+        $nama = request()->query('nama');
+        $waktu = request()->query('waktu');
+
+        if(($tanggal && $spesialisQuery && $nama && $waktu) || (!$tanggal && !$spesialisQuery && !$nama && !$waktu)){
+            return view('buat-reservasi', compact('spesialis', 'tanggal', 'spesialisQuery', 'nama', 'waktu'));
+        }else{
+            return redirect()->route('reservasi');
+        }
     }
 
     public function storeDaftarDokter(Request $request){

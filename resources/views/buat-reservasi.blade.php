@@ -16,7 +16,7 @@
         @csrf
         <div class="flex flex-col">
             <label for="tanggal">Tanggal Reservasi</label>
-            <input type="date" name="tanggal" id="tanggal" value="{{ old('tanggal') }}">
+            <input type="date" name="tanggal" id="tanggal" value="{{ old('tanggal', $tanggal) }}">
             <p id="informasi-hari" class="hidden"></p>
             @error('tanggal')
                 <div class="text-[#B42223] text-bold text-sm">
@@ -29,7 +29,7 @@
             <select name="spesialis" id="spesialis">
                 <option value="">Pilih Spesialis</option>
                 @foreach($spesialis as $item)
-                    <option {{ old('spesialis') === $item->spesialis ? 'selected' : '' }}>{{ $item->spesialis }}</option>
+                    <option {{ old('spesialis', $spesialisQuery) === $item->spesialis ? 'selected' : '' }}>{{ $item->spesialis }}</option>
                 @endforeach
             </select>
             @error('spesialis')
@@ -53,7 +53,11 @@
     </form>
 </div>
 @push('scripts')
-    <script>const csrf = '{{ csrf_token() }}';</script>
+    <script>
+        const csrf = '{{ csrf_token() }}';
+        const nama = '{{ $nama }}';
+        const waktu = '{{ $waktu }}';
+    </script>
     <script src="{{ asset('assets/js/reservasi.js') }}"></script>
 @endpush
 @endsection
