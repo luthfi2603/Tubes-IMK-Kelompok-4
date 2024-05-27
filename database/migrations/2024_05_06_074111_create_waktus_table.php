@@ -11,7 +11,7 @@ return new class extends Migration {
     public function up(): void {
         Schema::create('waktus', function (Blueprint $table) {
             $table->id();
-            $table->enum('hari', ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu']);
+            $table->enum('hari', ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu']);
             $table->char('jam', 11);
         });
     }

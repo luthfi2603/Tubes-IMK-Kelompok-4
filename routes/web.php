@@ -37,15 +37,16 @@ Route::middleware(['auth', 'role:Pasien'])->group(function(){
             ->name('akun.destroy');
         Route::post('/cancel-ubah-profil', 'cancelUbahProfil')
             ->name('cancel.ubah.profil');
-        Route::get('/reservasi', 'createReservasi')
+        Route::get('/reservasi', 'indexReservasi')
             ->name('reservasi');
+        Route::get('/reservasi/buat', 'createReservasi')
+            ->name('buat.reservasi');
         Route::post('/daftar-dokter', 'storeDaftarDokter');
-        Route::post('/reservasi', 'storeReservasi');
+        Route::post('/reservasi/buat', 'storeReservasi');
+        Route::get('/dokter', 'indexDokter')
+            ->name('dokter');
     });
 
-    Route::get('/dokter', function(){
-        return view('dokter');
-    });
     Route::get('/informasi', function(){
         return view('informasi');
     });
@@ -110,11 +111,9 @@ Route::middleware(['auth', 'role:Admin'])->group(function(){
                     ->name('ban.pasien');
                 Route::post('/unban-pasien/{nomor_handphone}','unbanPasien')
                     ->name('unban.pasien');
-                Route::get('/tambah-pasien','tambahPasien')
+                Route::get('/tambah-pasien','createPasien')
                     ->name('tambah.pasien');
-                Route::post('/tambah-pasien','storePasien')
-                    ->name('store.pasien');
-                
+                Route::post('/tambah-pasien','storePasien');
             });
         });
     });

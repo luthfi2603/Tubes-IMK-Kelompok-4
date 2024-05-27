@@ -16,6 +16,7 @@ return new class extends Migration {
             $table->enum('status', ['Pasien', 'Dokter', 'Perawat', 'Admin']);
             $table->string('password')->nullable();
             $table->boolean('aktif')->default(1);
+            $table->rememberToken();
             $table->timestamps();
         });
 

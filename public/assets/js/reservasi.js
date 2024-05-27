@@ -69,6 +69,11 @@ const daftarDokter =  async () => {
             inputDokter.innerHTML = '<option value="">Pilih Dokter</option>';
             data.dokters.forEach(item => {
                 const option = document.createElement('option');
+                if(nama && waktu){
+                    if(item.nama == nama && item.jam == waktu){
+                        option.selected = true;
+                    }
+                }
                 option.value = item.nama + '|' + item.jam;
                 option.textContent = item.nama + ' - ' + item.jam;
                 inputDokter.appendChild(option);

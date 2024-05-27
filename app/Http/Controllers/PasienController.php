@@ -360,12 +360,29 @@ class PasienController extends Controller {
         return response()->json(['failed' => 'Gagal ubah profil']);
     }
     
+    public function indexReservasi(){
+        $reservasis = Reservasi::where('nomor_handphone', auth()->user()->nomor_handphone)
+            ->latest()
+            ->get();
+
+        return view('reservasi', compact('reservasis'));
+    }
+
     public function createReservasi(){
         $spesialis = Dokter::select('spesialis')
             ->groupBy('spesialis')
             ->get();
 
-        return view('reservasi', compact('spesialis'));
+        $tanggal = request()->query('tanggal');
+        $spesialisQuery = request()->query('spesialis');
+        $nama = request()->query('nama');
+        $waktu = request()->query('waktu');
+
+        if(($tanggal && $spesialisQuery && $nama && $waktu) || (!$tanggal && !$spesialisQuery && !$nama && !$waktu)){
+            return view('buat-reservasi', compact('spesialis', 'tanggal', 'spesialisQuery', 'nama', 'waktu'));
+        }else{
+            return redirect()->route('reservasi');
+        }
     }
 
     public function storeDaftarDokter(Request $request){
@@ -443,5 +460,23 @@ class PasienController extends Controller {
         }
 
         return back()->with('success', 'Reservasi berhasil, datanglah sesuai jadwal yang telah dipilih');
+    }
+
+    public function indexDokter(){
+        $dokters = DB::table('view_jadwal_dokter')
+            ->select('id_dokter', 'foto', 'nama', 'spesialis')
+            ->orderBy('nama')
+            ->orderBy('hari')
+            ->orderBy('jam')
+            ->groupBy('id_dokter', 'foto', 'nama', 'spesialis')
+            ->get();
+        
+        $jadwals = DB::table('view_jadwal_dokter')
+            ->select('id_dokter', 'hari', 'jam')
+            ->orderBy('hari')
+            ->orderBy('jam')
+            ->get();
+
+        return view('dokter', compact('dokters', 'jadwals'));
     }
 }

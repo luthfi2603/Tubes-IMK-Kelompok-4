@@ -96,10 +96,6 @@ class AdminController extends Controller {
                 'jenis_kelamin' => $request->jenis_kelamin,
             ]);
 
-            $user->update([
-                'nomor_handphone' => $request->nomor_handphone
-            ]);
-
             $reservasi = Reservasi::where('nomor_handphone', $user->nomor_handphone)->get();
             if($reservasi){
                 Reservasi::where('nomor_handphone', $user->nomor_handphone)->update([
@@ -130,6 +126,10 @@ class AdminController extends Controller {
                     'jenis_kelamin' => $request->jenis_kelamin,
                 ]);
             }
+
+            $user->update([
+                'nomor_handphone' => $request->nomor_handphone
+            ]);
             
             return redirect()->route('admin.edit.pasien', $request->nomor_handphone)->with('success', 'Data pasien berhasil diubah');
         }
@@ -153,7 +153,7 @@ class AdminController extends Controller {
         return redirect()->route('admin.data.pasien')->with('success', 'Pasien berhasil diaktifkan kembali');
     }
 
-    public function tambahPasien(){
+    public function createPasien(){
         return view('admin.tambah-pasien');
     }
 
@@ -185,28 +185,29 @@ class AdminController extends Controller {
         ], $messages);
 
         $user = User::where('nomor_handphone', $request->nomor_handphone)->first();
+
         if($user !== NULL){ // kalau user nya ada
-                return back()->withInput()->with('failed', 'Nomor handphone sudah terdaftar');
-            }
+            return back()->withInput()->with('failed', 'Nomor handphone sudah terdaftar');
+        }
 
         if(substr(trim($request->nomor_handphone), 0, 1) == '0'){
-                $nomorHP = '+62'.substr(trim($request->nomor_handphone), 1);
-            }
+            $nomorHP = '+62'.substr(trim($request->nomor_handphone), 1);
+        }
 
-        if($user === NULL){
-                User::create([
-                    'nomor_handphone' => $request['nomor_handphone'],
-                ]);
-    
-                Pasien::create([
-                    'nama' => $request->nama,
-                    'alamat' => $request->alamat,
-                    'jenis_kelamin' => $request->jenis_kelamin,
-                    'tanggal_lahir' => $request->tanggal_lahir,
-                    'pekerjaan' => $request->pekerjaan,
-                    'id_user' => User::latest()->first()->id
-                ]);
-            }
+        User::create([
+            'nomor_handphone' => $request->nomor_handphone,
+            'status' => 'Pasien',
+        ]);
+
+        Pasien::create([
+            'nama' => $request->nama,
+            'alamat' => $request->alamat,
+            'jenis_kelamin' => $request->jenis_kelamin,
+            'tanggal_lahir' => $request->tanggal_lahir,
+            'pekerjaan' => $request->pekerjaan,
+            'id_user' => User::latest()->first()->id
+        ]);
+
         return redirect()->route('admin.data.pasien')->with('success', 'Data pasien berhasil ditambahkan!');
     }
 }
