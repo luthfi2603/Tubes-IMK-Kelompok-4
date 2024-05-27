@@ -70,6 +70,10 @@ Route::middleware(['auth', 'role:Dokter'])->group(function(){
                 Route::get('/report-logs-dokter', function(){
                     return view('dokter.report-logs-dokter');
                 })->name('report-logs-dokter');
+
+                Route::get('/tambah-rekam-medis', function(){
+                    return view('dokter.tambah-rekam-medis');
+                })->name('tambah-rekam-medis');
                 
                 Route::get('/detail-dokter', function(){
                     return view('dokter.detail-dokter');
