@@ -1,5 +1,6 @@
 @extends('dokter.main')
 
+
 @section('container')
 
 <div class="flex justify-between items-center px-4 mb-3">
@@ -60,14 +61,9 @@
                         <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">(+62) 895618689375</td>
                         <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">Sesak pernafasan, Batuk</td>
                         <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">10:00 am - 11:00 am</td>
-                        <td class="pt-6 px-2 whitespace-nowrap text-sm w-full">
-                            <select id="status-select" onchange="updateSelectClass(this)" class=" font-semibold bg-gray-50 border border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                <option selected>Status</option>
-                                <option value="success">Success</option>
-                                <option value="decline">Decline</option>
-                                <option value="reschedule">Reschedule</option>
-                            </select>
-                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-center">
+                            <button class="px-4 py-2 bg-green-100 text-green-800 rounded-lg">Success</button>
+                        </td>   
                     </tr>
                     
                     <tr>
@@ -82,14 +78,9 @@
                         <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">(+62) 895618689375</td>
                         <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">Sesak pernafasan, Batuk</td>
                         <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">10:00 am - 11:00 am</td>
-                        <td class="pt-6 px-2 whitespace-nowrap text-sm w-full">
-                            <select id="status-select" onchange="updateSelectClass(this)" class=" font-semibold bg-gray-50 border border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                <option selected>Status</option>
-                                <option value="success">Success</option>
-                                <option value="decline">Decline</option>
-                                <option value="reschedule">Reschedule</option>
-                            </select>
-                        </td>                
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-center">
+                            <button class="px-4 py-2 bg-red-100 text-red-800 rounded-lg">Decline</button>
+                        </td>           
                     </tr>
 
                     <tr>
@@ -104,13 +95,8 @@
                         <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">(+62) 895618689375</td>
                         <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">Sesak pernafasan, Batuk</td>
                         <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">10:00 am - 11:00 am</td>
-                        <td class="pt-6 px-2 whitespace-nowrap text-sm w-full">
-                            <select id="status-select" onchange="updateSelectClass(this)" class=" font-semibold bg-gray-50 border border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                <option selected>Status</option>
-                                <option value="success">Success</option>
-                                <option value="decline">Decline</option>
-                                <option value="reschedule">Reschedule</option>
-                            </select>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-center">
+                            <button class="px-4 py-2 bg-green-100 text-green-800 rounded-lg">Success</button>
                         </td>
                     </tr>
 
@@ -126,14 +112,9 @@
                         <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">(+62) 895618689375</td>
                         <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">Sesak pernafasan, Batuk</td>
                         <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">10:00 am - 11:00 am</td>
-                        <td class="pt-6 px-2 whitespace-nowrap text-sm w-full">
-                            <select id="status-select" onchange="updateSelectClass(this)" class=" font-semibold bg-gray-50 border border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                <option selected>Status</option>
-                                <option value="success">Success</option>
-                                <option value="decline">Decline</option>
-                                <option value="reschedule">Reschedule</option>
-                            </select>
-                        </td>               
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-center">
+                            <button class="px-4 py-2 bg-green-100 text-green-800 rounded-lg">Success</button>
+                        </td>         
                     </tr>
 
                     <tr>
@@ -148,13 +129,8 @@
                         <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">(+62) 895618689375</td>
                         <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">Sesak pernafasan, Batuk</td>
                         <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">10:00 am - 11:00 am</td>
-                        <td class="pt-6 px-2 whitespace-nowrap text-sm w-full">
-                            <select id="status-select" onchange="updateSelectClass(this)" class=" font-semibold bg-gray-50 border border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                <option selected>Status</option>
-                                <option value="success">Success</option>
-                                <option value="decline">Decline</option>
-                                <option value="reschedule">Reschedule</option>
-                            </select>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-center">
+                            <button class="px-4 py-2 bg-yellow-100 text-yellow-800 rounded-lg">Reschedule</button>
                         </td>
                     </tr>
                 </tbody>

@@ -100,7 +100,7 @@
         
     </div>
 
-    <div class="flex items-center justify-between mt-4">
+    <div class="flex items-center justify-between mt-4 mx-4">
         <div>
             <label for="items-per-page" class="block text-sm font-medium text-gray-700">Items per page:</label>
             <select id="items-per-page" name="items-per-page" class="mt-1 block w-16 pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">

@@ -5,56 +5,59 @@
     <!-- Main Content -->
     <div class="flex-1">
         <div class="bg-[#222C67] p-6 rounded-lg shadow-lg">
-            <div class="flex justify-between items-center">
-                <div class="font-body text-white">
+            <div class="flex flex-col md:flex-row justify-between items-center max-[760px]:items-start">
+                <div class="font-body text-white mb-4 md:mb-0">
                     <h1 class="text-xl font-bold text-white py-2">Welcome back,</h1>
                     <h2 class="text-2xl font-semibold font-body text-white py-2">Dr Siti Nurhaji</h2>
                     <p class="text-white py-1">MD, DM (Cardiology), FACC, FESC</p>
                     <p class="pt-3 pb-1">You have total <span class="font-bold text-[#E8C51C]">12 Appointments</span> today!</p>
                 </div>
-                <div>
-                    <img src="{{ asset('assets/img/female-doctor.png') }}" alt="Doctor Avatar" class="w-full h-40">
+                <div class="flex-shrink-0">
+                    <img src="{{ asset('assets/img/female-doctor.png') }}" alt="Doctor Avatar" class="w-40 h-40 lg:block md:block max-[760px]:hidden">
                 </div>
             </div>
         </div>
+
         <div class="mt-6">
             <div class="bg-white p-6 rounded-lg shadow-lg">
-                <h3 class="text-lg font-semibold mb-4">Report</h3>
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-lg font-semibold">Report</h3>
+                    <select class="border-gray-300 rounded-lg">
+                        <option>This Month</option>
+                        <!-- Add more options as needed -->
+                    </select>
+                </div>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div class="bg-blue-100 p-4 rounded-lg">
-                        <div class="flex items-center space-x-4">
-                            <div class="text-4xl font-bold text-blue-800">105</div>
-                            <div>
-                                <p class="text-gray-600">Total Patient</p>
-                            </div>
+                    <div class="bg-blue-100 p-4 rounded-lg flex flex-col items-center space-y-2">
+                        <div class="text-4xl font-bold text-blue-800">105</div>
+                        <div>
+                            <p class="text-gray-600 text-center">Total Pasien</p>
                         </div>
                     </div>
-                    <div class="bg-red-100 p-4 rounded-lg">
-                        <div class="flex items-center space-x-4">
-                            <div class="text-4xl font-bold text-red-800">89</div>
-                            <div>
-                                <p class="text-gray-600">Consultation</p>
-                            </div>
+                    <div class="bg-red-100 p-4 rounded-lg flex flex-col items-center space-y-2">
+                        <div class="text-4xl font-bold text-red-800">89</div>
+                        <div>
+                            <p class="text-gray-600 text-center">Konsultasi</p>
                         </div>
                     </div>
-                    <div class="bg-yellow-100 p-4 rounded-lg">
-                        <div class="flex items-center space-x-4">
-                            <div class="text-4xl font-bold text-yellow-800">72</div>
-                            <div>
-                                <p class="text-gray-600">Rawat Inap & Jalan</p>
-                            </div>
+                    <div class="bg-yellow-100 p-4 rounded-lg flex flex-col items-center space-y-2">
+                        <div class="text-4xl font-bold text-yellow-800">72</div>
+                        <div>
+                            <p class="text-gray-600 text-center">Rawat Inap & Jalan</p>
                         </div>
                     </div>
                 </div>
+                
             </div>
         </div>
+
         <div class="mt-6 grid grid-cols-1 lg:grid-cols-2">
             <div class="">
                 <h2 class="text-2xl font-bold text-gray-700">Today's Appointment</h2>
             </div>
         </div>
         <div class="relative w-full max-w-5xl mt-3">
-            <div class="flex flex-col pb-5 pt-2 px-3 rounded-xl bg-white shadow-lg w-full">
+            <div class="flex flex-col pb-5 pt-2 px-3 rounded-xl bg-white shadow-lg w-full overflow-x-auto">
                 <label for="table-search" class="sr-only">Search</label>
                 <div class="relative my-1">
                     <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
@@ -91,14 +94,15 @@
                 </table>
             </div>
         </div>
+        
         <div class="mt-6 grid grid-cols-1 lg:grid-cols-2">
             <div class="">
                 <h2 class="text-2xl font-bold text-gray-700">Patients</h2>
             </div>
         </div>
         <div class="relative w-full max-w-5xl mt-3">
-            <div class="flex flex-col pb-5 pt-2 px-3 rounded-xl bg-white shadow-lg w-full">
-                <label for="table-search" class="sr-only">Search</label>
+            <div class="flex flex-col pb-5 pt-2 px-3 rounded-xl bg-white shadow-lg w-full overflow-x-auto">
+                <label for="table-search-2" class="sr-only">Search</label>
                 <div class="relative my-1">
                     <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
                         <svg class="w-5 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
@@ -107,33 +111,44 @@
                     </div>
                     <input type="text" id="table-search-2" class="block pt-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-40 bg-gray-100 focus:ring-blue-500 focus:border-blue-500  dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search for items">
                 </div>
-                <table class="min-w-full bg-white">
-                    <thead>
-                        <tr>
-                            <th class="py-2 text-left text-gray-600">#</th>
-                            <th class="py-2 text-left text-gray-600">Patient Name</th>
-                            <th class="py-2 text-left text-gray-600">Gender</th>
-                            <th class="py-2 text-left text-gray-600">Last Visit</th>
-                            <th class="py-2 text-left text-gray-600">Diseases</th>
-                            <th class="py-2 text-left text-gray-600">Report</th>
-                            <th class="py-2 text-left text-gray-600">Details</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="py-2">1</td>
-                            <td class="py-2">John Doe</td>
-                            <td class="py-2">Male</td>
-                            <td class="py-2">12/05/2016</td>
-                            <td class="py-2"><span class="bg-red-200 text-red-800 py-1 px-3 rounded-full text-xs">Fever</span></td>
-                            <td class="py-2"><a href="#" class="text-blue-500"><i class="material-icons">picture_as_pdf</i></a></td>
-                            <td class="py-2"><a href="#" class="text-blue-500">Details</a></td>
-                        </tr>
-                        <!-- Repeat the above tr for each row -->
-                    </tbody>
-                </table>
+                <div class="overflow-hidden rounded-lg">
+                    <div class="block w-full overflow-x-auto">
+                        <table class="min-w-full bg-white shadow-md">
+                            <thead>
+                                <tr>
+                                    <th class="py-2 text-left text-gray-600 tracking-wider">#</th>
+                                    <th class="py-2 text-left text-gray-600 tracking-wider">Patient Name</th>
+                                    <th class="py-2 text-left text-gray-600 tracking-wider">Gender</th>
+                                    <th class="py-2 text-left text-gray-600 tracking-wider">Last Visit</th>
+                                    <th class="py-2 text-left text-gray-600 tracking-wider">Diseases</th>
+                                    <th class="py-2 text-left text-gray-600 tracking-wider">Report</th>
+                                    <th class="py-2 text-left text-gray-600 tracking-wider">Details</th>
+                                    <th class="py-2 text-left text-gray-600 tracking-wider">Diseases</th>
+                                    <th class="py-2 text-left text-gray-600 tracking-wider">Report</th>
+                                    <th class="py-2 text-left text-gray-600 tracking-wider">Details</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="py-2 whitespace-nowrap text-md">1</td>
+                                    <td class="py-2 whitespace-nowrap text-md">John Doe</td>
+                                    <td class="py-2 whitespace-nowrap text-md">Male</td>
+                                    <td class="py-2 whitespace-nowrap text-md">John Doe</td>
+                                    <td class="py-2 whitespace-nowrap text-md">Male</td>
+                                    <td class="py-2 whitespace-nowrap text-md">Male</td>
+                                    <td class="py-2 whitespace-nowrap text-md">12/05/2016</td>
+                                    <td class="py-2 whitespace-nowrap text-md"><span class="bg-red-200 text-red-800 py-1 px-3 rounded-full text-xs">Fever</span></td>
+                                    <td class="py-2 whitespace-nowrap text-md"><a href="#" class="text-blue-500"><i class="material-icons">picture_as_pdf</i></a></td>
+                                    <td class="py-2 whitespace-nowrap text-md"><a href="#" class="text-blue-500">Details</a></td>
+                                </tr>
+                                <!-- Repeat the above tr for each row -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
-        </div>  
+        </div>
+        
     </div>
     <!-- Right Sidebar -->
     <div class="w-full lg:w-1/3">
