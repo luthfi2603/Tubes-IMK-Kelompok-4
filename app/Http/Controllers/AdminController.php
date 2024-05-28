@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Pasien;
+use App\Models\Perawat;
 use App\Models\RawatInap;
 use App\Models\Reservasi;
 use App\Models\RekamMedis;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -209,5 +211,88 @@ class AdminController extends Controller {
         ]);
 
         return redirect()->route('admin.data.pasien')->with('success', 'Data pasien berhasil ditambahkan!');
+    }
+
+    public function indexPerawat(){
+        $perawats = DB::table('view_data_perawat')->get();
+        
+        return view('admin.kelola-perawat', compact('perawats'));
+    }
+    
+    public function createPerawat(){
+        return view('admin.input-perawat');
+    }
+    
+    public function storePerawat(Request $request){
+        $messages = [
+            'nama.required' => 'Kolom nama harus diisi.',
+            'nama.max' => 'Kolom nama tidak boleh melebihi :max karakter.',
+            'nomor_handphone.required' => 'Kolom nomor handphone harus diisi.',
+            'nomor_handphone.numeric' => 'Nomor handphone harus diisi dengan angka.',
+            'nomor_handphone.min_digits' => 'Nomor handphone harus terdiri dari minimal :min digit.',
+            'nomor_handphone.max_digits' => 'Nomor handphone harus terdiri dari maksimal :max digit.',
+            'nomor_handphone.regex' => 'Nomor handphone tidak valid',
+            'nomor_handphone.unique' => 'Nomor handphone sudah terdaftar.',
+            'alamat.required' => 'Kolom alamat harus diisi.',
+            'alamat.max' => 'Kolom alamat tidak boleh melebihi :max karakter.',
+            'jenis_kelamin.required' => 'Kolom jenis kelamin harus diisi.',
+            'jenis_kelamin.in' => 'Jenis kelamin yang dipilih tidak sesuai.',
+            'password.required' => 'Kolom password harus diisi.',
+            'password.same' => 'Password dan konfirmasi password harus sama.',
+            'password.min' => 'Password harus terdiri dari minimal :min karakter.',
+            'password.max' => 'Password tidak boleh melebihi :max karakter.',
+            'konfirmasi_password.required' => 'Kolom konfirmasi password harus diisi.',
+            'konfirmasi_password.same' => 'Konfirmasi password dan password harus sama.',
+            'konfirmasi_password.min' => 'Konfirmasi password harus terdiri dari minimal :min karakter.',
+            'konfirmasi_password.max' => 'Konfirmasi password tidak boleh melebihi :max karakter.',
+            'foto.image' => 'File yang boleh dimasukkan berupa foto.',
+            'foto.mimes' => 'Format foto yang diperbolehkan adalah: jpeg, png, jpg.',
+            'foto.max' => 'Ukuran maksimal foto yang diunggah adalah 2 MB.',
+        ];
+
+        $rules = [
+            'nama' => ['required', 'string', 'max:255'],
+            'nomor_handphone' => ['required', 'numeric', 'min_digits:11', 'max_digits:13', 'regex:/\b08\d{9,11}\b/', 'unique:users'],
+            'alamat' => ['required', 'string', 'max:255'],
+            'jenis_kelamin' => ['required', 'in:P,L'],
+            'password' => ['required', 'same:konfirmasi_password', 'min:8', 'max:255'],
+            'konfirmasi_password' => ['required', 'same:password', 'min:8', 'max:255'],
+        ];
+
+        if($request->hasFile('foto')){
+            $rules['foto'] = ['image', 'mimes:jpeg,png,jpg', 'max:2048'];
+        }
+
+        $request->validate($rules, $messages);
+
+        $namaFoto2 = null;
+
+        if($request->hasFile('foto')){
+            $foto = $request->file('foto');
+
+            $ekstensiFoto = $foto->extension();
+            $namaFoto = Str::random(40);
+            $namaFoto = $namaFoto . '.' . $ekstensiFoto;
+            $namaFoto2 = 'img/' . $namaFoto;
+
+            $foto->move(storage_path('app\\public\\img'), $namaFoto);
+        }
+
+        User::create([
+            'nomor_handphone' => $request->nomor_handphone,
+            'password' => bcrypt($request->password),
+            'status' => 'Perawat',
+            'foto' => $namaFoto2,
+            'aktif' => 1
+        ]);
+
+        Perawat::create([
+            'nama' => $request->nama,
+            'alamat' => $request->alamat,
+            'jenis_kelamin' => $request->jenis_kelamin,
+            'id_user' => User::latest()->first()->id
+        ]);
+
+        return back()->with('success', 'Perawat berhasil ditambah');
     }
 }

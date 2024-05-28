@@ -23,6 +23,12 @@
             </a>
         </li>
         <li class="mb-1 group">
+            <a href="{{ route('admin.perawat.kelola') }}" class="flex font-semibold items-center py-2 px-4 rounded-md text-gray-900 hover:bg-[#222C67] hover:text-gray-100 {{ request()->is('admin/kelola-perawat') ? 'bg-[#222C67] text-white' : '' }}">
+                <i class='bx bx-user mr-3 text-lg'></i>
+                <span class="text-sm">Kelola Perawat</span>
+            </a>
+        </li>
+        <li class="mb-1 group">
             <a href="" class="flex font-semibold items-center py-2 px-4 text-gray-900 hover:bg-[#222C67] hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100">
                 <i class='bx bx-bell mr-3 text-lg' ></i>
                 <span class="text-sm">Notifications</span>

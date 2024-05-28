@@ -15,9 +15,7 @@ return new class extends Migration {
                 b.aktif
             FROM pasiens a
             INNER JOIN users b ON a.id_user = b.id;
-        ');
 
-        DB::unprepared('
             DROP VIEW IF EXISTS data_karyawan;
             CREATE VIEW data_karyawan AS
             SELECT
@@ -26,7 +24,7 @@ return new class extends Migration {
                 a.nomor_handphone,
                 a.status
             FROM users a
-            INNER JOIN dokters b ON a.id = b.id_user 
+            INNER JOIN dokters b ON a.id = b.id_user
             UNION
             SELECT
                 c.nama, 
@@ -34,7 +32,7 @@ return new class extends Migration {
                 a.nomor_handphone,
                 a.status
             FROM users a
-            INNER JOIN perawats c ON a.id = c.id_user 
+            INNER JOIN perawats c ON a.id = c.id_user
             UNION
             SELECT
                 d.nama, 
@@ -42,10 +40,8 @@ return new class extends Migration {
                 a.nomor_handphone,
                 a.status
             FROM users a
-            INNER JOIN admins d ON a.id = d.id_user 
-        ');
-        
-        DB::unprepared('
+            INNER JOIN admins d ON a.id = d.id_user;
+
             DROP VIEW IF EXISTS view_jadwal_dokter;
             CREATE VIEW view_jadwal_dokter AS
             SELECT
@@ -58,7 +54,21 @@ return new class extends Migration {
             FROM dokters a
             INNER JOIN jadwal_dokters b ON a.id = b.id_dokter
             INNER JOIN waktus c ON c.id = b.id_waktu
-            INNER JOIN users d ON d.id = a.id_user
+            INNER JOIN users d ON d.id = a.id_user;
+            
+            DROP VIEW IF EXISTS view_data_perawat;
+            CREATE VIEW view_data_perawat AS
+            SELECT
+                a.id AS \'id_user\',
+                b.id AS \'id_perawat\',
+                b.nama,
+                a.nomor_handphone,
+                b.jenis_kelamin,
+                b.alamat,
+                a.foto
+            FROM users a
+            INNER JOIN perawats b ON b.id_user = a.id
+            ORDER BY b.nama;
         ');
     }
 };
