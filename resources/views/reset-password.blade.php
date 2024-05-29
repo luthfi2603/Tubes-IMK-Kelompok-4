@@ -93,7 +93,7 @@
                                 @enderror
                             </div>      
                             <div class="content-center relative mt-4">
-                                <label for="konfirmasi_password" class="ml-2 text-sm font-bold text-gray-700 tracking-wide">Konfirmasi Password</label>
+                                <label for="konfirmasi_password" class="ml-2 text-sm font-bold text-gray-700 tracking-wide">Konfirmasi Kata Sandi</label>
                                 <input
                                     class="w-full px-5 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-400 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
                                     type="password" name="konfirmasi_password" id="konfirmasi_password"

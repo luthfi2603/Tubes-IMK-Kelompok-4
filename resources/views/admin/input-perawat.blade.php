@@ -93,7 +93,7 @@
             </div>
             <div>
                 <button class="mr-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg py-2 px-4 w-min text-nowrap mt-1">Tambah</button>
-                <a href="{{ route('admin.perawat.kelola') }}" class="bg-blue-500 hover:bg-blue-600 text-white rounded-lg py-2 px-4 w-min text-nowrap mt-1">Kembali</a>
+                <a href="{{ route('admin.perawat.index') }}" class="bg-blue-500 hover:bg-blue-600 text-white rounded-lg py-2 px-4 w-min text-nowrap mt-1">Kembali</a>
             </div>
         </div>
     </form>

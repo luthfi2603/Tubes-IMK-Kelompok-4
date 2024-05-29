@@ -118,11 +118,16 @@ Route::middleware(['auth', 'role:Admin'])->group(function(){
                 Route::get('/tambah-pasien', 'createPasien')
                     ->name('tambah.pasien');
                 Route::post('/tambah-pasien', 'storePasien');
-                Route::get('/kelola-perawat', 'indexPerawat')
-                    ->name('perawat.kelola');
-                Route::get('/input-perawat', 'createPerawat')
+                Route::get('/perawat', 'indexPerawat')
+                    ->name('perawat.index');
+                Route::get('/perawat/input', 'createPerawat')
                     ->name('perawat.input');
-                Route::post('/input-perawat', 'storePerawat');
+                Route::post('/perawat/input', 'storePerawat');
+                Route::get('/perawat/edit/{pk}', 'editPerawat')
+                    ->name('perawat.edit');
+                Route::put('/perawat/edit/{pk}', 'updatePerawat');
+                Route::delete('/perawat/destroy/{pk}', 'destroyPerawat')
+                    ->name('perawat.destroy');
             });
         });
     });

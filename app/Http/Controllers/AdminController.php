@@ -11,6 +11,7 @@ use App\Models\RekamMedis;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller {
     public function showDashboardAdmin(){
@@ -294,5 +295,140 @@ class AdminController extends Controller {
         ]);
 
         return back()->with('success', 'Perawat berhasil ditambah');
+    }
+
+    public function editPerawat($nomorHandphone){
+        $perawat = DB::table('view_data_perawat')
+            ->where('nomor_handphone', $nomorHandphone)
+            ->get();
+
+        if($perawat->isEmpty()){
+            return back();
+        }
+
+        $perawat = $perawat[0];
+
+        return view('admin.edit-perawat', compact('perawat'));
+    }
+
+    public function updatePerawat(Request $request, $id){
+        $user = User::find($id);
+
+        if(
+            $request->nama == $user->perawat->nama &&
+            $request->nomor_handphone == $user->nomor_handphone &&
+            $request->alamat == $user->perawat->alamat &&
+            $request->jenis_kelamin == $user->perawat->jenis_kelamin &&
+            !$request->hasFile('foto') &&
+            !$request->password &&
+            !$request->konfirmasi_password &&
+            !$request->hapus
+        ){
+            return back()->with('failed', 'Gagal diubah, tidak ada perubahan');
+        }else{
+            $messages = [
+                'nama.required' => 'Kolom nama harus diisi.',
+                'nama.max' => 'Kolom nama tidak boleh melebihi :max karakter.',
+                'nomor_handphone.required' => 'Kolom nomor handphone harus diisi.',
+                'nomor_handphone.numeric' => 'Nomor handphone harus diisi dengan angka.',
+                'nomor_handphone.min_digits' => 'Nomor handphone harus terdiri dari minimal :min digit.',
+                'nomor_handphone.max_digits' => 'Nomor handphone harus terdiri dari maksimal :max digit.',
+                'nomor_handphone.regex' => 'Nomor handphone tidak valid',
+                'nomor_handphone.unique' => 'Nomor handphone sudah terdaftar.',
+                'alamat.required' => 'Kolom alamat harus diisi.',
+                'alamat.max' => 'Kolom alamat tidak boleh melebihi :max karakter.',
+                'jenis_kelamin.required' => 'Kolom jenis kelamin harus diisi.',
+                'jenis_kelamin.in' => 'Jenis kelamin yang dipilih tidak sesuai.',
+                'foto.image' => 'File yang boleh dimasukkan berupa foto.',
+                'foto.mimes' => 'Format foto yang diperbolehkan adalah: jpeg, png, jpg.',
+                'foto.max' => 'Ukuran maksimal foto yang diunggah adalah 2 MB.',
+                'password.required' => 'Kolom password harus diisi.',
+                'password.same' => 'Password dan konfirmasi password harus sama.',
+                'password.min' => 'Password harus terdiri dari minimal :min karakter.',
+                'password.max' => 'Password tidak boleh melebihi :max karakter.',
+                'konfirmasi_password.required' => 'Kolom konfirmasi password harus diisi.',
+                'konfirmasi_password.same' => 'Konfirmasi password dan password harus sama.',
+                'konfirmasi_password.min' => 'Konfirmasi password harus terdiri dari minimal :min karakter.',
+                'konfirmasi_password.max' => 'Konfirmasi password tidak boleh melebihi :max karakter.',
+            ];
+
+            $rules = [
+                'nama' => ['required', 'string', 'max:255'],
+                'alamat' => ['required', 'string', 'max:255'],
+                'jenis_kelamin' => ['required', 'in:P,L'],
+            ];
+
+            if($request->nomor_handphone != $user->nomor_handphone){
+                $rules['nomor_handphone'] = ['required', 'numeric', 'min_digits:11', 'max_digits:13', 'regex:/\b08\d{9,11}\b/', 'unique:users'];
+            }
+
+            if($request->hasFile('foto')){
+                $rules['foto'] = ['image', 'mimes:jpeg,png,jpg', 'max:2048'];
+            }
+
+            if($request->password && $request->konfirmasi_password){
+                $rules['password'] = ['required', 'same:konfirmasi_password', 'min:8', 'max:255'];
+                $rules['konfirmasi_password'] = ['required', 'same:password', 'min:8', 'max:255'];
+            }
+
+            $request->validate($rules, $messages);
+
+            Perawat::where('id_user', $user->id)->update([
+                'nama' => $request->nama,
+                'alamat' => $request->alamat,
+                'jenis_kelamin' => $request->jenis_kelamin,
+            ]);
+
+            $namaFoto2 = $request->foto_lama;
+
+            if($request->hasFile('foto')){
+                if($namaFoto2){
+                    Storage::delete($namaFoto2);
+                }
+
+                $foto = $request->file('foto');
+    
+                $ekstensiFoto = $foto->extension();
+                $namaFoto = Str::random(40);
+                $namaFoto = $namaFoto . '.' . $ekstensiFoto;
+                $namaFoto2 = 'img/' . $namaFoto;
+    
+                $foto->move(storage_path('app\\public\\img'), $namaFoto);
+            }
+
+            if($request->hapus){
+                Storage::delete($namaFoto2);
+                $namaFoto2 = null;
+            }
+
+            $user->update([
+                'nomor_handphone' => $request->nomor_handphone,
+                'foto' => $namaFoto2,
+            ]);
+
+            if($request->password && $request->konfirmasi_password){
+                $user->update([
+                    'password' => bcrypt($request->password),
+                ]);
+            }
+            
+            return redirect()->route('admin.perawat.edit', $request->nomor_handphone)->with('success', 'Data perawat berhasil diubah');
+        }
+    }
+
+    public function destroyPerawat($id){
+        $user = User::find($id);
+
+        if(!$user){
+            return redirect()->route('admin.perawat.index');
+        }
+        
+        if($user->foto){
+            Storage::delete($user->foto);
+        }
+
+        $user->delete();
+
+        return back()->with('success', 'Perawat berhasil dihapus');
     }
 }

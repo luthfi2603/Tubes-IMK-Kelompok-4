@@ -48,8 +48,12 @@
                             <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ $item->jenis_kelamin }}</td>
                             <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ $item->alamat }}</td>
                             <td class="whitespace-nowrap px-4 py-2 text-gray-700">
-                                <a href="#">Ubah</a>
-                                <a href="#">Hapus</a>
+                                <a href="{{ route('admin.perawat.edit', $item->nomor_handphone) }}">Ubah</a>
+                                <form action="{{ route('admin.perawat.destroy', $item->id_user) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button>Hapus</button>
+                                </form>
                             </td>
                         </tr>
                         @php $i++; @endphp
