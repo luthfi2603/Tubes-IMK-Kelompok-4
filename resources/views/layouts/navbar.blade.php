@@ -22,27 +22,27 @@
                 <span class="text-md">Reservasi</span>
             </a>
         </li>
-        {{-- <li class="mb-1 group">
-            <a href="" class="flex font-semibold items-center py-2 px-4 text-gray-900 hover:bg-[#222C67] hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100 sidebar-dropdown-toggle">
+        <li class="mb-1 group">
+            <a href="{{ route('pasien.tentang-kami') }}" class="flex font-semibold items-center py-2 px-4 text-gray-900 hover:bg-[#222C67] hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100 sidebar-dropdown-toggle">
                 <i class='bx bx-user mr-3 text-lg'></i>
-                <span class="text-md">Janji Temu</span>
+                <span class="text-md">Tentang Kami</span>
                 <i class="ri-arrow-right-s-line ml-auto group-[.selected]:rotate-90"></i>
             </a>
             <ul class="pl-7 mt-2 hidden group-[.selected]:block">
                 <li class="mb-4">
-                    <a href="" class="text-gray-900 text-md font-semibold flex items-center hover:font-bold hover:text-[#222C67]">All</a>
+                    <a href="#peta-lokasi" class="text-gray-900 text-md font-semibold flex items-center hover:font-bold hover:text-[#222C67]">Peta dan Lokasi</a>
                 </li> 
                 <li class="mb-4">
-                    <a href="" class="text-gray-900 text-md font-semibold flex items-center hover:font-bold hover:text-[#222C67]">Roles</a>
+                    <a href="#kontak-darurat" class="text-gray-900 text-md font-semibold flex items-center hover:font-bold hover:text-[#222C67]">Kontak Darurat</a>
                 </li> 
             </ul>
-        </li> --}}
-        <li class="mb-1 group">
-            <a href="#" class="flex font-semibold items-center py-2 px-4 text-gray-900 hover:bg-[#222C67] hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100">
-                <i class='bx bx-archive mr-3 text-lg'></i>
-                <span class="text-md">Archive</span>
-            </a>
         </li>
+        {{-- <li class="mb-1 group">
+            <a href="{{ route('pasien.tentang-kami') }}" class="flex font-semibold items-center py-2 px-4 text-gray-900 hover:bg-[#222C67] hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100">
+                <i class='bx bx-archive mr-3 text-lg'></i>
+                <span class="text-md">Tentang Kami</span>
+            </a>
+        </li> --}}
         <li class="mb-1 group">
             <a href="#" class="flex font-semibold items-center py-2 px-4 text-gray-900 hover:bg-[#222C67] hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100">
                 <i class='bx bx-bell mr-3 text-lg' ></i>

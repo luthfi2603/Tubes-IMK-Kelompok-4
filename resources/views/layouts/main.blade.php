@@ -20,6 +20,7 @@
         <!-- End Content -->
     </main>
     <script src="https://unpkg.com/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="{{ asset('assets/js/date-picker.js') }}"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
     @stack('scripts')
 </body>
