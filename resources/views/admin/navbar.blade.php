@@ -23,6 +23,12 @@
             </a>
         </li>
         <li class="mb-1 group">
+            <a href="{{ route('admin.perawat.index') }}" class="flex font-semibold items-center py-2 px-4 rounded-md text-gray-900 hover:bg-[#222C67] hover:text-gray-100 {{ request()->is('admin/perawat*') ? 'bg-[#222C67] text-white' : '' }}">
+                <i class='bx bx-user mr-3 text-lg'></i>
+                <span class="text-sm">Kelola Perawat</span>
+            </a>
+        </li>
+        <li class="mb-1 group">
             <a href="" class="flex font-semibold items-center py-2 px-4 text-gray-900 hover:bg-[#222C67] hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100">
                 <i class='bx bx-bell mr-3 text-lg' ></i>
                 <span class="text-sm">Notifications</span>
@@ -131,7 +137,9 @@
                             @if(auth()->user()->foto == null)
                                 <svg id="default" class="w-8 h-8" xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="#222c67"  stroke-width="1"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-user-circle"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M12 10m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /><path d="M6.168 18.849a4 4 0 0 1 3.832 -2.849h4a4 4 0 0 1 3.834 2.855" /></svg>
                             @else
-                                <img class="w-8 h-8 rounded-full" src="{{ asset('storage/' . auth()->user()->foto) }}" alt="">
+                                <div class="w-8 h-8 aspect-square overflow-hidden rounded-full">
+                                    <img src="{{ asset('storage/' . auth()->user()->foto) }}" class="object-cover object-top w-full h-full">
+                                </div>
                             @endif
                             <div class="top-0 left-7 absolute w-3 h-3 bg-lime-400 border-2 border-white rounded-full animate-ping"></div>
                             <div class="top-0 left-7 absolute w-3 h-3 bg-lime-500 border-2 border-white rounded-full"></div>

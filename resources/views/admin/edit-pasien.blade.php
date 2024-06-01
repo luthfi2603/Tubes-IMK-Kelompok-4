@@ -11,7 +11,7 @@
     </div>
 @endif
 <div class="container min-h-screen">
-    <h3 class="text-2xl font-bold mb-5">Edit Data Pasien</h3>
+    <h3 class="text-2xl font-bold mb-5">Ubah Data Pasien</h3>
     <div class="bg-white p-6 rounded-lg shadow-lg opacity-90">
         <form action="{{ route('admin.edit.pasien', $pasien->id) }}" method="POST" class="space-y-4">
             @csrf

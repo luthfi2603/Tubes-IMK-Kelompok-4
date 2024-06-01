@@ -6,16 +6,17 @@
     <title>Klinik RH61</title>
     <link rel="icon" href="{{ asset('assets/img/logo.png') }}" type="image/png">
     <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}">
+    <script src="{{ asset('assets/js/custom-check.js') }}"></script>
 </head>
-<body class="bg-neutral-100 min-h-screen flex flex-col items-center">
+<body class="bg-neutral-100 dark:bg-slate-800 min-h-screen flex flex-col items-center">
     <div class="mx-auto">
         <div class="flex items-center justify-center mb-1">
             <img class="size-52 md:size-64 mx-auto" src="{{ asset('assets/img/logo.png') }}" />
         </div>
 
         <div class="text-center mb-4">
-            <div class="text-zinc-900 text-xl md:text-2xl font-bold leading-[38px]">Mari bergabung bersama kami</div>
-            <div class="text-neutral-400 text-base md:text-lg font-semibold">Silakan pilih pengguna untuk melanjutkan</div>
+            <div class="text-zinc-900 dark:text-white text-xl md:text-2xl font-bold leading-[38px]">Mari bergabung bersama kami</div>
+            <div class="text-neutral-400 dark:text-slate-50 text-base md:text-lg font-semibold">Silakan pilih pengguna untuk melanjutkan</div>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 mb-8">

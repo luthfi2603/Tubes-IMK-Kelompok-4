@@ -10,6 +10,8 @@ export default {
         './public/assets/js/*.js',
     ],
 
+    darkMode: 'class',
+
     theme: {
         extend: {
             borderRadius: {
