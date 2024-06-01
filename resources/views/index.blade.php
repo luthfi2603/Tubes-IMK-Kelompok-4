@@ -9,8 +9,9 @@
     <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <script src="{{ asset('assets/js/custom-check.js') }}"></script>
 </head>
-<body class="font-body bg-[#E3EBF3]">
+<body class="font-body bg-[#E3EBF3] dark:bg-slate-800">
     <div class="container mx-auto px-4">
         <!-- Header Section -->
         <div class="w-full flex justify-between items-center pt-6">
@@ -18,10 +19,10 @@
         </div>
         <!-- Main Content -->
         <div class="relative text-center pb-12 md:pb-6">
-            <h1 class="text-4xl sm:text-2xl md:text-2xl lg:text-4xl xl:text-4xl max-[640px]:text-sm font-bold text-[#0a0a0a] absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-24 max-[640px]:pt-14 sm:pt-10">
+            <h1 class="text-4xl sm:text-2xl md:text-2xl lg:text-4xl xl:text-4xl max-[640px]:text-sm font-bold text-[#0a0a0a] dark:text-white absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-24 max-[640px]:pt-14 sm:pt-10">
                 Kelola Kesehatan Anda dan Masa Depan yang Bahagia
             </h1>
-            <p class="mt-17 text-lg sm:text-md md:text-lg lg:text-xl xl:text-2xl max-[640px]:text-sm text-gray-700 max-[640px]:pt-10 sm:pt-10">
+            <p class="mt-17 text-lg sm:text-md md:text-lg lg:text-xl xl:text-2xl max-[640px]:text-sm text-gray-700 dark:text-slate-50 max-[640px]:pt-10 sm:pt-10">
                 Klinik RH61 adalah klinik kesehatan yang lebih dalam <br>
                 bernaung di bidang kesehatan jantung
             </p>
