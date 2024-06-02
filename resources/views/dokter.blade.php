@@ -2,7 +2,12 @@
 
 @section('container')
 <div class="flex flex-col gap-4">
-    <p class="text-2xl md:text-3xl font-bold">Dokter Kami</p>
+    <div class="flex justify-between items-center ml-4">
+        <h1 class="text-3xl font-bold text-[#222C67]">Dokter Kami</h1>
+    </div>
+
+    <hr class="border-1 border-[#B1B0AF] mb-4 mx-4">
+    
     @if($dokters->isEmpty())
         <div class="mt-4 text-center">
             <p class="text-xl font-bold">Dokter tidak ada</p>

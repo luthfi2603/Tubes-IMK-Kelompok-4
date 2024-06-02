@@ -126,3 +126,28 @@ function toggleFullscreen() {
         document.documentElement.requestFullscreen();
     }
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    var mainLink = document.getElementById('mom-link');
+    var submenu = document.getElementById('child-link');
+
+    mainLink.addEventListener('click', function(event) {
+        if (submenu.classList.contains('hidden')) {
+            event.preventDefault(); // Prevent navigation only when opening the submenu
+            submenu.classList.remove('hidden');
+            submenu.classList.add('block');
+        } else {
+            submenu.classList.add('hidden');
+            submenu.classList.remove('block');
+        }
+    });
+
+    // Close submenu when clicking outside
+    document.addEventListener('click', function(event) {
+        var isClickInside = mainLink.contains(event.target) || submenu.contains(event.target);
+        if (!isClickInside) {
+            submenu.classList.add('hidden');
+            submenu.classList.remove('block');
+        }
+    });
+});

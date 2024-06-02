@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('container')
-    <!-- Dashboard Header -->
+<!-- Dashboard Header -->
 <div class="flex justify-between items-center px-4 mb-3">
     <div class="font-body font-bold text-[#222C67]">
         <h1 class="text-3xl font-bold">Dashboard</h1>
@@ -10,137 +10,172 @@
 
 <hr class="border-1 border-[#B1B0AF] mb-4 mx-4">
 
-<div class="flex flex-col lg:flex-row w-full p-4 space-y-6 lg:space-y-0 lg:space-x-6">
-<!-- Main Content -->
-<div class="flex-1">
-    <div class="bg-[#222C67] p-6 rounded-lg shadow-lg">
-        <div class="flex flex-col md:flex-row justify-between items-center max-[760px]:items-start">
-            <div class="font-body text-white mb-4 md:mb-0">
-                <h1 class="text-xl font-bold text-white py-2">Welcome,</h1>
-                <h2 class="text-2xl font-semibold font-body text-white py-2">Najwa Amanda</h2>
-                <p class="text-white py-1">"Ingat untuk tetap terhidrasi dan minum obat tepat waktu."</p>
-                <button class="mt-4 bg-white font-bold text-blue-600 px-4 py-2 rounded-lg">Buat Janji Temu</button>
+<!-- Main Layout -->
+<div class="flex flex-col xl:flex-row w-full p-4 space-y-6 xl:space-y-0 xl:space-x-6">
+    <!-- Main Content -->
+    <div class="flex-1">
+        <!-- Welcome Card -->
+        <div class="bg-[#222C67] p-6 rounded-lg shadow-lg mb-6 xl:mb-0">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="font-body text-white mb-4 md:mb-0">
+                    <h1 class="text-xl font-bold text-white py-2">Welcome,</h1>
+                    <h2 class="text-2xl font-semibold font-body text-white py-2">Najwa Amanda</h2>
+                    <p class="text-white py-1">"Ingat untuk tetap terhidrasi dan minum obat tepat waktu."</p>
+                    <button class="mt-4 bg-white font-bold text-blue-600 px-4 py-2 rounded-lg">Buat Janji Temu</button>
+                </div>
+                <div class="flex-shrink-0">
+                    <img src="{{ asset('assets/img/patient_illustration.png') }}" alt="Doctor Avatar" class="w-44 h-44">
+                </div>
             </div>
-            <div class="flex-shrink-0">
-                <img src="{{ asset('assets/img/patient_illustration.png') }}" alt="Doctor Avatar" class="w-44 h-44 lg:block md:block max-[760px]:hidden">
+        </div>
+
+        <!-- Health Tips Card -->
+        <div class="bg-white rounded-lg shadow-md p-6 mt-6 flex items-center">
+            <div class="flex-shrink-0 bg-teal-100 rounded-full p-3">
+                <i class="fas fa-heartbeat text-teal-600 text-2xl"></i>
+            </div>
+            <div class="ml-4">
+                <h3 class="text-xl font-bold text-[#222C67]">Health Tips</h3>
+                <p class="text-gray-600">Stay Hydrated - Minum setidaknya 8 gelas air sehari.</p>
+                <p class="text-gray-600">Regular Exercise - Lakukan olahraga minimal 30 menit setiap hari.</p>
+            </div>
+        </div>
+
+        <!-- Health Metrics Chart -->
+        <div class="bg-white rounded-lg shadow-md p-6 mt-6">
+            <h3 class="text-xl font-bold text-[#222C67] mb-4">Health Metrics</h3>
+            <canvas id="healthMetricsChart"></canvas>
+        </div>
+
+        {{-- <!-- Appointment Statistics Chart -->
+        <div class="bg-white rounded-lg shadow-md p-6 mt-6">
+            <h3 class="text-xl font-bold text-[#222C67] mb-4">Appointment Statistics</h3>
+            <canvas id="appointmentStatsChart"></canvas>
+        </div> --}}
+
+        <!-- Notifications Card -->
+        <div class="bg-white border-l-4 border-yellow-600 rounded-lg shadow-md p-4 flex items-center justify-between mt-6">
+            <div class="flex items-center space-x-4">
+                <span class="text-yellow-600 text-2xl">•</span>
+                <div>
+                    <p class="text-lg text-gray-700">
+                        Your appointment with <span class="font-bold text-[#222C67]">dr. blabla</span> on 
+                        <span class="font-bold text-[#222C67]">Monday 1 January at 09:00 AM</span> has been 
+                        <span class="font-semibold text-yellow-600">reserved successfully</span>
+                    </p>
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="mt-8">
-        <div class="bg-white p-6 rounded-lg shadow-lg">
-            <div class="flex justify-between items-center mb-4">
-                <h3 class="text-lg font-semibold">Report</h3>
-                <select class="border-gray-300 rounded-lg">
-                    <option>This Month</option>
-                    <!-- Add more options as needed -->
-                </select>
+    <!-- Right Sidebar -->
+    <div class="w-full xl:w-1/3 flex flex-col space-y-6">
+        <!-- Appointments Card -->
+        <div class="bg-white p-6 rounded-lg shadow-lg max-[1280px]:hidden">
+            <div class="bg-gray-200 py-3 px-4 rounded-t-lg">
+                <h3 class="text-lg font-semibold">Your Appointments</h3>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div class="bg-blue-100 p-4 rounded-lg flex flex-col items-center space-y-2">
-                    <div class="text-4xl font-bold text-blue-800">105</div>
-                    <div>
-                        <p class="text-gray-600 text-center">Total Pasien</p>
-                    </div>
-                </div>
-                <div class="bg-red-100 p-4 rounded-lg flex flex-col items-center space-y-2">
-                    <div class="text-4xl font-bold text-red-800">89</div>
-                    <div>
-                        <p class="text-gray-600 text-center">Konsultasi</p>
-                    </div>
-                </div>
-                <div class="bg-yellow-100 p-4 rounded-lg flex flex-col items-center space-y-2">
-                    <div class="text-4xl font-bold text-yellow-800">72</div>
-                    <div>
-                        <p class="text-gray-600 text-center">Rawat Inap & Jalan</p>
-                    </div>
+            <hr class="border-gray-300">
+            <div class="flex justify-center pt-3">
+                <div class="w-full max-w-xs mx-auto flex justify-center">
+                    <div inline-datepicker data-date="02/02/2022"></div>
                 </div>
             </div>
-            
         </div>
-    </div>
 
-    <div class="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div class="bg-white p-6 rounded-lg shadow-lg h-full">
-            <div class="flex justify-between items-center mb-4">
-                <h3 class="text-lg font-semibold">Patients</h3>
-                <select class="border-gray-300 rounded-lg">
-                    <option>This Week</option>
-                    
-                </select>
+        <!-- Upcoming Appointments Card -->
+        <div class="bg-white rounded-lg shadow-md p-6 flex items-center">
+            <div class="flex-shrink-0 bg-blue-100 rounded-full p-3">
+                <i class="fas fa-calendar-check text-blue-600 text-2xl"></i>
             </div>
-            <div> 
-                <canvas id="patientsChart"></canvas>
+            <div class="ml-4">
+                <h3 class="text-xl font-bold text-[#222C67]">Upcoming Appointments</h3>
+                <p class="text-gray-600 my-2">Dr. blabla - 1 Januari 2024, 10:00 AM</p>
+                <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-lg">Menunggu</span>
             </div>
         </div>
-        <div class="bg-white p-6 rounded-lg shadow-lg h-full">
-            <div class="flex justify-between items-center mb-4">
-                <h3 class="text-lg font-semibold">Gender</h3>
-                <select class="border-gray-300 rounded-lg">
-                    <option>2023</option>
-                    
-                </select>
+
+        <!-- Medical Records Card -->
+        <div class="bg-white rounded-lg shadow-md p-6 flex items-center">
+            <div class="flex-shrink-0 bg-green-100 rounded-full p-3">
+                <i class="fas fa-file-medical text-green-600 text-2xl"></i>
             </div>
-            <canvas id="genderChart"></canvas>
+            <div class="ml-4 space-y-3">
+                <h3 class="text-xl font-bold text-[#222C67]">Recent Medical Records</h3>
+                <p class="text-gray-600">Dr. yaya - 10 Februari 2024</p>
+                <a href="{{ route('pasien.rekam-medis', 1) }}" class="text-blue-600 hover:underline">View</a>
+            </div>
         </div>
     </div>
 </div>
 
-<!-- Right Sidebar -->
-<div class="w-full lg:w-1/3">
-    <div class="bg-white mb-6 w-full pb-4">
-        <div class="bg-gray-200 py-3 px-4 rounded-t-lg">
-            <h3 class="text-lg font-semibold">Your Appointments</h3>
-        </div>
-        <hr class="border-gray-300">
-        <div class="flex justify-center pb-6 pt-3">
-            <div class="w-full max-w-xs mx-auto flex justify-center">
-                <div inline-datepicker data-date="02/02/2022"></div>
-            </div>
-        </div>
-    </div>
-    
-    <div>
-        <div class="flex items-center justify-between bg-blue-100 p-3 rounded-lg mb-2">
-            <div>
-                <h4 class="font-semibold">Brian Matthew Ufi</h4>
-                <p class="text-gray-600">10:00 am - 11:00 am</p>
-            </div>
-            <a href="#">
-                <i class="fa-solid fa-circle-chevron-right fa-lg p-2 w-full h-full"></i>
-            </a>
-        </div>
-        <div class="flex items-center justify-between bg-red-100 p-3 rounded-lg mb-2">
-            <div>
-                <h4 class="font-semibold">Brian Matthew Ufi</h4>
-                <p class="text-gray-600">10:00 am - 11:00 am</p>
-            </div>
-            <a href="#">
-                <i class="fa-solid fa-circle-chevron-right fa-lg p-2 w-full h-full"></i>
-            </a>
-        </div>
-        <div class="flex items-center justify-between bg-yellow-100 p-3 rounded-lg mb-2">
-            <div>
-                <h4 class="font-semibold">Brian Matthew Ufi</h4>
-                <p class="text-gray-600">10:00 am - 11:00 am</p>
-            </div>
-            <a href="#">
-                <i class="fa-solid fa-circle-chevron-right fa-lg p-2 w-full h-full"></i>
-            </a>
-        </div>
-        <div class="flex items-center justify-between bg-green-100 p-3 rounded-lg mb-2">
-            <div>
-                <h4 class="font-semibold">Brian Matthew Ufi</h4>
-                <p class="text-gray-600">10:00 am - 11:00 am</p>
-            </div>
-            <a href="#">
-                <i class="fa-solid fa-circle-chevron-right fa-lg p-2 w-full h-full"></i>
-            </a>
-        </div>
-        <div class="text-center mt-4 rounded-lg w-full">
-            <button class="p-2 bg-gray-300 rounded-lg">View All Appointments</button>
-        </div>
-     </div>
-    </div>
-</div>
+@push('scripts')
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // Health Metrics Chart
+    const healthMetricsCtx = document.getElementById('healthMetricsChart').getContext('2d');
+    const healthMetricsChart = new Chart(healthMetricsCtx, {
+        type: 'line',
+        data: {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+            datasets: [
+                {
+                    label: 'Blood Pressure',
+                    data: [120, 125, 130, 140, 135, 125],
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                },
+                {
+                    label: 'Glucose Levels',
+                    data: [90, 95, 100, 105, 110, 100],
+                    backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                    borderColor: 'rgba(153, 102, 255, 1)',
+                    borderWidth: 1
+                },
+                {
+                    label: 'Weight',
+                    data: [70, 72, 75, 73, 74, 72],
+                    backgroundColor: 'rgba(255, 206, 86, 0.2)',
+                    borderColor: 'rgba(255, 206, 86, 1)',
+                    borderWidth: 1
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    // Appointment Statistics Chart
+    const appointmentStatsCtx = document.getElementById('appointmentStatsChart').getContext('2d');
+    const appointmentStatsChart = new Chart(appointmentStatsCtx, {
+        type: 'pie',
+        data: {
+            labels: ['Past Appointments', 'Upcoming Appointments'],
+            datasets: [{
+                label: 'Appointments',
+                data: [5, 3],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true
+        }
+    });
+</script>
+@endpush
 @endsection
