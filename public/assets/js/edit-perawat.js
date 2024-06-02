@@ -51,6 +51,9 @@ inputFoto.addEventListener('change', () => {
             if(tombolHapusFoto){
                 tombolHapusFoto.classList.remove('hidden');
             }
+            if(tombolBatal){
+                tombolBatal.classList.add('hidden');
+            }
             if(tombolHapusFotoTidakAdaFoto){
                 tombolHapusFotoTidakAdaFoto.classList.add('hidden');
                 defaultIcon.classList.remove('hidden');

@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Klinik RH61</title>
-    <link rel="shortcut icon" href="{{ asset('./assets/img/logo.png') }}" type="image/x-icon">
-    <link rel="stylesheet" href="{{ asset('./assets/css/app.css') }}">
+    <link rel="shortcut icon" href="{{ asset('assets/img/logo.png') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
 </head>
 <body class="min-h-screen bg-gray-100 text-gray-900 flex justify-center">
@@ -48,7 +48,7 @@
                                     class="ml-2 text-sm font-bold text-gray-700 tracking-wide">Kata Sandi</label>
                                 <input type="password" name="password" id="password"
                                     class="w-full px-5 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-400 text-sm focus:outline-none focus:border-gray-400 focus:bg-white @error('password')  @enderror"
-                                    value="{{ old('password') }}" type="password" placeholder="Masukkan kata sandi anda" />
+                                    value="{{ old('password') }}" placeholder="Masukkan kata sandi anda">
                                 <i class="fas fa-eye absolute right-3 top-10 cursor-pointer" id="toggle-password"></i>
                                 @error('password')
                                     <div class="text-[#B42223] text-bold text-sm">
