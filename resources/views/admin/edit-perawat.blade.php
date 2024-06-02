@@ -54,7 +54,7 @@
             </div>
             <div class="flex flex-col w-full">
                 <label for="nama">Nama Lengkap</label>
-                <input type="text" name="nama" id="nama" placeholder="Masukkan nama lengkap" class="rounded-lg" value="{{ old('nama', $perawat->nama) }}">
+                <input type="text" name="nama" id="nama" placeholder="Masukkan nama lengkap" class="rounded-lg" value="{{ old('nama', $perawat->nama) }}" autofocus>
                 @error('nama')
                     <div class="text-[#B42223] text-bold text-sm">
                         {{ $message }}

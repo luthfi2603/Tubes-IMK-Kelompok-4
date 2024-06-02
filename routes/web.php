@@ -128,6 +128,7 @@ Route::middleware(['auth', 'role:Admin'])->group(function(){
                 Route::put('/perawat/edit/{pk}', 'updatePerawat');
                 Route::delete('/perawat/destroy/{pk}', 'destroyPerawat')
                     ->name('perawat.destroy');
+                Route::post('/cari/perawat', 'cariPerawat');
             });
         });
     });

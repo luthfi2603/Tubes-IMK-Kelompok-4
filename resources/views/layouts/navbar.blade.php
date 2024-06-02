@@ -11,7 +11,7 @@
             </a>
         </li>
         <li class="mb-1 group">
-            <a href="{{ '/dokter' }}" class="flex font-semibold items-center py-2 px-4 text-gray-900 hover:bg-[#222C67] hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100 {{ request()->is('dokter') ? 'bg-[#222C67] text-white' : '' }}">
+            <a href="{{ route('dokter') }}" class="flex font-semibold items-center py-2 px-4 text-gray-900 hover:bg-[#222C67] hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100 {{ request()->is('dokter') ? 'bg-[#222C67] text-white' : '' }}">
                 <i class="fa-solid fa-calendar-day mr-4 text-lg"></i>
                 <span class="text-md">Dokter</span>
             </a>

@@ -15,12 +15,12 @@
 <body class="text-gray-800 font-body">
     @include('layouts.navbar')
         <!-- Content -->
-        <div class="p-6 dark:bg-slate-800 transition-colors">
+        <div class="p-6 dark:bg-slate-800 dark:text-slate-500 transition-colors">
             @yield('container')
         </div>
         <!-- End Content -->
     </main>
-    <script src="https://unpkg.com/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="{{ asset('assets/framework/popper.min.js') }}"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
     <script src="{{ asset('assets/js/custom.js') }}"></script>
     @stack('scripts')

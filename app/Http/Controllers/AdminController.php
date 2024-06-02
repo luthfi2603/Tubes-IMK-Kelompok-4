@@ -215,7 +215,7 @@ class AdminController extends Controller {
     }
 
     public function indexPerawat(){
-        $perawats = DB::table('view_data_perawat')->get();
+        $perawats = DB::table('view_data_perawat')->paginate(10);
         
         return view('admin.kelola-perawat', compact('perawats'));
     }
@@ -430,5 +430,20 @@ class AdminController extends Controller {
         $user->delete();
 
         return back()->with('success', 'Perawat berhasil dihapus');
+    }
+
+    public function cariPerawat(Request $request){
+        $kataKunci = $request->kataKunci;
+
+        $perawats = DB::table('view_data_perawat')
+            ->where(function ($query) use ($kataKunci) {
+                $query->where('nama', 'LIKE', '%' . $kataKunci . '%')
+                    ->orWhere('nomor_handphone', 'LIKE', '%' . $kataKunci . '%')
+                    ->orWhere('jenis_kelamin', 'LIKE', '%' . $kataKunci . '%')
+                    ->orWhere('alamat', 'LIKE', '%' . $kataKunci . '%');
+            })
+            ->get();
+
+        return response()->json(['perawats' => $perawats]);
     }
 }
