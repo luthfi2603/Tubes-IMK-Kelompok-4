@@ -121,13 +121,24 @@ Route::middleware(['auth', 'role:Admin'])->group(function(){
                 Route::get('/edit-pasien/{nohp}', 'editPasien')
                     ->name('edit.pasien');
                 Route::put('/edit-pasien/{nohp}', 'updatePasien');
-                Route::post('/ban-pasien/{nomor_handphone}','banPasien')
+                Route::post('/ban-pasien/{nomor_handphone}', 'banPasien')
                     ->name('ban.pasien');
-                Route::post('/unban-pasien/{nomor_handphone}','unbanPasien')
+                Route::post('/unban-pasien/{nomor_handphone}', 'unbanPasien')
                     ->name('unban.pasien');
-                Route::get('/tambah-pasien','createPasien')
+                Route::get('/tambah-pasien', 'createPasien')
                     ->name('tambah.pasien');
-                Route::post('/tambah-pasien','storePasien');
+                Route::post('/tambah-pasien', 'storePasien');
+                Route::get('/perawat', 'indexPerawat')
+                    ->name('perawat.index');
+                Route::get('/perawat/input', 'createPerawat')
+                    ->name('perawat.input');
+                Route::post('/perawat/input', 'storePerawat');
+                Route::get('/perawat/edit/{pk}', 'editPerawat')
+                    ->name('perawat.edit');
+                Route::put('/perawat/edit/{pk}', 'updatePerawat');
+                Route::delete('/perawat/destroy/{pk}', 'destroyPerawat')
+                    ->name('perawat.destroy');
+                Route::post('/cari/perawat', 'cariPerawat');
             });
         });
     });

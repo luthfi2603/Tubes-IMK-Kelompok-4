@@ -254,7 +254,7 @@ class PasienController extends Controller {
             'foto.required' => 'Silahkan pilih foto terlebih dahulu.',
             'foto.image' => 'File yang boleh dimasukkan berupa foto.',
             'foto.mimes' => 'Format foto yang diperbolehkan adalah: jpeg, png, jpg.',
-            'foto.max' => 'Ukuran maksimal foto yang diunggah adalah 2MB.',
+            'foto.max' => 'Ukuran maksimal foto yang diunggah adalah 2 MB.',
         ];
 
         $validator = Validator::make($request->all(), [

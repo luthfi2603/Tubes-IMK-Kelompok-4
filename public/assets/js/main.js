@@ -74,12 +74,23 @@ document.addEventListener('click', function (e) {
             hideDropdown()
             menuEl.classList.remove('hidden')
             showPopper(popperId)
+
+            if(typeof cari !== 'undefined'){ // kalau variabel cari ada
+                cari.focus();
+            }
         } else {
             menuEl.classList.add('hidden')
             hidePopper(popperId)
         }
     } else if (!menu) {
         hideDropdown()
+
+        if(location.pathname == '/admin/perawat'){
+            if(statusCariPerawat){
+                statusCariPerawat = false;
+                location.reload();
+            }
+        }
     }
 })
 
