@@ -18,9 +18,11 @@ export default {
                 '4xl': '10rem'
             },
             width: {
+                '20': '5rem',
                 '100': '30rem'
             },
             height: {
+                '20': '5rem',
                 '80': '19rem',
                 '90': '20rem',
                 '150': '120vh',

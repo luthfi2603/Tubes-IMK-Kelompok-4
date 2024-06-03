@@ -20,6 +20,18 @@ Route::middleware(['auth', 'role:Pasien'])->group(function(){
     Route::controller(PasienController::class)->group(function(){
         Route::get('/dashboard', 'showDashboardPasien')
             ->name('pasien.dashboard');
+        Route::get('/tentang-kami', function(){
+                return view('tentang-kami');
+             })->name('pasien.tentang-kami');
+        Route::get('/rekam-medis', function(){
+                return view('rekam-medis');
+             })->name('pasien.rekam-medis');
+        Route::get('/detail-rekam-medis', function(){
+                return view('detail-rekam-medis');
+             })->name('pasien.detail-rekam-medis');
+        Route::get('/notifikasi', function(){
+                return view('notifikasi');
+             })->name('pasien.notifikasi-pasien');
         Route::get('/profil', 'editProfil')
             ->name('pasien.profil');
         Route::put('/profil', 'updateProfil');
@@ -47,9 +59,7 @@ Route::middleware(['auth', 'role:Pasien'])->group(function(){
             ->name('dokter');
     });
 
-    Route::get('/informasi', function(){
-        return view('informasi');
-    });
+    
 });
 
 
