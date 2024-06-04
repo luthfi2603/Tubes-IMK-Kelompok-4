@@ -365,7 +365,20 @@ class PasienController extends Controller {
             ->latest()
             ->get();
 
-        return view('reservasi', compact('reservasis'));
+        $idUserDokter = Dokter::pluck('id_user');
+
+        $users = User::whereIn('id', $idUserDokter)->get();
+        
+        $docterPhotos = [];
+
+        foreach ($users as $key) {
+            $docterPhotos[] = [
+                'nama_dokter' => $key->dokter->nama,
+                'foto' => $key->foto,
+            ];
+        }
+
+        return view('reservasi', compact('reservasis', 'docterPhotos'));
     }
 
     public function createReservasi(){
@@ -414,6 +427,22 @@ class PasienController extends Controller {
         $umur = Carbon::parse($auth->pasien->tanggal_lahir)->age;
         $dataDokter = explode('|', $request->dokter);
 
+        // ini untuk membuat waktu rekomendasi untuk antrian
+        $cekAntrian = Reservasi::select('id')
+            ->where('nama_dokter', $dataDokter[0])
+            ->where('tanggal', $request->tanggal)
+            ->where(function($query){
+                $query->where('status', 'Menunggu')
+                      ->orWhere('status', 'Selesai');
+            })
+            ->get();
+
+        $waktuAwal = explode('-', $dataDokter[1]);
+        $waktuAwal = $waktuAwal[0];
+        $waktuAwal = Carbon::createFromFormat('H:i', $waktuAwal);
+        $waktuRekomendasiCarbon = $waktuAwal->addMinutes(count($cekAntrian) * 20);
+        $waktuRekomendasi = $waktuRekomendasiCarbon->format('H:i');
+
         $today = Carbon::today();
         $carbonDateToCheck = Carbon::parse($request->tanggal);
         $isDateGreaterThanToday = $carbonDateToCheck->gt($today);
@@ -422,13 +451,20 @@ class PasienController extends Controller {
             $waktuAkhir = explode('-', $dataDokter[1]);
             $waktuAkhir = $waktuAkhir[1];
             
-            $carbonTime = Carbon::createFromFormat('H:i', $waktuAkhir);
-            $newTime = $carbonTime->subHour();
+            $waktuAkhirCarbon = Carbon::createFromFormat('H:i', $waktuAkhir);
+            $waktuAkhirCarbonKurang1Jam = $waktuAkhirCarbon->subHour();
             $currentTime = Carbon::now();
-    
-            $isCurrentTimeLess = $currentTime->lt($newTime);
+            $isCurrentTimeLess = $currentTime->lt($waktuAkhirCarbonKurang1Jam);
+
+            // cek apakah waktu rekomendasi lebih besar dari waktu akhir jadwal dokter
+            $waktuAkhirCarbon = Carbon::createFromFormat('H:i', $waktuAkhir);
+            $waktuAkhirCarbonKurang20Menit = $waktuAkhirCarbon->subMinutes(20);
+            $apakahWaktuRekomendasiLebihDari = $waktuRekomendasiCarbon->gt($waktuAkhirCarbonKurang20Menit);
             
             if($isCurrentTimeLess){ // waktu lebih kecil dari 1 jam sebelum
+                if($apakahWaktuRekomendasiLebihDari){
+                    return back()->with('failed', 'Antrian sudah penuh, silahkan pilih hari berikutnya');
+                }
                 Reservasi::create([
                     'nama_pasien' => $auth->pasien->nama,
                     'umur' => $umur,
@@ -442,7 +478,7 @@ class PasienController extends Controller {
                     'jam' => $dataDokter[1],
                 ]);
             }else{
-                return back()->with('failed', 'Waktu reservasi dokter ini sudah terlambat, disarankan daftar 1 jam sebelum waktu dokter habis');
+                return back()->with('failed', 'Waktu reservasi dokter ini sudah habis, disarankan daftar 1 jam sebelum waktu dokter berakhir');
             }
         }else{ // masa depan
             Reservasi::create([
@@ -459,7 +495,7 @@ class PasienController extends Controller {
             ]);
         }
 
-        return back()->with('success', 'Reservasi berhasil, datanglah sesuai jadwal yang telah dipilih');
+        return back()->with('success', 'Reservasi berhasil, datanglah jam ' . $waktuRekomendasi);
     }
 
     public function indexDokter(){

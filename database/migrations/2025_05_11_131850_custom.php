@@ -69,6 +69,20 @@ return new class extends Migration {
             FROM users a
             INNER JOIN perawats b ON b.id_user = a.id
             ORDER BY b.nama;
+
+            SET GLOBAL event_scheduler = ON;
+            DROP EVENT IF EXISTS event_ubah_status_reservasi;
+            DELIMITER //
+            CREATE EVENT event_ubah_status_reservasi
+            ON SCHEDULE EVERY 1 DAY
+            STARTS CURRENT_DATE + INTERVAL 1 DAY
+            DO
+            BEGIN
+                UPDATE reservasis
+                SET status = "Batal"
+                WHERE tanggal < CURDATE() AND status = "Menunggu";
+            END //
+            DELIMITER ;
         ');
     }
 };
