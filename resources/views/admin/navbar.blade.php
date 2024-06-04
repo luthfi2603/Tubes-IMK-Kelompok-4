@@ -29,16 +29,16 @@
             </a>
         </li>
         <li class="mb-1 group">
-            <a href="" class="flex font-semibold items-center py-2 px-4 text-gray-900 hover:bg-[#222C67] hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100">
-                <i class='bx bx-bell mr-3 text-lg' ></i>
-                <span class="text-sm">Notifications</span>
-                <span class=" md:block px-2 py-0.5 ml-auto text-xs font-medium tracking-wide text-red-600 bg-red-200 rounded-full">5</span>
+            <a href="{{ route('admin.index.antrian') }}" class="flex font-semibold items-center py-2 px-4 text-gray-900 hover:bg-[#222C67] hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100 {{ request()->is('admin/antrian*') ? 'bg-[#222C67] text-white' : '' }}">
+                <img src="{{ asset('./assets/img/queue.png') }}" alt="Antrian" class="mr-3 w-6">      
+                <span class="text-sm">Antrian</span>
             </a>
         </li>
         <li class="mb-1 group">
             <a href="" class="flex font-semibold items-center py-2 px-4 text-gray-900 hover:bg-[#222C67] hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100">
-                <img src="{{ asset('./assets/img/queue.png') }}" alt="Antrian" class="mr-3 w-6">      
-                <span class="text-sm">Antrian</span>
+                <i class='bx bx-bell mr-3 text-lg' ></i>
+                <span class="text-sm">Notifications</span>
+                <span class=" md:block px-2 py-0.5 ml-auto text-xs font-medium tracking-wide text-red-600 bg-red-200 rounded-full">5</span>
             </a>
         </li>
     </ul>

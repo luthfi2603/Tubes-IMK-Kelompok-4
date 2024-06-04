@@ -10,6 +10,7 @@ return new class extends Migration {
      */
     public function up(): void {
         Schema::create('reservasis', function (Blueprint $table) {
+            $table->id();
             $table->string('nama_pasien');
             $table->unsignedTinyInteger('umur');
             $table->enum('jenis_kelamin', ['P', 'L']);

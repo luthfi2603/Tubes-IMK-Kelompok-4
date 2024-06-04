@@ -7,7 +7,7 @@
         <h1 class="text-3xl font-bold">Rekam Medis Pasien</h1>
     </div>
     <div>
-        <a href="{{ route('dokter.tambah-rekam-medis') }}">
+        <a href="{{ route('dokter.rekam.medis.create') }}">
             <button class="bg-green-500 text-white p-2 rounded-lg hover:bg-green-600 transition duration-300 ease-in-out">
                 Tambah Rekam Medis
             </button>

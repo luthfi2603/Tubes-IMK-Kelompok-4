@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Pasien;
 use App\Models\Perawat;
@@ -445,5 +446,31 @@ class AdminController extends Controller {
             ->get();
 
         return response()->json(['perawats' => $perawats]);
+    }
+
+    public function indexAntrian(){
+        $tanggalHariIni = Carbon::now()->format('Y-m-d');
+
+        $antrians = Reservasi::orderBy('updated_at')
+            ->where('tanggal', $tanggalHariIni)
+            ->get();
+        
+        return view('admin.antrian', compact('antrians'));
+    }
+
+    public function indexAntrianTanggal(Request $request){
+        $antrians = Reservasi::orderBy('updated_at')
+            ->where('tanggal', $request->tanggal)
+            ->get();
+
+        return response()->json(['antrians' => $antrians]);
+    }
+
+    public function updateStatusAntrian(Request $request){
+        $reservasi = Reservasi::find($request->id);
+
+        $reservasi->update([
+            'status' => $request->status
+        ]);
     }
 }
