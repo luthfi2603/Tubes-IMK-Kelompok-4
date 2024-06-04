@@ -41,10 +41,12 @@ document.querySelectorAll('.sidebar-dropdown-toggle').forEach(function (item) {
 
 // start: Popper
 const popperInstance = {}
-document.querySelectorAll('.dropdown').forEach(function (item, index) {
+document.querySelectorAll('.dropdown').forEach(function(item, index){
     const popperId = 'popper-' + index
     const toggle = item.querySelector('.dropdown-toggle')
     const menu = item.querySelector('.dropdown-menu')
+    const placement = item.getAttribute('data-placement') || 'bottom-end'
+
     menu.dataset.popperId = popperId
     popperInstance[popperId] = Popper.createPopper(toggle, menu, {
         modifiers: [
@@ -61,7 +63,7 @@ document.querySelectorAll('.dropdown').forEach(function (item, index) {
                 },
             },
         ],
-        placement: 'bottom-end'
+        placement: placement
     });
 })
 document.addEventListener('click', function (e) {
@@ -142,23 +144,27 @@ document.addEventListener('DOMContentLoaded', function() {
     var mainLink = document.getElementById('mom-link');
     var submenu = document.getElementById('child-link');
 
-    mainLink.addEventListener('click', function(event) {
-        if (submenu.classList.contains('hidden')) {
-            event.preventDefault(); // Prevent navigation only when opening the submenu
-            submenu.classList.remove('hidden');
-            submenu.classList.add('block');
-        } else {
-            submenu.classList.add('hidden');
-            submenu.classList.remove('block');
-        }
-    });
+    if(mainLink){
+        mainLink.addEventListener('click', function(event) {
+            if (submenu.classList.contains('hidden')) {
+                event.preventDefault(); // Prevent navigation only when opening the submenu
+                submenu.classList.remove('hidden');
+                submenu.classList.add('block');
+            } else {
+                submenu.classList.add('hidden');
+                submenu.classList.remove('block');
+            }
+        });
+    }
 
     // Close submenu when clicking outside
-    document.addEventListener('click', function(event) {
-        var isClickInside = mainLink.contains(event.target) || submenu.contains(event.target);
-        if (!isClickInside) {
-            submenu.classList.add('hidden');
-            submenu.classList.remove('block');
-        }
-    });
+    if(mainLink){
+        document.addEventListener('click', function(event) {
+            var isClickInside = mainLink.contains(event.target) || submenu.contains(event.target);
+            if (!isClickInside) {
+                submenu.classList.add('hidden');
+                submenu.classList.remove('block');
+            }
+        });
+    }
 });

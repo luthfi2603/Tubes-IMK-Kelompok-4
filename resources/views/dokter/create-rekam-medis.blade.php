@@ -50,7 +50,7 @@
                 <a href="" class="inline-block align-baseline font-bold text-md text-red-500 hover:text-red-700 mr-4">
                     Reset
                 </a>
-                <a href="{{ route('dokter.report-logs-dokter') }}" class="inline-block align-baseline font-bold text-md text-yellow-500 hover:text-yellow-800">
+                <a href="{{ route('dokter.rekam.medis') }}" class="inline-block align-baseline font-bold text-md text-yellow-500 hover:text-yellow-800">
                     Kembali
                 </a>
             </div>

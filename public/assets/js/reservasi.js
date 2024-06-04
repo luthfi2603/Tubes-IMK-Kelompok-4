@@ -90,7 +90,7 @@ const daftarDokter =  async () => {
 if(inputTanggal.value && inputSpesialis.value){
     const date = new Date(inputTanggal.value);
     hariDiPilih = hariHari[date.getDay()];
-    informasiHari.innerHTML = hariDiPilih;
+    informasiHari.innerHTML = `Hari yang dipilih adalah hari ${hariDiPilih}`;
     informasiHari.classList.remove('hidden');
     inputDokter.disabled = false;
 
@@ -106,6 +106,6 @@ if(inputSpesialis.value){
 if(inputTanggal.value){
     const date = new Date(inputTanggal.value);
     hariDiPilih = hariHari[date.getDay()];
-    informasiHari.innerHTML = hariDiPilih;
+    informasiHari.innerHTML = `Hari yang dipilih adalah hari ${hariDiPilih}`;
     informasiHari.classList.remove('hidden');
 }

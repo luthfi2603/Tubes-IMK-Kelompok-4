@@ -69,6 +69,10 @@ Route::middleware(['auth', 'role:Dokter'])->group(function(){
             Route::controller(DokterController::class)->group(function(){
                 Route::get('/dashboard', 'showDashboardDokter')
                     ->name('dashboard');
+                Route::get('/rekam-medis', 'indexRekamMedis')
+                    ->name('rekam.medis');
+                Route::get('/rekam-medis/create', 'createRekamMedis')
+                    ->name('rekam.medis.create');
                 
                 Route::get('/appointment-dokter', function(){
                     return view('dokter.appointment-dokter');
@@ -77,14 +81,6 @@ Route::middleware(['auth', 'role:Dokter'])->group(function(){
                 Route::get('/doctors-dokter', function(){
                     return view('dokter.doctors-dokter');
                 })->name('doctors-dokter');
-                
-                Route::get('/report-logs-dokter', function(){
-                    return view('dokter.report-logs-dokter');
-                })->name('report-logs-dokter');
-
-                Route::get('/tambah-rekam-medis', function(){
-                    return view('dokter.tambah-rekam-medis');
-                })->name('tambah-rekam-medis');
                 
                 Route::get('/detail-dokter', function(){
                     return view('dokter.detail-dokter');
@@ -139,6 +135,10 @@ Route::middleware(['auth', 'role:Admin'])->group(function(){
                 Route::delete('/perawat/destroy/{pk}', 'destroyPerawat')
                     ->name('perawat.destroy');
                 Route::post('/cari/perawat', 'cariPerawat');
+                Route::get('/antrian', 'indexAntrian')
+                    ->name('index.antrian');
+                Route::post('/antrian/tanggal', 'indexAntrianTanggal');
+                Route::put('/antrian/update', 'updateStatusAntrian');
             });
         });
     });
