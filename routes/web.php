@@ -58,8 +58,6 @@ Route::middleware(['auth', 'role:Pasien'])->group(function(){
         Route::get('/dokter', 'indexDokter')
             ->name('dokter');
     });
-
-    
 });
 
 

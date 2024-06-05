@@ -361,7 +361,8 @@ class PasienController extends Controller {
     }
     
     public function indexReservasi(){
-        $reservasis = Reservasi::where('nomor_handphone', auth()->user()->nomor_handphone)
+        $reservasis = DB::table('view_reservasi')
+            ->where('nomor_handphone', auth()->user()->nomor_handphone)
             ->latest()
             ->get();
 
@@ -444,6 +445,7 @@ class PasienController extends Controller {
         $waktuRekomendasi = $waktuRekomendasiCarbon->format('H:i');
 
         $today = Carbon::today();
+        $currentTime = Carbon::now();
         $carbonDateToCheck = Carbon::parse($request->tanggal);
         $isDateGreaterThanToday = $carbonDateToCheck->gt($today);
 
@@ -453,7 +455,6 @@ class PasienController extends Controller {
             
             $waktuAkhirCarbon = Carbon::createFromFormat('H:i', $waktuAkhir);
             $waktuAkhirCarbonKurang1Jam = $waktuAkhirCarbon->subHour();
-            $currentTime = Carbon::now();
             $isCurrentTimeLess = $currentTime->lt($waktuAkhirCarbonKurang1Jam);
 
             // cek apakah waktu rekomendasi lebih besar dari waktu akhir jadwal dokter
@@ -476,6 +477,8 @@ class PasienController extends Controller {
                     'jenis_kelamin' => $auth->pasien->jenis_kelamin,
                     'tanggal' => $request->tanggal,
                     'jam' => $dataDokter[1],
+                    'created_at' => $currentTime,
+                    'updated_at' => $currentTime,
                 ]);
             }else{
                 return back()->with('failed', 'Waktu reservasi dokter ini sudah habis, disarankan daftar 1 jam sebelum waktu dokter berakhir');
@@ -492,6 +495,8 @@ class PasienController extends Controller {
                 'jenis_kelamin' => $auth->pasien->jenis_kelamin,
                 'tanggal' => $request->tanggal,
                 'jam' => $dataDokter[1],
+                'created_at' => $currentTime,
+                'updated_at' => $currentTime,
             ]);
         }
 

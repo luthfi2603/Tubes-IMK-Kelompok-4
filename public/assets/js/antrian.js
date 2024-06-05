@@ -83,6 +83,15 @@ const refreshTable = async () => {
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">${item.nama_pasien}</td>
                         <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">${item.nama_dokter}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">
+                            ${(() => {
+                                if(item.waktu_rekomendasi){
+                                    return item.waktu_rekomendasi.substring(0, 5);
+                                }else{
+                                    return '';
+                                }
+                            })()}
+                        </td>
                         <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">${item.nomor_handphone}</td>
                         <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">${item.alamat}</td>
                     </tr>

@@ -22,6 +22,7 @@
                     {{-- <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">Jam Reservasi</th> --}}
                     <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">Nama Pasien</th>
                     <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">Nama Dokter</th>
+                    <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">Waktu</th>
                     <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">Nomor Handphone</th>
                     <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">Alamat Pasien</th>
                 </tr>
@@ -78,6 +79,11 @@
                             </td> --}}
                             <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">{{ $item->nama_pasien }}</td>
                             <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">{{ $item->nama_dokter }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">
+                                @if($item->waktu_rekomendasi)
+                                    {{ \Carbon\Carbon::parse($item->waktu_rekomendasi)->format('H:i') }}
+                                @endif
+                            </td>
                             <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">{{ $item->nomor_handphone }}</td>
                             <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">{{ $item->alamat }}</td>
                         </tr>
