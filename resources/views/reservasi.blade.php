@@ -61,8 +61,11 @@
                     <div>
                         <h2 class="text-xl font-semibold text-[#222C67]">{{ $reservasi->nama_dokter }}</h2>
                         <p class="text-md py-0.5 text-gray-600">{{ $reservasi->spesialis }}</p>
-                        <p class="text-md py-0.5 text-gray-600">{{ \Carbon\Carbon::parse($reservasi->tanggal)->translatedFormat('l, d F Y') }}</p>
-                        <p class="text-md py-0.5 text-gray-600">{{ $reservasi->jam }}</p>
+                        <p class="text-md py-0.5 text-gray-600">Dibuat pada : {{ \Carbon\Carbon::parse($reservasi->created_at)->translatedFormat('l, d F Y, H:i') }}</p>
+                        <p class="text-md py-0.5 text-gray-600">Waktu kunjungan : {{ \Carbon\Carbon::parse($reservasi->tanggal)->translatedFormat('l, d F Y') }}</p>
+                        @if($reservasi->waktu_rekomendasi)
+                            <p class="text-md py-0.5 text-gray-600">Pada pukul : {{ \Carbon\Carbon::parse($reservasi->waktu_rekomendasi)->format('H:i') }}</p>
+                        @endif
                     </div>
                 </div>
                 @if($reservasi->status == 'Menunggu')

@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\DB;
 
 return new class extends Migration {
     public function up(): void {
-        DB::unprepared('
+        DB::unprepared("
             DROP VIEW IF EXISTS data_pasien;
             CREATE VIEW data_pasien AS
             SELECT
@@ -59,8 +59,8 @@ return new class extends Migration {
             DROP VIEW IF EXISTS view_data_perawat;
             CREATE VIEW view_data_perawat AS
             SELECT
-                a.id AS \'id_user\',
-                b.id AS \'id_perawat\',
+                a.id AS 'id_user',
+                b.id AS 'id_perawat',
                 b.nama,
                 a.nomor_handphone,
                 b.jenis_kelamin,
@@ -79,10 +79,50 @@ return new class extends Migration {
             DO
             BEGIN
                 UPDATE reservasis
-                SET status = "Batal"
-                WHERE tanggal < CURDATE() AND status = "Menunggu";
-            END //
+                SET status = 'Batal'
+                WHERE tanggal < CURDATE() AND status = 'Menunggu';
+            END//
             DELIMITER ;
-        ');
+
+            DROP FUNCTION IF EXISTS hitung_waktu_rekomendasi;
+            DELIMITER //
+            CREATE FUNCTION hitung_waktu_rekomendasi(p_nama_dokter VARCHAR(255), p_tanggal DATE, p_id INT)
+            RETURNS TIME
+            BEGIN
+                DECLARE waktu_awal TIME;
+                DECLARE posisi INT;
+                DECLARE waktu_rekomendasi TIME;
+
+                SELECT SUBSTRING_INDEX(jam, '-', 1) INTO waktu_awal
+                FROM reservasis
+                WHERE id = p_id;
+
+                SET @row_number := 0;
+                SELECT posisi1 INTO posisi FROM (
+                    SELECT
+                        @row_number := @row_number + 1 AS posisi1,
+                        id
+                    FROM reservasis
+                    WHERE nama_dokter = p_nama_dokter COLLATE utf8mb4_unicode_ci
+                        AND tanggal = p_tanggal
+                        AND (status = 'Menunggu' OR status = 'Selesai')
+                    ORDER BY updated_at
+                ) AS subquery
+                WHERE id = p_id;
+
+                SET waktu_rekomendasi = ADDTIME(waktu_awal, SEC_TO_TIME((posisi - 1) * 20 * 60));
+
+                RETURN waktu_rekomendasi;
+            END//
+            DELIMITER ;
+
+            DROP VIEW IF EXISTS view_reservasi;
+            CREATE VIEW view_reservasi AS
+            SELECT
+                *,
+                hitung_waktu_rekomendasi(nama_dokter, tanggal, id) AS waktu_rekomendasi
+            FROM reservasis
+            ORDER BY tanggal DESC, nama_dokter ASC, updated_at ASC;
+        ");
     }
 };
