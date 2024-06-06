@@ -451,7 +451,8 @@ class AdminController extends Controller {
     public function indexAntrian(){
         $tanggalHariIni = Carbon::now()->format('Y-m-d');
 
-        $antrians = DB::table('view_reservasi')->orderBy('updated_at')
+        $antrians = DB::table('view_reservasi')
+            ->orderByRaw('ISNULL(waktu_rekomendasi), waktu_rekomendasi')
             ->where('tanggal', $tanggalHariIni)
             ->get();
         
@@ -459,7 +460,8 @@ class AdminController extends Controller {
     }
 
     public function indexAntrianTanggal(Request $request){
-        $antrians = DB::table('view_reservasi')->orderBy('updated_at')
+        $antrians = DB::table('view_reservasi')
+            ->orderByRaw('ISNULL(waktu_rekomendasi), waktu_rekomendasi')
             ->where('tanggal', $request->tanggal)
             ->get();
 

@@ -47,19 +47,15 @@ const refreshTable = async () => {
                         <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">${i}</td>
                         <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">
                             <div class="dropdown" data-placement="right">
-                                <button class="dropdown-toggle bg-blue-500 text-white px-3 py-1 mr-2 rounded-lg
-                                    ${(() => {
-                                        if(item.status == 'Selesai' || item.status == 'Batal'){
-                                            return 'bg-blue-300';
-                                        }
-                                    })()}
-                                    " id="${item.id}"
-                                    ${(() => {
-                                        if(item.status == 'Selesai' || item.status == 'Batal'){
-                                            return 'disabled';
-                                        }
-                                    })()}
-                                >Ubah</button>
+                                ${(() => {
+                                    if(item.status == 'Menunggu'){
+                                        return '<button class="dropdown-toggle bg-blue-500 text-white px-3 py-1 mr-2 rounded-lg" id="{{ $item->id }}">';
+                                    }else{
+                                        return '<button class="dropdown-toggle bg-blue-300 text-white px-3 py-1 mr-2 rounded-lg" id="{{ $item->id }}" disabled>';
+                                    }
+                                })()}
+                                    Ubah
+                                </button>
                                 <div class="dropdown-menu hidden p-4 rounded-lg bg-[#F5F5F5]">
                                     <button id="selesai" class="bg-green-100 text-green-800 text-sm px-2 py-1 leading-5 font-semibold rounded-lg w-full mt-2">
                                         Selesai
@@ -86,7 +82,8 @@ const refreshTable = async () => {
                         <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">
                             ${(() => {
                                 if(item.waktu_rekomendasi){
-                                    return item.waktu_rekomendasi.substring(0, 5);
+                                    return item.waktu_rekomendasi;
+                                    // return item.waktu_rekomendasi.substring(0, 5);
                                 }else{
                                     return '';
                                 }
@@ -210,3 +207,5 @@ const ubahStatus = async (status) => {
         console.error(error);
     }
 };
+
+// setInterval(refreshTable, 2500);

@@ -520,4 +520,20 @@ class PasienController extends Controller {
 
         return view('dokter', compact('dokters', 'jadwals'));
     }
+
+    public function destroyReservasi(Request $request){
+        $reservasi = Reservasi::where('id', $request->id)
+            ->where('nomor_handphone', auth()->user()->nomor_handphone)
+            ->get();
+
+        if($reservasi->isEmpty()){
+            abort(404);
+        }else{
+            $reservasi[0]->update([
+                'status' => 'Batal'
+            ]);
+        }
+
+        return back();
+    }
 }

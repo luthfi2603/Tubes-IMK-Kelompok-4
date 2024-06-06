@@ -87,7 +87,7 @@ return new class extends Migration {
             DROP FUNCTION IF EXISTS hitung_waktu_rekomendasi;
             DELIMITER //
             CREATE FUNCTION hitung_waktu_rekomendasi(p_nama_dokter VARCHAR(255), p_tanggal DATE, p_id INT)
-            RETURNS TIME
+            RETURNS CHAR(5)
             BEGIN
                 DECLARE waktu_awal TIME;
                 DECLARE posisi INT;
@@ -112,7 +112,7 @@ return new class extends Migration {
 
                 SET waktu_rekomendasi = ADDTIME(waktu_awal, SEC_TO_TIME((posisi - 1) * 20 * 60));
 
-                RETURN waktu_rekomendasi;
+                RETURN TIME_FORMAT(waktu_rekomendasi, '%H:%i');
             END//
             DELIMITER ;
 

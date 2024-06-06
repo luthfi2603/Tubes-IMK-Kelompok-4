@@ -55,6 +55,8 @@ Route::middleware(['auth', 'role:Pasien'])->group(function(){
             ->name('buat.reservasi');
         Route::post('/daftar-dokter', 'storeDaftarDokter');
         Route::post('/reservasi/buat', 'storeReservasi');
+        Route::delete('/reservasi/destroy', 'destroyReservasi')
+            ->name('destroy.reservasi');
         Route::get('/dokter', 'indexDokter')
             ->name('dokter');
     });
