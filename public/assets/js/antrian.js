@@ -2,6 +2,7 @@ const inputTanggal = document.getElementById('tanggal');
 const isiTabel = document.getElementById('isi-tabel');
 // const pagination = document.getElementById('pagination');
 const successJs = document.getElementById('success-js');
+const failedJs = document.getElementById('failed-js');
 
 const today = new Date();
 const yyyy = today.getFullYear();
@@ -21,7 +22,11 @@ inputTanggal.addEventListener('change', () => {
     // pagination.remove();
 });
 
-const refreshTable = async () => {
+inputTanggal.addEventListener('click', () => {
+    refreshTable();
+});
+
+async function refreshTable(){
     try {
         const response = await fetch('/admin/antrian/tanggal', {
             method: "POST",
@@ -49,9 +54,9 @@ const refreshTable = async () => {
                             <div class="dropdown" data-placement="right">
                                 ${(() => {
                                     if(item.status == 'Menunggu'){
-                                        return '<button class="dropdown-toggle bg-blue-500 text-white px-3 py-1 mr-2 rounded-lg" id="{{ $item->id }}">';
+                                        return `<button class="dropdown-toggle bg-blue-500 text-white px-3 py-1 mr-2 rounded-lg tombol-ubah" id="${item.id}">`;
                                     }else{
-                                        return '<button class="dropdown-toggle bg-blue-300 text-white px-3 py-1 mr-2 rounded-lg" id="{{ $item->id }}" disabled>';
+                                        return `<button class="dropdown-toggle bg-blue-300 text-white px-3 py-1 mr-2 rounded-lg tombol-ubah" disabled>`;
                                     }
                                 })()}
                                     Ubah
@@ -105,23 +110,7 @@ const refreshTable = async () => {
 
             isiTabel.innerHTML = isiTabelString;
 
-            const tombolUbah = isiTabel.querySelectorAll('.bg-blue-500.text-white');
-            const selesai = isiTabel.querySelectorAll('#selesai');
-            const batal = isiTabel.querySelectorAll('#batal');
-
-            for(let i = 0; i < tombolUbah.length; i++){
-                tombolUbah[i].addEventListener('click', () => {
-                    id = tombolUbah[i].getAttribute('id');
-                });
-
-                selesai[i].addEventListener('click', () => {
-                    ubahStatus('Selesai');
-                });
-                
-                batal[i].addEventListener('click', () => {
-                    ubahStatus('Batal');
-                });
-            }
+            renderTombolUbah(isiTabel);
 
             isiTabel.querySelectorAll('.dropdown').forEach(function(item, index){
                 const popperId = 'popper-' + index
@@ -162,25 +151,30 @@ const refreshTable = async () => {
 
 // ubah status
 let id = 0;
-const tombolUbah = document.querySelectorAll('.bg-blue-500.text-white');
-const selesai = document.querySelectorAll('#selesai');
-const batal = document.querySelectorAll('#batal');
 
-for(let i = 0; i < tombolUbah.length; i++){
-    tombolUbah[i].addEventListener('click', () => {
-        id = tombolUbah[i].getAttribute('id');
-    });
-
-    selesai[i].addEventListener('click', () => {
-        ubahStatus('Selesai');
-    });
+function renderTombolUbah(element){
+    const tombolUbah = element.querySelectorAll('.tombol-ubah');
+    const selesai = element.querySelectorAll('#selesai');
+    const batal = element.querySelectorAll('#batal');
     
-    batal[i].addEventListener('click', () => {
-        ubahStatus('Batal');
-    });
-}
+    for(let i = 0; i < tombolUbah.length; i++){
+        tombolUbah[i].addEventListener('click', () => {
+            id = tombolUbah[i].getAttribute('id');
+        });
+    
+        selesai[i].addEventListener('click', () => {
+            ubahStatus('Selesai');
+        });
+        
+        batal[i].addEventListener('click', () => {
+            ubahStatus('Batal');
+        });
+    }
+};
 
-const ubahStatus = async (status) => {
+renderTombolUbah(document);
+
+async function ubahStatus(status){
     try {
         const response = await fetch('/admin/antrian/update', {
             method: "POST",
@@ -195,10 +189,21 @@ const ubahStatus = async (status) => {
             })
         });
 
-        if(response.ok){
+        const data = await response.json();
+
+        if('success' in data){
             successJs.classList.remove('hidden');
+            successJs.innerHTML = data.success;
             setTimeout(() => {
                 successJs.classList.add('hidden');
+                successJs.innerHTML = null;
+            }, 2000);
+        }else{
+            failedJs.classList.remove('hidden');
+            failedJs.innerHTML = data.failed;
+            setTimeout(() => {
+                failedJs.classList.add('hidden');
+                failedJs.innerHTML = null;
             }, 2000);
         }
 

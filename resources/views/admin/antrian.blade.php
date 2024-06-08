@@ -1,9 +1,8 @@
 @extends('admin.main')
 
 @section('container')
-<div id="success-js" class="hidden bg-green-300 py-3 text-white px-4 rounded-lg fixed inset-x-4 top-4 z-[99]">
-    Status antrian berhasil diubah
-</div>
+<div id="success-js" class="hidden bg-green-300 py-3 text-white px-4 rounded-lg fixed inset-x-4 top-4 z-[99]"></div>
+<div id="failed-js" class="hidden bg-red-300 py-3 text-white px-4 rounded-lg fixed inset-x-4 top-4 z-[99]"></div>
 <div class="flex justify-between items-center px-4 mb-3">
     <div class="font-body font-bold text-[#222C67]">
         <h1 class="text-3xl font-bold">Antrian</h1>
@@ -47,9 +46,9 @@
                             <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">
                                 <div class="dropdown" data-placement="right">
                                     @if($item->status == 'Menunggu')
-                                        <button class="dropdown-toggle bg-blue-500 text-white px-3 py-1 mr-2 rounded-lg" id="{{ $item->id }}">
+                                        <button class="dropdown-toggle bg-blue-500 text-white px-3 py-1 mr-2 rounded-lg tombol-ubah" id="{{ $item->id }}">
                                     @else
-                                        <button class="dropdown-toggle bg-blue-300 text-white px-3 py-1 mr-2 rounded-lg" id="{{ $item->id }}" disabled>
+                                        <button class="dropdown-toggle bg-blue-300 text-white px-3 py-1 mr-2 rounded-lg tombol-ubah" disabled>
                                     @endif
                                         Ubah
                                     </button>

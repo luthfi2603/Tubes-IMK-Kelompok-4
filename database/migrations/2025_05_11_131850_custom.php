@@ -72,7 +72,6 @@ return new class extends Migration {
 
             SET GLOBAL event_scheduler = ON;
             DROP EVENT IF EXISTS event_ubah_status_reservasi;
-            DELIMITER //
             CREATE EVENT event_ubah_status_reservasi
             ON SCHEDULE EVERY 1 DAY
             STARTS CURRENT_DATE + INTERVAL 1 DAY
@@ -81,11 +80,9 @@ return new class extends Migration {
                 UPDATE reservasis
                 SET status = 'Batal'
                 WHERE tanggal < CURDATE() AND status = 'Menunggu';
-            END//
-            DELIMITER ;
+            END;
 
             DROP FUNCTION IF EXISTS hitung_waktu_rekomendasi;
-            DELIMITER //
             CREATE FUNCTION hitung_waktu_rekomendasi(p_nama_dokter VARCHAR(255), p_tanggal DATE, p_id INT)
             RETURNS CHAR(5)
             BEGIN
@@ -113,8 +110,7 @@ return new class extends Migration {
                 SET waktu_rekomendasi = ADDTIME(waktu_awal, SEC_TO_TIME((posisi - 1) * 20 * 60));
 
                 RETURN TIME_FORMAT(waktu_rekomendasi, '%H:%i');
-            END//
-            DELIMITER ;
+            END;
 
             DROP VIEW IF EXISTS view_reservasi;
             CREATE VIEW view_reservasi AS

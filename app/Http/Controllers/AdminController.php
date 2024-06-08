@@ -471,8 +471,14 @@ class AdminController extends Controller {
     public function updateStatusAntrian(Request $request){
         $reservasi = Reservasi::find($request->id);
 
+        if(!$reservasi){
+            return response()->json(['failed' => 'Id tidak valid']);
+        }
+
         $reservasi->update([
             'status' => $request->status
         ]);
+
+        return response()->json(['success' => 'Status antrian berhasil diubah']);
     }
 }
