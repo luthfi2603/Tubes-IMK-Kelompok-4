@@ -19,8 +19,8 @@ class AdminController extends Controller {
         return view('admin.dashboard');
     }
 
-    public function dataPasien(){
-        $pasien = DB::table('data_pasien')
+    public function indexPasien(){
+        $pasien = DB::table('view_data_pasien')
             ->paginate(5);
             
         return view('admin.data-pasien', compact('pasien'));
@@ -474,11 +474,18 @@ class AdminController extends Controller {
         if(!$reservasi){
             return response()->json(['failed' => 'Id tidak valid']);
         }
+        if($reservasi->status != 'Menunggu'){
+            return response()->json(['failed' => 'Antrian yang status nya sudah selesai dan batal tidak dapat diubah']);
+        }
 
         $reservasi->update([
             'status' => $request->status
         ]);
 
         return response()->json(['success' => 'Status antrian berhasil diubah']);
+    }
+
+    public function indexDokter(){
+        return view('admin.dashboard');
     }
 }

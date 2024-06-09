@@ -66,7 +66,7 @@
                             @if($reservasi->waktu_rekomendasi)
                                 <p class="text-md py-0.5 text-gray-600">Pada pukul : {{ $reservasi->waktu_rekomendasi }}</p>
                             @endif
-                            @if($reservasi->status != 'Batal')
+                            @if($reservasi->status == 'Menunggu')
                                 <form method="POST" action="{{ route('destroy.reservasi') }}" class="mt-2">
                                     @csrf
                                     @method('DELETE')

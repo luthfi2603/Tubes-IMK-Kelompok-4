@@ -204,7 +204,7 @@ async function ubahStatus(status){
             setTimeout(() => {
                 failedJs.classList.add('hidden');
                 failedJs.innerHTML = null;
-            }, 2000);
+            }, 3000);
         }
 
         refreshTable();
