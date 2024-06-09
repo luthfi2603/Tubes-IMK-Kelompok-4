@@ -40,42 +40,50 @@
             </div>
         @else
             @foreach($reservasis as $reservasi)
-            <div class="appointment-card bg-white rounded-lg shadow-md p-4 flex items-center justify-between" data-status="{{ $reservasi->status }}" data-date="{{ $reservasi->tanggal }}">
-                <div class="flex items-center space-x-4">
-                    @php
-                        foreach ($docterPhotos as $key) {
-                            if($key['nama_dokter'] == $reservasi->nama_dokter){
-                                $foto = $key['foto'];
+                <div class="appointment-card bg-white rounded-lg shadow-md p-4 flex items-center justify-between" data-status="{{ $reservasi->status }}" data-date="{{ $reservasi->tanggal }}">
+                    <div class="flex items-center space-x-4">
+                        @php
+                            foreach ($docterPhotos as $key) {
+                                if($key['nama_dokter'] == $reservasi->nama_dokter){
+                                    $foto = $key['foto'];
+                                }
                             }
-                        }
-                    @endphp
-                    @if($foto)
-                        <div class="w-16 h-16 aspect-square overflow-hidden rounded-full border-2 border-gray-300">
-                            <img src="{{ asset('storage/' . $foto) }}" alt="perawat" class="object-cover object-top w-full h-full">
-                        </div>
-                    @else
-                        <div class="w-16 h-16">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"  fill="none"  stroke="#222c67"  stroke-width="1"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-user-circle"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M12 10m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /><path d="M6.168 18.849a4 4 0 0 1 3.832 -2.849h4a4 4 0 0 1 3.834 2.855" /></svg>
-                        </div>
-                    @endif
-                    <div>
-                        <h2 class="text-xl font-semibold text-[#222C67]">{{ $reservasi->nama_dokter }}</h2>
-                        <p class="text-md py-0.5 text-gray-600">{{ $reservasi->spesialis }}</p>
-                        <p class="text-md py-0.5 text-gray-600">Dibuat pada : {{ \Carbon\Carbon::parse($reservasi->created_at)->translatedFormat('l, d F Y, H:i') }}</p>
-                        <p class="text-md py-0.5 text-gray-600">Waktu kunjungan : {{ \Carbon\Carbon::parse($reservasi->tanggal)->translatedFormat('l, d F Y') }}</p>
-                        @if($reservasi->waktu_rekomendasi)
-                            <p class="text-md py-0.5 text-gray-600">Pada pukul : {{ \Carbon\Carbon::parse($reservasi->waktu_rekomendasi)->format('H:i') }}</p>
+                        @endphp
+                        @if($foto)
+                            <div class="w-16 h-16 aspect-square overflow-hidden rounded-full border-2 border-gray-300">
+                                <img src="{{ asset('storage/' . $foto) }}" alt="perawat" class="object-cover object-top w-full h-full">
+                            </div>
+                        @else
+                            <div class="w-16 h-16">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"  fill="none"  stroke="#222c67"  stroke-width="1"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-user-circle"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M12 10m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /><path d="M6.168 18.849a4 4 0 0 1 3.832 -2.849h4a4 4 0 0 1 3.834 2.855" /></svg>
+                            </div>
                         @endif
+                        <div class="flex flex-col">
+                            <h2 class="text-xl font-semibold text-[#222C67]">{{ $reservasi->nama_dokter }}</h2>
+                            <p class="text-md py-0.5 text-gray-600">{{ $reservasi->spesialis }}</p>
+                            <p class="text-md py-0.5 text-gray-600">Dibuat pada : {{ \Carbon\Carbon::parse($reservasi->created_at)->translatedFormat('l, d F Y, H:i') }}</p>
+                            <p class="text-md py-0.5 text-gray-600">Waktu kunjungan : {{ \Carbon\Carbon::parse($reservasi->tanggal)->translatedFormat('l, d F Y') }}</p>
+                            @if($reservasi->waktu_rekomendasi)
+                                <p class="text-md py-0.5 text-gray-600">Pada pukul : {{ $reservasi->waktu_rekomendasi }}</p>
+                            @endif
+                            @if($reservasi->status == 'Menunggu')
+                                <form method="POST" action="{{ route('destroy.reservasi') }}" class="mt-2">
+                                    @csrf
+                                    @method('DELETE')
+                                    <input type="hidden" name="id" value="{{ $reservasi->id }}">
+                                    <button class="bg-[#b02126] rounded-lg py-1 px-3 text-white w-min">Batalkan</button>
+                                </form>
+                            @endif
+                        </div>
                     </div>
+                    @if($reservasi->status == 'Menunggu')
+                        <span class="bg-blue-100 text-blue-800 text-md font-medium px-4 py-2 rounded-full">{{ $reservasi->status }}</span>
+                    @elseif($reservasi->status == 'Selesai')
+                        <span class="bg-green-100 text-green-800 text-md font-medium px-4 py-2 rounded-full">{{ $reservasi->status }}</span>
+                    @else
+                        <span class="bg-red-100 text-red-800 text-md font-medium px-4 py-2 rounded-full">{{ $reservasi->status }}</span>
+                    @endif
                 </div>
-                @if($reservasi->status == 'Menunggu')
-                    <span class="bg-blue-100 text-blue-800 text-md font-medium px-4 py-2 rounded-full">{{ $reservasi->status }}</span>
-                @elseif($reservasi->status == 'Selesai')
-                    <span class="bg-green-100 text-green-800 text-md font-medium px-4 py-2 rounded-full">{{ $reservasi->status }}</span>
-                @else
-                    <span class="bg-red-100 text-red-800 text-md font-medium px-4 py-2 rounded-full">{{ $reservasi->status }}</span>
-                @endif
-            </div>
             @endforeach
         @endif
     </div>

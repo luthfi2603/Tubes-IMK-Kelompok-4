@@ -2,9 +2,10 @@
 
 namespace Database\Seeders;
 
+use Carbon\Carbon;
 use App\Models\Reservasi;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class ReservasiSeeder extends Seeder {
     /**
@@ -22,6 +23,8 @@ class ReservasiSeeder extends Seeder {
             "status" => "Selesai",
             "tanggal" => '2024-05-25',
             "jam" => '10:00-13:00',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
         ]);
         Reservasi::create([ // 2
             "nama_pasien" => "Henky Kurniawan",
@@ -34,6 +37,8 @@ class ReservasiSeeder extends Seeder {
             "status" => "Menunggu",
             "tanggal" => '2024-05-27',
             "jam" => '08:00-11:00',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
         ]);
         Reservasi::create([ // 3
             "nama_pasien" => "Susanti Kiranti",
@@ -46,6 +51,8 @@ class ReservasiSeeder extends Seeder {
             "status" => "Batal",
             "tanggal" => '2024-05-28',
             "jam" => '15:00-17:00',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
         ]);
     }
 }

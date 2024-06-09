@@ -6,13 +6,6 @@
     <div class="font-body font-bold text-[#222C67]">
         <h1 class="text-3xl font-bold">Rekam Medis Pasien</h1>
     </div>
-    <div>
-        <a href="{{ route('dokter.rekam.medis.create') }}">
-            <button class="bg-green-500 text-white p-2 rounded-lg hover:bg-green-600 transition duration-300 ease-in-out">
-                Tambah Rekam Medis
-            </button>
-        </a>
-    </div>
 </div>
 
 <hr class="border-1 border-[#B1B0AF] mb-5 mx-4">
@@ -53,7 +46,7 @@
                         <span class="bg-green-100 text-green-800 text-sm px-2 py-1 inline-flex leading-5 font-semibold rounded-full">Selesai</span>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-md">
-                        <a href="{{ route('dokter.detail-dokter') }}">
+                        <a href="{{ route('dokter.rekam.medis.show') }}">
                         <button class="bg-blue-500 text-white px-3 py-1 mr-2 rounded">Detail</button>
                         </a>
                         <button class="bg-[#E8C51C] text-white px-3 py-1 rounded">Unduh</button>
@@ -68,7 +61,7 @@
                         <span class="bg-green-100 text-green-800 text-sm px-2 py-1 inline-flex leading-5 font-semibold rounded-full">Selesai</span>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-md">
-                        <a href="{{ route('dokter.detail-dokter') }}">
+                        <a href="{{ route('dokter.rekam.medis.show') }}">
                         <button class="bg-blue-500 text-white px-3 py-1 mr-2 rounded">Detail</button>
                         </a>
                         <button class="bg-[#E8C51C] text-white px-3 py-1 rounded">Unduh</button>
@@ -83,7 +76,7 @@
                         <span class="bg-green-100 text-green-800 text-sm px-2 py-1 inline-flex leading-5 font-semibold rounded-full">Selesai</span>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-md">
-                        <a href="{{ route('dokter.detail-dokter') }}">
+                        <a href="{{ route('dokter.rekam.medis.show') }}">
                         <button class="bg-blue-500 text-white px-3 py-1 mr-2 rounded">Detail</button>
                         </a>
                         <button class="bg-[#E8C51C] text-white px-3 py-1 rounded">Unduh</button>
@@ -98,7 +91,7 @@
                         <span class="bg-green-100 text-green-800 text-sm px-2 py-1 inline-flex leading-5 font-semibold rounded-full">Selesai</span>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-md">
-                        <a href="{{ route('dokter.detail-dokter') }}">
+                        <a href="{{ route('dokter.rekam.medis.show') }}">
                         <button class="bg-blue-500 text-white px-3 py-1 mr-2 rounded">Detail</button>
                         </a>
                         <button class="bg-[#E8C51C] text-white px-3 py-1 rounded">Unduh</button>
@@ -113,7 +106,7 @@
                         <span class="bg-green-100 text-green-800 text-sm px-2 py-1 inline-flex leading-5 font-semibold rounded-full">Selesai</span>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-md">
-                        <a href="{{ route('dokter.detail-dokter') }}">
+                        <a href="{{ route('dokter.rekam.medis.show') }}">
                         <button class="bg-blue-500 text-white px-3 py-1 mr-2 rounded">Detail</button>
                         </a>
                         <button class="bg-[#E8C51C] text-white px-3 py-1 rounded">Unduh</button>

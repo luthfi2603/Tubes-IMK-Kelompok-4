@@ -6,8 +6,8 @@ use Illuminate\Support\Facades\DB;
 return new class extends Migration {
     public function up(): void {
         DB::unprepared("
-            DROP VIEW IF EXISTS data_pasien;
-            CREATE VIEW data_pasien AS
+            DROP VIEW IF EXISTS view_data_pasien;
+            CREATE VIEW view_data_pasien AS
             SELECT
                 a.nama,
                 a.alamat,
@@ -15,32 +15,6 @@ return new class extends Migration {
                 b.aktif
             FROM pasiens a
             INNER JOIN users b ON a.id_user = b.id;
-
-            DROP VIEW IF EXISTS data_karyawan;
-            CREATE VIEW data_karyawan AS
-            SELECT
-                b.nama, 
-                b.alamat,
-                a.nomor_handphone,
-                a.status
-            FROM users a
-            INNER JOIN dokters b ON a.id = b.id_user
-            UNION
-            SELECT
-                c.nama, 
-                c.alamat,
-                a.nomor_handphone,
-                a.status
-            FROM users a
-            INNER JOIN perawats c ON a.id = c.id_user
-            UNION
-            SELECT
-                d.nama, 
-                d.alamat,
-                a.nomor_handphone,
-                a.status
-            FROM users a
-            INNER JOIN admins d ON a.id = d.id_user;
 
             DROP VIEW IF EXISTS view_jadwal_dokter;
             CREATE VIEW view_jadwal_dokter AS
@@ -72,7 +46,6 @@ return new class extends Migration {
 
             SET GLOBAL event_scheduler = ON;
             DROP EVENT IF EXISTS event_ubah_status_reservasi;
-            DELIMITER //
             CREATE EVENT event_ubah_status_reservasi
             ON SCHEDULE EVERY 1 DAY
             STARTS CURRENT_DATE + INTERVAL 1 DAY
@@ -81,13 +54,11 @@ return new class extends Migration {
                 UPDATE reservasis
                 SET status = 'Batal'
                 WHERE tanggal < CURDATE() AND status = 'Menunggu';
-            END//
-            DELIMITER ;
+            END;
 
             DROP FUNCTION IF EXISTS hitung_waktu_rekomendasi;
-            DELIMITER //
             CREATE FUNCTION hitung_waktu_rekomendasi(p_nama_dokter VARCHAR(255), p_tanggal DATE, p_id INT)
-            RETURNS TIME
+            RETURNS CHAR(5)
             BEGIN
                 DECLARE waktu_awal TIME;
                 DECLARE posisi INT;
@@ -112,9 +83,8 @@ return new class extends Migration {
 
                 SET waktu_rekomendasi = ADDTIME(waktu_awal, SEC_TO_TIME((posisi - 1) * 20 * 60));
 
-                RETURN waktu_rekomendasi;
-            END//
-            DELIMITER ;
+                RETURN TIME_FORMAT(waktu_rekomendasi, '%H:%i');
+            END;
 
             DROP VIEW IF EXISTS view_reservasi;
             CREATE VIEW view_reservasi AS
@@ -124,5 +94,30 @@ return new class extends Migration {
             FROM reservasis
             ORDER BY tanggal DESC, nama_dokter ASC, updated_at ASC;
         ");
+        /* DROP VIEW IF EXISTS view_data_karyawan;
+        CREATE VIEW view_data_karyawan AS
+        SELECT
+            b.nama, 
+            b.alamat,
+            a.nomor_handphone,
+            a.status
+        FROM users a
+        INNER JOIN dokters b ON a.id = b.id_user
+        UNION
+        SELECT
+            c.nama, 
+            c.alamat,
+            a.nomor_handphone,
+            a.status
+        FROM users a
+        INNER JOIN perawats c ON a.id = c.id_user
+        UNION
+        SELECT
+            d.nama, 
+            d.alamat,
+            a.nomor_handphone,
+            a.status
+        FROM users a
+        INNER JOIN admins d ON a.id = d.id_user; */
     }
 };

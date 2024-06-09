@@ -16,4 +16,8 @@ class DokterController extends Controller {
     public function createRekamMedis(){
         return view('dokter.create-rekam-medis');
     }
+
+    public function showRekamMedis(){
+        return view('dokter.detail-rekam-medis');
+    }
 }

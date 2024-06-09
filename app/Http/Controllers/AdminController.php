@@ -19,8 +19,8 @@ class AdminController extends Controller {
         return view('admin.dashboard');
     }
 
-    public function dataPasien(){
-        $pasien = DB::table('data_pasien')
+    public function indexPasien(){
+        $pasien = DB::table('view_data_pasien')
             ->paginate(5);
             
         return view('admin.data-pasien', compact('pasien'));
@@ -451,7 +451,8 @@ class AdminController extends Controller {
     public function indexAntrian(){
         $tanggalHariIni = Carbon::now()->format('Y-m-d');
 
-        $antrians = DB::table('view_reservasi')->orderBy('updated_at')
+        $antrians = DB::table('view_reservasi')
+            ->orderByRaw('ISNULL(waktu_rekomendasi), waktu_rekomendasi')
             ->where('tanggal', $tanggalHariIni)
             ->get();
         
@@ -459,7 +460,8 @@ class AdminController extends Controller {
     }
 
     public function indexAntrianTanggal(Request $request){
-        $antrians = DB::table('view_reservasi')->orderBy('updated_at')
+        $antrians = DB::table('view_reservasi')
+            ->orderByRaw('ISNULL(waktu_rekomendasi), waktu_rekomendasi')
             ->where('tanggal', $request->tanggal)
             ->get();
 
@@ -469,8 +471,21 @@ class AdminController extends Controller {
     public function updateStatusAntrian(Request $request){
         $reservasi = Reservasi::find($request->id);
 
+        if(!$reservasi){
+            return response()->json(['failed' => 'Id tidak valid']);
+        }
+        if($reservasi->status != 'Menunggu'){
+            return response()->json(['failed' => 'Antrian yang status nya sudah selesai dan batal tidak dapat diubah']);
+        }
+
         $reservasi->update([
             'status' => $request->status
         ]);
+
+        return response()->json(['success' => 'Status antrian berhasil diubah']);
+    }
+
+    public function indexDokter(){
+        return view('admin.dashboard');
     }
 }
