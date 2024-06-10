@@ -44,6 +44,21 @@ return new class extends Migration {
             INNER JOIN perawats b ON b.id_user = a.id
             ORDER BY b.nama;
 
+            DROP VIEW IF EXISTS view_data_dokter;
+            CREATE VIEW view_data_dokter AS
+            SELECT
+                a.id AS 'id_user',
+                b.id AS 'id_dokter',
+                b.nama,
+                a.nomor_handphone,
+                b.jenis_kelamin,
+                b.alamat,
+                a.foto,
+                b.spesialis
+            FROM users a
+            INNER JOIN dokters b ON b.id_user = a.id
+            ORDER BY b.nama;
+
             SET GLOBAL event_scheduler = ON;
             DROP EVENT IF EXISTS event_ubah_status_reservasi;
             CREATE EVENT event_ubah_status_reservasi

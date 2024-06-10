@@ -60,30 +60,16 @@ class PasienController extends Controller {
 
             Pasien::where('id_user', $user->id)->update($validated);
 
-            $reservasi = Reservasi::where('nomor_handphone', $user->nomor_handphone)->get();
-            if($reservasi){
-                Reservasi::where('nomor_handphone', $user->nomor_handphone)->update([
-                    'nama_pasien' => $request->nama,
-                    'alamat' => $request->alamat,
-                ]);
-            }
+            Reservasi::where('nomor_handphone', $user->nomor_handphone)->update([
+                'nama_pasien' => $request->nama,
+                'alamat' => $request->alamat,
+            ]);
             
-            $rekamMedis = RekamMedis::where('nomor_handphone', $user->nomor_handphone)->get();
-            if($rekamMedis){
-                RekamMedis::where('nomor_handphone', $user->nomor_handphone)->update([
-                    'nama_pasien' => $request->nama,
-                    'pekerjaan' => $request->pekerjaan,
-                    'alamat' => $request->alamat,
-                ]);
-            }
-            
-            $rawatInap = RawatInap::where('nomor_handphone', $user->nomor_handphone)->get();
-            if($rawatInap){
-                RawatInap::where('nomor_handphone', $user->nomor_handphone)->update([
-                    'nama_pasien' => $request->nama,
-                    'alamat' => $request->alamat,
-                ]);
-            }
+            RekamMedis::where('nomor_handphone', $user->nomor_handphone)->update([
+                'nama_pasien' => $request->nama,
+                'pekerjaan' => $request->pekerjaan,
+                'alamat' => $request->alamat,
+            ]);
         }else{ // nomor handphone dan yang lain berubah
             $messages = [
                 'nama.required' => 'Kolom nama harus diisi.',
@@ -194,33 +180,18 @@ class PasienController extends Controller {
                 'pekerjaan' => $request['pekerjaan'],
             ]);
 
-            $reservasi = Reservasi::where('nomor_handphone', $request['nomor_handphone_lama'])->get();
-            if($reservasi){
-                Reservasi::where('nomor_handphone', $request['nomor_handphone_lama'])->update([
-                    'nama_pasien' => $request['nama'],
-                    'alamat' => $request['alamat'],
-                    'nomor_handphone' => $request['nomor_handphone']
-                ]);
-            }
-            
-            $rekamMedis = RekamMedis::where('nomor_handphone', $request['nomor_handphone_lama'])->get();
-            if($rekamMedis){
-                RekamMedis::where('nomor_handphone', $request['nomor_handphone_lama'])->update([
-                    'nama_pasien' => $request['nama'],
-                    'pekerjaan' => $request['pekerjaan'],
-                    'alamat' => $request['alamat'],
-                    'nomor_handphone' => $request['nomor_handphone']
-                ]);
-            }
-            
-            $rawatInap = RawatInap::where('nomor_handphone', $request['nomor_handphone_lama'])->get();
-            if($rawatInap){
-                RawatInap::where('nomor_handphone', $request['nomor_handphone_lama'])->update([
-                    'nama_pasien' => $request['nama'],
-                    'alamat' => $request['alamat'],
-                    'nomor_handphone' => $request['nomor_handphone']
-                ]);
-            }
+            Reservasi::where('nomor_handphone', $request['nomor_handphone_lama'])->update([
+                'nama_pasien' => $request['nama'],
+                'alamat' => $request['alamat'],
+                'nomor_handphone' => $request['nomor_handphone']
+            ]);
+        
+            RekamMedis::where('nomor_handphone', $request['nomor_handphone_lama'])->update([
+                'nama_pasien' => $request['nama'],
+                'pekerjaan' => $request['pekerjaan'],
+                'alamat' => $request['alamat'],
+                'nomor_handphone' => $request['nomor_handphone']
+            ]);
             
             session()->forget('request');
     

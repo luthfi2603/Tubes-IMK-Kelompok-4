@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Pasien;
 use Twilio\Rest\Client;
@@ -65,6 +66,12 @@ class RegisteredUserController extends Controller {
             'konfirmasi_password' => ['required', 'same:password', 'min:8', 'max:255']
         ], $messages);
 
+        $umur = Carbon::parse($request->tanggal_lahir)->age;
+
+        if($umur > 255){
+            return back()->withInput()->with('failed', 'Tanggal lahir tidak valid');
+        }
+
         if(substr(trim($request->nomor_handphone), 0, 1) == '0'){
             $nomorHP = '+62'.substr(trim($request->nomor_handphone), 1);
         }
@@ -87,7 +94,7 @@ class RegisteredUserController extends Controller {
 
         session()->put('request', $request);
 
-        return redirect(route('verifikasi'))->with('success', 'Berhasil, Kode OTP sudah dikirim ke nomor handphone anda');
+        return redirect()->route('verifikasi')->with('success', 'Berhasil, Kode OTP sudah dikirim ke nomor handphone anda');
     }
 
     public function createVerifikasi(){
