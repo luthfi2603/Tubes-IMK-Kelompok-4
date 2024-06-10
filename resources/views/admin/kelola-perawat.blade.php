@@ -40,12 +40,14 @@
                         <tr>
                             <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">{{ $i }}</td>
                             <td class="whitespace-nowrap px-4 py-2 text-gray-700">
-                                <a href="{{ route('admin.perawat.edit', $item->nomor_handphone) }}">Ubah</a>
-                                <form action="{{ route('admin.perawat.destroy', $item->id_user) }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button>Hapus</button>
-                                </form>
+                                <div class="flex gap-2 items-center h-full">
+                                    <a href="{{ route('admin.perawat.edit', $item->nomor_handphone) }}" class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-lg">Ubah</a>
+                                    <form action="{{ route('admin.perawat.destroy', $item->id_user) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-lg">Hapus</button>
+                                    </form>
+                                </div>
                             </td>
                             <td class="px-4 py-2 text-gray-700">
                                 @if($item->foto)
@@ -60,7 +62,7 @@
                             </td>
                             <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ $item->nama }}</td>
                             <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ $item->nomor_handphone }}</td>
-                            <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ $item->jenis_kelamin }}</td>
+                            <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ $item->jenis_kelamin == 'P' ? 'Perempuan' : 'Laki-laki'}}</td>
                             <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ $item->alamat }}</td>
                         </tr>
                         @php $i++; @endphp
