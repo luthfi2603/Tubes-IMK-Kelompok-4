@@ -73,18 +73,20 @@
                     @enderror
                 </div>
             </div>
-            <div class="flex flex-col w-full">
+            <div class="flex flex-col w-full relative">
                 <label for="password">Kata Sandi</label>
                 <input type="password" name="password" id="password" placeholder="Masukkan kata sandi" class="rounded-lg">
+                <i class="fa-solid fa-eye absolute right-3 top-9 cursor-pointer text-[#222c67]" id="toggle-password"></i>
                 @error('password')
                     <div class="text-[#B42223] text-bold text-sm">
                         {{ $message }}
                     </div>
                 @enderror
             </div>
-            <div class="flex flex-col w-full">
+            <div class="flex flex-col w-full relative">
                 <label for="konfirmasi_password">Konfirmasi Kata Sandi</label>
                 <input type="password" name="konfirmasi_password" id="konfirmasi_password" placeholder="Masukkan konfirmasi kata sandi" class="rounded-lg">
+                <i class="fa-solid fa-eye absolute right-3 top-9 cursor-pointer text-[#222c67]" id="toggle-password-2"></i>
                 @error('konfirmasi_password')
                     <div class="text-[#B42223] text-bold text-sm">
                         {{ $message }}
@@ -100,5 +102,6 @@
 </div>
 @push('scripts')
     <script src="{{ asset('assets/js/input-perawat.js') }}"></script>
+    <script src="{{ asset('assets/js/show-password.js') }}"></script>
 @endpush
 @endsection

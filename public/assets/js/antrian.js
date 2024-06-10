@@ -3,6 +3,7 @@ const isiTabel = document.getElementById('isi-tabel');
 // const pagination = document.getElementById('pagination');
 const successJs = document.getElementById('success-js');
 const failedJs = document.getElementById('failed-js');
+const tombolRefresh = document.getElementById('tombol-refresh');
 
 const today = new Date();
 const yyyy = today.getFullYear();
@@ -22,8 +23,15 @@ inputTanggal.addEventListener('change', () => {
     // pagination.remove();
 });
 
-inputTanggal.addEventListener('click', () => {
+tombolRefresh.addEventListener('click', () => {
     refreshTable();
+
+    successJs.classList.remove('hidden');
+    successJs.innerHTML = 'Data berhasil dimuat ulang';
+    setTimeout(() => {
+        successJs.classList.add('hidden');
+        successJs.innerHTML = null;
+    }, 2000);
 });
 
 async function refreshTable(){

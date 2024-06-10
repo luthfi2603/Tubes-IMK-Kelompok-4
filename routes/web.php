@@ -143,6 +143,13 @@ Route::middleware(['auth', 'role:Admin'])->group(function(){
                 Route::put('/antrian/update', 'updateStatusAntrian');
                 Route::get('/dokter', 'indexDokter')
                     ->name('index.dokter');
+                Route::get('/jadwal-dokter', 'indexJadwalDokter')
+                    ->name('jadwal.dokter.index');
+                Route::get('/jadwal-dokter/input', 'createJadwalDokter')
+                    ->name('jadwal.dokter.input');
+                Route::post('/jadwal-dokter/input', 'storeJadwalDokter');
+                Route::delete('/jadwal-dokter/{pk}', 'destroyJadwalDokter')
+                    ->name('jadwal.dokter.destroy');
             });
         });
     });
