@@ -126,7 +126,7 @@ Route::middleware(['auth', 'role:Admin'])->group(function(){
                 Route::get('/tambah-pasien', 'createPasien')
                     ->name('tambah.pasien');
                 Route::post('/tambah-pasien', 'storePasien');
-                
+
                 Route::get('/perawat', 'indexPerawat')
                     ->name('perawat.index');
                 Route::get('/perawat/input', 'createPerawat')
@@ -138,12 +138,12 @@ Route::middleware(['auth', 'role:Admin'])->group(function(){
                 Route::delete('/perawat/destroy/{pk}', 'destroyPerawat')
                     ->name('perawat.destroy');
                 Route::post('/cari/perawat', 'cariPerawat');
-                
+
                 Route::get('/antrian', 'indexAntrian')
                     ->name('index.antrian');
                 Route::post('/antrian/tanggal', 'indexAntrianTanggal');
                 Route::put('/antrian/update', 'updateStatusAntrian');
-                
+
                 Route::get('/dokter', 'indexDokter')
                     ->name('index.dokter');
                 Route::get('/dokter/input', 'createDokter')
@@ -155,6 +155,7 @@ Route::middleware(['auth', 'role:Admin'])->group(function(){
                 Route::delete('/dokter/destroy/{pk}', 'destroyDokter')
                     ->name('dokter.destroy');
                 Route::post('/cari/dokter', 'cariDokter');
+
                 Route::get('/jadwal-dokter', 'indexJadwalDokter')
                     ->name('jadwal.dokter.index');
                 Route::get('/jadwal-dokter/input', 'createJadwalDokter')

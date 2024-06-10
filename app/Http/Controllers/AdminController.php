@@ -800,4 +800,71 @@ class AdminController extends Controller {
 
         return back()->with('success', 'Jadwal dokter berhasil dihapus');
     }
+
+    public function indexJadwalDokter(){
+        $jadwals = Waktu::orderBy('hari')
+            ->orderBy('jam')
+            ->get();
+
+        return view('admin.kelola-jadwal-dokter', compact('jadwals'));
+    }
+
+    public function createJadwalDokter(){
+        return view('admin.input-jadwal-dokter');
+    }
+
+    public function storeJadwalDokter(Request $request){
+        $messages = [
+            'hari.required' => 'Silahkan pilih hari terlebih dahulu.',
+            'hari.in' => 'Hari yang dipilih tidak valid.',
+            'jam.required' => 'Kolom jam harus diisi.',
+            'jam.regex' => 'Jam yang dimasukkan tidak valid.',
+        ];
+
+        $validated = $request->validate([
+            'hari' => ['required', 'in:Senin,Selasa,Rabu,Kamis,Jumat,Sabtu,Minggu'],
+            'jam' => ['required', 'regex:/^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]-(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/'],
+        ], $messages);
+
+        $cek = Waktu::where('hari', $request->hari)
+            ->where('jam', $request->jam)
+            ->get();
+
+        if(!$cek->isEmpty()){
+            return back()->withInput()->with('failed', 'Jadwal dokter sudah ada');
+        }
+
+        $jam = explode('-', $request->jam);
+
+        if($jam[0] == $jam[1]){
+            return back()->withInput()->with('failed', 'Waktu awal dan akhir tidak boleh sama');
+        }
+
+        $jamAwal = Carbon::createFromFormat('H:i', $jam[0]);
+        $jamAkhir = Carbon::createFromFormat('H:i', $jam[1]);
+
+        if($jamAwal->gt($jamAkhir)){
+            return back()->withInput()->with('failed', 'Waktu awal harus lebih kecil dari waktu akhir');
+        }
+
+        Waktu::create($validated);
+
+        return back()->with('success', 'Jadwal dokter berhasil ditambah');
+    }
+
+    public function destroyJadwalDokter($id){
+        $waktu = Waktu::find($id);
+
+        if(!$waktu){
+            return redirect()->route('admin.jadwal.dokter.index');
+        }
+        
+        try {
+            $waktu->delete();
+        } catch (\Throwable $th) {
+            return back()->with('failed', 'Jadwal dokter ini digunakan, penghapusan tidak dapat dilakukan');
+        }
+
+        return back()->with('success', 'Jadwal dokter berhasil dihapus');
+    }
 }
