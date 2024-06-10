@@ -87,11 +87,22 @@ document.addEventListener('click', function (e) {
     } else if (!menu) {
         hideDropdown()
 
-        if(location.pathname == '/admin/perawat'){
-            if(statusCariPerawat){
-                statusCariPerawat = false;
-                location.reload();
-            }
+        switch(location.pathname){
+            case '/admin/perawat':
+                if(statusCariPerawat){
+                    statusCariPerawat = false;
+                    location.reload();
+                }
+                break;
+            case '/admin/dokter':
+                if(statusCariDokter){
+                    statusCariDokter = false;
+                    location.reload();
+                }
+                break;
+            default:
+                
+                break;
         }
     }
 })

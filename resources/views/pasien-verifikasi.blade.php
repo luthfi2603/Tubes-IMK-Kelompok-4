@@ -86,7 +86,7 @@
                         Kirim
                     </span>
                 </button>
-                <button onclick="batal('{{ csrf_token() }}')" class="mt-5 tracking-wide font-semibold bg-red-500 text-gray-100 w-full py-4 rounded-lg hover:bg-red-600 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
+                <button onclick="batal('{{ csrf_token() }}')" type="button" class="mt-5 tracking-wide font-semibold bg-red-500 text-gray-100 w-full py-4 rounded-lg hover:bg-red-600 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
                     <i class="fa-solid fa-xmark"></i>
                     <span class="ml-3">
                         Batal

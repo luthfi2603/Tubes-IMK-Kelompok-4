@@ -71,6 +71,9 @@
                     @case('admin/perawat')
                         {{ '' }}
                         @break
+                    @case('admin/dokter')
+                        {{ '' }}
+                        @break
                     @default
                         {{ 'hidden' }}
                 @endswitch
