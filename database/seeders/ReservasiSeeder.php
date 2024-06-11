@@ -23,6 +23,7 @@ class ReservasiSeeder extends Seeder {
             "status" => "Selesai",
             "tanggal" => '2024-05-25',
             "jam" => '10:00-13:00',
+            "id_rekam_medis" => 1,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);

@@ -74,6 +74,9 @@
                     @case('admin/dokter')
                         {{ '' }}
                         @break
+                    @case('admin/jadwal-dokter')
+                        {{ '' }}
+                        @break
                     @default
                         {{ 'hidden' }}
                 @endswitch

@@ -22,6 +22,7 @@ return new class extends Migration {
             $table->text('keluhan');
             $table->text('diagnosa');
             $table->text('therapie');
+            $table->string('foto')->nullable();
             $table->timestamps();
         });
     }

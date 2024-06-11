@@ -161,8 +161,12 @@ Route::middleware(['auth', 'role:Admin'])->group(function(){
                 Route::get('/jadwal-dokter/input', 'createJadwalDokter')
                     ->name('jadwal.dokter.input');
                 Route::post('/jadwal-dokter/input', 'storeJadwalDokter');
+                Route::get('/jadwal-dokter/edit/{pk}', 'editJadwalDokter')
+                    ->name('jadwal.dokter.edit');
+                Route::put('/jadwal-dokter/edit/{pk}', 'updateJadwalDokter');
                 Route::delete('/jadwal-dokter/{pk}', 'destroyJadwalDokter')
                     ->name('jadwal.dokter.destroy');
+                Route::post('/jadwal-dokter/cari', 'storeCariJadwalDokter');
             });
         });
     });
