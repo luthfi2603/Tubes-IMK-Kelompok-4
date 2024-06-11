@@ -108,74 +108,73 @@
         </div>
     </div>
 </div>
-
 @push('scripts')
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-    // Health Metrics Chart
-    const healthMetricsCtx = document.getElementById('healthMetricsChart').getContext('2d');
-    const healthMetricsChart = new Chart(healthMetricsCtx, {
-        type: 'line',
-        data: {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June'],
-            datasets: [
-                {
-                    label: 'Blood Pressure',
-                    data: [120, 125, 130, 140, 135, 125],
-                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                    borderColor: 'rgba(75, 192, 192, 1)',
-                    borderWidth: 1
-                },
-                {
-                    label: 'Glucose Levels',
-                    data: [90, 95, 100, 105, 110, 100],
-                    backgroundColor: 'rgba(153, 102, 255, 0.2)',
-                    borderColor: 'rgba(153, 102, 255, 1)',
-                    borderWidth: 1
-                },
-                {
-                    label: 'Weight',
-                    data: [70, 72, 75, 73, 74, 72],
-                    backgroundColor: 'rgba(255, 206, 86, 0.2)',
-                    borderColor: 'rgba(255, 206, 86, 1)',
-                    borderWidth: 1
-                }
-            ]
-        },
-        options: {
-            responsive: true,
-            scales: {
-                y: {
-                    beginAtZero: true
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Health Metrics Chart
+        const healthMetricsCtx = document.getElementById('healthMetricsChart').getContext('2d');
+        const healthMetricsChart = new Chart(healthMetricsCtx, {
+            type: 'line',
+            data: {
+                labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+                datasets: [
+                    {
+                        label: 'Blood Pressure',
+                        data: [120, 125, 130, 140, 135, 125],
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Glucose Levels',
+                        data: [90, 95, 100, 105, 110, 100],
+                        backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                        borderColor: 'rgba(153, 102, 255, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Weight',
+                        data: [70, 72, 75, 73, 74, 72],
+                        backgroundColor: 'rgba(255, 206, 86, 0.2)',
+                        borderColor: 'rgba(255, 206, 86, 1)',
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
                 }
             }
-        }
-    });
+        });
 
-    // Appointment Statistics Chart
-    const appointmentStatsCtx = document.getElementById('appointmentStatsChart').getContext('2d');
-    const appointmentStatsChart = new Chart(appointmentStatsCtx, {
-        type: 'pie',
-        data: {
-            labels: ['Past Appointments', 'Upcoming Appointments'],
-            datasets: [{
-                label: 'Appointments',
-                data: [5, 3],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: true
-        }
-    });
-</script>
+        // Appointment Statistics Chart
+        const appointmentStatsCtx = document.getElementById('appointmentStatsChart').getContext('2d');
+        const appointmentStatsChart = new Chart(appointmentStatsCtx, {
+            type: 'pie',
+            data: {
+                labels: ['Past Appointments', 'Upcoming Appointments'],
+                datasets: [{
+                    label: 'Appointments',
+                    data: [5, 3],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true
+            }
+        });
+    </script>
 @endpush
 @endsection

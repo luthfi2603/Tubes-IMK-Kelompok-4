@@ -1,15 +1,12 @@
 @extends('dokter.main')
 
 @section('container')
-
 <div class="flex justify-between items-center px-4 mb-3">
     <div class="font-body font-bold text-[#222C67]">
         <h1 class="text-3xl font-bold">Rekam Medis Pasien</h1>
     </div>
 </div>
-
 <hr class="border-1 border-[#B1B0AF] mb-5 mx-4">
-
 <div class="container mx-auto p-4">
     <div class="flex flex-wrap justify-between items-center mb-6">
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 w-full">
@@ -23,7 +20,6 @@
             <button class="bg-blue-500 text-white p-2 rounded w-1/2 hover:bg-blue-600 transition duration-300 ease-in-out">Filter</button>
         </div>
     </div>
-
     <div class="bg-white shadow-lg rounded-lg overflow-x-auto">
         <table class="min-w-full bg-white">
             <thead>
@@ -36,12 +32,12 @@
                 </tr>
             </thead>
             <tbody id="isi-tabel">
-                @if($rekammedis->isEmpty())
+                @if($rekamMedis->isEmpty())
                     <tr>
                         <td colspan="6" class="text-center text-2xl py-3">Data tidak ada</td>
                     </tr>
                 @else
-                @php
+                    @php
                         $halamanSekarang = request('page');
                         if(empty($halamanSekarang)){
                             $i = 1;
@@ -49,23 +45,35 @@
                             $i = ($halamanSekarang * 10) - 9;
                         }
                     @endphp
-                @foreach($rekammedis as $rekam)
-                    <tr>
-                        <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">{{ $i }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">
-                            <img class="w-10 h-10 rounded-full" src="https://via.placeholder.com/150" alt="Avatar">
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">{{ $rekam->nama_pasien }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">{{ $rekam->diagnosa }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-md">
-                            <a href="{{ route('dokter.rekam.medis.show', $rekam->id) }}">
-                            <button class="bg-blue-500 text-white px-3 py-1 mr-2 rounded">Detail</button>
-                            </a>
-                            <button class="bg-[#E8C51C] text-white px-3 py-1 rounded">Unduh</button>
-                        </td>
-                    </tr>
-                    @php $i++; @endphp
-                @endforeach
+                    @foreach($rekamMedis as $rekam)
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">{{ $i }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">
+                                @if($rekam->foto)
+                                    <div class="w-20 h-20 aspect-square overflow-hidden rounded-full border-2 border-gray-300">
+                                        <img src="{{ asset('storage/' . $rekam->foto) }}" alt="pasien" class="object-cover object-top w-full h-full">
+                                    </div>
+                                @else
+                                    <div class="w-20 h-20">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"  fill="none"  stroke="#222c67"  stroke-width="1"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-user-circle"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M12 10m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /><path d="M6.168 18.849a4 4 0 0 1 3.832 -2.849h4a4 4 0 0 1 3.834 2.855" /></svg>
+                                    </div>
+                                @endif
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">{{ $rekam->nama_pasien }}</td>
+                            <td class="px-6 py-4 text-md text-gray-900">
+                                <textarea>
+                                    {{ $rekam->diagnosa }}
+                                </textarea>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-md">
+                                <a href="{{ route('dokter.rekam.medis.show', $rekam->id) }}">
+                                    <button class="bg-blue-500 text-white px-3 py-1 mr-2 rounded">Detail</button>
+                                </a>
+                                <button class="bg-[#E8C51C] text-white px-3 py-1 rounded">Unduh</button>
+                            </td>
+                        </tr>
+                        @php $i++; @endphp
+                    @endforeach
                 @endif
             </tbody>
         </table>

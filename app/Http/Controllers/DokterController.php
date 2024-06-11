@@ -17,29 +17,54 @@ class DokterController extends Controller {
     
     public function indexRekamMedis(){
         $tanggalHariIni = Carbon::now()->format('Y-m-d');
-        $rekammedis = RekamMedis::where('nama_dokter', auth()->user()->dokter->nama)
-        ->whereDate('created_at', $tanggalHariIni)
-        ->get();
-        return view('dokter.rekam-medis', compact('rekammedis'));
+
+        $rekamMedis = RekamMedis::where('nama_dokter', auth()->user()->dokter->nama)
+            ->whereDate('created_at', $tanggalHariIni)
+            ->oldest()
+            ->get();
+        
+        return view('dokter.rekam-medis', compact('rekamMedis'));
     }
     
-    public function createRekamMedis(){
+    public function createRekamMedis($id){
+        $reservasi = Reservasi::where('nama_dokter', auth()->user()->dokter->nama)
+            ->where('id', $id)
+            ->first();
+    
+        if (!$reservasi) {
+            return back();
+        }
+
         return view('dokter.create-rekam-medis');
     }
 
     public function storeRekamMedis(Request $request, $id){
+        $messages = [
+            'keluhan.required' => 'Kolom keluhan harus diisi.',
+            'keluhan.max' => 'Kolom keluhan tidak boleh lebih dari :max character.',
+            'diagnosa.required' => 'Kolom diagnosa harus diisi.',
+            'diagnosa.max' => 'Kolom diagnosa tidak boleh lebih dari :max character.',
+            'therapie.required' => 'Kolom therapie harus diisi.',
+            'therapie.max' => 'Kolom therapie tidak boleh lebih dari :max character.',
+        ];
+
+        $request->validate([
+            'keluhan' => ['required', 'max:65535'],
+            'diagnosa' => ['required', 'max:65535'],
+            'therapie' => ['required', 'max:65535'],
+        ], $messages);
+
         $reservasi = Reservasi::where('nama_dokter', auth()->user()->dokter->nama)
-        ->where('id', $id)
-        ->first();
-    
-    // Check if the reservation exists
+            ->where('id', $id)
+            ->first();
+
         if (!$reservasi) {
             return back();
         }
 
         $pasien = Pasien::select('pekerjaan')
-        ->where('nama', $reservasi->nama_pasien)
-        ->first();
+            ->where('nama', $reservasi->nama_pasien)
+            ->first();
   
         RekamMedis::create([
             'nama_pasien' => $reservasi->nama_pasien,
@@ -53,17 +78,25 @@ class DokterController extends Controller {
             'keluhan' => $request->keluhan,
             'diagnosa' => $request->diagnosa,
             'therapie' => $request->therapie,
+            'foto' => $reservasi->foto,
         ]);
-       return back()->with('success', 'Rekam Medis Berhasil Dibuat');
+
+        $reservasi->update([
+            'id_rekam_medis' => RekamMedis::latest()->first()->id
+        ]);
+
+        return back()->with('success', 'Rekam Medis Berhasil Dibuat');
     }
 
-    public function showRekamMedis($id) {
+    public function showRekamMedis($id){
+        $rekamMedis = RekamMedis::find($id);
 
-    $rekammedis = RekamMedis::find($id);
+        if(!$rekamMedis){
+            return back();
+        }
 
-    return view('dokter.detail-rekam-medis', compact('rekammedis'));
-}
-
+        return view('dokter.detail-rekam-medis', compact('rekamMedis'));
+    }
 
     public function indexAntrian(){
         $tanggalHariIni = Carbon::now()->format('Y-m-d');
@@ -88,10 +121,11 @@ class DokterController extends Controller {
     }
     
     public function indexRekamMedisTanggal(Request $request){
-        $rekammedis = RekamMedis::whereDate('created_at', $request->tanggal)
+        $rekamMedis = RekamMedis::whereDate('created_at', $request->tanggal)
             ->where('nama_dokter', auth()->user()->dokter->nama)
+            ->oldest()
             ->get();
-        return response()->json(['rekammedis' => $rekammedis]);
+
+        return response()->json(['rekam_medis' => $rekamMedis]);
     }
-    
 }
