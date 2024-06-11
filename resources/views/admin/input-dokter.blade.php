@@ -11,8 +11,8 @@
     </div>
 @endif
 <div class="flex flex-col gap-4">
-    <p class="text-2xl md:text-3xl font-bold">Tambah Perawat</p>
-    <form action="{{ route('admin.perawat.input') }}" method="POST" enctype="multipart/form-data" class="flex justify-center">
+    <p class="text-2xl md:text-3xl font-bold">Tambah Dokter</p>
+    <form action="{{ route('admin.dokter.input') }}" method="POST" enctype="multipart/form-data" class="flex justify-center">
         @csrf
         <div class="flex flex-col items-center gap-4 w-1/2">
             <div class="flex flex-col items-center w-full">
@@ -60,6 +60,20 @@
                 @enderror
             </div>
             <div class="flex flex-col w-full">
+                <label for="spesialis">Spesialis</label>
+                <select id="spesialis" name="spesialis" class="px-4 py-2 border-gray-300 rounded-lg shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
+                    <option value="">Pilih spesialis</option>
+                    <option {{ old('spesialis') === 'Penyakit Dalam' ? 'selected' : '' }}>Penyakit Dalam</option>
+                    <option {{ old('spesialis') === 'Obgyn' ? 'selected' : '' }}>Obgyn</option>
+                    <option {{ old('spesialis') === 'Estetika' ? 'selected' : '' }}>Estetika</option>
+                </select>
+                @error('spesialis')
+                    <div class="text-[#B42223] text-bold text-sm">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
+            <div class="flex flex-col w-full">
                 <p class="font-semibold">Jenis Kelamin</p>
                 <div>
                     <input type="radio" id="L" name="jenis_kelamin" value="L" {{ old('jenis_kelamin') == 'L' ? 'checked' : '' }}>
@@ -95,7 +109,7 @@
             </div>
             <div>
                 <button class="mr-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg py-2 px-4 w-min text-nowrap mt-1">Tambah</button>
-                <a href="{{ route('admin.perawat.index') }}" class="bg-blue-500 hover:bg-blue-600 text-white rounded-lg py-2 px-4 w-min text-nowrap mt-1">Kembali</a>
+                <a href="{{ route('admin.index.dokter') }}" class="bg-blue-500 hover:bg-blue-600 text-white rounded-lg py-2 px-4 w-min text-nowrap mt-1">Kembali</a>
             </div>
         </div>
     </form>

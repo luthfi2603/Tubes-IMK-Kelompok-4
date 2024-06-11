@@ -72,7 +72,7 @@ const success =  document.getElementById('success');
 const success2 =  document.getElementById('success-2');
 const errorMessage = document.getElementById('error-message');
 
-const kirim =  async (url) => {
+async function kirim(url){
     const formData = new FormData(form);
     const response = await fetch(url, {
         method: "POST",

@@ -60,30 +60,16 @@ class PasienController extends Controller {
 
             Pasien::where('id_user', $user->id)->update($validated);
 
-            $reservasi = Reservasi::where('nomor_handphone', $user->nomor_handphone)->get();
-            if($reservasi){
-                Reservasi::where('nomor_handphone', $user->nomor_handphone)->update([
-                    'nama_pasien' => $request->nama,
-                    'alamat' => $request->alamat,
-                ]);
-            }
+            Reservasi::where('nomor_handphone', $user->nomor_handphone)->update([
+                'nama_pasien' => $request->nama,
+                'alamat' => $request->alamat,
+            ]);
             
-            $rekamMedis = RekamMedis::where('nomor_handphone', $user->nomor_handphone)->get();
-            if($rekamMedis){
-                RekamMedis::where('nomor_handphone', $user->nomor_handphone)->update([
-                    'nama_pasien' => $request->nama,
-                    'pekerjaan' => $request->pekerjaan,
-                    'alamat' => $request->alamat,
-                ]);
-            }
-            
-            $rawatInap = RawatInap::where('nomor_handphone', $user->nomor_handphone)->get();
-            if($rawatInap){
-                RawatInap::where('nomor_handphone', $user->nomor_handphone)->update([
-                    'nama_pasien' => $request->nama,
-                    'alamat' => $request->alamat,
-                ]);
-            }
+            RekamMedis::where('nomor_handphone', $user->nomor_handphone)->update([
+                'nama_pasien' => $request->nama,
+                'pekerjaan' => $request->pekerjaan,
+                'alamat' => $request->alamat,
+            ]);
         }else{ // nomor handphone dan yang lain berubah
             $messages = [
                 'nama.required' => 'Kolom nama harus diisi.',
@@ -194,33 +180,18 @@ class PasienController extends Controller {
                 'pekerjaan' => $request['pekerjaan'],
             ]);
 
-            $reservasi = Reservasi::where('nomor_handphone', $request['nomor_handphone_lama'])->get();
-            if($reservasi){
-                Reservasi::where('nomor_handphone', $request['nomor_handphone_lama'])->update([
-                    'nama_pasien' => $request['nama'],
-                    'alamat' => $request['alamat'],
-                    'nomor_handphone' => $request['nomor_handphone']
-                ]);
-            }
-            
-            $rekamMedis = RekamMedis::where('nomor_handphone', $request['nomor_handphone_lama'])->get();
-            if($rekamMedis){
-                RekamMedis::where('nomor_handphone', $request['nomor_handphone_lama'])->update([
-                    'nama_pasien' => $request['nama'],
-                    'pekerjaan' => $request['pekerjaan'],
-                    'alamat' => $request['alamat'],
-                    'nomor_handphone' => $request['nomor_handphone']
-                ]);
-            }
-            
-            $rawatInap = RawatInap::where('nomor_handphone', $request['nomor_handphone_lama'])->get();
-            if($rawatInap){
-                RawatInap::where('nomor_handphone', $request['nomor_handphone_lama'])->update([
-                    'nama_pasien' => $request['nama'],
-                    'alamat' => $request['alamat'],
-                    'nomor_handphone' => $request['nomor_handphone']
-                ]);
-            }
+            Reservasi::where('nomor_handphone', $request['nomor_handphone_lama'])->update([
+                'nama_pasien' => $request['nama'],
+                'alamat' => $request['alamat'],
+                'nomor_handphone' => $request['nomor_handphone']
+            ]);
+        
+            RekamMedis::where('nomor_handphone', $request['nomor_handphone_lama'])->update([
+                'nama_pasien' => $request['nama'],
+                'pekerjaan' => $request['pekerjaan'],
+                'alamat' => $request['alamat'],
+                'nomor_handphone' => $request['nomor_handphone']
+            ]);
             
             session()->forget('request');
     
@@ -361,11 +332,25 @@ class PasienController extends Controller {
     }
     
     public function indexReservasi(){
-        $reservasis = Reservasi::where('nomor_handphone', auth()->user()->nomor_handphone)
+        $reservasis = DB::table('view_reservasi')
+            ->where('nomor_handphone', auth()->user()->nomor_handphone)
             ->latest()
             ->get();
 
-        return view('reservasi', compact('reservasis'));
+        $idUserDokter = Dokter::pluck('id_user');
+
+        $users = User::whereIn('id', $idUserDokter)->get();
+        
+        $docterPhotos = [];
+
+        foreach ($users as $key) {
+            $docterPhotos[] = [
+                'nama_dokter' => $key->dokter->nama,
+                'foto' => $key->foto,
+            ];
+        }
+
+        return view('reservasi', compact('reservasis', 'docterPhotos'));
     }
 
     public function createReservasi(){
@@ -414,7 +399,24 @@ class PasienController extends Controller {
         $umur = Carbon::parse($auth->pasien->tanggal_lahir)->age;
         $dataDokter = explode('|', $request->dokter);
 
+        // ini untuk membuat waktu rekomendasi untuk antrian
+        $cekAntrian = Reservasi::select('id')
+            ->where('nama_dokter', $dataDokter[0])
+            ->where('tanggal', $request->tanggal)
+            ->where(function($query){
+                $query->where('status', 'Menunggu')
+                      ->orWhere('status', 'Selesai');
+            })
+            ->get();
+
+        $waktuAwal = explode('-', $dataDokter[1]);
+        $waktuAwal = $waktuAwal[0];
+        $waktuAwal = Carbon::createFromFormat('H:i', $waktuAwal);
+        $waktuRekomendasiCarbon = $waktuAwal->addMinutes(count($cekAntrian) * 20);
+        $waktuRekomendasi = $waktuRekomendasiCarbon->format('H:i');
+
         $today = Carbon::today();
+        $currentTime = Carbon::now();
         $carbonDateToCheck = Carbon::parse($request->tanggal);
         $isDateGreaterThanToday = $carbonDateToCheck->gt($today);
 
@@ -422,13 +424,19 @@ class PasienController extends Controller {
             $waktuAkhir = explode('-', $dataDokter[1]);
             $waktuAkhir = $waktuAkhir[1];
             
-            $carbonTime = Carbon::createFromFormat('H:i', $waktuAkhir);
-            $newTime = $carbonTime->subHour();
-            $currentTime = Carbon::now();
-    
-            $isCurrentTimeLess = $currentTime->lt($newTime);
+            $waktuAkhirCarbon = Carbon::createFromFormat('H:i', $waktuAkhir);
+            $waktuAkhirCarbonKurang1Jam = $waktuAkhirCarbon->subHour();
+            $isCurrentTimeLess = $currentTime->lt($waktuAkhirCarbonKurang1Jam);
+
+            // cek apakah waktu rekomendasi lebih besar dari waktu akhir jadwal dokter
+            $waktuAkhirCarbon = Carbon::createFromFormat('H:i', $waktuAkhir);
+            $waktuAkhirCarbonKurang20Menit = $waktuAkhirCarbon->subMinutes(20);
+            $apakahWaktuRekomendasiLebihDari = $waktuRekomendasiCarbon->gt($waktuAkhirCarbonKurang20Menit);
             
             if($isCurrentTimeLess){ // waktu lebih kecil dari 1 jam sebelum
+                if($apakahWaktuRekomendasiLebihDari){
+                    return back()->with('failed', 'Antrian sudah penuh, silahkan pilih hari berikutnya');
+                }
                 Reservasi::create([
                     'nama_pasien' => $auth->pasien->nama,
                     'umur' => $umur,
@@ -440,9 +448,12 @@ class PasienController extends Controller {
                     'jenis_kelamin' => $auth->pasien->jenis_kelamin,
                     'tanggal' => $request->tanggal,
                     'jam' => $dataDokter[1],
+                    'foto' => $auth->foto,
+                    'created_at' => $currentTime,
+                    'updated_at' => $currentTime,
                 ]);
             }else{
-                return back()->with('failed', 'Waktu reservasi dokter ini sudah terlambat, disarankan daftar 1 jam sebelum waktu dokter habis');
+                return back()->with('failed', 'Waktu reservasi dokter ini sudah habis, disarankan daftar 1 jam sebelum waktu dokter berakhir');
             }
         }else{ // masa depan
             Reservasi::create([
@@ -456,10 +467,13 @@ class PasienController extends Controller {
                 'jenis_kelamin' => $auth->pasien->jenis_kelamin,
                 'tanggal' => $request->tanggal,
                 'jam' => $dataDokter[1],
+                'foto' => $auth->foto,
+                'created_at' => $currentTime,
+                'updated_at' => $currentTime,
             ]);
         }
 
-        return back()->with('success', 'Reservasi berhasil, datanglah sesuai jadwal yang telah dipilih');
+        return back()->with('success', 'Reservasi berhasil, datanglah jam ' . $waktuRekomendasi);
     }
 
     public function indexDokter(){
@@ -478,5 +492,21 @@ class PasienController extends Controller {
             ->get();
 
         return view('dokter', compact('dokters', 'jadwals'));
+    }
+
+    public function destroyReservasi(Request $request){
+        $reservasi = Reservasi::where('id', $request->id)
+            ->where('nomor_handphone', auth()->user()->nomor_handphone)
+            ->get();
+
+        if($reservasi->isEmpty()){
+            abort(404);
+        }else{
+            $reservasi[0]->update([
+                'status' => 'Batal'
+            ]);
+        }
+
+        return back();
     }
 }
