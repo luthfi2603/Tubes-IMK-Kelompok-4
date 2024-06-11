@@ -10,11 +10,18 @@
         {{ session('failed') }}
     </div>
 @endif
-<div class="flex flex-col gap-4">
-    <p class="text-2xl md:text-3xl font-bold">Tambah Jadwal Dokter</p>
-    <form action="{{ route('admin.jadwal.dokter.input') }}" method="POST" class="flex justify-center">
+<div class="container mx-auto px-4 py-6">
+    <div class="max-w-6xl mx-auto bg-white p-8 rounded-lg shadow-lg border border-gray-300">
+        <div class="flex items-center mb-6">
+            <img src="{{ asset('assets/img/doctor-add.png') }}" class="w-24 h-24" alt="">
+            <div class="ml-4">
+                <p class="text-2xl md:text-3xl font-bold">Tambah Jadwal Dokter</p>
+                <p class="text-gray-500 text-sm">Silahkan tambahkan jadwal dokter ke sistem.</p>
+            </div>
+        </div>
+    <form action="{{ route('admin.jadwal.dokter.input') }}" method="POST" class="space-y-4">
         @csrf
-        <div class="flex flex-col items-center gap-4 w-1/2">
+        <div class="flex flex-col items-center gap-4 w-full">
             <div class="flex flex-col w-full">
                 <label for="hari">Hari</label>
                 <select id="hari" name="hari" class="px-4 py-2 border-gray-300 rounded-lg shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
@@ -43,8 +50,8 @@
                 @enderror
             </div>
             <div>
-                <button class="mr-2 bg-green-500 hover:bg-green-600 text-white rounded-lg py-2 px-4 w-min text-nowrap mt-1">Tambah</button>
-                <a href="{{ route('admin.jadwal.dokter.index') }}" class="bg-blue-500 hover:bg-blue-600 text-white rounded-lg py-2 px-4 w-min text-nowrap mt-1">Kembali</a>
+                <button class="mr-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg py-2 px-4 w-min text-nowrap mt-1">Tambah</button>
+                <a href="{{ route('admin.jadwal.dokter.index') }}" class="bg-yellow-500 hover:bg-yellow-600 text-white rounded-lg py-2 px-4 w-min text-nowrap mt-1">Kembali</a>
             </div>
         </div>
     </form>

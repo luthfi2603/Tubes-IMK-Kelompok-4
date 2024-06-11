@@ -13,7 +13,7 @@
                     <p class="pt-3 pb-1">You have total <span class="font-bold text-[#E8C51C]">12 Appointments</span> today!</p>
                 </div>
                 <div class="flex-shrink-0">
-                    <img src="{{ asset('assets/img/female-doctor.png') }}" alt="Doctor Avatar" class="w-40 h-40 lg:block md:block max-[760px]:hidden">
+                    <img src="{{ asset('assets/img/staff.png') }}" alt="Doctor Avatar" class="w-full h-40 lg:block md:block max-[760px]:hidden">
                 </div>
             </div>
         </div>
@@ -209,7 +209,7 @@
                         <span>Malaria</span>
                     </div>
                     <span class="text-gray-500">11 Patients</span>
-                </li>
+            </li>
             </ul>
         </div>
 
@@ -223,7 +223,7 @@
                         </button>
                         <div id="options-menu" class="hidden origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
                             <div class="py-1">
-                                <a href="{{ route('admin.data.karyawan') }}" class="block px-4 py-2 text-sm text-gray-700">Lihat lebih lanjut</a>
+                                <a href="" class="block px-4 py-2 text-sm text-gray-700">Lihat lebih lanjut</a>
                             </div>
                         </div>
                     </div>

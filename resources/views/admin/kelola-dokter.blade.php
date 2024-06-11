@@ -6,26 +6,45 @@
         {{ session('success') }}
     </div>
 @endif
-<div class="flex flex-col gap-4">
-    <p class="text-2xl md:text-3xl font-bold">Kelola Dokter</p>
-    <a href="{{ route('admin.dokter.input') }}" class="bg-blue-500 hover:bg-blue-600 text-white rounded-lg py-2 px-4 w-min text-nowrap">Tambah Dokter</a>
+
+    <div class="flex justify-between items-center mb-4 mx-4">
+        <h1 class="text-3xl font-bold">Kelola Dokter</h1>
+        <a href="{{ route('admin.dokter.input') }}" class="bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600 flex items-center font-semibold">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+            </svg>
+            Tambah Dokter
+        </a>
+    </div>
+
+    <hr class="border-1 border-[#B1B0AF] mb-4 mx-4">
+
+    <div class="container mx-auto p-4">
     @if($dokters->isEmpty())
-        <div class="mt-4 text-center">
+        {{-- <div class="mt-4 text-center">
             <p class="text-xl font-bold">Dokter Tidak Ada</p>
+        </div> --}}
+        <div class="flex justify-center items-center">
+            <div class="bg-[#E3EBF3] text-center p-4 rounded-lg shadow-md font-bold w-3/4 flex items-center justify-center space-x-4">
+                <img src="{{ asset('assets/img/nurse-2.png') }}" alt="No Appointments" class="w-16 h-16">
+                <p class="text-xl text-[#222C67]">Belum ada Data</p>
+                <img src="{{ asset('assets/img/nurse-2.png') }}" alt="No Appointments" class="w-16 h-16">
+            </div>
         </div>
     @else
-        <div class="overflow-x-auto">
-            <table class="min-w-full divide-y-2 divide-gray-200 bg-white text-sm rounded-lg">
+         <div class="bg-white shadow-lg rounded-lg overflow-x-auto">
+            <table class=" overflow-x-auto">
                 <thead>
                     <tr>
-                        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 text-start">#</th>
-                        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 text-start">Aksi</th>
-                        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 text-start">Foto</th>
-                        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 text-start">Nama</th>
-                        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 text-start">Nomor Handphone</th>
-                        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 text-start">Jenis Kelamin</th>
-                        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 text-start">Spesialis</th>
-                        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 text-start">Alamat</th>
+                        <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">No</th>
+                        <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">Foto</th>
+                        <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">Nama</th>
+                        <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">Nomor Handphone</th>
+                        <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">Jenis Kelamin</th>
+                        <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">Spesialis</th>
+                        <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">Alamat</th>
+                        <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">Aksi</th>
+
                     </tr>
                 </thead>
                 <tbody id="isi-tabel" class="divide-y divide-gray-200">
@@ -38,19 +57,10 @@
                         }
                     @endphp
                     @foreach($dokters as $item)
-                        <tr>
-                            <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">{{ $i }}</td>
-                            <td class="whitespace-nowrap px-4 py-2 text-gray-700">
-                                <div class="flex gap-2 items-center h-full">
-                                    <a href="{{ route('admin.dokter.edit', $item->nomor_handphone) }}" class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-lg">Ubah</a>
-                                    <form action="{{ route('admin.dokter.destroy', $item->id_user) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-lg">Hapus</button>
-                                    </form>
-                                </div>
-                            </td>
-                            <td class="px-4 py-2 text-gray-700">
+                        <tr class="bg-white hover:bg-[#d1e4f2] transition duration-200">
+                            <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">{{ $i }}</td>
+                            
+                            <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">
                                 @if($item->foto)
                                     <div class="w-20 h-20 aspect-square overflow-hidden rounded-full border-2 border-gray-300">
                                         <img src="{{ asset('storage/' . $item->foto) }}" alt="dokter" class="object-cover object-top w-full h-full">
@@ -61,11 +71,21 @@
                                     </div>
                                 @endif
                             </td>
-                            <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ $item->nama }}</td>
-                            <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ $item->nomor_handphone }}</td>
-                            <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ $item->jenis_kelamin == 'P' ? 'Perempuan' : 'Laki-laki'}}</td>
-                            <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ $item->spesialis }}</td>
-                            <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ $item->alamat }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">{{ $item->nama }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">{{ $item->nomor_handphone }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">{{ $item->jenis_kelamin == 'P' ? 'Perempuan' : 'Laki-laki'}}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">{{ $item->spesialis }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">{{ $item->alamat }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">
+                                <div class="flex gap-2 items-center h-full">
+                                    <a href="{{ route('admin.dokter.edit', $item->nomor_handphone) }}" class="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-2 rounded-md">Ubah</a>
+                                    <form action="{{ route('admin.dokter.destroy', $item->id_user) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="bg-red-500 hover:bg-red-600 text-white px-3 py-2 rounded-md">Hapus</button>
+                                    </form>
+                                </div>
+                            </td>
                         </tr>
                         @php $i++; @endphp
                     @endforeach
@@ -90,6 +110,7 @@
         </div>
     @endif
 </div>
+
 @push('scripts')
     <script>const csrf = '{{ csrf_token() }}';</script>
     <script src="{{ asset('assets/js/kelola-dokter.js') }}"></script>

@@ -105,46 +105,51 @@
     </div>
 @endif
 
+<div class="flex justify-between items-center mb-4 mx-4">
+    <h1 class="text-3xl font-bold">Kelola Perawat</h1>
+    <a href="{{ route('admin.perawat.input') }}" class="bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600 flex items-center">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+        </svg>
+        Tambah Perawat
+    </a>
+</div>
+
+<hr class="border-1 border-[#B1B0AF] mb-4 mx-4">
+
 <div class="container mx-auto px-4 py-6">
-    <div class="flex justify-between items-center mb-4">
-        <h1 class="text-3xl font-bold">Kelola Perawat</h1>
-        <a href="{{ route('admin.perawat.input') }}" class="bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600 flex items-center">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-            </svg>
-            Tambah Perawat
-        </a>
-    </div>
-
-    <hr class="border-1 border-[#B1B0AF] mb-8">
-
     @if($perawats->isEmpty())
-        <div class="mt-4 text-center">
-            <p class="text-xl font-bold">Perawat Tidak Ada</p>
+    <div class="flex justify-center items-center">
+        <div class="bg-[#E3EBF3] text-center p-4 rounded-lg shadow-md font-bold w-3/4 flex items-center justify-center space-x-4">
+            <img src="{{ asset('assets/img/nurse-2.png') }}" alt="No Appointments" class="w-16 h-16">
+            <p class="text-xl text-[#222C67]">Perawat Tidak Ada</p>
+            <img src="{{ asset('assets/img/nurse-2.png') }}" alt="No Appointments" class="w-16 h-16">
         </div>
+    </div>
     @else
-        <div class="overflow-x-auto bg-white rounded-lg shadow-lg">
-            <table class="min-w-full rounded-lg">
-                <thead class="bg-gray-50 text-gray-800 text-sm font-semibold shadow">
+
+        <div class="bg-white shadow-lg rounded-lg overflow-x-auto">
+            <table class="min-w-full bg-white">
+                <thead>
                     <tr>
-                        <th class="px-4 py-3 text-start">#</th>
-                        <th class="px-4 py-3 text-start min-w-40">Foto</th>
-                        <th class="px-4 py-3 text-start min-w-50">Nama</th>
-                        <th class="px-4 py-3 text-start min-w-40">Nomor Handphone</th>
-                        <th class="px-4 py-3 text-center min-w-30">Jenis Kelamin</th>
-                        <th class="px-4 py-3 text-center min-w-50">Alamat</th>
-                        <th class="px-4 py-3 text-center min-w-40">Aksi</th>
+                        <th class="px-4 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">#</th>
+                        <th class="px-4 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider min-w-40">Foto</th>
+                        <th class="px-4 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider min-w-50">Nama</th>
+                        <th class="px-4 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider min-w-40">Nomor Handphone</th>
+                        <th class="px-4 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider min-w-30">Jenis Kelamin</th>
+                        <th class="px-4 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider min-w-50">Alamat</th>
+                        <th class="px-4 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider min-w-40">Aksi</th>
                     </tr>
                 </thead>
-                <tbody class="text-gray-700">
+                <tbody>
                     @php
                         $halamanSekarang = request('page');
                         $i = empty($halamanSekarang) ? 1 : ($halamanSekarang * 10) - 9;
                     @endphp
                     @foreach($perawats as $item)
-                    <tr class="bg-[#E3EBF3] hover:bg-[#d1e4f2] transition duration-200">
-                        <td class="whitespace-nowrap px-4 py-3 font-medium text-gray-900">{{ $i }}</td>
-                        <td class="px-4 py-2 text-gray-700">
+                    <tr class="bg-white hover:bg-[#d1e4f2] transition duration-200">
+                        <td class="px-4 py-4 whitespace-nowrap text-md text-gray-900">{{ $i }}</td>
+                        <td class="px-4 py-4 whitespace-nowrap text-md text-gray-900">
                             @if($item->foto)
                                 <div class="w-20 h-20 aspect-square overflow-hidden rounded-full border-2 border-gray-300">
                                     <img src="{{ asset('storage/' . $item->foto) }}" alt="perawat" class="object-cover object-top w-full h-full">
@@ -160,12 +165,12 @@
                                 </div>
                             @endif
                         </td>
-                        <td class="whitespace-nowrap px-4 py-3 text-gray-700">{{ $item->nama }}</td>
-                        <td class="whitespace-nowrap px-4 py-3 text-gray-700">{{ $item->nomor_handphone }}</td>
-                        <td class="whitespace-nowrap px-4 py-3 text-gray-700">{{ $item->jenis_kelamin }}</td>
-                        <td class="whitespace-nowrap px-4 py-3 text-gray-700">{{ $item->alamat }}</td>
+                        <td class="px-4 py-4 whitespace-nowrap text-md text-gray-900">{{ $item->nama }}</td>
+                        <td class="px-4 py-4 whitespace-nowrap text-md text-gray-900">{{ $item->nomor_handphone }}</td>
+                        <td class="px-4 py-4 whitespace-nowrap text-md text-gray-900">{{ $item->jenis_kelamin }}</td>
+                        <td class="px-4 py-4 whitespace-nowrap text-md text-gray-900">{{ $item->alamat }}</td>
                         
-                        <td class="whitespace-nowrap px-4 py-3 flex space-x-2">
+                        <td class="px-4 pt-8  whitespace-nowrap text-md text-gray-900 flex space-x-2">
                             <a href="{{ route('admin.perawat.edit', $item->nomor_handphone) }}" class="bg-yellow-400 text-white px-2 py-1 rounded shadow hover:bg-yellow-500 flex items-center">
                                 <i class="fa-solid fa-pen-to-square mr-2"></i>
                                 Ubah

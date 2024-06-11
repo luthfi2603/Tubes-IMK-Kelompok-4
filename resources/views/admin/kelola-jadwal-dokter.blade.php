@@ -10,19 +10,27 @@
         {{ session('success') }}
     </div>
 @endif
-<div class="flex justify-between items-center px-4 mb-3">
-    <div class="font-body font-bold text-[#222C67]">
-        <h1 class="text-3xl font-bold">Kelola Jadwal Dokter</h1>
-    </div>
-    <a href="{{ route('admin.jadwal.dokter.input') }}" class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-lg">Tambah</a>
+<div class="flex justify-between items-center mb-4 mx-4">
+    <h1 class="text-3xl font-bold">Kelola Jadwal Dokter</h1>
+    <a href="{{ route('admin.jadwal.dokter.input') }}" class="bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600 flex items-center">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+        </svg>
+        Tambah Jadwal Dokter
+    </a>
 </div>
+
 <hr class="border-1 border-[#B1B0AF] mb-4 mx-4">
+
 <div class="container mx-auto p-4">
     <div class="bg-white shadow-lg rounded-lg overflow-x-auto">
         <table class="min-w-full bg-white">
             <thead>
                 <tr>
-                    <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">#</th>
+                    <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">No</th>
+                    <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">Foto</th>
+                    <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">Nama</th>
+                    <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">Spesialis</th>
                     <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">Aksi</th>
                     <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">Hari</th>
                     <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">Jam</th>
@@ -31,7 +39,15 @@
             <tbody id="isi-tabel">
                 @if($jadwals->isEmpty())
                     <tr>
-                        <td colspan="3" class="text-center text-2xl py-3">Data tidak ada</td>
+                        <td colspan="3" class="text-center text-2xl py-3">
+                            <div class="flex justify-center items-center">
+                                <div class="bg-[#E3EBF3] text-center p-4 rounded-lg shadow-md font-bold w-3/4 flex items-center justify-center space-x-4">
+                                    <img src="{{ asset('assets/img/nurse-2.png') }}" alt="No Appointments" class="w-16 h-16">
+                                    <p class="text-xl text-[#222C67]">Belum ada Data</p>
+                                    <img src="{{ asset('assets/img/nurse-2.png') }}" alt="No Appointments" class="w-16 h-16">
+                                </div>
+                            </div>
+                        </td>
                     </tr>
                 @else
                     @php

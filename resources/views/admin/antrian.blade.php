@@ -1,10 +1,11 @@
 @extends('admin.main')
 
 @section('container')
-<div id="success-js" class="hidden bg-green-300 py-3 text-white px-4 rounded-lg fixed inset-x-4 top-4 z-[99]"></div>
-<div id="failed-js" class="hidden bg-red-300 py-3 text-white px-4 rounded-lg fixed inset-x-4 top-4 z-[99]"></div>
-<div class="flex justify-between items-center px-4 mb-3">
-    <div class="font-body font-bold text-[#222C67]">
+<div id="success-js" class="hidden bg-green-300 py-3 text-white px-4 mx-6 rounded-lg fixed inset-x-4 top-4 z-[99]"></div>
+<div id="failed-js" class="hidden bg-red-300 py-3 text-white px-4 mx-6 rounded-lg fixed inset-x-4 top-4 z-[99]"></div>
+
+<div class="flex justify-between items-center px-4 mb-4">
+    <div class="font-body font-bold">
         <h1 class="text-3xl font-bold">Antrian</h1>
     </div>
     <div class="flex items-center gap-4">
@@ -13,12 +14,13 @@
     </div>
 </div>
 <hr class="border-1 border-[#B1B0AF] mb-4 mx-4">
+
 <div class="container mx-auto p-4">
     <div class="bg-white shadow-lg rounded-lg overflow-x-auto">
         <table class="min-w-full bg-white">
             <thead>
                 <tr>
-                    <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">#</th>
+                    <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">No</th>
                     <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">Aksi</th>
                     <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">Foto</th>
                     <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">Status</th>
@@ -33,7 +35,15 @@
             <tbody id="isi-tabel">
                 @if($antrians->isEmpty())
                     <tr>
-                        <td colspan="9" class="text-center text-2xl py-3">Data tidak ada</td>
+                        <td colspan="9" class="text-center text-2xl py-3">
+                            <div class="flex justify-center items-center">
+                                <div class="bg-[#E3EBF3] text-center p-4 rounded-lg shadow-md font-bold w-3/4 flex items-center justify-center space-x-4">
+                                    <img src="{{ asset('assets/img/nurse-2.png') }}" alt="No Appointments" class="w-16 h-16">
+                                    <p class="text-xl text-[#222C67]">Belum ada Data</p>
+                                    <img src="{{ asset('assets/img/nurse-2.png') }}" alt="No Appointments" class="w-16 h-16">
+                                </div>
+                            </div>
+                        </td>
                     </tr>
                 @else
                     @php
@@ -45,7 +55,7 @@
                         }
                     @endphp
                     @foreach ($antrians as $item)
-                        <tr>
+                        <tr class="bg-white hover:bg-[#d1e4f2] transition duration-200">
                             <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">{{ $i }}</td>
                             <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">
                                 <div class="dropdown" data-placement="right">
