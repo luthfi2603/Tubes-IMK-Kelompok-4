@@ -81,11 +81,19 @@ async function refreshTable(){
                                             </a>
                                         `;
                                     }else{
-                                        return `
-                                            <a href="/dokter/janji-temu-dokter/rekam-medis/create/${item.id}" class="px-4 py-2 bg-green-500 text-white rounded-lg">
-                                                Tambah Rekam Medis
-                                            </a>
-                                        `;
+                                        if(item.status == 'Batal'){
+                                            return `
+                                                <a class="px-4 py-2 bg-green-300 text-white rounded-lg" disabled>
+                                                    Reservasi dibatalkan
+                                                </a>
+                                            `;
+                                        }else{
+                                            return `
+                                                <a href="/dokter/janji-temu-dokter/rekam-medis/create/${item.id}" class="px-4 py-2 bg-green-500 text-white rounded-lg">
+                                                    Tambah Rekam Medis
+                                                </a>
+                                            `;
+                                        }
                                     }
                                 }
                             })()}

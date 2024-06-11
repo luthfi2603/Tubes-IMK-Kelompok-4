@@ -22,10 +22,28 @@ class AdminController extends Controller {
     }
 
     public function indexPasien(){
-        $pasien = DB::table('view_data_pasien')
-            ->paginate(5);
+        $users = User::whereHas('pasien')
+            ->with('pasien')
+            ->orderBy(Pasien::select('nama')->whereColumn('pasiens.id_user', 'users.id'), 'asc')
+            ->paginate(10);
             
-        return view('admin.data-pasien', compact('pasien'));
+        return view('admin.pasien', compact('users'));
+    }
+
+    public function storeCariPasien(Request $request){
+        $kataKunci = $request->kataKunci;
+
+        $pasiens = DB::table('view_data_pasien')
+            ->where(function ($query) use ($kataKunci) {
+                $query->where('nama', 'LIKE', '%' . $kataKunci . '%')
+                    ->orWhere('nomor_handphone', 'LIKE', '%' . $kataKunci . '%')
+                    ->orWhere('jenis_kelamin', 'LIKE', '%' . $kataKunci . '%')
+                    ->orWhere('alamat', 'LIKE', '%' . $kataKunci . '%');
+            })
+            ->orderBy('nama')
+            ->get();
+
+        return response()->json(['pasiens' => $pasiens]);
     }
 
     public function dataKaryawan(){
@@ -152,7 +170,9 @@ class AdminController extends Controller {
     }
 
     public function createPasien(){
-        return view('admin.tambah-pasien');
+        $nomorHandphone = request()->query('nomor_handphone');
+
+        return view('admin.tambah-pasien', compact('nomorHandphone'));
     }
 
     public function storePasien(Request $request){

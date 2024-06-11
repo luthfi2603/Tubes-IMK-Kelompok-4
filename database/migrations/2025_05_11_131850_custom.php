@@ -9,9 +9,11 @@ return new class extends Migration {
             DROP VIEW IF EXISTS view_data_pasien;
             CREATE VIEW view_data_pasien AS
             SELECT
+                b.foto,
                 a.nama,
-                a.alamat,
                 b.nomor_handphone,
+                a.jenis_kelamin,
+                a.alamat,
                 b.aktif
             FROM pasiens a
             INNER JOIN users b ON a.id_user = b.id;

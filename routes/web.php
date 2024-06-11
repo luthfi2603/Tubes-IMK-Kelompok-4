@@ -113,20 +113,21 @@ Route::middleware(['auth', 'role:Admin'])->group(function(){
                 Route::get('/dashboard', 'showDashboardAdmin')
                     ->name('dashboard');
 
-                Route::get('/data-pasien', 'indexPasien')
+                Route::get('/pasien', 'indexPasien')
                     ->name('data.pasien');
                 /* Route::get('/data-karyawan', 'dataKaryawan')
                     ->name('data.karyawan'); */
-                Route::get('/edit-pasien/{nohp}', 'editPasien')
+                Route::get('/pasien/edit/{pk}', 'editPasien')
                     ->name('edit.pasien');
-                Route::put('/edit-pasien/{nohp}', 'updatePasien');
-                Route::post('/ban-pasien/{nomor_handphone}', 'banPasien')
+                Route::put('/pasien/edit/{pk}', 'updatePasien');
+                Route::post('/pasien/ban/{pk}', 'banPasien')
                     ->name('ban.pasien');
-                Route::post('/unban-pasien/{nomor_handphone}', 'unbanPasien')
+                Route::post('/pasien/unban/{pk}', 'unbanPasien')
                     ->name('unban.pasien');
-                Route::get('/tambah-pasien', 'createPasien')
+                Route::get('/pasien/input', 'createPasien')
                     ->name('tambah.pasien');
-                Route::post('/tambah-pasien', 'storePasien');
+                Route::post('/pasien/input', 'storePasien');
+                Route::post('/pasien/cari', 'storeCariPasien');
 
                 Route::get('/perawat', 'indexPerawat')
                     ->name('perawat.index');

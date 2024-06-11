@@ -57,9 +57,15 @@
                                             Rekam medis telah dibuat
                                         </a>
                                     @else
-                                        <a href="{{ route('dokter.rekam.medis.create', $item->id) }}" class="px-4 py-2 bg-green-500 text-white rounded-lg">
-                                            Tambah Rekam Medis
-                                        </a>
+                                        @if($item->status == 'Batal')
+                                            <a class="px-4 py-2 bg-green-300 text-white rounded-lg" disabled>
+                                                Reservasi dibatalkan
+                                            </a>
+                                        @else
+                                            <a href="{{ route('dokter.rekam.medis.create', $item->id) }}" class="px-4 py-2 bg-green-500 text-white rounded-lg">
+                                                Tambah Rekam Medis
+                                            </a>
+                                        @endif
                                     @endif
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">
