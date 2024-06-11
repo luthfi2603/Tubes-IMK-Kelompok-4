@@ -100,6 +100,12 @@ document.addEventListener('click', function (e) {
                     location.reload();
                 }
                 break;
+            case '/admin/jadwal-dokter':
+                if(statusCariJadwalDokter){
+                    statusCariJadwalDokter = false;
+                    location.reload();
+                }
+                break;
             default:
                 
                 break;

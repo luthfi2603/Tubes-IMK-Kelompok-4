@@ -732,21 +732,84 @@ class AdminController extends Controller {
 
         return response()->json(['dokters' => $dokters]);
     }
+
+    public function indexJadwalDokter(){
+        $jadwals = Waktu::orderBy('hari')
+            ->orderBy('jam')
+            ->paginate(10);
+
+        return view('admin.kelola-jadwal-dokter', compact('jadwals'));
+    }
+
+    public function createJadwalDokter(){
+        return view('admin.input-jadwal-dokter');
+    }
+
+    public function storeJadwalDokter(Request $request){
+        $messages = [
+            'hari.required' => 'Silahkan pilih hari terlebih dahulu.',
+            'hari.in' => 'Hari yang dipilih tidak valid.',
+            'jam.required' => 'Kolom jam harus diisi.',
+            'jam.regex' => 'Jam yang dimasukkan tidak valid.',
+        ];
+
+        $validated = $request->validate([
+            'hari' => ['required', 'in:Senin,Selasa,Rabu,Kamis,Jumat,Sabtu,Minggu'],
+            'jam' => ['required', 'regex:/^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]-(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/'],
+        ], $messages);
+
+        $cek = Waktu::where('hari', $request->hari)
+            ->where('jam', $request->jam)
+            ->get();
+
+        if(!$cek->isEmpty()){
+            return back()->withInput()->with('failed', 'Jadwal dokter sudah ada');
+        }
+
+        $jam = explode('-', $request->jam);
+
+        if($jam[0] == $jam[1]){
+            return back()->withInput()->with('failed', 'Waktu awal dan akhir tidak boleh sama');
+        }
+
+        $jamAwal = Carbon::createFromFormat('H:i', $jam[0]);
+        $jamAkhir = Carbon::createFromFormat('H:i', $jam[1]);
+
+        if($jamAwal->gt($jamAkhir)){
+            return back()->withInput()->with('failed', 'Waktu awal harus lebih kecil dari waktu akhir');
+        }
+
+        $selangWaktuJam = $jamAwal->diffInHours($jamAkhir);
+
+        if($selangWaktuJam < 2){
+            return back()->withInput()->with('failed', 'Selang waktu harus lebih besar sama dengan 2 jam');
+        }
+
+        Waktu::create($validated);
+
+        return back()->with('success', 'Jadwal dokter berhasil ditambah');
+    }
+
+    public function editJadwalDokter($id){
+        $jadwalDokter = Waktu::find($id);
+
+        if(!$jadwalDokter){
+            return redirect()->route('admin.jadwal.dokter.index');
+        }
+
+        return view('admin.edit-jadwal-dokter', compact('jadwalDokter'));
+    }
     
+    public function updateJadwalDokter(Request $request, $id){
+        $jadwalDokter = Waktu::find($id);
 
-    public function indexJadwalDokter(){
-        $jadwals = Waktu::orderBy('hari')
-            ->orderBy('jam')
-            ->get();
+        if(
+            $jadwalDokter->hari == $request->hari &&
+            $jadwalDokter->jam == $request->jam
+        ){
+            return back()->with('failed', 'Gagal diubah, tidak ada perubahan');
+        }
 
-        return view('admin.kelola-jadwal-dokter', compact('jadwals'));
-    }
-
-    public function createJadwalDokter(){
-        return view('admin.input-jadwal-dokter');
-    }
-
-    public function storeJadwalDokter(Request $request){
         $messages = [
             'hari.required' => 'Silahkan pilih hari terlebih dahulu.',
             'hari.in' => 'Hari yang dipilih tidak valid.',
@@ -780,9 +843,15 @@ class AdminController extends Controller {
             return back()->withInput()->with('failed', 'Waktu awal harus lebih kecil dari waktu akhir');
         }
 
-        Waktu::create($validated);
+        $selangWaktuJam = $jamAwal->diffInHours($jamAkhir);
 
-        return back()->with('success', 'Jadwal dokter berhasil ditambah');
+        if($selangWaktuJam < 2){
+            return back()->withInput()->with('failed', 'Selang waktu harus lebih besar sama dengan 2 jam');
+        }
+
+        $jadwalDokter->update($validated);
+
+        return back()->with('success', 'Jadwal dokter berhasil diubah');
     }
 
     public function destroyJadwalDokter($id){
@@ -801,70 +870,17 @@ class AdminController extends Controller {
         return back()->with('success', 'Jadwal dokter berhasil dihapus');
     }
 
-    public function indexJadwalDokter(){
-        $jadwals = Waktu::orderBy('hari')
-            ->orderBy('jam')
-            ->get();
+    public function storeCariJadwalDokter(Request $request){
+        $kataKunci = $request->kataKunci;
 
-        return view('admin.kelola-jadwal-dokter', compact('jadwals'));
-    }
+        $jadwalDokters = Waktu::where(function ($query) use ($kataKunci) {
+            $query->where('hari', 'LIKE', '%' . $kataKunci . '%')
+                ->orWhere('jam', 'LIKE', '%' . $kataKunci . '%');
+        })
+        ->orderBy('hari')
+        ->orderBy('jam')
+        ->get();
 
-    public function createJadwalDokter(){
-        return view('admin.input-jadwal-dokter');
-    }
-
-    public function storeJadwalDokter(Request $request){
-        $messages = [
-            'hari.required' => 'Silahkan pilih hari terlebih dahulu.',
-            'hari.in' => 'Hari yang dipilih tidak valid.',
-            'jam.required' => 'Kolom jam harus diisi.',
-            'jam.regex' => 'Jam yang dimasukkan tidak valid.',
-        ];
-
-        $validated = $request->validate([
-            'hari' => ['required', 'in:Senin,Selasa,Rabu,Kamis,Jumat,Sabtu,Minggu'],
-            'jam' => ['required', 'regex:/^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]-(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/'],
-        ], $messages);
-
-        $cek = Waktu::where('hari', $request->hari)
-            ->where('jam', $request->jam)
-            ->get();
-
-        if(!$cek->isEmpty()){
-            return back()->withInput()->with('failed', 'Jadwal dokter sudah ada');
-        }
-
-        $jam = explode('-', $request->jam);
-
-        if($jam[0] == $jam[1]){
-            return back()->withInput()->with('failed', 'Waktu awal dan akhir tidak boleh sama');
-        }
-
-        $jamAwal = Carbon::createFromFormat('H:i', $jam[0]);
-        $jamAkhir = Carbon::createFromFormat('H:i', $jam[1]);
-
-        if($jamAwal->gt($jamAkhir)){
-            return back()->withInput()->with('failed', 'Waktu awal harus lebih kecil dari waktu akhir');
-        }
-
-        Waktu::create($validated);
-
-        return back()->with('success', 'Jadwal dokter berhasil ditambah');
-    }
-
-    public function destroyJadwalDokter($id){
-        $waktu = Waktu::find($id);
-
-        if(!$waktu){
-            return redirect()->route('admin.jadwal.dokter.index');
-        }
-        
-        try {
-            $waktu->delete();
-        } catch (\Throwable $th) {
-            return back()->with('failed', 'Jadwal dokter ini digunakan, penghapusan tidak dapat dilakukan');
-        }
-
-        return back()->with('success', 'Jadwal dokter berhasil dihapus');
+        return response()->json(['jadwal_dokters' => $jadwalDokters]);
     }
 }

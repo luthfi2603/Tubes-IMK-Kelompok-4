@@ -448,6 +448,7 @@ class PasienController extends Controller {
                     'jenis_kelamin' => $auth->pasien->jenis_kelamin,
                     'tanggal' => $request->tanggal,
                     'jam' => $dataDokter[1],
+                    'foto' => $auth->foto,
                     'created_at' => $currentTime,
                     'updated_at' => $currentTime,
                 ]);
@@ -466,6 +467,7 @@ class PasienController extends Controller {
                 'jenis_kelamin' => $auth->pasien->jenis_kelamin,
                 'tanggal' => $request->tanggal,
                 'jam' => $dataDokter[1],
+                'foto' => $auth->foto,
                 'created_at' => $currentTime,
                 'updated_at' => $currentTime,
             ]);

@@ -47,7 +47,7 @@
                             <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">{{ $i }}</td>
                             <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">
                                 <div class="flex gap-2">
-                                    <a href="" class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-lg">Ubah</a>
+                                    <a href="{{ route('admin.jadwal.dokter.edit', $item->id) }}" class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-lg">Ubah</a>
                                     <form action="{{ route('admin.jadwal.dokter.destroy', $item->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
@@ -64,8 +64,12 @@
             </tbody>
         </table>
     </div>
+    <div id="pagination" class="mt-4">
+        {{ $jadwals->links() }}
+    </div>
 </div>
 @push('scripts')
     <script>const csrf = '{{ csrf_token() }}';</script>
+    <script src="{{ asset('assets/js/kelola-jadwal-dokter.js') }}"></script>
 @endpush
 @endsection

@@ -21,6 +21,8 @@ return new class extends Migration {
             $table->enum('status', ['Selesai', 'Menunggu', 'Batal']);
             $table->date('tanggal');
             $table->char('jam', 11);
+            $table->unsignedBigInteger('id_rekam_medis')->nullable();
+            $table->string('foto')->nullable();
             $table->timestamps();
         });
     }
