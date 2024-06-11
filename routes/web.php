@@ -71,14 +71,20 @@ Route::middleware(['auth', 'role:Dokter'])->group(function(){
                     ->name('dashboard');
                 Route::get('/rekam-medis', 'indexRekamMedis')
                     ->name('rekam.medis');
-                Route::get('/rekam-medis/create', 'createRekamMedis')
-                    ->name('rekam.medis.create');
-                Route::get('/rekam-medis/detail', 'showRekamMedis')
+                
+                Route::get('/rekam-medis/detail/{id}', 'showRekamMedis')
                     ->name('rekam.medis.show');
                 
-                Route::get('/appointment-dokter', function(){
-                    return view('dokter.appointment-dokter');
-                })->name('appointment-dokter');
+                Route::get('/janji-temu-dokter', 'indexAntrian')
+                ->name('janji-temu-dokter');
+                Route::get('/janji-temu-dokter/rekam-medis/create/{pk}', 'createRekamMedis')
+                    ->name('rekam.medis.create');
+
+                Route::post('/janji-temu-dokter/rekam-medis/create/{pk}', 'storeRekamMedis');
+                
+                Route::post('/antrian/tanggal', 'indexAntrianTanggal');
+
+                Route::post('/rekam-medis/tanggal', 'indexRekamMedisTanggal');
                 
                 Route::get('/doctors-dokter', function(){
                     return view('dokter.doctors-dokter');
@@ -91,6 +97,7 @@ Route::middleware(['auth', 'role:Dokter'])->group(function(){
                 Route::get('/setting-dokter', function(){
                     return view('dokter.setting-dokter');
                 })->name('setting-dokter');
+
             });
         });
     });
@@ -147,6 +154,8 @@ Route::middleware(['auth', 'role:Admin'])->group(function(){
         });
     });
 });
+
+
 
 /* Route::middleware('auth')->group(function(){
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
