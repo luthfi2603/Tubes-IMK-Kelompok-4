@@ -13,14 +13,14 @@
                     <img src="{{ asset('assets/img/logo.png') }}" alt="logo">
                 </div>
                 <div class="flex flex-col items-center w-3/5">
-                    <p>{{ $rekammedis->nama_dokter }}</p>
-                    <p>{{ $rekammedis->spesialis }}</p>
+                    <p>{{ $rekamMedis->nama_dokter }}</p>
+                    <p>{{ $rekamMedis->spesialis }}</p>
                     <p>RH61 Clinic, Jl. Ringroad (Jl. Gagak Hitam)</p>
                     <p>Komplek Ruko OCBC No. 61, Medan</p>
                     <p>Telp. (061) 42081004 - 42081005 HP. 08116176661</p>
                 </div>
                 <div class="w-1/5">
-                    Jam Hadir : {{ \Carbon\Carbon::parse($rekammedis->jam_hadir)->format('H:i') }}
+                    Jam Hadir : {{ \Carbon\Carbon::parse($rekamMedis->jam_hadir)->format('H:i') }}
                 </div>
             </div>
             <p class="underline">Kartu Berobat</p>
@@ -34,7 +34,7 @@
                             :
                         </div>
                         <div class="w-8/12">
-                            {{ $rekammedis->id }}
+                            {{ $rekamMedis->id }}
                         </div>
                     </div>
                     <div class="flex">
@@ -45,7 +45,7 @@
                             :
                         </div>
                         <div class="w-8/12">
-                            {{ $rekammedis->nama_pasien }}
+                            {{ $rekamMedis->nama_pasien }}
                         </div>
                     </div>
                     <div class="flex">
@@ -56,7 +56,7 @@
                             :
                         </div>
                         <div class="w-8/12">
-                            {{ $rekammedis->umur }}
+                            {{ $rekamMedis->umur }}
                         </div>
                     </div>
                 </div>
@@ -69,7 +69,7 @@
                             :
                         </div>
                         <div class="w-8/12">
-                            {{ $rekammedis->pekerjaan }}
+                            {{ $rekamMedis->pekerjaan }}
                         </div>
                     </div>
                     <div class="flex">
@@ -80,7 +80,7 @@
                             :
                         </div>
                         <div class="w-8/12">
-                            {{ $rekammedis->alamat }}
+                            {{ $rekamMedis->alamat }}
                         </div>
                     </div>
                     <div class="flex">
@@ -91,14 +91,14 @@
                             :
                         </div>
                         <div class="w-8/12">
-                            {{ $rekammedis->nomor_handphone }}
+                            {{ $rekamMedis->nomor_handphone }}
                         </div>
                     </div>
                 </div>
             </div>
             <hr>
             <div class="w-full">
-                <p>Tanggal : {{ \Carbon\Carbon::parse($rekammedis->updated_at)->format('Y-m-d') }}                </p>
+                <p>Tanggal : {{ \Carbon\Carbon::parse($rekamMedis->updated_at)->format('Y-m-d') }}                </p>
             </div>
             <table class="border-4 border-black">
                 <thead>
@@ -110,9 +110,9 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td class="p-4">{{ $rekammedis->keluhan }}</td>
-                        <td class="p-4">{{ $rekammedis->diagnosa }}</td>
-                        <td class="p-4">{{ $rekammedis->therapie }}</td>
+                        <td class="p-4">{{ $rekamMedis->keluhan }}</td>
+                        <td class="p-4">{{ $rekamMedis->diagnosa }}</td>
+                        <td class="p-4">{{ $rekamMedis->therapie }}</td>
                     </tr>
                 </tbody>
             </table>

@@ -99,7 +99,6 @@
             </div>
         </div>
     </div>
-    
     <div>
         <div class="flex items-center justify-between bg-blue-100 p-3 rounded-lg mb-2">
             <div>
@@ -140,68 +139,67 @@
         <div class="text-center mt-4 rounded-lg w-full">
             <button class="p-2 bg-gray-300 rounded-lg">View All Appointments</button>
         </div>
-     </div>
     </div>
 </div>
+@push('scripts')
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const ctx1 = document.getElementById('patientsChart').getContext('2d');
+        const ctx2 = document.getElementById('genderChart').getContext('2d');
 
-<!-- Chart.js -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        const patientsChart = new Chart(ctx1, {
+            type: 'line',
+            data: {
+                labels: ['0', '1', '2', '3', '4', '5', '6'],
+                datasets: [
+                    {
+                        label: 'Men',
+                        data: [150, 120, 180, 70, 90, 160, 80],
+                        borderColor: 'rgba(59, 130, 246, 1)',
+                        backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                        fill: true,
+                    },
+                    {
+                        label: 'Women',
+                        data: [100, 110, 130, 90, 80, 70, 50],
+                        borderColor: 'rgba(252, 165, 165, 1)',
+                        backgroundColor: 'rgba(252, 165, 165, 0.1)',
+                        fill: true,
+                    },
+                ],
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                    },
+                },
+            },
+        });
 
-<script>
-const ctx1 = document.getElementById('patientsChart').getContext('2d');
-const ctx2 = document.getElementById('genderChart').getContext('2d');
-
-const patientsChart = new Chart(ctx1, {
-    type: 'line',
-    data: {
-        labels: ['0', '1', '2', '3', '4', '5', '6'],
-        datasets: [
-            {
-                label: 'Men',
-                data: [150, 120, 180, 70, 90, 160, 80],
-                borderColor: 'rgba(59, 130, 246, 1)',
-                backgroundColor: 'rgba(59, 130, 246, 0.1)',
-                fill: true,
+        const genderChart = new Chart(ctx2, {
+            type: 'doughnut',
+            data: {
+                labels: ['Men', 'Women'],
+                datasets: [
+                    {
+                        label: 'Gender',
+                        data: [170, 140],
+                        backgroundColor: ['rgba(59, 130, 246, 1)', 'rgba(252, 165, 165, 1)'],
+                    },
+                ],
             },
-            {
-                label: 'Women',
-                data: [100, 110, 130, 90, 80, 70, 50],
-                borderColor: 'rgba(252, 165, 165, 1)',
-                backgroundColor: 'rgba(252, 165, 165, 0.1)',
-                fill: true,
+            options: {
+                responsive: true,
             },
-        ],
-    },
-    options: {
-        responsive: true,
-        plugins: {
-            legend: {
-                display: false
-            }
-        },
-        scales: {
-            y: {
-                beginAtZero: true,
-            },
-        },
-    },
-});
-
-const genderChart = new Chart(ctx2, {
-    type: 'doughnut',
-    data: {
-        labels: ['Men', 'Women'],
-        datasets: [
-            {
-                label: 'Gender',
-                data: [170, 140],
-                backgroundColor: ['rgba(59, 130, 246, 1)', 'rgba(252, 165, 165, 1)'],
-            },
-        ],
-    },
-    options: {
-        responsive: true,
-    },
-});
-</script>
+        });
+    </script>
+@endpush
 @endsection
