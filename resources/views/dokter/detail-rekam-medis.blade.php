@@ -13,13 +13,15 @@
                     <img src="{{ asset('assets/img/logo.png') }}" alt="logo">
                 </div>
                 <div class="flex flex-col items-center w-3/5">
-                    <p>Dr. dr. Lorem Ipsum Dolor Sit Amet</p>
-                    <p>Obgyn</p>
+                    <p>{{ $rekammedis->nama_dokter }}</p>
+                    <p>{{ $rekammedis->spesialis }}</p>
                     <p>RH61 Clinic, Jl. Ringroad (Jl. Gagak Hitam)</p>
                     <p>Komplek Ruko OCBC No. 61, Medan</p>
                     <p>Telp. (061) 42081004 - 42081005 HP. 08116176661</p>
                 </div>
-                <div class="w-1/5">Jam Hadir : 10:00</div>
+                <div class="w-1/5">
+                    Jam Hadir : {{ \Carbon\Carbon::parse($rekammedis->jam_hadir)->format('H:i') }}
+                </div>
             </div>
             <p class="underline">Kartu Berobat</p>
             <div class="flex w-full">
@@ -32,7 +34,7 @@
                             :
                         </div>
                         <div class="w-8/12">
-                            1
+                            {{ $rekammedis->id }}
                         </div>
                     </div>
                     <div class="flex">
@@ -43,7 +45,7 @@
                             :
                         </div>
                         <div class="w-8/12">
-                            Lorem Ipsum Dolor
+                            {{ $rekammedis->nama_pasien }}
                         </div>
                     </div>
                     <div class="flex">
@@ -54,7 +56,7 @@
                             :
                         </div>
                         <div class="w-8/12">
-                            20
+                            {{ $rekammedis->umur }}
                         </div>
                     </div>
                 </div>
@@ -67,7 +69,7 @@
                             :
                         </div>
                         <div class="w-8/12">
-                            Mahasiswa
+                            {{ $rekammedis->pekerjaan }}
                         </div>
                     </div>
                     <div class="flex">
@@ -78,7 +80,7 @@
                             :
                         </div>
                         <div class="w-8/12">
-                            Jalan Dr. Mansyur
+                            {{ $rekammedis->alamat }}
                         </div>
                     </div>
                     <div class="flex">
@@ -89,14 +91,14 @@
                             :
                         </div>
                         <div class="w-8/12">
-                            081232124587
+                            {{ $rekammedis->nomor_handphone }}
                         </div>
                     </div>
                 </div>
             </div>
             <hr>
             <div class="w-full">
-                <p>Tanggal : 08 Juni 2024</p>
+                <p>Tanggal : {{ \Carbon\Carbon::parse($rekammedis->updated_at)->format('Y-m-d') }}                </p>
             </div>
             <table class="border-4 border-black">
                 <thead>
@@ -108,32 +110,12 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td class="p-4">In quis mollit non anim consequat nostrud aliqua excepteur occaecat exercitation labore dolor excepteur duis. Mollit velit ea labore nisi ipsum ipsum in ex minim exercitation. Sunt pariatur enim anim consequat cillum commodo eu proident esse laboris eu nostrud esse. Officia sint est fugiat sint anim nulla Lorem mollit adipisicing reprehenderit reprehenderit pariatur. Adipisicing deserunt esse magna fugiat Lorem excepteur incididunt reprehenderit consequat laborum eu enim sint qui. Est exercitation exercitation voluptate sunt veniam. Irure aliquip ad ea reprehenderit minim nulla labore.</td>
-                        <td class="p-4">In quis mollit non anim consequat nostrud aliqua excepteur occaecat exercitation labore dolor excepteur duis. Mollit velit ea labore nisi ipsum ipsum in ex minim exercitation. Sunt pariatur enim anim consequat cillum commodo eu proident esse laboris eu nostrud esse. Officia sint est fugiat sint anim nulla Lorem mollit adipisicing reprehenderit reprehenderit pariatur. Adipisicing deserunt esse magna fugiat Lorem excepteur incididunt reprehenderit consequat laborum eu enim sint qui. Est exercitation exercitation voluptate sunt veniam. Irure aliquip ad ea reprehenderit minim nulla labore.</td>
-                        <td class="p-4">In quis mollit non anim consequat nostrud aliqua excepteur occaecat exercitation labore dolor excepteur duis. Mollit velit ea labore nisi ipsum ipsum in ex minim exercitation. Sunt pariatur enim anim consequat cillum commodo eu proident esse laboris eu nostrud esse. Officia sint est fugiat sint anim nulla Lorem mollit adipisicing reprehenderit reprehenderit pariatur. Adipisicing deserunt esse magna fugiat Lorem excepteur incididunt reprehenderit consequat laborum eu enim sint qui. Est exercitation exercitation voluptate sunt veniam. Irure aliquip ad ea reprehenderit minim nulla labore.</td>
+                        <td class="p-4">{{ $rekammedis->keluhan }}</td>
+                        <td class="p-4">{{ $rekammedis->diagnosa }}</td>
+                        <td class="p-4">{{ $rekammedis->therapie }}</td>
                     </tr>
                 </tbody>
             </table>
-            {{-- <div class="flex w-full">
-                <div class="w-1/3 flex flex-col">
-                    <p class="border-4">Keluhan</p>
-                    <p>
-                        In quis mollit non anim consequat nostrud aliqua excepteur occaecat exercitation labore dolor excepteur duis. Mollit velit ea labore nisi ipsum ipsum in ex minim exercitation. Sunt pariatur enim anim consequat cillum commodo eu proident esse laboris eu nostrud esse. Officia sint est fugiat sint anim nulla Lorem mollit adipisicing reprehenderit reprehenderit pariatur. Adipisicing deserunt esse magna fugiat Lorem excepteur incididunt reprehenderit consequat laborum eu enim sint qui. Est exercitation exercitation voluptate sunt veniam. Irure aliquip ad ea reprehenderit minim nulla labore.
-                    </p>
-                </div>
-                <div class="w-1/3 flex flex-col">
-                    <p class="border-4">Diagnosa</p>
-                    <p>
-                        In quis mollit non anim consequat nostrud aliqua excepteur occaecat exercitation labore dolor excepteur duis. Mollit velit ea labore nisi ipsum ipsum in ex minim exercitation. Sunt pariatur enim anim consequat cillum commodo eu proident esse laboris eu nostrud esse. Officia sint est fugiat sint anim nulla Lorem mollit adipisicing reprehenderit reprehenderit pariatur. Adipisicing deserunt esse magna fugiat Lorem excepteur incididunt reprehenderit consequat laborum eu enim sint qui. Est exercitation exercitation voluptate sunt veniam. Irure aliquip ad ea reprehenderit minim nulla labore.
-                    </p>
-                </div>
-                <div class="w-1/3 flex flex-col">
-                    <p class="border-4">Therapie</p>
-                    <p>
-                        In quis mollit non anim consequat nostrud aliqua excepteur occaecat exercitation labore dolor excepteur duis. Mollit velit ea labore nisi ipsum ipsum in ex minim exercitation. Sunt pariatur enim anim consequat cillum commodo eu proident esse laboris eu nostrud esse. Officia sint est fugiat sint anim nulla Lorem mollit adipisicing reprehenderit reprehenderit pariatur. Adipisicing deserunt esse magna fugiat Lorem excepteur incididunt reprehenderit consequat laborum eu enim sint qui. Est exercitation exercitation voluptate sunt veniam. Irure aliquip ad ea reprehenderit minim nulla labore.
-                    </p>
-                </div>
-            </div> --}}
         </div>
     </div>
 </div>
