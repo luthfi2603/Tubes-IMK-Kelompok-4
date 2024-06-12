@@ -17,14 +17,14 @@
             @csrf
             <div class="mb-4">
                 <label for="nama" class="block text-gray-700 font-semibold mb-2">Nama</label>
-                <input type="text" name="nama" id="nama" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500" value="{{ old('nama') }}">
+                <input type="text" name="nama" id="nama" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500" value="{{ old('nama') }}" autofocus>
                 @error('nama')
                     <div class="text-red-500 mt-1 text-sm">{{ $message }}</div>
                 @enderror
             </div>
             <div class="mb-4">
                 <label for="nomor_handphone" class="block text-gray-700 font-semibold mb-2">Nomor Handphone</label>
-                <input type="number" name="nomor_handphone" id="nomor_handphone" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500" value="{{ old('nomor_handphone') }}">
+                <input type="number" name="nomor_handphone" id="nomor_handphone" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500" value="{{ old('nomor_handphone', $nomorHandphone) }}">
                 @error('nomor_handphone')
                     <div class="text-red-500 mt-1 text-sm">{{ $message }}</div>
                 @enderror
