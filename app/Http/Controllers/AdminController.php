@@ -271,7 +271,7 @@ class AdminController extends Controller {
             'nama' => ['required', 'string', 'max:255'],
             'nomor_handphone' => ['required', 'numeric', 'min_digits:11', 'max_digits:13', 'regex:/\b08\d{9,11}\b/', 'unique:users'],
             'alamat' => ['required', 'string', 'max:255'],
-            'jenis_kelamin' => ['required', 'in:P,L'],
+            'jenis_kelamin' => ['required', 'in:Pzzz,L'],
             'password' => ['required', 'same:konfirmasi_password', 'min:8', 'max:255'],
             'konfirmasi_password' => ['required', 'same:password', 'min:8', 'max:255'],
         ];

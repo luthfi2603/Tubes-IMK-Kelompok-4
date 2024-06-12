@@ -1,4 +1,4 @@
-@extends('admin.main')
+@extends('perawat.main')
 
 @section('container')
 @if(session()->has('success'))
@@ -9,29 +9,13 @@
 
     <div class="flex justify-between items-center mb-4 mx-4">
         <h1 class="text-3xl font-bold">Kelola Dokter</h1>
-        <a href="{{ route('admin.dokter.input') }}" class="bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600 flex items-center font-semibold">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-            </svg>
-            Tambah Dokter
-        </a>
+        
     </div>
 
     <hr class="border-1 border-[#B1B0AF] mb-4 mx-4">
 
     <div class="container mx-auto p-4">
-    @if($dokters->isEmpty())
-        {{-- <div class="mt-4 text-center">
-            <p class="text-xl font-bold">Dokter Tidak Ada</p>
-        </div> --}}
-        <div class="flex justify-center items-center">
-            <div class="bg-[#E3EBF3] text-center p-4 rounded-lg shadow-md font-bold w-3/4 flex items-center justify-center space-x-4">
-                <img src="{{ asset('assets/img/nurse-2.png') }}" alt="No Appointments" class="w-16 h-16">
-                <p class="text-xl text-[#222C67]">Belum ada Data</p>
-                <img src="{{ asset('assets/img/nurse-2.png') }}" alt="No Appointments" class="w-16 h-16">
-            </div>
-        </div>
-    @else
+    
          <div class="bg-white shadow-lg rounded-lg overflow-x-auto">
             <table class="overflow-x-auto">
                 <thead>
@@ -43,8 +27,8 @@
                         <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider min-w-40">Jenis Kelamin</th>
                         <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider min-w-40">Spesialis</th>
                         <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider min-w-40">Alamat</th>
-                        <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider min-w-40">Aksi</th>
-
+                        <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider min-w-40">Status</th>
+                        {{-- tolong tambai status ya bang --}}
                     </tr>
                 </thead>
                 <tbody id="isi-tabel" class="divide-y divide-gray-200">
@@ -76,24 +60,7 @@
                             <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">{{ $item->jenis_kelamin == 'P' ? 'Perempuan' : 'Laki-laki'}}</td>
                             <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">{{ $item->spesialis }}</td>
                             <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">{{ $item->alamat }}</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">
-                                <div class="flex gap-2 items-center h-full">
-                                    <a href="{{ route('admin.dokter.edit', $item->nomor_handphone) }}" class="bg-yellow-400 text-white px-2 py-1 rounded shadow hover:bg-yellow-500 flex items-center">
-                                        <i class="fa-solid fa-pen-to-square mr-2"></i>
-                                        Ubah
-                                    </a>
-                                    <form action="{{ route('admin.dokter.destroy', $item->id_user) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button class="bg-red-500 text-white px-2 py-1 rounded shadow hover:bg-red-600 flex items-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                                            </svg>
-                                            Hapus
-                                        </button>
-                                    </form>
-                                </div>
-                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">Status</td>
                         </tr>
                         @php $i++; @endphp
                     @endforeach
@@ -116,7 +83,7 @@
         <div id="pagination">
             {{ $dokters->links() }}
         </div>
-    @endif
+    
 </div>
 
 @push('scripts')

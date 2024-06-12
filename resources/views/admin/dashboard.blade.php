@@ -56,7 +56,7 @@
             </div>
         </div>
         <div class="relative w-full max-w-5xl mt-3">
-            <div class="flex flex-col pb-5 pt-2 px-3 rounded-xl bg-white shadow-lg w-full overflow-x-auto">
+            <div class="flex flex-col pb-5 px-5 rounded-xl bg-white shadow-lg w-full overflow-x-auto pt-4">
                 <label for="table-search" class="sr-only">Search</label>
                 <div class="relative my-1 flex items-center justify-between">
                     <div class="relative">
@@ -69,13 +69,11 @@
                     </div>
                     <div class="relative inline-block text-left">
                         <button id="options-button" type="button" class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                            <i class="fa-solid fa-ellipsis-vertical"></i>
+                            <a href="{{ route('admin.index.antrian') }}" class="block text-sm text-gray-700">
+                                Lihat lebih lanjut
+                                <i class="fa-solid fa-angles-right ml-2"></i>
+                            </a>
                         </button>
-                        <div id="options-menu" class="hidden origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
-                            <div class="py-1">
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-700">Lihat lebih lanjut</a>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 
@@ -115,7 +113,7 @@
             </div>
         </div>
         <div class="relative w-full max-w-5xl mt-3">
-            <div class="flex flex-col pb-5 pt-2 px-3 rounded-xl bg-white shadow-lg w-full overflow-x-auto">
+            <div class="flex flex-col pb-5 px-5 rounded-xl bg-white shadow-lg w-full overflow-x-auto pt-4">
                 <label for="table-search-2" class="sr-only">Search</label>
                 <div class="relative my-1 flex items-center justify-between">
                     <div class="relative">
@@ -128,13 +126,11 @@
                     </div>
                     <div class="relative inline-block text-left">
                         <button id="options-button" type="button" class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                            <i class="fa-solid fa-ellipsis-vertical"></i>
+                            <a href="{{ route('admin.data.pasien') }}" class="block text-sm text-gray-700">
+                                Lihat lebih lanjut
+                                <i class="fa-solid fa-angles-right ml-2"></i>
+                            </a>
                         </button>
-                        <div id="options-menu" class="hidden origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
-                            <div class="py-1">
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-700">Lihat lebih lanjut</a>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 
@@ -216,16 +212,13 @@
         <div class="max-w-2xl mt-6 mx-auto bg-white shadow-md rounded-lg overflow-hidden">
             <div class="p-6">
                 <div class="flex justify-between items-center">
-                    <h2 class="text-2xl font-bold mb-2">Doctors List</h2>
+                    <h2 class="text-2xl font-bold mb-2">Daftar Dokter</h2>
                     <div class="relative inline-block text-left">
                         <button id="options-button" type="button" class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                            <i class="fa-solid fa-ellipsis-vertical"></i>
+                            <a href="{{ route('admin.index.dokter') }}" class="block text-sm text-gray-700">
+                                <i class="fa-solid fa-angles-right"></i>
+                            </a>
                         </button>
-                        <div id="options-menu" class="hidden origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
-                            <div class="py-1">
-                                <a href="" class="block px-4 py-2 text-sm text-gray-700">Lihat lebih lanjut</a>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <div class="overflow-x-auto">
@@ -381,3 +374,4 @@
 @endsection
 
 
+    

@@ -132,12 +132,12 @@
             <table class="min-w-full bg-white">
                 <thead>
                     <tr>
-                        <th class="px-4 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">#</th>
-                        <th class="px-4 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider min-w-40">Foto</th>
+                        <th class="px-4 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">No</th>
+                        <th class="px-4 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider min-w-30">Foto</th>
                         <th class="px-4 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider min-w-50">Nama</th>
                         <th class="px-4 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider min-w-40">Nomor Handphone</th>
-                        <th class="px-4 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider min-w-30">Jenis Kelamin</th>
-                        <th class="px-4 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider min-w-50">Alamat</th>
+                        <th class="px-4 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider min-w-40">Jenis Kelamin</th>
+                        <th class="px-4 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider min-w-40">Alamat</th>
                         <th class="px-4 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider min-w-40">Aksi</th>
                     </tr>
                 </thead>
@@ -167,7 +167,7 @@
                         </td>
                         <td class="px-4 py-4 whitespace-nowrap text-md text-gray-900">{{ $item->nama }}</td>
                         <td class="px-4 py-4 whitespace-nowrap text-md text-gray-900">{{ $item->nomor_handphone }}</td>
-                        <td class="px-4 py-4 whitespace-nowrap text-md text-gray-900">{{ $item->jenis_kelamin }}</td>
+                        <td class="px-4 py-4 whitespace-nowrap text-md text-gray-900">{{ $item->jenis_kelamin == 'P' ? 'Perempuan' : 'Laki-laki' }}</td>
                         <td class="px-4 py-4 whitespace-nowrap text-md text-gray-900">{{ $item->alamat }}</td>
                         
                         <td class="px-4 pt-8  whitespace-nowrap text-md text-gray-900 flex space-x-2">
