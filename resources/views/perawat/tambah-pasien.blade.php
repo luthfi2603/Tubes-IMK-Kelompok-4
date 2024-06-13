@@ -1,4 +1,4 @@
-{{-- @extends('admin.main')
+{{-- @extends('perawat.main')
 
 @section('container')
 @if(session()->has('failed'))
@@ -13,7 +13,7 @@
 <div class="container mx-auto">
     <div class="max-w-lg mx-auto bg-white p-8 rounded-lg shadow-lg">
         <h1 class="text-2xl font-bold mb-4">Tambah Pasien</h1>
-        <form action="{{ route('admin.tambah.pasien') }}" method="POST">
+        <form action="{{ route('perawat.tambah.pasien') }}" method="POST">
             @csrf
             <div class="mb-4">
                 <label for="nama" class="block text-gray-700 font-semibold mb-2">Nama</label>
@@ -68,7 +68,7 @@
 </div>
 @endsection --}}
 
-@extends('admin.main')
+@extends('perawat.main')
 
 @section('container')
 @if(session()->has('failed'))
@@ -89,7 +89,7 @@
                 <p class="text-gray-500 text-md">Silahkan lengkapi formulir di bawah ini untuk menambahkan pasien baru ke sistem.</p>
             </div>
         </div>
-        <form action="{{ route('admin.tambah.pasien') }}" method="POST" class="space-y-4">
+        <form action="{{ route('perawat.tambah.pasien') }}" method="POST" class="space-y-4">
             @csrf
             <div class="mb-4">
                 <label for="nama" class="block text-gray-700 font-semibold mb-2">Nama</label>

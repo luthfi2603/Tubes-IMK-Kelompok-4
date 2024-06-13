@@ -101,7 +101,35 @@ Route::middleware(['auth', 'role:Perawat'])->group(function(){
         Route::name('perawat.')->group(function(){
             Route::controller(PerawatController::class)->group(function(){
                 Route::get('/dashboard', 'showDashboardPerawat')->name('dashboard');
-            });
+
+                Route::get('/pasien', 'indexPasien')
+                ->name('data.pasien');
+                
+                Route::get('/pasien/edit/{pk}', 'editPasien')
+                    ->name('edit.pasien');
+                Route::put('/pasien/edit/{pk}', 'updatePasien');
+                Route::post('/pasien/ban/{pk}', 'banPasien')
+                    ->name('ban.pasien');
+                Route::post('/pasien/unban/{pk}', 'unbanPasien')
+                    ->name('unban.pasien');
+                Route::get('/pasien/input', 'createPasien')
+                    ->name('tambah.pasien');
+                Route::post('/pasien/input', 'storePasien');
+                Route::post('/pasien/cari', 'storeCariPasien');
+
+                Route::get('/antrian', 'indexAntrian')
+                    ->name('index.antrian');
+                Route::post('/antrian/tanggal', 'indexAntrianTanggal');
+                Route::put('/antrian/update', 'updateStatusAntrian');
+
+                Route::get('/dokter', 'indexDokter')
+                    ->name('index.dokter');
+                Route::post('/cari/dokter', 'cariDokter');
+
+                Route::get('/jadwal-dokter', 'indexJadwalDokter')
+                    ->name('jadwal.dokter.index');
+                Route::post('/jadwal-dokter/cari', 'storeCariJadwalDokter');
+             });
         });
     });
 });

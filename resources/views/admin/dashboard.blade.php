@@ -13,7 +13,7 @@
                     <p class="pt-3 pb-1">You have total <span class="font-bold text-[#E8C51C]">12 Appointments</span> today!</p>
                 </div>
                 <div class="flex-shrink-0">
-                    <img src="{{ asset('assets/img/female-doctor.png') }}" alt="Doctor Avatar" class="w-40 h-40 lg:block md:block max-[760px]:hidden">
+                    <img src="{{ asset('assets/img/staff.png') }}" alt="Doctor Avatar" class="w-full h-40 lg:block md:block max-[760px]:hidden">
                 </div>
             </div>
         </div>
@@ -47,113 +47,128 @@
                         </div>
                     </div>
                 </div>
-                
             </div>
         </div>
 
         <div class="mt-6 grid grid-cols-1 lg:grid-cols-2">
             <div class="">
-                <h2 class="text-2xl font-bold text-gray-700">Today's Appointment</h2>
+                <h2 class="text-2xl font-bold text-gray-700">Reservasi Hari ini</h2>
             </div>
         </div>
         <div class="relative w-full max-w-5xl mt-3">
-            <div class="flex flex-col pb-5 pt-2 px-3 rounded-xl bg-white shadow-lg w-full overflow-x-auto">
+            <div class="flex flex-col pb-5 px-5 rounded-xl bg-white shadow-lg w-full overflow-x-auto pt-4">
                 <label for="table-search" class="sr-only">Search</label>
-                <div class="relative my-1">
-                    <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
-                        <svg class="w-5 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
-                        </svg>
+                <div class="relative my-1 flex items-center justify-between">
+                    <div class="relative">
+                        <input type="text" class="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg shadow-sm focus:outline-none focus:ring focus:ring-opacity-60 focus:ring-gray-200 bg-gray-100" placeholder="Search for items">
+                        <div class="absolute inset-y-0 left-0 flex items-center pl-3">
+                            <svg class="w-5 h-5 text-gray-400" viewBox="0 0 24 24" fill="none">
+                                <path d="M21 21l-4.35-4.35M16.65 11.65a7 7 0 1 1-14 0 7 7 0 0 1 14 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                            </svg>
+                        </div>
                     </div>
-                    <input type="text" id="table-search" class="block pt-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-40 bg-gray-100 focus:ring-blue-500 focus:border-blue-500  dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search for items">
+                    <div class="relative inline-block text-left">
+                        <button id="options-button" type="button" class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            <a href="{{ route('admin.index.antrian') }}" class="block text-sm text-gray-700">
+                                Lihat lebih lanjut
+                                <i class="fa-solid fa-angles-right ml-2"></i>
+                            </a>
+                        </button>
+                    </div>
                 </div>
-                <table class="min-w-full bg-white">
-                    <thead>
-                        <tr>
-                            <th class="py-2 text-left text-gray-600">#</th>
-                            <th class="py-2 text-left text-gray-600">Patient Name</th>
-                            <th class="py-2 text-left text-gray-600">Gender</th>
-                            <th class="py-2 text-left text-gray-600">Last Visit</th>
-                            <th class="py-2 text-left text-gray-600">Diseases</th>
-                            <th class="py-2 text-left text-gray-600">Report</th>
-                            <th class="py-2 text-left text-gray-600">Details</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="py-2">1</td>
-                            <td class="py-2">John Doe</td>
-                            <td class="py-2">Male</td>
-                            <td class="py-2">12/05/2016</td>
-                            <td class="py-2"><span class="bg-red-200 text-red-800 py-1 px-3 rounded-full text-xs">Fever</span></td>
-                            <td class="py-2"><a href="#" class="text-blue-500"><i class="material-icons">picture_as_pdf</i></a></td>
-                            <td class="py-2"><a href="#" class="text-blue-500">Details</a></td>
-                        </tr>
-                        <!-- Repeat the above tr for each row -->
-                    </tbody>
-                </table>
+                
+                <div class="overflow-x-auto">
+                    <table class="min-w-full bg-white">
+                        <thead>
+                            <tr>
+                                <th class="py-2 text-left text-gray-600">#</th>
+                                <th class="py-2 text-left text-gray-600">Patient Name</th>
+                                <th class="py-2 text-left text-gray-600">Gender</th>
+                                <th class="py-2 text-left text-gray-600">Last Visit</th>
+                                <th class="py-2 text-left text-gray-600">Diseases</th>
+                                <th class="py-2 text-left text-gray-600">Report</th>
+                                <th class="py-2 text-left text-gray-600">Details</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="py-2">1</td>
+                                <td class="py-2">John Doe</td>
+                                <td class="py-2">Male</td>
+                                <td class="py-2">12/05/2016</td>
+                                <td class="py-2"><span class="bg-red-200 text-red-800 py-1 px-3 rounded-full text-xs">Fever</span></td>
+                                <td class="py-2"><a href="#" class="text-blue-500"><i class="material-icons">picture_as_pdf</i></a></td>
+                                <td class="py-2"><a href="#" class="text-blue-500">Details</a></td>
+                            </tr>
+                            <!-- Repeat the above tr for each row -->
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-        
+
         <div class="mt-6 grid grid-cols-1 lg:grid-cols-2">
             <div class="">
-                <h2 class="text-2xl font-bold text-gray-700">Patients</h2>
+                <h2 class="text-2xl font-bold text-gray-700">Pasien</h2>
             </div>
         </div>
         <div class="relative w-full max-w-5xl mt-3">
-            <div class="flex flex-col pb-5 pt-2 px-3 rounded-xl bg-white shadow-lg w-full overflow-x-auto">
+            <div class="flex flex-col pb-5 px-5 rounded-xl bg-white shadow-lg w-full overflow-x-auto pt-4">
                 <label for="table-search-2" class="sr-only">Search</label>
-                <div class="relative my-1">
-                    <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
-                        <svg class="w-5 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
-                        </svg>
+                <div class="relative my-1 flex items-center justify-between">
+                    <div class="relative">
+                        <input type="text" class="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg shadow-sm focus:outline-none focus:ring focus:ring-opacity-60 focus:ring-gray-200 bg-gray-100" placeholder="Search for items">
+                        <div class="absolute inset-y-0 left-0 flex items-center pl-3">
+                            <svg class="w-5 h-5 text-gray-400" viewBox="0 0 24 24" fill="none">
+                                <path d="M21 21l-4.35-4.35M16.65 11.65a7 7 0 1 1-14 0 7 7 0 0 1 14 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                            </svg>
+                        </div>
                     </div>
-                    <input type="text" id="table-search-2" class="block pt-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-40 bg-gray-100 focus:ring-blue-500 focus:border-blue-500  dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search for items">
+                    <div class="relative inline-block text-left">
+                        <button id="options-button" type="button" class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            <a href="{{ route('admin.data.pasien') }}" class="block text-sm text-gray-700">
+                                Lihat lebih lanjut
+                                <i class="fa-solid fa-angles-right ml-2"></i>
+                            </a>
+                        </button>
+                    </div>
                 </div>
-                <div class="overflow-hidden rounded-lg">
-                    <div class="block w-full overflow-x-auto">
-                        <table class="min-w-full bg-white shadow-md">
-                            <thead>
-                                <tr>
-                                    <th class="py-2 text-left text-gray-600 tracking-wider">#</th>
-                                    <th class="py-2 text-left text-gray-600 tracking-wider">Patient Name</th>
-                                    <th class="py-2 text-left text-gray-600 tracking-wider">Gender</th>
-                                    <th class="py-2 text-left text-gray-600 tracking-wider">Last Visit</th>
-                                    <th class="py-2 text-left text-gray-600 tracking-wider">Diseases</th>
-                                    <th class="py-2 text-left text-gray-600 tracking-wider">Report</th>
-                                    <th class="py-2 text-left text-gray-600 tracking-wider">Details</th>
-                                    <th class="py-2 text-left text-gray-600 tracking-wider">Diseases</th>
-                                    <th class="py-2 text-left text-gray-600 tracking-wider">Report</th>
-                                    <th class="py-2 text-left text-gray-600 tracking-wider">Details</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="py-2 whitespace-nowrap text-md">1</td>
-                                    <td class="py-2 whitespace-nowrap text-md">John Doe</td>
-                                    <td class="py-2 whitespace-nowrap text-md">Male</td>
-                                    <td class="py-2 whitespace-nowrap text-md">John Doe</td>
-                                    <td class="py-2 whitespace-nowrap text-md">Male</td>
-                                    <td class="py-2 whitespace-nowrap text-md">Male</td>
-                                    <td class="py-2 whitespace-nowrap text-md">12/05/2016</td>
-                                    <td class="py-2 whitespace-nowrap text-md"><span class="bg-red-200 text-red-800 py-1 px-3 rounded-full text-xs">Fever</span></td>
-                                    <td class="py-2 whitespace-nowrap text-md"><a href="#" class="text-blue-500"><i class="material-icons">picture_as_pdf</i></a></td>
-                                    <td class="py-2 whitespace-nowrap text-md"><a href="#" class="text-blue-500">Details</a></td>
-                                </tr>
-                                <!-- Repeat the above tr for each row -->
-                            </tbody>
-                        </table>
-                    </div>
+                
+                <div class="overflow-x-auto">
+                    <table class="min-w-full bg-white shadow-md">
+                        <thead>
+                            <tr>
+                                <th class="py-2 text-left text-gray-600 tracking-wider">#</th>
+                                <th class="py-2 text-left text-gray-600 tracking-wider">Patient Name</th>
+                                <th class="py-2 text-left text-gray-600 tracking-wider">Gender</th>
+                                <th class="py-2 text-left text-gray-600 tracking-wider">Last Visit</th>
+                                <th class="py-2 text-left text-gray-600 tracking-wider">Diseases</th>
+                                <th class="py-2 text-left text-gray-600 tracking-wider">Report</th>
+                                <th class="py-2 text-left text-gray-600 tracking-wider">Details</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="py-2 whitespace-nowrap text-md">1</td>
+                                <td class="py-2 whitespace-nowrap text-md">John Doe</td>
+                                <td class="py-2 whitespace-nowrap text-md">Male</td>
+                                <td class="py-2 whitespace-nowrap text-md">12/05/2016</td>
+                                <td class="py-2 whitespace-nowrap text-md"><span class="bg-red-200 text-red-800 py-1 px-3 rounded-full text-xs">Fever</span></td>
+                                <td class="py-2 whitespace-nowrap text-md"><a href="#" class="text-blue-500"><i class="material-icons">picture_as_pdf</i></a></td>
+                                <td class="py-2 whitespace-nowrap text-md"><a href="#" class="text-blue-500">Details</a></td>
+                            </tr>
+                            <!-- Repeat the above tr for each row -->
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
+
         
     </div>
     <!-- Right Sidebar -->
     <div class="w-full lg:w-1/3">
         <div class="bg-white p-6 rounded-lg shadow-lg">
-            {{-- <div class="bg-white rounded-lg shadow-md p-6 w-80"> --}}
             <h2 class="text-2xl font-semibold text-center mb-6">Patients Group</h2>
             <ul class="space-y-4">
                 <li class="flex justify-between items-center">
@@ -190,156 +205,149 @@
                         <span>Malaria</span>
                     </div>
                     <span class="text-gray-500">11 Patients</span>
-                </li>
+            </li>
             </ul>
-            {{-- </div> --}}
         </div>
 
         <div class="max-w-2xl mt-6 mx-auto bg-white shadow-md rounded-lg overflow-hidden">
             <div class="p-6">
                 <div class="flex justify-between items-center">
-                    <h2 class="text-2xl font-bold mb-2">Doctors List</h2>
+                    <h2 class="text-2xl font-bold mb-2">Daftar Dokter</h2>
                     <div class="relative inline-block text-left">
                         <button id="options-button" type="button" class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                            Options
-                            <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v2a1 1 0 11-2 0V4a1 1 0 011-1zm0 7a1 1 0 011 1v2a1 1 0 11-2 0v-2a1 1 0 011-1zm0 7a1 1 0 011 1v2a1 1 0 11-2 0v-2a1 1 0 011-1z" clip-rule="evenodd" />
-                            </svg>
+                            <a href="{{ route('admin.index.dokter') }}" class="block text-sm text-gray-700">
+                                <i class="fa-solid fa-angles-right"></i>
+                            </a>
                         </button>
-                        <div id="options-menu" class="hidden origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
-                            <div class="py-1">
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-700">Add</a>
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-700">Delete</a>
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-700">Refresh</a>
-                            </div>
-                        </div>
                     </div>
                 </div>
-                <table class="min-w-full divide-y divide-gray-200 mt-4">
-                    <thead class="bg-gray-50">
-                        <tr>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">#</th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Doctor Name</th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                        </tr>
-                    </thead>
-                    <tbody class="bg-white divide-y divide-gray-200">
-                        <tr>
-                            <td class="px-6 py-4 whitespace-nowrap">1</td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="flex items-center">
-                                    <div class="flex-shrink-0 h-10 w-10">
-                                        <img class="h-10 w-10 rounded-full" src="https://via.placeholder.com/40" alt="">
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200 mt-4">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">#</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nama Dokter</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap">1</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="flex-shrink-0 h-10 w-10">
+                                            <img class="h-10 w-10 rounded-full" src="https://via.placeholder.com/40" alt="">
+                                        </div>
+                                        <div class="ml-4">
+                                            <div class="text-sm font-medium text-gray-900">Dr. Jay Soni</div>
+                                            <div class="text-sm text-gray-500">MBBS, MD</div>
+                                        </div>
                                     </div>
-                                    <div class="ml-4">
-                                        <div class="text-sm font-medium text-gray-900">Dr. Jay Soni</div>
-                                        <div class="text-sm text-gray-500">MBBS, MD</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                        Available
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap">2</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="flex-shrink-0 h-10 w-10">
+                                            <img class="h-10 w-10 rounded-full" src="https://via.placeholder.com/40" alt="">
+                                        </div>
+                                        <div class="ml-4">
+                                            <div class="text-sm font-medium text-gray-900">Dr. Sarah Smith</div>
+                                            <div class="text-sm text-gray-500">BDS, MDS</div>
+                                        </div>
                                     </div>
-                                </div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                    Available
-                                </span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="px-6 py-4 whitespace-nowrap">2</td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="flex items-center">
-                                    <div class="flex-shrink-0 h-10 w-10">
-                                        <img class="h-10 w-10 rounded-full" src="https://via.placeholder.com/40" alt="">
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                                        Absent
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap">3</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="flex-shrink-0 h-10 w-10">
+                                            <img class="h-10 w-10 rounded-full" src="https://via.placeholder.com/40" alt="">
+                                        </div>
+                                        <div class="ml-4">
+                                            <div class="text-sm font-medium text-gray-900">Dr. Megha Trivedi</div>
+                                            <div class="text-sm text-gray-500">BHMS</div>
+                                        </div>
                                     </div>
-                                    <div class="ml-4">
-                                        <div class="text-sm font-medium text-gray-900">Dr. Sarah Smith</div>
-                                        <div class="text-sm text-gray-500">BDS, MDS</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                        Available
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap">4</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="flex-shrink-0 h-10 w-10">
+                                            <img class="h-10 w-10 rounded-full" src="https://via.placeholder.com/40" alt="">
+                                        </div>
+                                        <div class="ml-4">
+                                            <div class="text-sm font-medium text-gray-900">Dr. John Deo</div>
+                                            <div class="text-sm text-gray-500">MBBS, MS</div>
+                                        </div>
                                     </div>
-                                </div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
-                                    Absent
-                                </span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="px-6 py-4 whitespace-nowrap">3</td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="flex items-center">
-                                    <div class="flex-shrink-0 h-10 w-10">
-                                        <img class="h-10 w-10 rounded-full" src="https://via.placeholder.com/40" alt="">
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                        Available
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap">5</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="flex-shrink-0 h-10 w-10">
+                                            <img class="h-10 w-10 rounded-full" src="https://via.placeholder.com/40" alt="">
+                                        </div>
+                                        <div class="ml-4">
+                                            <div class="text-sm font-medium text-gray-900">Dr. Jacob Ryan</div>
+                                            <div class="text-sm text-gray-500">MBBS, MD</div>
+                                        </div>
                                     </div>
-                                    <div class="ml-4">
-                                        <div class="text-sm font-medium text-gray-900">Dr. Megha Trivedi</div>
-                                        <div class="text-sm text-gray-500">BHMS</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                                        Absent
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap">6</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="flex-shrink-0 h-10 w-10">
+                                            <img class="h-10 w-10 rounded-full" src="https://via.placeholder.com/40" alt="">
+                                        </div>
+                                        <div class="ml-4">
+                                            <div class="text-sm font-medium text-gray-900">Dr. Jay Soni</div>
+                                            <div class="text-sm text-gray-500">MBBS</div>
+                                        </div>
                                     </div>
-                                </div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                    Available
-                                </span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="px-6 py-4 whitespace-nowrap">4</td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="flex items-center">
-                                    <div class="flex-shrink-0 h-10 w-10">
-                                        <img class="h-10 w-10 rounded-full" src="https://via.placeholder.com/40" alt="">
-                                    </div>
-                                    <div class="ml-4">
-                                        <div class="text-sm font-medium text-gray-900">Dr. John Deo</div>
-                                        <div class="text-sm text-gray-500">MBBS, MS</div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                    Available
-                                </span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="px-6 py-4 whitespace-nowrap">5</td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="flex items-center">
-                                    <div class="flex-shrink-0 h-10 w-10">
-                                        <img class="h-10 w-10 rounded-full" src="https://via.placeholder.com/40" alt="">
-                                    </div>
-                                    <div class="ml-4">
-                                        <div class="text-sm font-medium text-gray-900">Dr. Jacob Ryan</div>
-                                        <div class="text-sm text-gray-500">MBBS, MD</div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
-                                    Absent
-                                </span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="px-6 py-4 whitespace-nowrap">6</td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="flex items-center">
-                                    <div class="flex-shrink-0 h-10 w-10">
-                                        <img class="h-10 w-10 rounded-full" src="https://via.placeholder.com/40" alt="">
-                                    </div>
-                                    <div class="ml-4">
-                                        <div class="text-sm font-medium text-gray-900">Dr. Jay Soni</div>
-                                        <div class="text-sm text-gray-500">MBBS</div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                    Available
-                                </span>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                        Available
+                                    </span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
@@ -364,3 +372,6 @@
     </script>
 @endpush
 @endsection
+
+
+    

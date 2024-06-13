@@ -1,4 +1,4 @@
-@extends('admin.main')
+@extends('perawat.main')
 
 @section('container')
 @if(session()->has('failed'))
@@ -13,7 +13,7 @@
 
 <div class="flex justify-between items-center mb-4 mx-4">
     <h1 class="text-3xl font-bold">Kelola Data Pasien</h1>
-    <a href="{{ route('admin.tambah.pasien') }}" class="bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600 flex items-center font-semibold">
+    <a href="{{ route('perawat.tambah.pasien') }}" class="bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600 flex items-center font-semibold">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
         </svg>
@@ -69,12 +69,12 @@
                         <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">{{ $item->pasien->alamat }}</td>
                         <td class="px-4 pt-8  whitespace-nowrap text-md text-gray-900 flex space-x-2">
                             <div class="flex gap-2 items-center h-full">
-                                <a href="{{ route('admin.edit.pasien', $item->nomor_handphone) }}" class="bg-yellow-400 text-white px-2 py-1 rounded shadow hover:bg-yellow-500 flex items-center">
+                                <a href="{{ route('perawat.edit.pasien', $item->nomor_handphone) }}" class="bg-yellow-400 text-white px-2 py-1 rounded shadow hover:bg-yellow-500 flex items-center">
                                     <i class="fa-solid fa-pen-to-square mr-2"></i>
                                     Ubah
                                 </a>
                                 @if ($item->aktif == 1)
-                                    <form action="{{ route('admin.ban.pasien', $item->nomor_handphone) }}" method="POST">
+                                    <form action="{{ route('perawat.ban.pasien', $item->nomor_handphone) }}" method="POST">
                                         @csrf
                                         <button class="bg-red-500 text-white px-2 py-1 rounded shadow hover:bg-red-600 flex items-center">
                                         <i class="fa-solid fa-ban mr-2"></i>
@@ -82,7 +82,7 @@
                                         </button>
                                     </form>
                                 @else
-                                    <form action="{{ route('admin.unban.pasien', $item->nomor_handphone) }}" method="POST">
+                                    <form action="{{ route('perawat.unban.pasien', $item->nomor_handphone) }}" method="POST">
                                         @csrf
                                         <button class="bg-green-500 text-white px-2 py-1 rounded shadow hover:bg-green-600 flex items-center">
                                         <i class="fa-solid fa-unlock mr-2"></i>
