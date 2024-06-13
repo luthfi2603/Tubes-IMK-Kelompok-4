@@ -1,4 +1,4 @@
-{{-- @extends('admin.main')
+{{-- @extends('perawat.main')
 
 @section('container')
 @if(session()->has('failed'))
@@ -13,7 +13,7 @@
 <div class="container min-h-screen">
     <h3 class="text-2xl font-bold mb-5">Ubah Data Pasien</h3>
     <div class="bg-white p-6 rounded-lg shadow-lg opacity-90">
-        <form action="{{ route('admin.edit.pasien', $pasien->id) }}" method="POST" class="space-y-4">
+        <form action="{{ route('perawat.edit.pasien', $pasien->id) }}" method="POST" class="space-y-4">
             @csrf
             @method('PUT')
             <div>
@@ -83,7 +83,7 @@
 </div>
 @endsection --}}
 
-@extends('admin.main')
+@extends('perawat.main')
 
 @section('container')
 @if(session()->has('failed'))
@@ -104,7 +104,7 @@
                 <p class="text-gray-500 text-md">Silahkan ubah formulir di bawah ini untuk mengubah data diri pasien di sistem.</p>
             </div>
         </div>
-        <form action="{{ route('admin.edit.pasien', $pasien->id) }}" method="POST" class="space-y-4">
+        <form action="{{ route('perawat.edit.pasien', $pasien->id) }}" method="POST" class="space-y-4">
             @csrf
             @method('PUT')
             <div>

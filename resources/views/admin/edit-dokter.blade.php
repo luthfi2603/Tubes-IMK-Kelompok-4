@@ -10,14 +10,20 @@
         {{ session('failed') }}
     </div>
 @endif
-<div class="flex flex-col gap-4">
-    <p class="text-2xl md:text-3xl font-bold">Ubah Data Dokter</p>
-    <form action="{{ route('admin.dokter.edit', $dokter->id_user) }}" method="POST" enctype="multipart/form-data" class="flex justify-center">
+<div class="container mx-auto px-4 py-6">
+    <div class="max-w-6xl mx-auto bg-white p-8 rounded-lg shadow-lg border border-gray-300">
+        <div class="flex items-center mb-6">
+            <img src="{{ asset('assets/img/perawat.png') }}" class="w-24 h-24" alt="">
+            <div class="ml-4">
+                <p class="text-2xl md:text-3xl font-bold">Edit Dokter</p>
+                <p class="text-gray-500 text-md">Silahkan ubah formulir di bawah ini untuk mengubah data diri dokter di sistem.</p>
+            </div>
+        </div>
+        <form action="{{ route('admin.dokter.edit', $dokter->id_user) }}" method="POST" enctype="multipart/form-data" class="space-y-4">
         @csrf
         @method('PUT')
         <input type="hidden" name="foto_lama" id="foto_lama" value="{{ $dokter->foto }}">
         <input type="hidden" name="hapus" id="hapus">
-        <div class="flex flex-col items-center gap-4 w-1/2">
             <div class="flex flex-col items-center w-full">
                 {{-- tidak ada foto --}}
                 @if(!$dokter->foto)
@@ -45,9 +51,9 @@
                     </div>
                 @endif
                 <input type="file" name="foto" id="foto" class="hidden">
-                <div id="error-message" class="text-[#B42223] text-bold text-sm w-full"></div>
+                <div id="error-message" class="text-[#B42223] text-bold text-sm w-full mt-4"></div>
                 @error('foto')
-                    <div class="text-[#B42223] text-bold text-sm w-full">
+                    <div class="text-[#B42223] text-bold text-sm w-full mt-4">
                         {{ $message }}
                     </div>
                 @enderror
@@ -127,9 +133,9 @@
                     </div>
                 @enderror
             </div>
-            <div>
+            <div class="flex justify-end mt-6">
                 <button class="mr-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg py-2 px-4 w-min text-nowrap mt-1">Ubah</button>
-                <a href="{{ route('admin.index.dokter') }}" class="bg-blue-500 hover:bg-blue-600 text-white rounded-lg py-2 px-4 w-min text-nowrap mt-1">Kembali</a>
+                <a href="{{ route('admin.index.dokter') }}" class="bg-yellow-500 hover:bg-yellow-600 text-white rounded-lg py-2 px-4 w-min text-nowrap mt-1">Kembali</a>
             </div>
         </div>
     </form>

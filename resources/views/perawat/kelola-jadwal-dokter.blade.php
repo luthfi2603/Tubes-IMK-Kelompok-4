@@ -1,4 +1,4 @@
-@extends('admin.main')
+@extends('perawat.main')
 
 @section('container')
 @if(session()->has('failed'))
@@ -12,12 +12,6 @@
 @endif
 <div class="flex justify-between items-center mb-4 mx-4">
     <h1 class="text-3xl font-bold">Kelola Jadwal Dokter</h1>
-    <a href="{{ route('admin.jadwal.dokter.input') }}" class="bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600 flex items-center">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-        </svg>
-        Tambah Jadwal Dokter
-    </a>
 </div>
 
 <hr class="border-1 border-[#B1B0AF] mb-4 mx-4">
@@ -33,7 +27,6 @@
                     <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider min-w-40">Spesialis</th>
                     <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider min-w-30">Hari</th>
                     <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider min-w-30">Jam</th>
-                    <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider min-w-40">Aksi</th> 
                     {{-- jangan diubah ubah letak aksinya, harus selalu terakhir --}}
                 </tr>
             </thead>
@@ -62,24 +55,7 @@
                     @foreach ($jadwals as $item)
                         <tr>
                             <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">{{ $i }}</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">
-                                <div class="flex gap-2">
-                                    <a href="{{ route('admin.jadwal.dokter.edit', $item->id) }}" class="bg-yellow-400 text-white px-2 py-1 rounded shadow hover:bg-yellow-500 flex items-center">
-                                        <i class="fa-solid fa-pen-to-square mr-2"></i>
-                                        Ubah
-                                    </a>
-                                    <form action="{{ route('admin.jadwal.dokter.destroy', $item->id) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button class="bg-red-500 text-white px-2 py-1 rounded shadow hover:bg-red-600 flex items-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                                            </svg>
-                                            Hapus
-                                        </button>
-                                    </form>
-                                </div>
-                            </td>
+                            
                             <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">{{ $item->hari }}</td>
                             <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">{{ $item->jam }}</td>
                         </tr>
