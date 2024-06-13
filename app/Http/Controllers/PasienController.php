@@ -509,4 +509,24 @@ class PasienController extends Controller {
 
         return back();
     }
+
+    public function indexRekamMedis(){
+        $rekamMedis = RekamMedis::where('nomor_handphone', auth()->user()->nomor_handphone)
+            ->latest()
+            ->get();
+
+        return view('rekam-medis', compact('rekamMedis'));
+    }
+
+    public function showRekamMedis($id){
+        $rekamMedis = RekamMedis::where('nomor_handphone', auth()->user()->nomor_handphone)
+            ->where('id', $id)
+            ->first();
+
+        if(!$rekamMedis){
+            return back();
+        }
+
+        return view('detail-rekam-medis', compact('rekamMedis'));
+    }
 }

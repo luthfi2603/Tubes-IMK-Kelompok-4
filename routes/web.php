@@ -23,12 +23,6 @@ Route::middleware(['auth', 'role:Pasien'])->group(function(){
         Route::get('/tentang-kami', function(){
                 return view('tentang-kami');
              })->name('pasien.tentang-kami');
-        Route::get('/rekam-medis', function(){
-                return view('rekam-medis');
-             })->name('pasien.rekam-medis');
-        Route::get('/detail-rekam-medis', function(){
-                return view('detail-rekam-medis');
-             })->name('pasien.detail-rekam-medis');
         Route::get('/notifikasi', function(){
                 return view('notifikasi');
              })->name('pasien.notifikasi-pasien');
@@ -59,6 +53,11 @@ Route::middleware(['auth', 'role:Pasien'])->group(function(){
             ->name('destroy.reservasi');
         Route::get('/dokter', 'indexDokter')
             ->name('dokter');
+        
+        Route::get('/rekam-medis', 'indexRekamMedis')
+            ->name('rekam.medis');
+        Route::get('/rekam-medis/detail/{pk}', 'showRekamMedis')
+            ->name('rekam.medis.detail');
     });
 });
 
