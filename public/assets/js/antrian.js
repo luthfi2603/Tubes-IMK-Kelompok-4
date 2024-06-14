@@ -66,26 +66,29 @@ async function refreshTable(){
 
             data.antrians.forEach(item => {
                 isiTabelString += `
-                    <tr>
+                    <tr class="bg-white hover:bg-[#d1e4f2] transition duration-200">
                         <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">${i}</td>
                         <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">
                             <div class="dropdown" data-placement="right">
                                 ${(() => {
                                     if(item.status == 'Menunggu'){
-                                        return `<button class="dropdown-toggle bg-blue-500 text-white px-3 py-1 mr-2 rounded-lg tombol-ubah" id="${item.id}">`;
+                                        return `<button class="dropdown-toggle bg-yellow-500 text-white px-3 py-1 rounded tombol-ubah shadow flex items-center" id="${item.id}">`;
                                     }else{
-                                        return `<button class="dropdown-toggle bg-blue-300 text-white px-3 py-1 mr-2 rounded-lg tombol-ubah" disabled>`;
+                                        return `<button class="dropdown-toggle bg-yellow-300 text-white px-3 py-1 rounded tombol-ubah shadow flex items-center" disabled>`;
                                     }
                                 })()}
+                                    <i class="fa-solid fa-pen-to-square mr-2"></i>
                                     Ubah
                                 </button>
                                 <div class="dropdown-menu hidden p-4 rounded-lg bg-[#F5F5F5]">
-                                    <button id="selesai" class="bg-green-100 text-green-800 text-sm px-2 py-1 leading-5 font-semibold rounded-lg w-full mt-2">
-                                        Selesai
-                                    </button> <br>
-                                    <button id="batal" class="bg-red-100 text-red-800 text-sm px-2 py-1 leading-5 font-semibold rounded-lg w-full mt-2">
-                                        Batal
-                                    </button>
+                                    <div class="flex flex-col gap-4">
+                                        <button id="selesai" class="bg-green-100 text-green-800 text-sm px-2 py-1 leading-5 font-semibold rounded shadow w-full">
+                                            Selesai
+                                        </button>
+                                        <button id="batal" class="bg-red-100 text-red-800 text-sm px-2 py-1 leading-5 font-semibold rounded shadow w-full">
+                                            Batal
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </td>
@@ -94,7 +97,7 @@ async function refreshTable(){
                                 if (item.foto) {
                                     return `
                                         <div class="w-20 h-20 aspect-square overflow-hidden rounded-full border-2 border-gray-300">
-                                            <img src="../storage/${item.foto}" alt="perawat" class="object-cover object-top w-full h-full">
+                                            <img src="../storage/${item.foto}" alt="pasien" class="object-cover object-top w-full h-full">
                                         </div>
                                     `;
                                 } else {
@@ -109,11 +112,11 @@ async function refreshTable(){
                         <td class="px-6 py-4 whitespace-nowrap text-md">
                             ${(() => {
                                 if(item.status == 'Selesai'){
-                                    return `<span class="bg-green-100 text-green-800 text-sm px-2 py-1 inline-flex leading-5 font-semibold rounded-full">Selesai</span>`;
+                                    return `<span class="bg-green-100 text-green-800 text-sm px-2 py-1 inline-flex leading-5 font-semibold rounded shadow">Selesai</span>`;
                                 }else if(item.status == 'Menunggu'){
-                                    return `<span class="bg-blue-100 text-blue-800 text-sm px-2 py-1 inline-flex leading-5 font-semibold rounded-full">Menunggu</span>`;
+                                    return `<span class="bg-yellow-100 text-yellow-800 text-sm px-2 py-1 inline-flex leading-5 font-semibold rounded shadow">Menunggu</span>`;
                                 }else{
-                                    return `<span class="bg-red-100 text-red-800 text-sm px-2 py-1 inline-flex leading-5 font-semibold rounded-full">Batal</span>`;
+                                    return `<span class="bg-red-100 text-red-800 text-sm px-2 py-1 inline-flex leading-5 font-semibold rounded shadow">Batal</span>`;
                                 }
                             })()}
                         </td>
@@ -175,24 +178,17 @@ async function refreshTable(){
         }else{ // kalau tidak ada
             isiTabel.innerHTML = `
                 <tr>
-                    <td colspan="9" class="text-center text-2xl py-3">Data tidak ada</td>
+                    <td colspan="9" class="text-center text-2xl py-3">
+                        <div class="flex justify-center items-center">
+                            <div class="bg-[#E3EBF3] text-center p-4 rounded-lg shadow-md font-bold w-3/4 flex items-center justify-center space-x-4">
+                                <img src="/assets/img/nurse-2.png" alt="No Appointments" class="w-16 h-16">
+                                <p class="text-xl text-[#222C67]">Belum ada Data</p>
+                                <img src="/assets/img/nurse-2.png" alt="No Appointments" class="w-16 h-16">
+                            </div>
+                        </div>
+                    </td>
                 </tr>
             `;
-            setTimeout(() => {
-                isiTabel.innerHTML = `
-                    <tr>
-                        <td colspan="9" class="text-center text-2xl py-3">
-                        <div class="flex justify-center items-center">
-                <div class="bg-[#E3EBF3] text-center p-4 rounded-lg shadow-md font-bold w-3/4 flex items-center justify-center space-x-4">
-                    <img src="/assets/img/nurse-2.png" alt="No Appointments" class="w-16 h-16">
-                    <p class="text-xl text-[#222C67]">Belum ada Data</p>
-                    <img src="/assets/img/nurse-2.png" alt="No Appointments" class="w-16 h-16">
-                </div>
-            </div>
-                        </td>
-                    </tr>
-                `;
-            }, 1000);
         }
     }catch(error){
         console.error(error);

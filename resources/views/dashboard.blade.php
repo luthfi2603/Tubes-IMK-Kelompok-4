@@ -103,7 +103,7 @@
             <div class="ml-4 space-y-3">
                 <h3 class="text-xl font-bold text-[#222C67]">Recent Medical Records</h3>
                 <p class="text-gray-600">Dr. yaya - 10 Februari 2024</p>
-                <a href="{{ route('pasien.rekam-medis', 1) }}" class="text-blue-600 hover:underline">View</a>
+                <a href="{{ route('rekam.medis') }}" class="text-blue-600 hover:underline">View</a>
             </div>
         </div>
     </div>

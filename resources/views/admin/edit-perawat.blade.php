@@ -189,7 +189,7 @@
         </div>
         <div class="mb-4">
             <label for="nama" class="block text-gray-700 font-semibold mb-2">Nama Lengkap</label>
-            <input type="text" name="nama" id="nama" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500" placeholder="Masukkan nama lengkap" value="{{ old('nama', $perawat->nama) }}" autofocus>
+            <input type="text" name="nama" id="nama" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500" placeholder="Masukkan nama lengkap" value="{{ old('nama', $perawat->nama) }}">
             @error('nama')
                 <div class="text-red-500 mt-1 text-sm">{{ $message }}</div>
             @enderror

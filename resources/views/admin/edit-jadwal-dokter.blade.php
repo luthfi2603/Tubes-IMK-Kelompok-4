@@ -50,9 +50,9 @@
                     </div>
                 @enderror
             </div>
-            <div>
-                <button class="mr-2 bg-green-500 hover:bg-green-600 text-white rounded-lg py-2 px-4 w-min text-nowrap mt-1">Ubah</button>
-                <a href="{{ route('admin.jadwal.dokter.index') }}" class="bg-blue-500 hover:bg-blue-600 text-white rounded-lg py-2 px-4 w-min text-nowrap mt-1">Kembali</a>
+            <div class="flex justify-end w-full">
+                <button class="mr-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg py-2 px-4 w-min text-nowrap mt-1">Ubah</button>
+                <a href="{{ route('admin.jadwal.dokter.index') }}" class="bg-yellow-500 hover:bg-yellow-600 text-white rounded-lg py-2 px-4 w-min text-nowrap mt-1">Kembali</a>
             </div>
         </div>
     </form>

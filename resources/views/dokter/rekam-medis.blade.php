@@ -1,6 +1,11 @@
 @extends('dokter.main')
 
 @section('container')
+@if(session()->has('success'))
+    <div id="success-php" class="mb-4 bg-green-300 py-3 text-white px-4 rounded-lg">
+        {{ session('success') }}
+    </div>
+@endif
 <div class="flex justify-between items-center px-4 mb-3">
     <div class="font-body font-bold text-[#222C67]">
         <h1 class="text-3xl font-bold">Rekam Medis Pasien</h1>
@@ -66,10 +71,19 @@
                                 </textarea>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-md">
-                                <a href="{{ route('dokter.rekam.medis.show', $rekam->id) }}">
-                                    <button class="bg-blue-500 text-white px-3 py-1 mr-2 rounded">Detail</button>
-                                </a>
-                                <button class="bg-[#E8C51C] text-white px-3 py-1 rounded">Unduh</button>
+                                <div class="flex flex-col gap-2">
+                                    <a href="{{ route('dokter.rekam.medis.show', $rekam->id) }}" class="bg-blue-500 text-white px-3 py-1 rounded-lg w-full text-center">
+                                        Detail
+                                    </a>
+                                    <a href="{{ route('dokter.rekam.medis.edit', $rekam->id) }}" class="bg-yellow-500 text-white px-3 py-1 rounded-lg w-full text-center">
+                                        Ubah
+                                    </a>
+                                    <form method="POST" action="{{ route('dokter.rekam.medis.destroy', $rekam->id) }}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="bg-[#b02126] rounded-lg w-full py-1 px-3 text-white">Hapus</button>
+                                    </form>
+                                </div>
                             </td>
                         </tr>
                         @php $i++; @endphp

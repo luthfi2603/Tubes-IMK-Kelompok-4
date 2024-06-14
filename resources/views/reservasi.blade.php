@@ -73,6 +73,12 @@
                                     <input type="hidden" name="id" value="{{ $reservasi->id }}">
                                     <button class="bg-[#b02126] rounded-lg py-1 px-3 text-white w-min">Batalkan</button>
                                 </form>
+                            @elseif($reservasi->status == 'Selesai')
+                                @if($reservasi->id_rekam_medis)
+                                    <a href="{{ route('rekam.medis.detail', $reservasi->id) }}" class="bg-blue-500 rounded-lg py-1 px-3 text-white w-min mt-2 text-nowrap">Rekam Medis</a>
+                                @else
+                                    <span class="bg-blue-300 rounded-lg py-1 px-3 text-white w-min text-nowrap mt-2">Rekam Medis Belum Ada</span>
+                                @endif
                             @endif
                         </div>
                     </div>

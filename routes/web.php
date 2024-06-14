@@ -23,12 +23,6 @@ Route::middleware(['auth', 'role:Pasien'])->group(function(){
         Route::get('/tentang-kami', function(){
                 return view('tentang-kami');
              })->name('pasien.tentang-kami');
-        Route::get('/rekam-medis', function(){
-                return view('rekam-medis');
-             })->name('pasien.rekam-medis');
-        Route::get('/detail-rekam-medis', function(){
-                return view('detail-rekam-medis');
-             })->name('pasien.detail-rekam-medis');
         Route::get('/notifikasi', function(){
                 return view('notifikasi');
              })->name('pasien.notifikasi-pasien');
@@ -59,6 +53,11 @@ Route::middleware(['auth', 'role:Pasien'])->group(function(){
             ->name('destroy.reservasi');
         Route::get('/dokter', 'indexDokter')
             ->name('dokter');
+        
+        Route::get('/rekam-medis', 'indexRekamMedis')
+            ->name('rekam.medis');
+        Route::get('/rekam-medis/detail/{pk}', 'showRekamMedis')
+            ->name('rekam.medis.detail');
     });
 });
 
@@ -76,6 +75,11 @@ Route::middleware(['auth', 'role:Dokter'])->group(function(){
                 Route::get('/janji-temu-dokter/rekam-medis/create/{pk}', 'createRekamMedis')
                     ->name('rekam.medis.create');
                 Route::post('/janji-temu-dokter/rekam-medis/create/{pk}', 'storeRekamMedis');
+                Route::get('/rekam-medis/edit/{pk}', 'editRekamMedis')
+                    ->name('rekam.medis.edit');
+                Route::put('/rekam-medis/edit/{pk}', 'updateRekamMedis');
+                Route::delete('/rekam-medis/destroy/{pk}', 'destroyRekamMedis')
+                    ->name('rekam.medis.destroy');
                 Route::post('/antrian/tanggal', 'indexAntrianTanggal');
                 Route::get('/janji-temu-dokter', 'indexAntrian')
                     ->name('janji.temu');
@@ -185,6 +189,9 @@ Route::middleware(['auth', 'role:Admin'])->group(function(){
                 Route::delete('/dokter/destroy/{pk}', 'destroyDokter')
                     ->name('dokter.destroy');
                 Route::post('/cari/dokter', 'cariDokter');
+                Route::get('/dokter/edit-jadwal/{pk}', 'editDokterJadwal')
+                    ->name('dokter.edit.jadwal');
+                Route::put('/dokter/edit-jadwal/{pk}', 'updateDokterJadwal');
 
                 Route::get('/jadwal-dokter', 'indexJadwalDokter')
                     ->name('jadwal.dokter.index');

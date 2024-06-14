@@ -6,20 +6,17 @@
         {{ session('success') }}
     </div>
 @endif
-
-    <div class="flex justify-between items-center mb-4 mx-4">
-        <h1 class="text-3xl font-bold">Kelola Dokter</h1>
-        <a href="{{ route('admin.dokter.input') }}" class="bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600 flex items-center font-semibold">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-            </svg>
-            Tambah Dokter
-        </a>
-    </div>
-
-    <hr class="border-1 border-[#B1B0AF] mb-4 mx-4">
-
-    <div class="container mx-auto p-4">
+<div class="flex justify-between items-center mb-4 mx-4">
+    <h1 class="text-3xl font-bold">Kelola Dokter</h1>
+    <a href="{{ route('admin.dokter.input') }}" class="bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600 flex items-center font-semibold">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+        </svg>
+        Tambah Dokter
+    </a>
+</div>
+<hr class="border-1 border-[#B1B0AF] mb-4 mx-4">
+<div class="container mx-auto p-4">
     @if($dokters->isEmpty())
         {{-- <div class="mt-4 text-center">
             <p class="text-xl font-bold">Dokter Tidak Ada</p>
@@ -32,19 +29,18 @@
             </div>
         </div>
     @else
-         <div class="bg-white shadow-lg rounded-lg overflow-x-auto">
-            <table class="overflow-x-auto">
+        <div class="bg-white shadow-lg rounded-lg overflow-x-auto">
+            <table class="min-w-full">
                 <thead>
                     <tr>
                         <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">No</th>
-                        <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider min-w-30">Foto</th>
-                        <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider min-w-50">Nama</th>
-                        <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider min-w-40">Nomor Handphone</th>
-                        <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider min-w-40">Jenis Kelamin</th>
-                        <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider min-w-40">Spesialis</th>
-                        <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider min-w-40">Alamat</th>
-                        <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider min-w-40">Aksi</th>
-
+                        <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">Aksi</th>
+                        <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">Foto</th>
+                        <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">Nama</th>
+                        <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">Nomor Handphone</th>
+                        <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">Jenis Kelamin</th>
+                        <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">Spesialis</th>
+                        <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">Alamat</th>
                     </tr>
                 </thead>
                 <tbody id="isi-tabel" class="divide-y divide-gray-200">
@@ -59,7 +55,28 @@
                     @foreach($dokters as $item)
                         <tr class="bg-white hover:bg-[#d1e4f2] transition duration-200">
                             <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">{{ $i }}</td>
-                            
+                            <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">
+                                <div class="flex flex-col gap-2">
+                                    <a href="{{ route('admin.dokter.edit', $item->nomor_handphone) }}" class="bg-yellow-400 text-white px-2 py-1 rounded shadow hover:bg-yellow-500 flex items-center w-min">
+                                        <i class="fa-solid fa-pen-to-square mr-2"></i>
+                                        Ubah
+                                    </a>
+                                    <a href="{{ route('admin.dokter.edit.jadwal', $item->id_dokter) }}" class="bg-cyan-400 text-white px-2 py-1 rounded shadow hover:bg-cyan-500 flex items-center">
+                                        <i class="fa-solid fa-pen-to-square mr-2"></i>
+                                        Ubah Jadwal
+                                    </a>
+                                    <form action="{{ route('admin.dokter.destroy', $item->id_user) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="bg-red-500 text-white px-2 py-1 rounded shadow hover:bg-red-600 flex items-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                            </svg>
+                                            Hapus
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
                             <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">
                                 @if($item->foto)
                                     <div class="w-20 h-20 aspect-square overflow-hidden rounded-full border-2 border-gray-300">
@@ -76,24 +93,6 @@
                             <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">{{ $item->jenis_kelamin == 'P' ? 'Perempuan' : 'Laki-laki'}}</td>
                             <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">{{ $item->spesialis }}</td>
                             <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">{{ $item->alamat }}</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">
-                                <div class="flex gap-2 items-center h-full">
-                                    <a href="{{ route('admin.dokter.edit', $item->nomor_handphone) }}" class="bg-yellow-400 text-white px-2 py-1 rounded shadow hover:bg-yellow-500 flex items-center">
-                                        <i class="fa-solid fa-pen-to-square mr-2"></i>
-                                        Ubah
-                                    </a>
-                                    <form action="{{ route('admin.dokter.destroy', $item->id_user) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button class="bg-red-500 text-white px-2 py-1 rounded shadow hover:bg-red-600 flex items-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                                            </svg>
-                                            Hapus
-                                        </button>
-                                    </form>
-                                </div>
-                            </td>
                         </tr>
                         @php $i++; @endphp
                     @endforeach
@@ -113,7 +112,7 @@
                 </div>
             </div> --}}
         </div>
-        <div id="pagination">
+        <div id="pagination" class="mt-4">
             {{ $dokters->links() }}
         </div>
     @endif

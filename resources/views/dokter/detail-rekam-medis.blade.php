@@ -20,7 +20,7 @@
                     <p>Telp. (061) 42081004 - 42081005 HP. 08116176661</p>
                 </div>
                 <div class="w-1/5">
-                    Jam Hadir : {{ \Carbon\Carbon::parse($rekamMedis->jam_hadir)->format('H:i') }}
+                    Jam Hadir : {{ \Carbon\Carbon::parse($rekamMedis->created_at)->format('H:i') }}
                 </div>
             </div>
             <p class="underline">Kartu Berobat</p>
@@ -98,7 +98,7 @@
             </div>
             <hr>
             <div class="w-full">
-                <p>Tanggal : {{ \Carbon\Carbon::parse($rekamMedis->updated_at)->format('Y-m-d') }}                </p>
+                <p>Tanggal : {{ \Carbon\Carbon::parse($rekamMedis->created_at)->format('Y-m-d') }}</p>
             </div>
             <table class="border-4 border-black">
                 <thead>
@@ -110,7 +110,10 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td class="p-4">{{ $rekamMedis->keluhan }}</td>
+                        <td class="p-4">
+                            <p>
+                                {!! $rekamMedis->keluhan !!}</td>
+                            </p>
                         <td class="p-4">{{ $rekamMedis->diagnosa }}</td>
                         <td class="p-4">{{ $rekamMedis->therapie }}</td>
                     </tr>

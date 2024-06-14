@@ -22,6 +22,7 @@ return new class extends Migration {
             CREATE VIEW view_jadwal_dokter AS
             SELECT
                 a.id AS id_dokter,
+                c.id AS id_waktu,
                 d.foto,
                 a.nama,
                 a.spesialis,

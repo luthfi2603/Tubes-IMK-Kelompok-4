@@ -52,15 +52,23 @@ async function cariData(){
 
             data.jadwal_dokters.forEach(item => {
                 isiTabelString += `
-                    <tr>
+                    <tr class="hover:bg-[#d1e4f2] transition duration-200">
                         <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">${i}</td>
                         <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">
                             <div class="flex gap-2">
-                                <a href="/admin/jadwal-dokter/edit/${item.id}" class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-lg">Ubah</a>
+                                <a href="/admin/jadwal-dokter/edit/${item.id}" class="bg-yellow-400 text-white px-2 py-1 rounded shadow hover:bg-yellow-500 flex items-center">
+                                    <i class="fa-solid fa-pen-to-square mr-2"></i>
+                                    Ubah
+                                </a>
                                 <form action="/admin/jadwal-dokter/${item.id}" method="POST">
                                     <input name="_token" value="${csrf}" type="hidden">
                                     <input name="_method" value="DELETE" type="hidden">
-                                    <button class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-lg">Hapus</button>
+                                    <button class="bg-red-500 text-white px-2 py-1 rounded shadow hover:bg-red-600 flex items-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                        </svg>
+                                        Hapus
+                                    </button>
                                 </form>
                             </div>
                         </td>
