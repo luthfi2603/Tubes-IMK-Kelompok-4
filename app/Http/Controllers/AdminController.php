@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Pasien;
 use App\Models\Perawat;
 use App\Models\Dokter;
+use App\Models\JadwalDokter;
 use App\Models\RawatInap;
 use App\Models\Reservasi;
 use App\Models\RekamMedis;
@@ -46,12 +47,12 @@ class AdminController extends Controller {
         return response()->json(['pasiens' => $pasiens]);
     }
 
-    public function dataKaryawan(){
+    /* public function dataKaryawan(){
         $karyawan = DB::table('data_karyawan')
             ->paginate(5);
             
         return view('admin.data-karyawan', compact('karyawan'));
-    }
+    } */
 
     public function editPasien($nohp){
         $pasien = Pasien::join('users', 'pasiens.id_user', '=', 'users.id')
@@ -227,7 +228,7 @@ class AdminController extends Controller {
             'id_user' => User::latest()->first()->id
         ]);
 
-        return redirect()->route('admin.data.pasien')->with('success', 'Data pasien berhasil ditambahkan!');
+        return back()->with('success', 'Data pasien berhasil ditambahkan!');
     }
 
     public function indexPerawat(){
@@ -271,7 +272,7 @@ class AdminController extends Controller {
             'nama' => ['required', 'string', 'max:255'],
             'nomor_handphone' => ['required', 'numeric', 'min_digits:11', 'max_digits:13', 'regex:/\b08\d{9,11}\b/', 'unique:users'],
             'alamat' => ['required', 'string', 'max:255'],
-            'jenis_kelamin' => ['required', 'in:Pzzz,L'],
+            'jenis_kelamin' => ['required', 'in:P,L'],
             'password' => ['required', 'same:konfirmasi_password', 'min:8', 'max:255'],
             'konfirmasi_password' => ['required', 'same:password', 'min:8', 'max:255'],
         ];
@@ -751,6 +752,219 @@ class AdminController extends Controller {
             ->get();
 
         return response()->json(['dokters' => $dokters]);
+    }
+
+    public function editDokterJadwal($id){
+        $dokter = DB::table('view_data_dokter')
+            ->where('id_dokter', $id)
+            ->first();
+
+        if(!$dokter){
+            return back();
+        }
+
+        $jadwal = DB::table('view_jadwal_dokter')
+            ->where('id_dokter', $id)
+            ->get();
+
+        $waktus = Waktu::all();
+
+        return view('admin.dokter-edit-jadwal', compact('dokter', 'jadwal', 'waktus'));
+    }
+
+    public function updateDokterJadwal(Request $request, $id){
+        $jadwal = DB::table('view_jadwal_dokter')
+            ->where('id_dokter', $id)
+            ->get();
+
+        $jamSenin = $jadwal->where('hari', 'Senin')->first();
+        if($jamSenin){
+            $jamSenin = $jamSenin->id_waktu;
+        }
+        $jamSelasa = $jadwal->where('hari', 'Selasa')->first();
+        if($jamSelasa){
+            $jamSelasa = $jamSelasa->id_waktu;
+        }
+        $jamRabu = $jadwal->where('hari', 'Rabu')->first();
+        if($jamRabu){
+            $jamRabu = $jamRabu->id_waktu;
+        }
+        $jamKamis = $jadwal->where('hari', 'Kamis')->first();
+        if($jamKamis){
+            $jamKamis = $jamKamis->id_waktu;
+        }
+        $jamJumat = $jadwal->where('hari', 'Jumat')->first();
+        if($jamJumat){
+            $jamJumat = $jamJumat->id_waktu;
+        }
+        $jamSabtu = $jadwal->where('hari', 'Sabtu')->first();
+        if($jamSabtu){
+            $jamSabtu = $jamSabtu->id_waktu;
+        }
+        $jamMinggu = $jadwal->where('hari', 'Minggu')->first();
+        if($jamMinggu){
+            $jamMinggu = $jamMinggu->id_waktu;
+        }
+
+        if(
+            $jamSenin == $request->senin &&
+            $jamSelasa == $request->selasa &&
+            $jamRabu == $request->rabu &&
+            $jamKamis == $request->kamis &&
+            $jamJumat == $request->jumat &&
+            $jamSabtu == $request->sabtu &&
+            $jamMinggu == $request->minggu
+        ){
+            return back()->with('failed', 'Gagal diubah, tidak ada perubahan');
+        }
+
+        $messages = [
+            'senin.in' => 'Jam yang dipilih tidak valid.',
+            'selasa.in' => 'Jam yang dipilih tidak valid.',
+            'rabu.in' => 'Jam yang dipilih tidak valid.',
+            'kamis.in' => 'Jam yang dipilih tidak valid.',
+            'jumat.in' => 'Jam yang dipilih tidak valid.',
+            'sabtu.in' => 'Jam yang dipilih tidak valid.',
+            'minggu.in' => 'Jam yang dipilih tidak valid.',
+        ];
+
+        $inJamSenin = Waktu::where('hari', 'Senin')->pluck('id')->toArray();
+        $inJamSenin = implode(',', $inJamSenin);
+
+        $inJamSelasa = Waktu::where('hari', 'Selasa')->pluck('id')->toArray();
+        $inJamSelasa = implode(',', $inJamSelasa);
+
+        $inJamRabu = Waktu::where('hari', 'Rabu')->pluck('id')->toArray();
+        $inJamRabu = implode(',', $inJamRabu);
+
+        $inJamKamis = Waktu::where('hari', 'Kamis')->pluck('id')->toArray();
+        $inJamKamis = implode(',', $inJamKamis);
+
+        $inJamJumat = Waktu::where('hari', 'Jumat')->pluck('id')->toArray();
+        $inJamJumat = implode(',', $inJamJumat);
+
+        $inJamSabtu = Waktu::where('hari', 'Sabtu')->pluck('id')->toArray();
+        $inJamSabtu = implode(',', $inJamSabtu);
+
+        $inJamMinggu = Waktu::where('hari', 'Minggu')->pluck('id')->toArray();
+        $inJamMinggu = implode(',', $inJamMinggu);
+
+        $request->validate([
+            'senin' => ['nullable', 'in:' . $inJamSenin],
+            'selasa' => ['nullable', 'in:' . $inJamSelasa],
+            'rabu' => ['nullable', 'in:' . $inJamRabu],
+            'kamis' => ['nullable', 'in:' . $inJamKamis],
+            'jumat' => ['nullable', 'in:' . $inJamJumat],
+            'sabtu' => ['nullable', 'in:' . $inJamSabtu],
+            'minggu' => ['nullable', 'in:' . $inJamMinggu],
+        ], $messages);
+
+        if($jamSenin && $request->senin && $jamSenin != $request->senin){ // update
+            JadwalDokter::where('id_dokter', $id)
+                ->where('id_waktu', $jamSenin)
+                ->update(['id_waktu' => $request->senin]);
+        }else if(!$jamSenin && $request->senin){ // create
+            JadwalDokter::create([
+                'id_dokter' => $id,
+                'id_waktu' => $request->senin
+            ]);
+        }else if($jamSenin && !$request->senin){ // delete
+            JadwalDokter::where('id_dokter', $id)
+                ->where('id_waktu', $jamSenin)
+                ->delete();
+        }
+        
+        if($jamSelasa && $request->selasa && $jamSelasa != $request->selasa){ // update
+            JadwalDokter::where('id_dokter', $id)
+                ->where('id_waktu', $jamSelasa)
+                ->update(['id_waktu' => $request->selasa]);
+        }else if(!$jamSelasa && $request->selasa){ // create
+            JadwalDokter::create([
+                'id_dokter' => $id,
+                'id_waktu' => $request->selasa
+            ]);
+        }else if($jamSelasa && !$request->selasa){ // delete
+            JadwalDokter::where('id_dokter', $id)
+                ->where('id_waktu', $jamSelasa)
+                ->delete();
+        }
+        
+        if($jamRabu && $request->rabu && $jamRabu != $request->rabu){ // update
+            JadwalDokter::where('id_dokter', $id)
+                ->where('id_waktu', $jamRabu)
+                ->update(['id_waktu' => $request->rabu]);
+        }else if(!$jamRabu && $request->rabu){ // create
+            JadwalDokter::create([
+                'id_dokter' => $id,
+                'id_waktu' => $request->rabu
+            ]);
+        }else if($jamRabu && !$request->rabu){ // delete
+            JadwalDokter::where('id_dokter', $id)
+                ->where('id_waktu', $jamRabu)
+                ->delete();
+        }
+        
+        if($jamKamis && $request->kamis && $jamKamis != $request->kamis){ // update
+            JadwalDokter::where('id_dokter', $id)
+                ->where('id_waktu', $jamKamis)
+                ->update(['id_waktu' => $request->kamis]);
+        }else if(!$jamKamis && $request->kamis){ // create
+            JadwalDokter::create([
+                'id_dokter' => $id,
+                'id_waktu' => $request->kamis
+            ]);
+        }else if($jamKamis && !$request->kamis){ // delete
+            JadwalDokter::where('id_dokter', $id)
+                ->where('id_waktu', $jamKamis)
+                ->delete();
+        }
+        
+        if($jamJumat && $request->jumat && $jamJumat != $request->jumat){ // update
+            JadwalDokter::where('id_dokter', $id)
+                ->where('id_waktu', $jamJumat)
+                ->update(['id_waktu' => $request->jumat]);
+        }else if(!$jamJumat && $request->jumat){ // create
+            JadwalDokter::create([
+                'id_dokter' => $id,
+                'id_waktu' => $request->jumat
+            ]);
+        }else if($jamJumat && !$request->jumat){ // delete
+            JadwalDokter::where('id_dokter', $id)
+                ->where('id_waktu', $jamJumat)
+                ->delete();
+        }
+        
+        if($jamSabtu && $request->sabtu && $jamSabtu != $request->sabtu){ // update
+            JadwalDokter::where('id_dokter', $id)
+                ->where('id_waktu', $jamSabtu)
+                ->update(['id_waktu' => $request->sabtu]);
+        }else if(!$jamSabtu && $request->sabtu){ // create
+            JadwalDokter::create([
+                'id_dokter' => $id,
+                'id_waktu' => $request->sabtu
+            ]);
+        }else if($jamSabtu && !$request->sabtu){ // delete
+            JadwalDokter::where('id_dokter', $id)
+                ->where('id_waktu', $jamSabtu)
+                ->delete();
+        }
+        
+        if($jamMinggu && $request->minggu && $jamMinggu != $request->minggu){ // update
+            JadwalDokter::where('id_dokter', $id)
+                ->where('id_waktu', $jamMinggu)
+                ->update(['id_waktu' => $request->minggu]);
+        }else if(!$jamMinggu && $request->minggu){ // create
+            JadwalDokter::create([
+                'id_dokter' => $id,
+                'id_waktu' => $request->minggu
+            ]);
+        }else if($jamMinggu && !$request->minggu){ // delete
+            JadwalDokter::where('id_dokter', $id)
+                ->where('id_waktu', $jamMinggu)
+                ->delete();
+        }
+
+        return back()->with('success', 'Jadwal dokter berhasil diubah');
     }
 
     public function indexJadwalDokter(){

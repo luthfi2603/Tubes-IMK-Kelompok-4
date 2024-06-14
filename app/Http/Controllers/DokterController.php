@@ -58,8 +58,12 @@ class DokterController extends Controller {
             ->where('id', $id)
             ->first();
 
-        if (!$reservasi || $reservasi->id_rekam_medis) {
+        if(!$reservasi){
             return back();
+        }
+
+        if($reservasi->id_rekam_medis){
+            return back()->with('failed', 'Rekam medis sudah ada');
         }
 
         $pasien = Pasien::select('pekerjaan')

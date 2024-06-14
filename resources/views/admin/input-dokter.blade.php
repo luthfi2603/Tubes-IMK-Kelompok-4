@@ -162,7 +162,7 @@
                 </div>
             <div class="flex flex-col w-full">
                 <label for="nama" class="block text-gray-700 font-semibold mb-2">Nama Lengkap</label>
-                <input type="text" name="nama" id="nama" placeholder="Masukkan nama lengkap" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500" value="{{ old('nama') }}" autofocus>
+                <input type="text" name="nama" id="nama" placeholder="Masukkan nama lengkap" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500" value="{{ old('nama') }}">
                 @error('nama')
                     <div class="text-red-500 mt-1 text-sm">{{ $message }}</div>
                 @enderror

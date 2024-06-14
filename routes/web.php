@@ -189,6 +189,9 @@ Route::middleware(['auth', 'role:Admin'])->group(function(){
                 Route::delete('/dokter/destroy/{pk}', 'destroyDokter')
                     ->name('dokter.destroy');
                 Route::post('/cari/dokter', 'cariDokter');
+                Route::get('/dokter/edit-jadwal/{pk}', 'editDokterJadwal')
+                    ->name('dokter.edit.jadwal');
+                Route::put('/dokter/edit-jadwal/{pk}', 'updateDokterJadwal');
 
                 Route::get('/jadwal-dokter', 'indexJadwalDokter')
                     ->name('jadwal.dokter.index');

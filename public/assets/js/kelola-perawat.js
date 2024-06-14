@@ -54,19 +54,25 @@ async function cariData(){
 
             data.perawats.forEach(item => {
                 isiTabelString += `
-                    <tr>
-                        <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">${i}</td>
-                        <td class="whitespace-nowrap px-4 py-2 text-gray-700">
-                            <div class="flex gap-2 items-center h-full">
-                                <a href="/admin/perawat/edit/${item.nomor_handphone}" class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-lg">Ubah</a>
-                                <form action="/admin/perawat/destroy/${item.id_user}" method="POST">
-                                    <input name="_token" value="${csrf}" type="hidden">
-                                    <input name="_method" value="DELETE" type="hidden">
-                                    <button class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-lg">Hapus</button>
-                                </form>
-                            </div>
+                    <tr class="bg-white hover:bg-[#d1e4f2] transition duration-200">
+                        <td class="p-4 whitespace-nowrap text-md text-gray-900">${i}</td>
+                        <td class="p-4 whitespace-nowrap text-md text-gray-900 flex flex-col gap-2">
+                            <a href="/admin/perawat/edit/${item.nomor_handphone}" class="bg-yellow-400 text-white px-2 py-1 rounded shadow hover:bg-yellow-500 flex items-center">
+                                <i class="fa-solid fa-pen-to-square mr-2"></i>
+                                Ubah
+                            </a>
+                            <form action="/admin/perawat/destroy/${item.id_user}" method="POST" style="display:inline;">
+                                <input name="_token" value="${csrf}" type="hidden">
+                                <input name="_method" value="DELETE" type="hidden">
+                                <button class="bg-red-500 text-white px-2 py-1 rounded shadow hover:bg-red-600 flex items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                    </svg>
+                                    Hapus
+                                </button>
+                            </form>
                         </td>
-                        <td class="px-4 py-2 text-gray-700">
+                        <td class="p-4 whitespace-nowrap text-md text-gray-900">
                             ${(() => {
                                 if (item.foto) {
                                     return `
@@ -83,9 +89,9 @@ async function cariData(){
                                 }
                             })()}
                         </td>
-                        <td class="whitespace-nowrap px-4 py-2 text-gray-700">${item.nama}</td>
-                        <td class="whitespace-nowrap px-4 py-2 text-gray-700">${item.nomor_handphone}</td>
-                        <td class="whitespace-nowrap px-4 py-2 text-gray-700">
+                        <td class="p-4 whitespace-nowrap text-md text-gray-900">${item.nama}</td>
+                        <td class="p-4 whitespace-nowrap text-md text-gray-900">${item.nomor_handphone}</td>
+                        <td class="p-4 whitespace-nowrap text-md text-gray-900">
                             ${(() => {
                                 if(item.jenis_kelamin == 'L'){
                                     return 'Laki-laki'
@@ -94,7 +100,7 @@ async function cariData(){
                                 }
                             })()}
                         </td>
-                        <td class="whitespace-nowrap px-4 py-2 text-gray-700">${item.alamat}</td>
+                        <td class="p-4 whitespace-nowrap text-md text-gray-900">${item.alamat}</td>
                     </tr>
                 `;
 

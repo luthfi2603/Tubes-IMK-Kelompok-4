@@ -3,7 +3,6 @@
 @section('container')
 <div id="success-js" class="hidden bg-green-300 py-3 text-white px-4 mx-6 rounded-lg fixed inset-x-4 top-4 z-[99]"></div>
 <div id="failed-js" class="hidden bg-red-300 py-3 text-white px-4 mx-6 rounded-lg fixed inset-x-4 top-4 z-[99]"></div>
-
 <div class="flex justify-between items-center px-4 mb-4">
     <div class="font-body font-bold">
         <h1 class="text-3xl font-bold">Antrian</h1>
@@ -14,25 +13,24 @@
     </div>
 </div>
 <hr class="border-1 border-[#B1B0AF] mb-4 mx-4">
-
 <div class="container mx-auto p-4">
     <div class="bg-white shadow-lg rounded-lg overflow-x-auto">
         <table class="min-w-full bg-white">
             <thead>
                 <tr>
                     <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">No</th>
-                    <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider min-w-30">Foto</th>
-                    <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider min-w-40">Status</th>
+                    <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">Aksi</th>
+                    <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">Foto</th>
+                    <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">Status</th>
                     {{-- <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider min-w-40">Jam Reservasi</th> --}}
-                    <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider min-w-50">Nama Pasien</th>
-                    <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider min-w-50">Nama Dokter</th>
-                    <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider min-w-40">Waktu</th>
-                    <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider min-w-40">Nomor Handphone</th>
-                    <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider min-w-40">Alamat Pasien</th>
-                    <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider min-w-40">Aksi</th>
+                    <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">Nama Pasien</th>
+                    <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">Nama Dokter</th>
+                    <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">Waktu</th>
+                    <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">Nomor Handphone Pasien</th>
+                    <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">Alamat Pasien</th>
                 </tr>
             </thead>
-            <tbody id="isi-tabel">
+            <tbody id="isi-tabel" class="divide-y divide-gray-200">
                 @if($antrians->isEmpty())
                     <tr>
                         <td colspan="9" class="text-center text-2xl py-3">
@@ -57,6 +55,28 @@
                     @foreach ($antrians as $item)
                         <tr class="bg-white hover:bg-[#d1e4f2] transition duration-200">
                             <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">{{ $i }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">
+                                <div class="dropdown" data-placement="right">
+                                    @if($item->status == 'Menunggu')
+                                        <button class="dropdown-toggle bg-yellow-500 text-white px-3 py-1 rounded tombol-ubah shadow flex items-center" id="{{ $item->id }}">
+                                    @else
+                                        <button class="dropdown-toggle bg-yellow-300 text-white px-3 py-1 rounded tombol-ubah shadow flex items-center" disabled>
+                                    @endif
+                                        <i class="fa-solid fa-pen-to-square mr-2"></i>
+                                        Ubah
+                                    </button>
+                                    <div class="dropdown-menu hidden p-4 rounded-lg bg-[#F5F5F5]">
+                                        <div class="flex flex-col gap-4">
+                                            <button id="selesai" class="bg-green-100 text-green-800 text-sm px-2 py-1 leading-5 font-semibold rounded shadow w-full">
+                                                Selesai
+                                            </button>
+                                            <button id="batal" class="bg-red-100 text-red-800 text-sm px-2 py-1 leading-5 font-semibold rounded shadow w-full">
+                                                Batal
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
                             <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">
                                 @if($item->foto)
                                     <div class="w-20 h-20 aspect-square overflow-hidden rounded-full border-2 border-gray-300">
@@ -89,26 +109,6 @@
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">{{ $item->nomor_handphone }}</td>
                             <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">{{ $item->alamat }}</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">
-                                <div class="dropdown" data-placement="right">
-                                    @if($item->status == 'Menunggu')
-                                        <button class="dropdown-toggle bg-yellow-500 text-white px-3 py-1 mr-2 rounded tombol-ubah shadow flex items-center" id="{{ $item->id }}">
-                                    @else
-                                        <button class="dropdown-toggle bg-yellow-300 text-white px-3 py-1 mr-2 rounded tombol-ubah shadow flex items-center" disabled>
-                                    @endif
-                                        <i class="fa-solid fa-pen-to-square mr-2"></i>
-                                        Ubah
-                                    </button>
-                                    <div class="dropdown-menu hidden p-4 rounded-lg bg-[#F5F5F5]">
-                                        <button id="selesai" class="bg-green-100 text-green-800 text-sm px-2 py-1 leading-5 font-semibold rounded shadow flex items-center w-full mt-2">
-                                            Selesai
-                                        </button> <br>
-                                        <button id="batal" class="bg-red-100 text-red-800 text-sm px-2 py-1 leading-5 font-semibold rounded shadow flex items-center w-full mt-2">
-                                            Batal
-                                        </button>
-                                    </div>
-                                </div>
-                            </td>
                         </tr>
                         @php $i++; @endphp
                     @endforeach

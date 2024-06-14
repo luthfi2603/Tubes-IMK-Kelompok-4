@@ -100,7 +100,7 @@
             </div>
             <div class="mb-4">
                 <label for="nomor_handphone" class="block text-gray-700 font-semibold mb-2">Nomor Handphone</label>
-                <input type="number" name="nomor_handphone" id="nomor_handphone" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500" value="{{ old('nomor_handphone') }}">
+                <input type="number" name="nomor_handphone" id="nomor_handphone" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500" value="{{ old('nomor_handphone', $nomorHandphone) }}">
                 @error('nomor_handphone')
                     <div class="text-red-500 mt-1 text-sm">{{ $message }}</div>
                 @enderror
@@ -138,11 +138,11 @@
                     <div class="text-red-500 mt-1 text-sm">{{ $message }}</div>
                 @enderror
             </div>
-            <div class="mt-6">
-                <button type="submit" class="w-full bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-600">Tambah Pasien</button>
+            <div class="flex justify-end">
+                <button class="mr-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg py-2 px-4 w-min text-nowrap mt-1">Tambah</button>
+                <a href="{{ route('admin.data.pasien') }}" class="bg-yellow-500 hover:bg-yellow-600 text-white rounded-lg py-2 px-4 w-min text-nowrap mt-1">Kembali</a>
             </div>
         </form>
     </div>
 </div>
 @endsection
-

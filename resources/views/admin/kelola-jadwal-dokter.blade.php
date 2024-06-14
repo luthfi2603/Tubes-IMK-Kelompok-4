@@ -28,16 +28,12 @@
             <thead>
                 <tr>
                     <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">No</th>
-                    <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider min-w-30">Foto</th>
-                    <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider min-w-50">Nama</th>
-                    <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider min-w-40">Spesialis</th>
-                    <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider min-w-30">Hari</th>
-                    <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider min-w-30">Jam</th>
-                    <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider min-w-40">Aksi</th> 
-                    {{-- jangan diubah ubah letak aksinya, harus selalu terakhir --}}
+                    <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">Aksi</th> 
+                    <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">Hari</th>
+                    <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">Jam</th>
                 </tr>
             </thead>
-            <tbody id="isi-tabel">
+            <tbody id="isi-tabel" class="divide-y divide-gray-200">
                 @if($jadwals->isEmpty())
                     <tr>
                         <td colspan="3" class="text-center text-2xl py-3">
@@ -60,7 +56,7 @@
                         }
                     @endphp
                     @foreach ($jadwals as $item)
-                        <tr>
+                        <tr class="hover:bg-[#d1e4f2] transition duration-200">
                             <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">{{ $i }}</td>
                             <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">
                                 <div class="flex gap-2">
