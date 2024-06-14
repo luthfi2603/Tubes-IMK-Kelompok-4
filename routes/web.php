@@ -75,6 +75,11 @@ Route::middleware(['auth', 'role:Dokter'])->group(function(){
                 Route::get('/janji-temu-dokter/rekam-medis/create/{pk}', 'createRekamMedis')
                     ->name('rekam.medis.create');
                 Route::post('/janji-temu-dokter/rekam-medis/create/{pk}', 'storeRekamMedis');
+                Route::get('/rekam-medis/edit/{pk}', 'editRekamMedis')
+                    ->name('rekam.medis.edit');
+                Route::put('/rekam-medis/edit/{pk}', 'updateRekamMedis');
+                Route::delete('/rekam-medis/destroy/{pk}', 'destroyRekamMedis')
+                    ->name('rekam.medis.destroy');
                 Route::post('/antrian/tanggal', 'indexAntrianTanggal');
                 Route::get('/janji-temu-dokter', 'indexAntrian')
                     ->name('janji.temu');

@@ -81,10 +81,19 @@ async function refreshTable(){
                             </textarea>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-md">
-                            <a href="/dokter/rekam-medis/detail/${item.id}">
-                            <button class="bg-blue-500 text-white px-3 py-1 mr-2 rounded">Detail</button>
-                            </a>
-                            <button class="bg-[#E8C51C] text-white px-3 py-1 rounded">Unduh</button>
+                            <div class="flex flex-col gap-2">
+                                <a href="/dokter/rekam-medis/detail/${item.id}" class="bg-blue-500 text-white px-3 py-1 rounded-lg w-full text-center">
+                                    Detail
+                                </a>
+                                <a href="/dokter/rekam-medis/edit/${item.id}" class="bg-yellow-500 text-white px-3 py-1 rounded-lg w-full text-center">
+                                    Ubah
+                                </a>
+                                <form method="POST" action="/dokter/rekam-medis/destroy/${item.id}">
+                                    <input name="_token" value="${csrf}" type="hidden">
+                                    <input name="_method" value="DELETE" type="hidden">
+                                    <button class="bg-[#b02126] rounded-lg w-full py-1 px-3 text-white">Hapus</button>
+                                </form>
+                            </div>
                         </td>
                     </tr>
                 `;

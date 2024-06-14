@@ -58,7 +58,7 @@ class DokterController extends Controller {
             ->where('id', $id)
             ->first();
 
-        if (!$reservasi) {
+        if (!$reservasi || $reservasi->id_rekam_medis) {
             return back();
         }
 
@@ -86,6 +86,79 @@ class DokterController extends Controller {
         ]);
 
         return back()->with('success', 'Rekam Medis Berhasil Dibuat');
+    }
+
+    public function editRekamMedis($id){
+        $rekamMedis = RekamMedis::where('nama_dokter', auth()->user()->dokter->nama)
+            ->where('id', $id)
+            ->first();
+    
+        if (!$rekamMedis) {
+            return back();
+        }
+
+        return view('dokter.rekam-medis-edit', compact('rekamMedis'));
+    }
+
+    public function updateRekamMedis(Request $request, $id){
+        $rekamMedis = RekamMedis::where('nama_dokter', auth()->user()->dokter->nama)
+            ->where('id', $id)
+            ->first();
+
+        if (!$rekamMedis) {
+            return back();
+        }
+
+        if(
+            $rekamMedis->keluhan == $request->keluhan &&
+            $rekamMedis->diagnosa == $request->diagnosa &&
+            $rekamMedis->therapie == $request->therapie 
+        ){
+            return back()->with('failed', 'Gagal diubah, tidak ada perubahan');
+        }
+
+        $messages = [
+            'keluhan.required' => 'Kolom keluhan harus diisi.',
+            'keluhan.max' => 'Kolom keluhan tidak boleh lebih dari :max character.',
+            'diagnosa.required' => 'Kolom diagnosa harus diisi.',
+            'diagnosa.max' => 'Kolom diagnosa tidak boleh lebih dari :max character.',
+            'therapie.required' => 'Kolom therapie harus diisi.',
+            'therapie.max' => 'Kolom therapie tidak boleh lebih dari :max character.',
+        ];
+
+        $request->validate([
+            'keluhan' => ['required', 'max:65535'],
+            'diagnosa' => ['required', 'max:65535'],
+            'therapie' => ['required', 'max:65535'],
+        ], $messages);
+
+        $rekamMedis->update([
+            'keluhan' => $request->keluhan,
+            'diagnosa' => $request->diagnosa,
+            'therapie' => $request->therapie,
+        ]);
+
+        return back()->with('success', 'Rekam Medis Berhasil Diubah');
+    }
+
+    public function destroyRekamMedis($id){
+        $rekamMedis = RekamMedis::where('nama_dokter', auth()->user()->dokter->nama)
+            ->where('id', $id)
+            ->first();
+    
+        if (!$rekamMedis) {
+            return back();
+        }
+
+        $rekamMedis->delete();
+
+        $reservasi = Reservasi::where('nama_dokter', auth()->user()->dokter->nama)
+            ->where('id_rekam_medis', $id)
+            ->first();
+
+        $reservasi->update(['id_rekam_medis' => null]);
+
+        return back()->with('success', 'Rekam Medis Berhasil Dihapus');
     }
 
     public function showRekamMedis($id){
