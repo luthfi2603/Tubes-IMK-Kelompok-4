@@ -6,7 +6,7 @@ use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Dokter;
 use App\Models\Pasien;
-use App\Models\RawatInap;
+// use App\Models\RawatInap;
 use App\Models\Reservasi;
 use App\Models\RekamMedis;
 use Illuminate\Support\Str;

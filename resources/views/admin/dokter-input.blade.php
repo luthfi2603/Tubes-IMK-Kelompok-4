@@ -208,7 +208,7 @@
             <div class="flex flex-col w-full relative">
                 <label for="password" class="block text-gray-700 font-semibold mb-2">Kata Sandi</label>
                 <input type="password" name="password" id="password" placeholder="Masukkan kata sandi" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500">
-                <i class="fa-solid fa-eye absolute right-3 top-9 cursor-pointer text-gray-500" id="toggle-password"></i>
+                <i class="fa-solid fa-eye absolute right-3 bottom-3 cursor-pointer text-gray-500" id="toggle-password"></i>
                 @error('password')
                     <div class="text-red-500 mt-1 text-sm">{{ $message }}</div>
                 @enderror
@@ -216,7 +216,7 @@
             <div class="flex flex-col w-full relative">
                 <label for="konfirmasi_password" class="block text-gray-700 font-semibold mb-2">Konfirmasi Kata Sandi</label>
                 <input type="password" name="konfirmasi_password" id="konfirmasi_password" placeholder="Masukkan konfirmasi kata sandi" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500">
-                <i class="fa-solid fa-eye absolute right-3 top-9 cursor-pointer text-gray-500" id="toggle-password-2"></i>
+                <i class="fa-solid fa-eye absolute right-3 bottom-3 cursor-pointer text-gray-500" id="toggle-password-2"></i>
                 @error('konfirmasi_password')
                     <div class="text-red-500 mt-1 text-sm">{{ $message }}</div>
                 @enderror

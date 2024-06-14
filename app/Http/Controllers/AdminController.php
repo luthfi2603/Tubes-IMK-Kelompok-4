@@ -8,7 +8,7 @@ use App\Models\Pasien;
 use App\Models\Perawat;
 use App\Models\Dokter;
 use App\Models\JadwalDokter;
-use App\Models\RawatInap;
+// use App\Models\RawatInap;
 use App\Models\Reservasi;
 use App\Models\RekamMedis;
 use App\Models\Waktu;
@@ -28,7 +28,7 @@ class AdminController extends Controller {
             ->orderBy(Pasien::select('nama')->whereColumn('pasiens.id_user', 'users.id'), 'asc')
             ->paginate(10);
             
-        return view('admin.pasien', compact('users'));
+        return view('admin.pasien-index', compact('users'));
     }
 
     public function storeCariPasien(Request $request){
@@ -66,7 +66,7 @@ class AdminController extends Controller {
 
         $pasien = $pasien[0];
 
-        return view('admin.edit-pasien', compact('pasien'));
+        return view('admin.pasien-edit', compact('pasien'));
     }
 
     public function updatePasien(Request $request, $id){
@@ -173,7 +173,7 @@ class AdminController extends Controller {
     public function createPasien(){
         $nomorHandphone = request()->query('nomor_handphone');
 
-        return view('admin.tambah-pasien', compact('nomorHandphone'));
+        return view('admin.pasien-input', compact('nomorHandphone'));
     }
 
     public function storePasien(Request $request){
@@ -234,11 +234,11 @@ class AdminController extends Controller {
     public function indexPerawat(){
         $perawats = DB::table('view_data_perawat')->paginate(10);
         
-        return view('admin.kelola-perawat', compact('perawats'));
+        return view('admin.perawat-index', compact('perawats'));
     }
     
     public function createPerawat(){
-        return view('admin.input-perawat');
+        return view('admin.perawat-input');
     }
     
     public function storePerawat(Request $request){
@@ -325,7 +325,7 @@ class AdminController extends Controller {
 
         $perawat = $perawat[0];
 
-        return view('admin.edit-perawat', compact('perawat'));
+        return view('admin.perawat-edit', compact('perawat'));
     }
 
     public function updatePerawat(Request $request, $id){
@@ -504,11 +504,11 @@ class AdminController extends Controller {
     public function indexDokter(){
         $dokters = DB::table('view_data_dokter')->paginate(10);
         
-        return view('admin.kelola-dokter', compact('dokters'));
+        return view('admin.dokter-index', compact('dokters'));
     }
 
     public function createDokter(){
-        return view('admin.input-dokter');
+        return view('admin.dokter-input');
     }
 
     public function storeDokter(Request $request){
@@ -599,7 +599,7 @@ class AdminController extends Controller {
 
         $dokter = $dokter[0];
 
-        return view('admin.edit-dokter', compact('dokter'));
+        return view('admin.dokter-edit', compact('dokter'));
     }
 
     public function updateDokter(Request $request, $id){
@@ -972,11 +972,11 @@ class AdminController extends Controller {
             ->orderBy('jam')
             ->paginate(10);
 
-        return view('admin.kelola-jadwal-dokter', compact('jadwals'));
+        return view('admin.jadwal-dokter-index', compact('jadwals'));
     }
 
     public function createJadwalDokter(){
-        return view('admin.input-jadwal-dokter');
+        return view('admin.jadwal-dokter-input');
     }
 
     public function storeJadwalDokter(Request $request){
@@ -1031,7 +1031,7 @@ class AdminController extends Controller {
             return redirect()->route('admin.jadwal.dokter.index');
         }
 
-        return view('admin.edit-jadwal-dokter', compact('jadwalDokter'));
+        return view('admin.jadwal-dokter-edit', compact('jadwalDokter'));
     }
     
     public function updateJadwalDokter(Request $request, $id){

@@ -56,18 +56,17 @@
                                     </div>
                                 @enderror
                             </div>
-                            <button
-                                class="mt-7 tracking-wide font-semibold bg-[#374280] text-gray-100 w-full py-4 rounded-lg hover:bg-[#222C67] transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
+                            <label for="remember_me" class="inline-flex items-center mt-2">
+                                <input id="remember_me" type="checkbox" class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800" name="remember">
+                                <span class="ms-2 text-sm text-indigo-400 hover:text-blue-500">Ingat Saya</span>
+                            </label>
+                            <button class="mt-2 tracking-wide font-semibold bg-[#374280] text-gray-100 w-full py-4 rounded-lg hover:bg-[#222C67] transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
                                 <i class="fa-solid fa-right-to-bracket"></i>
                                 <span class="ml-3">
                                     Masuk
                                 </span>
                             </button>
-                            <div class="mt-6 text-sm flex flex-col items-center">
-                                <label for="remember_me" class="inline-flex items-center">
-                                    <input id="remember_me" type="checkbox" class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800" name="remember">
-                                    <span class="ms-2 text-sm text-indigo-400 hover:text-blue-500">Ingat Saya</span>
-                                </label>
+                            <div class="mt-4 text-sm flex flex-col items-center">
                                 <a href="{{ route('verifikasi.nomor.handphone') }}"
                                     class="text-indigo-400 hover:text-blue-500 mt-2">
                                     Lupa kata sandi

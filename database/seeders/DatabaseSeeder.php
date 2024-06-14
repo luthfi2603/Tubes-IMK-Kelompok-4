@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder {
         $this->call(RekamMedisSeeder::class);
         $this->call(WaktuSeeder::class);
         $this->call(JadwalDokterSeeder::class);
-        $this->call(KamarSeeder::class);
-        $this->call(RawatInapSeeder::class);
+        // $this->call(KamarSeeder::class);
+        // $this->call(RawatInapSeeder::class);
     }
 }
