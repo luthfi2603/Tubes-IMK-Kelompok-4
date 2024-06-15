@@ -5,7 +5,7 @@
     </a>
 </li>
 <li class="mb-1 group">
-    <a href="{{ route('admin.index.antrian') }}" class="flex font-semibold items-center py-2 px-4 rounded-md {{ request()->is('admin/antrian*') ? 'bg-[#222C67] text-white fill-white' : 'text-gray-900 hover:bg-[#222C67] hover:text-gray-100 hover:fill-white' }}">
+    <a href="{{ route('index.antrian') }}" class="flex font-semibold items-center py-2 px-4 rounded-md {{ request()->is('antrian*') ? 'bg-[#222C67] text-white fill-white' : 'text-gray-900 hover:bg-[#222C67] hover:text-gray-100 hover:fill-white' }}">
         <svg class="mr-1 w-7 h-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
             <circle cx="22" cy="20" r="10"/>
             <path d="M22,34c-9.39,0-16,4.5-16,9v5h32v-5C38,38.5,31.39,34,22,34z"/>

@@ -47,7 +47,7 @@ async function refreshTable(){
             </tr>
         `;
 
-        const response = await fetch('/admin/antrian/tanggal', {
+        const response = await fetch('/antrian/tanggal', {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
@@ -229,7 +229,7 @@ renderTombolUbah(document);
 
 async function ubahStatus(status){
     try {
-        const response = await fetch('/admin/antrian/update', {
+        const response = await fetch('/antrian/update', {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',

@@ -57,43 +57,6 @@ async function cariData(){
                     <tr class="bg-white hover:bg-[#d1e4f2] transition duration-200">
                         <td class="p-4 whitespace-nowrap text-md text-gray-900">${i}</td>
                         <td class="p-4 whitespace-nowrap text-md text-gray-900">
-                            <div class="flex flex-col gap-2 h-full">
-                                <a href="/admin/pasien/edit/${item.nomor_handphone}" class="bg-yellow-400 text-white px-2 py-1 rounded shadow hover:bg-yellow-500 flex items-center">
-                                    <i class="fa-solid fa-pen-to-square mr-2"></i>
-                                    Ubah
-                                </a>
-                                ${(() => {
-                                    if(item.aktif == 1){
-                                        return `
-                                            <form action="/admin/pasien/ban/${item.nomor_handphone}" method="POST">
-                                                <input name="_token" value="${csrf}" type="hidden">
-                                                <button class="bg-red-500 text-white px-2 py-1 rounded shadow hover:bg-red-600 flex items-center w-full">
-                                                    <i class="fa-solid fa-ban mr-2"></i>
-                                                    Ban
-                                                </button>
-                                            </form>
-                                        `;
-                                    }else{
-                                        return `
-                                            <form action="/admin/pasien/unban/${item.nomor_handphone}" method="POST">
-                                                <input name="_token" value="${csrf}" type="hidden">
-                                                <button class="bg-green-500 text-white px-2 py-1 rounded shadow hover:bg-green-600 flex items-center">
-                                                    <i class="fa-solid fa-unlock mr-2"></i>
-                                                    Unban
-                                                </button>
-                                            </form>
-                                        `;
-                                    }
-                                })()}
-                                <a href="/admin/pasien/reservasi/${item.nomor_handphone}" class="bg-blue-400 text-white px-2 py-1 rounded shadow hover:bg-blue-500 flex items-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-                                    </svg>
-                                    Reservasi
-                                </a>
-                            </div>
-                        </td>
-                        <td class="p-4 whitespace-nowrap text-md text-gray-900">
                             ${(() => {
                                 if (item.foto) {
                                     return `

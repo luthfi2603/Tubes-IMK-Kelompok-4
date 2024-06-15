@@ -8,8 +8,8 @@ const tombolHapusFoto = document.getElementById('hapus-foto');
 const tombolBatal = document.getElementById('batal');
 const tombolSimpan = document.getElementById('simpan');
 const successHtml = document.getElementById('success');
-const successPhp = document.getElementById('success-php');
-const failedPhp = document.getElementById('failed');
+// const successPhp = document.getElementById('success-php');
+// const failedPhp = document.getElementById('failed');
 const failedUbahProfil = document.getElementById('failed-ubah-profil');
 
 tombolUbahFoto.addEventListener('click', () => {
@@ -163,7 +163,7 @@ if(failedMessage){
     }, 3000);
 }
 
-if(successPhp){
+/* if(successPhp){
     setTimeout(() => {
         successPhp.classList.add('hidden');
     }, 3000);
@@ -171,4 +171,4 @@ if(successPhp){
     setTimeout(() => {
         failedPhp.classList.add('hidden');
     }, 3000);
-}
+} */

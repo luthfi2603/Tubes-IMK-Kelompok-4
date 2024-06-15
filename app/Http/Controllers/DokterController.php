@@ -209,4 +209,22 @@ class DokterController extends Controller {
     public function showProfil(){
         return view('dokter.profil');
     }
+
+    public function indexDokter(){
+        $dokters = DB::table('view_jadwal_dokter')
+            ->select('id_dokter', 'foto', 'nama', 'spesialis')
+            ->orderBy('nama')
+            ->orderBy('hari')
+            ->orderBy('jam')
+            ->groupBy('id_dokter', 'foto', 'nama', 'spesialis')
+            ->get();
+        
+        $jadwals = DB::table('view_jadwal_dokter')
+            ->select('id_dokter', 'hari', 'jam')
+            ->orderBy('hari')
+            ->orderBy('jam')
+            ->get();
+
+        return view('dokter.dokter-kami', compact('dokters', 'jadwals'));
+    }
 }

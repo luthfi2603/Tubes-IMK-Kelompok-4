@@ -1,25 +1,17 @@
 @extends('layouts.main')
 
 @section('container')
-@if(session()->has('success'))
-    <div id="success-php" class="bg-[#d1e7dd] text-[#0f5132] border-2 border-[#badbcc] px-4 py-3 rounded-lg fixed inset-x-[296px] z-[999]">
-        <i class="fa-regular fa-circle-check mr-1"></i>
-        <span>{{ session('success') }}</span>
+@if(session()->has('failed'))
+    <div id="failed" class="mb-4 bg-red-300 py-3 text-white px-4 rounded-lg">
+        {{ session('failed') }}
     </div>
-@elseif(session()->has('failed'))
-    <div id="failed-php" class="bg-[#f8d7da] text-[#842029] border-2 border-[#f5c2c7] px-4 py-3 rounded-lg fixed inset-x-[296px] z-[999]">
-        <i class="fa-solid fa-circle-exclamation mr-1"></i>
-        <span>{{ session('failed') }}</span>
+@elseif(session()->has('success'))
+    <div id="success-php" class="mb-4 bg-green-300 py-3 text-white px-4 rounded-lg">
+        {{ session('success') }}
     </div>
 @endif
 <div class="flex justify-between items-center mb-4 mx-4">
-    <h1 class="text-3xl font-bold">Kelola Pasien</h1>
-    <a href="{{ route('admin.tambah.pasien') }}" class="bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600 flex items-center font-semibold">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-        </svg>
-        Tambah Pasien
-    </a>
+    <h1 class="text-3xl font-bold">Data Pasien</h1>
 </div>
 <hr class="border-1 border-[#B1B0AF] mb-4 mx-4">
 <div class="mb-3 flex ml-5 justify-start items-center gap-4">
@@ -32,7 +24,6 @@
             <thead>
                 <tr>
                     <th class="p-4 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">No</th>
-                    <th class="p-4 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">Aksi</th>
                     <th class="p-4 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">Foto</th>
                     <th class="p-4 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">Nama</th>
                     <th class="p-4 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">Nomor Handphone</th>
@@ -50,37 +41,6 @@
                 @foreach($users as $item)
                     <tr class="bg-white hover:bg-[#d1e4f2] transition duration-200">
                         <td class="p-4 whitespace-nowrap text-md text-gray-900">{{ $startingNumber++ }}</td>
-                        <td class="p-4 whitespace-nowrap text-md text-gray-900">
-                            <div class="flex flex-col gap-2 h-full">
-                                <a href="{{ route('admin.edit.pasien', $item->nomor_handphone) }}" class="bg-yellow-400 text-white px-2 py-1 rounded shadow hover:bg-yellow-500 flex items-center">
-                                    <i class="fa-solid fa-pen-to-square mr-2"></i>
-                                    Ubah
-                                </a>
-                                @if ($item->aktif == 1)
-                                    <form action="{{ route('admin.ban.pasien', $item->nomor_handphone) }}" method="POST">
-                                        @csrf
-                                        <button class="bg-red-500 text-white px-2 py-1 rounded shadow hover:bg-red-600 flex items-center w-full">
-                                            <i class="fa-solid fa-ban mr-2"></i>
-                                            Ban
-                                        </button>
-                                    </form>
-                                @else
-                                    <form action="{{ route('admin.unban.pasien', $item->nomor_handphone) }}" method="POST">
-                                        @csrf
-                                        <button class="bg-green-500 text-white px-2 py-1 rounded shadow hover:bg-green-600 flex items-center">
-                                            <i class="fa-solid fa-unlock mr-2"></i>
-                                            Unban
-                                        </button>
-                                    </form>
-                                @endif
-                                <a href="{{ route('admin.pasien.reservasi', $item->nomor_handphone) }}" class="bg-blue-400 text-white px-2 py-1 rounded shadow hover:bg-blue-500 flex items-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-                                    </svg>
-                                    Reservasi
-                                </a>
-                            </div>
-                        </td>
                         <td class="p-4 whitespace-nowrap text-md text-gray-900">
                             @if($item->foto)
                                 <div class="w-20 h-20 aspect-square overflow-hidden rounded-full border-2 border-gray-300">
@@ -107,6 +67,6 @@
 </div>
 @push('scripts')
     <script>const csrf = '{{ csrf_token() }}';</script>
-    <script src="{{ asset('assets/js/pasien.js') }}"></script>
+    <script src="{{ asset('assets/js/pasien-perawat.js') }}"></script>
 @endpush
 @endsection

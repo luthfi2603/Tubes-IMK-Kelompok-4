@@ -87,10 +87,8 @@ Route::middleware(['auth', 'role:Dokter'])->group(function(){
                     ->name('janji.temu');
                 Route::get('/profil', 'showProfil')
                     ->name('profil');
-                
-                Route::get('/doctors-dokter', function(){
-                    return view('dokter.doctors-dokter');
-                })->name('doctors-dokter');
+                Route::get('/dokter-kami', 'indexDokter')
+                    ->name('dokter.kami');
                 
                 Route::get('/detail-dokter', function(){
                     return view('dokter.detail-dokter');
@@ -111,32 +109,10 @@ Route::middleware(['auth', 'role:Perawat'])->group(function(){
                 Route::get('/dashboard', 'showDashboardPerawat')->name('dashboard');
 
                 Route::get('/pasien', 'indexPasien')
-                ->name('data.pasien');
-                
-                Route::get('/pasien/edit/{pk}', 'editPasien')
-                    ->name('edit.pasien');
-                Route::put('/pasien/edit/{pk}', 'updatePasien');
-                Route::post('/pasien/ban/{pk}', 'banPasien')
-                    ->name('ban.pasien');
-                Route::post('/pasien/unban/{pk}', 'unbanPasien')
-                    ->name('unban.pasien');
-                Route::get('/pasien/input', 'createPasien')
-                    ->name('tambah.pasien');
-                Route::post('/pasien/input', 'storePasien');
-                Route::post('/pasien/cari', 'storeCariPasien');
-
-                Route::get('/antrian', 'indexAntrian')
-                    ->name('index.antrian');
-                Route::post('/antrian/tanggal', 'indexAntrianTanggal');
-                Route::put('/antrian/update', 'updateStatusAntrian');
+                    ->name('data.pasien');
 
                 Route::get('/dokter', 'indexDokter')
                     ->name('index.dokter');
-                Route::post('/cari/dokter', 'cariDokter');
-
-                Route::get('/jadwal-dokter', 'indexJadwalDokter')
-                    ->name('jadwal.dokter.index');
-                Route::post('/jadwal-dokter/cari', 'storeCariJadwalDokter');
 
                 Route::get('/profil', 'showProfil')
                     ->name('profil');
@@ -166,7 +142,6 @@ Route::middleware(['auth', 'role:Admin'])->group(function(){
                 Route::get('/pasien/input', 'createPasien')
                     ->name('tambah.pasien');
                 Route::post('/pasien/input', 'storePasien');
-                Route::post('/pasien/cari', 'storeCariPasien');
                 Route::get('/pasien/reservasi/{pk}', 'createPasienReservasi')
                     ->name('pasien.reservasi');
                 Route::post('/pasien/reservasi/{pk}', 'storePasienReservasi');
@@ -182,11 +157,6 @@ Route::middleware(['auth', 'role:Admin'])->group(function(){
                 Route::delete('/perawat/destroy/{pk}', 'destroyPerawat')
                     ->name('perawat.destroy');
                 Route::post('/cari/perawat', 'cariPerawat');
-
-                Route::get('/antrian', 'indexAntrian')
-                    ->name('index.antrian');
-                Route::post('/antrian/tanggal', 'indexAntrianTanggal');
-                Route::put('/antrian/update', 'updateStatusAntrian');
 
                 Route::get('/dokter', 'indexDokter')
                     ->name('index.dokter');
@@ -230,6 +200,14 @@ Route::middleware(['auth', 'role:Pasien,Admin,Perawat,Dokter'])->group(function(
     Route::get('/edit-password', [PasienController::class, 'editPassword'])
             ->name('password.edit');
     Route::put('/edit-password', [PasienController::class, 'updatePassword']);
+});
+
+Route::middleware(['auth', 'role:Admin,Perawat'])->group(function(){
+    Route::get('/antrian', [AdminController::class, 'indexAntrian'])
+        ->name('index.antrian');
+    Route::post('/antrian/tanggal', [AdminController::class, 'indexAntrianTanggal']);
+    Route::put('/antrian/update', [AdminController::class, 'updateStatusAntrian']);
+    Route::post('/pasien/cari', [AdminController::class, 'storeCariPasien']);
 });
 
 /* Route::middleware('auth')->group(function(){

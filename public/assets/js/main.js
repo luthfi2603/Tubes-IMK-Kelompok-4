@@ -180,4 +180,18 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    const successPhp = document.getElementById('success-php');
+    if(successPhp){
+        setTimeout(() => {
+            successPhp.classList.add('hidden');
+        }, 3000);
+    }
+    
+    const failedPhp = document.getElementById('failed-php');
+    if(failedPhp){
+        setTimeout(() => {
+            failedPhp.classList.add('hidden');
+        }, 3000);
+    }
 });

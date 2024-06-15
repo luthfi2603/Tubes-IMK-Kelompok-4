@@ -17,9 +17,9 @@
     </a>
 </li>
 <li class="mb-1 group">
-    <a href="{{ route('dokter.doctors-dokter') }}" class="flex font-semibold items-center py-2 px-4 text-gray-900 hover:bg-[#222C67] hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100 {{ request()->is('dokter/doctors-dokter') ? 'bg-[#222C67] text-white' : '' }}">
+    <a href="{{ route('dokter.dokter.kami') }}" class="flex font-semibold items-center py-2 px-4 text-gray-900 hover:bg-[#222C67] hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100 {{ request()->is('dokter/dokter-kami') ? 'bg-[#222C67] text-white' : '' }}">
         <i class="fa-solid fa-user-doctor mr-4 text-lg"></i>
-        <span class="text-md">Doctor Kami</span>
+        <span class="text-md">Dokter Kami</span>
     </a>
 </li>
 <li class="mb-1 group">

@@ -1,14 +1,14 @@
 @extends('layouts.main')
 
 @section('container')
-<div class="flex flex-col gap-4">
-    <div class="flex justify-between items-center ml-4">
-        <h1 class="text-3xl font-bold text-[#222C67]">Dokter Kami</h1>
+<div class="flex justify-between items-center px-4 mb-3">
+    <div class="font-body font-bold text-[#222C67]">
+        <h1 class="text-3xl font-bold">Dokter Kami</h1>
     </div>
-
-    <hr class="border-1 border-[#B1B0AF] mb-4 mx-4">
-
-    <div class="bg-[#222C67] text-white p-4 max-[640px]:p-3 rounded-lg flex items-center mb-4">
+</div>
+<hr class="border-1 border-[#B1B0AF] mb-4 mx-4">
+<div class="flex flex-col gap-4 p-5">
+    <div class="bg-[#222C67] text-white p-4 max-[640px]:p-3 rounded-lg mb-2 flex items-center">
         <div class="flex-1">
             <p class="font-vold text-lg sm:text-md max-[640px]:text-sm">"Kami menyediakan dokter berpengalaman yang siap memberikan perawatan terbaik untuk setiap pasien kami. Kesehatan Anda adalah prioritas utama kami."</p>
         </div>
@@ -16,7 +16,6 @@
             <img src="{{ asset('assets/img/picture-quotes.png') }}" alt="Doctor" class="w-24 h-25 max-[640px]:w-17 max-[640px]:h-17">
         </div>
     </div>
-    
     @if($dokters->isEmpty())
         <div class="mt-4 text-center">
             <p class="text-xl font-bold">Dokter tidak ada</p>
@@ -341,10 +340,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flex items-center mt-2 md:mt-4 md:justify-end">
+                    {{-- <div class="flex items-center mt-2 md:mt-4 md:justify-end">
                         <a href="/reservasi/buat?tanggal={{ $tanggalRekomendasi }}&spesialis={{ $item->spesialis }}&nama={{ $item->nama }}&waktu={{ $jamRekomendasi }}" class="text-blue-900 font-bold leading-none mr-3">Buat janji temu</a>
                         <svg class="w-[16px] h-[16px] fill-blue-900 mt-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         @endforeach
