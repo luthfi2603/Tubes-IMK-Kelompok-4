@@ -1,4 +1,4 @@
-{{-- @extends('perawat.main')
+{{-- @extends('layouts.main')
 
 @section('container')
 @if(session()->has('failed'))
@@ -68,7 +68,7 @@
 </div>
 @endsection --}}
 
-@extends('perawat.main')
+@extends('layouts.main')
 
 @section('container')
 @if(session()->has('failed'))

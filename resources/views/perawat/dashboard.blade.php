@@ -1,4 +1,4 @@
-@extends('perawat.main')
+@extends('layouts.main')
 
 @section('container')
 <div class="flex flex-col lg:flex-row w-full p-4 space-y-6 lg:space-y-0 lg:space-x-6">

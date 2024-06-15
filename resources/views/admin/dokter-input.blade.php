@@ -1,4 +1,4 @@
-{{-- @extends('admin.main')
+{{-- @extends('layouts.main')
 
 @section('container')
 @if(session()->has('success'))
@@ -120,7 +120,7 @@
 @endpush
 @endsection --}}
 
-@extends('admin.main')
+@extends('layouts.main')
 
 @section('container')
 @if(session()->has('success'))

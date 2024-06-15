@@ -143,21 +143,17 @@ function hidePopper(popperId) {
 }
 // end: Popper
 
-const fullscreenButton = document.getElementById('fullscreen-button');
+/* const fullscreenButton = document.getElementById('fullscreen-button');
 
-fullscreenButton.addEventListener('click', toggleFullscreen);
-
-function toggleFullscreen() {
+fullscreenButton.addEventListener('click', () => {
     if (document.fullscreenElement) {
-        // If already in fullscreen, exit fullscreen
         document.exitFullscreen();
     } else {
-        // If not in fullscreen, request fullscreen
         document.documentElement.requestFullscreen();
     }
-}
+}); */
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', () => {
     var mainLink = document.getElementById('mom-link');
     var submenu = document.getElementById('child-link');
 

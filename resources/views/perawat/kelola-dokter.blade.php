@@ -1,4 +1,4 @@
-@extends('perawat.main')
+@extends('layouts.main')
 
 @section('container')
 @if(session()->has('success'))

@@ -4,60 +4,22 @@
         <img src="{{ asset('assets/img/logo.png') }}" class="w-30 h-24" alt="Logo">
     </a>
     <ul class="mt-4">
-        <li class="mb-1 group">
-            <a href="{{ route('pasien.dashboard') }}" class="flex font-semibold items-center py-2 px-4 text-gray-900 hover:bg-[#222C67] hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100 {{ request()->is('dashboard') ? 'bg-[#222C67] text-white' : '' }}">
-                <i class="fa-solid fa-house mr-3 text-lg"></i>
-                <span class="text-md">Dashboard</span>
-            </a>
-        </li>
-        <li class="mb-1 group">
-            <a href="{{ route('dokter') }}" class="flex font-semibold items-center py-2 px-4 text-gray-900 hover:bg-[#222C67] hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100 {{ request()->is('dokter') ? 'bg-[#222C67] text-white' : '' }}">
-                <i class="fa-solid fa-user-doctor mr-4 text-lg"></i>
-                <span class="text-md">Dokter</span>
-            </a>
-        </li>
-        <li class="mb-1 group">
-            <a href="{{ route('reservasi') }}" class="flex font-semibold items-center py-2 px-4 text-gray-900 hover:bg-[#222C67] hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100 {{ request()->is('reservasi*') ? 'bg-[#222C67] text-white' : '' }}">
-                <i class="fa-solid fa-calendar-day mr-4 text-lg"></i>
-                <span class="text-md">Reservasi</span>
-            </a>
-        </li>
-        
-
-        {{-- <li class="mb-1 group">
-            <a href="{{ route('pasien.tentang-kami') }}" class="flex font-semibold items-center py-2 px-4 text-gray-900 hover:bg-[#222C67] hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100">
-                <i class='bx bx-archive mr-3 text-lg'></i>
-                <span class="text-md">Tentang Kami</span>
-            </a>
-        </li> --}}
-        <li class="mb-1 group">
-            <a href="{{ route('pasien.notifikasi-pasien') }}" class="flex font-semibold items-center py-2 px-4 text-gray-900 hover:bg-[#222C67] hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100 {{ request()->is('notifikasi*') ? 'bg-[#222C67] text-white' : '' }}">
-                <i class="fa-solid fa-bell mr-4 text-lg"></i>
-                <span class="text-md">Notifikasi</span>
-                <span class=" md:block px-2 py-0.5 ml-auto text-xs font-medium tracking-wide text-red-600 bg-red-200 rounded-full">5</span>
-            </a>
-        </li>
-        <li class="mb-1 group">
-            <a href="{{ route('rekam.medis') }}" class="flex font-semibold items-center py-2 px-4 text-gray-900 hover:bg-[#222C67] hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100 {{ request()->is('rekam-medis*') ? 'bg-[#222C67] text-white' : '' }}">
-                <i class="fa-solid fa-notes-medical mr-3 text-lg"></i>               
-                <span class="text-md">Rekam Medis</span>
-            </a>
-        </li>
-        <li class="mb-1 group">
-            <a href="{{ route('pasien.tentang-kami') }}" class="flex font-semibold items-center py-2 px-4 text-gray-900 hover:bg-[#222C67] hover:text-gray-100 rounded-md {{ request()->is('tentang-kami*') ? 'bg-[#222C67] text-white' : '' }}" id="mom-link">
-                <i class="fa-solid fa-address-card mr-3 text-lg"></i>
-                <span class="text-md">Tentang Kami</span>
-                <i class="ri-arrow-right-s-line ml-auto transition-transform duration-200"></i>
-            </a>
-            <ul class="pl-7 mt-2 hidden" id="child-link">
-                <li class="mb-4">
-                    <a href="{{ route('pasien.tentang-kami') }}#peta-lokasi" class="text-gray-900 text-md font-semibold flex items-center hover:font-bold hover:text-[#222C67]">Peta dan Lokasi</a>
-                </li> 
-                <li class="mb-4">
-                    <a href="{{ route('pasien.tentang-kami') }}#kontak-darurat" class="text-gray-900 text-md font-semibold flex items-center hover:font-bold hover:text-[#222C67]">Kontak Darurat</a>
-                </li> 
-            </ul>
-        </li>
+        @switch(auth()->user()->status)
+            @case('Pasien')
+                @include('layouts.sidebar')
+                @break
+            @case('Admin')
+                @include('admin.sidebar')
+                @break
+            @case('Dokter')
+                @include('dokter.sidebar')
+                @break
+            @case('Perawat')
+                @include('perawat.sidebar')
+                @break
+            @default
+                @php abort(404) @endphp
+        @endswitch
     </ul>
 </div>
 <div class="fixed top-0 left-0 w-full h-full bg-black/50 z-40 md:hidden sidebar-overlay hidden"></div>
@@ -70,14 +32,28 @@
             <i class="ri-menu-line"></i>
         </button>
         <ul class="ml-auto flex items-center">
-            <li class="dropdown">
+            <li class="dropdown
+                @switch(request()->path())
+                    @case('admin/perawat')
+                        {{ '' }}
+                        @break
+                    @case('admin/dokter')
+                        {{ '' }}
+                        @break
+                    @case('admin/jadwal-dokter')
+                        {{ '' }}
+                        @break
+                    @default
+                        {{ 'hidden' }}
+                @endswitch
+            ">
                 <button type="button" class="dropdown-toggle text-gray-400 mr-4 w-8 h-8 rounded flex items-center justify-center  hover:text-gray-600">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="hover:bg-gray-100 rounded-full mt-[3px]" viewBox="0 0 24 24" style="fill: gray;transform: ;msFilter:;"><path d="M19.023 16.977a35.13 35.13 0 0 1-1.367-1.384c-.372-.378-.596-.653-.596-.653l-2.8-1.337A6.962 6.962 0 0 0 16 9c0-3.859-3.14-7-7-7S2 5.141 2 9s3.14 7 7 7c1.763 0 3.37-.66 4.603-1.739l1.337 2.8s.275.224.653.596c.387.363.896.854 1.384 1.367l1.358 1.392.604.646 2.121-2.121-.646-.604c-.379-.372-.885-.866-1.391-1.36zM9 14c-2.757 0-5-2.243-5-5s2.243-5 5-5 5 2.243 5 5-2.243 5-5 5z"></path></svg>
                 </button>
                 <div class="dropdown-menu shadow-md shadow-black/5 z-30 hidden max-w-xs w-full bg-white rounded-md border border-gray-100">
-                    <form action="" class="p-4 border-b border-b-gray-100">
+                    <form onsubmit="return false" class="p-4 border-b border-b-gray-100">
                         <div class="relative w-full">
-                            <input name="search" type="text" class="py-2 pr-4 pl-10 bg-gray-50 w-full outline-none border border-gray-100 rounded-md text-md focus:border-blue-500" placeholder="Search...">
+                            <input id="cari" type="text" class="py-2 pr-4 pl-10 bg-gray-50 w-full outline-none border border-gray-100 rounded-md text-sm focus:border-blue-500" placeholder="Cari...">
                             <i class="ri-search-line absolute top-1/2 left-4 -translate-y-1/2 text-gray-900"></i>
                         </div>
                     </form>
@@ -144,9 +120,9 @@
                     </div>
                 </div>
             </li>
-            <button id="fullscreen-button">
+            {{-- <button id="fullscreen-button">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="hover:bg-gray-100 rounded-full mr-4" viewBox="0 0 24 24" style="fill:#808080;transform:;msFilter:;"><path d="M5 5h5V3H3v7h2zm5 14H5v-5H3v7h7zm11-5h-2v5h-5v2h7zm-2-4h2V3h-7v2h5z"></path></svg>
-            </button>
+            </button> --}}
             {{-- dark mode --}}
             <li class="w-6 h-6">
                 {{-- moon --}}
@@ -170,7 +146,22 @@
                         </div>
                     </div>
                     <div class="p-2 md:block text-left">
-                        <h2 class="text-md font-semibold text-gray-800 dark:text-white">{{ auth()->user()->pasien->nama }}</h2>
+                        @switch(auth()->user()->status)
+                            @case('Pasien')
+                                <h2 class="text-md font-semibold text-gray-800 dark:text-white">{{ auth()->user()->pasien->nama }}</h2>
+                                @break
+                            @case('Admin')
+                                <h2 class="text-md font-semibold text-gray-800 dark:text-white">{{ auth()->user()->admin->nama }}</h2>
+                                @break
+                            @case('Dokter')
+                                <h2 class="text-md font-semibold text-gray-800 dark:text-white">{{ auth()->user()->dokter->nama }}</h2>
+                                @break
+                            @case('Perawat')
+                                <h2 class="text-md font-semibold text-gray-800 dark:text-white">{{ auth()->user()->perawat->nama }}</h2>
+                                @break
+                            @default
+                                @php abort(404) @endphp
+                        @endswitch
                         <p class="text-xs text-gray-500">{{ auth()->user()->status }}</p>
                     </div>
                 </button>

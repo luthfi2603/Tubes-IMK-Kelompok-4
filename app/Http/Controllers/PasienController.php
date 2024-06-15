@@ -257,6 +257,14 @@ class PasienController extends Controller {
             'foto' => $namaFoto2
         ]);
 
+        Reservasi::where('nomor_handphone', auth()->user()->nomor_handphone)->update([
+            'foto' => $namaFoto2
+        ]);
+        
+        RekamMedis::where('nomor_handphone', auth()->user()->nomor_handphone)->update([
+            'foto' => $namaFoto2
+        ]);
+
         return response()->json([
             'success' => 'Foto profil berhasil diubah'
         ]);
@@ -266,6 +274,14 @@ class PasienController extends Controller {
         Storage::delete(auth()->user()->foto);
 
         User::find(auth()->user()->id)->update([
+            'foto' => null
+        ]);
+
+        Reservasi::where('nomor_handphone', auth()->user()->nomor_handphone)->update([
+            'foto' => null
+        ]);
+        
+        RekamMedis::where('nomor_handphone', auth()->user()->nomor_handphone)->update([
             'foto' => null
         ]);
 

@@ -1,4 +1,4 @@
-@extends('admin.main')
+@extends('layouts.main')
 
 @section('container')
 @if(session()->has('failed'))

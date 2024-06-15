@@ -1,4 +1,4 @@
-@extends('dokter.main')
+@extends('layouts.main')
 
 @section('container')
 @if(session()->has('success'))
@@ -66,9 +66,7 @@
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">{{ $rekam->nama_pasien }}</td>
                             <td class="px-6 py-4 text-md text-gray-900">
-                                <textarea>
-                                    {{ $rekam->diagnosa }}
-                                </textarea>
+                                <textarea class="rounded-lg h-40">{{ $rekam->diagnosa }}</textarea>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-md">
                                 <div class="flex flex-col gap-2">
