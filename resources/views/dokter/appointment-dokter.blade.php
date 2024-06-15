@@ -1,4 +1,4 @@
-@extends('dokter.main')
+@extends('layouts.main')
 
 @section('container')
 <div id="success-js" class="hidden bg-green-300 py-3 text-white px-4 rounded-lg fixed inset-x-4 top-4 z-[99]"></div>

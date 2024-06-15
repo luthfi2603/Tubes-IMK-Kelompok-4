@@ -67,15 +67,18 @@
                                 <p class="text-md py-0.5 text-blue-500">Pada pukul : {{ $reservasi->waktu_rekomendasi }}</p>
                             @endif
                             @if($reservasi->status == 'Menunggu')
-                                <form method="POST" action="{{ route('destroy.reservasi') }}" class="mt-2">
-                                    @csrf
-                                    @method('DELETE')
-                                    <input type="hidden" name="id" value="{{ $reservasi->id }}">
-                                    <button class="bg-[#b02126] rounded-lg py-1 px-3 text-white w-min">Batalkan</button>
-                                </form>
+                                <div class="flex gap-2 mt-2">
+                                    <form method="POST" action="{{ route('destroy.reservasi') }}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <input type="hidden" name="id" value="{{ $reservasi->id }}">
+                                        <button class="bg-[#b02126] rounded-lg py-1 px-3 text-white w-min">Batalkan</button>
+                                    </form>
+                                    <a href="{{ route('reservasi.edit', $reservasi->id) }}" class="bg-yellow-500 rounded-lg py-1 px-3 text-white w-min text-nowrap">Ubah</a>
+                                </div>
                             @elseif($reservasi->status == 'Selesai')
                                 @if($reservasi->id_rekam_medis)
-                                    <a href="{{ route('rekam.medis.detail', $reservasi->id) }}" class="bg-blue-500 rounded-lg py-1 px-3 text-white w-min mt-2 text-nowrap">Rekam Medis</a>
+                                    <a href="{{ route('rekam.medis.detail', $reservasi->id_rekam_medis) }}" class="bg-blue-500 rounded-lg py-1 px-3 text-white w-min mt-2 text-nowrap">Rekam Medis</a>
                                 @else
                                     <span class="bg-blue-300 rounded-lg py-1 px-3 text-white w-min text-nowrap mt-2">Rekam Medis Belum Ada</span>
                                 @endif

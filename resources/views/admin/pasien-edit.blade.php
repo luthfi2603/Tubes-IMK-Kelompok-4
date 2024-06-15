@@ -1,4 +1,4 @@
-{{-- @extends('perawat.main')
+{{-- @extends('layouts.main')
 
 @section('container')
 @if(session()->has('failed'))
@@ -13,7 +13,7 @@
 <div class="container min-h-screen">
     <h3 class="text-2xl font-bold mb-5">Ubah Data Pasien</h3>
     <div class="bg-white p-6 rounded-lg shadow-lg opacity-90">
-        <form action="{{ route('perawat.edit.pasien', $pasien->id) }}" method="POST" class="space-y-4">
+        <form action="{{ route('admin.edit.pasien', $pasien->id) }}" method="POST" class="space-y-4">
             @csrf
             @method('PUT')
             <div>
@@ -83,16 +83,18 @@
 </div>
 @endsection --}}
 
-@extends('perawat.main')
+@extends('layouts.main')
 
 @section('container')
-@if(session()->has('failed'))
-    <div id="failed" class="mb-4 bg-red-300 py-3 text-white px-4 rounded-lg">
-        {{ session('failed') }}
+@if(session()->has('success'))
+    <div id="success-php" class="bg-[#d1e7dd] text-[#0f5132] border-2 border-[#badbcc] px-4 py-3 rounded-lg fixed inset-x-[296px] z-[999]">
+        <i class="fa-regular fa-circle-check mr-1"></i>
+        <span>{{ session('success') }}</span>
     </div>
-@elseif(session()->has('success'))
-    <div id="success-php" class="mb-4 bg-green-300 py-3 text-white px-4 rounded-lg">
-        {{ session('success') }}
+@elseif(session()->has('failed'))
+    <div id="failed-php" class="bg-[#f8d7da] text-[#842029] border-2 border-[#f5c2c7] px-4 py-3 rounded-lg fixed inset-x-[296px] z-[999]">
+        <i class="fa-solid fa-circle-exclamation mr-1"></i>
+        <span>{{ session('failed') }}</span>
     </div>
 @endif
 <div class="container mx-auto px-4 py-6">
@@ -104,7 +106,7 @@
                 <p class="text-gray-500 text-md">Silahkan ubah formulir di bawah ini untuk mengubah data diri pasien di sistem.</p>
             </div>
         </div>
-        <form action="{{ route('perawat.edit.pasien', $pasien->id) }}" method="POST" class="space-y-4">
+        <form action="{{ route('admin.edit.pasien', $pasien->id) }}" method="POST" class="space-y-4">
             @csrf
             @method('PUT')
             <div>
@@ -166,8 +168,9 @@
                     @enderror
                 </div>
             </div>
-            <div>
-                <button type="submit" class="mt-3 w-full inline-flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-yellow-600 hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Ubah</button>
+            <div class="flex justify-end">
+                <button class="mr-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg py-2 px-4 w-min text-nowrap mt-1">Ubah</button>
+                <a href="{{ route('admin.data.pasien') }}" class="bg-yellow-500 hover:bg-yellow-600 text-white rounded-lg py-2 px-4 w-min text-nowrap mt-1">Kembali</a>
             </div>
         </form>
     </div>

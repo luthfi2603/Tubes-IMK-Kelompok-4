@@ -1,4 +1,4 @@
-@extends('perawat.main')
+@extends('layouts.main')
 
 @section('container')
 <div class="flex flex-col lg:flex-row w-full p-4 space-y-6 lg:space-y-0 lg:space-x-6">
@@ -69,7 +69,7 @@
                     </div>
                     <div class="relative inline-block text-left">
                         <button id="options-button" type="button" class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                            <a href="{{ route('perawat.index.antrian') }}" class="block text-sm text-gray-700">
+                            <a href="{{ route('index.antrian') }}" class="block text-sm text-gray-700">
                                 Lihat lebih lanjut
                                 <i class="fa-solid fa-angles-right ml-2"></i>
                             </a>
@@ -351,26 +351,4 @@
             </div>
         </div>
     </div>
-@push('scripts')
-    <script>
-        // Mengambil elemen tombol dan menu dropdown
-        const optionsButton = document.getElementById('options-button');
-        const optionsMenu = document.getElementById('options-menu');
-
-        // Menambahkan event listener pada tombol
-        optionsButton.addEventListener('click', () => {
-            // Mengubah visibilitas menu dropdown
-            optionsMenu.classList.toggle('hidden');
-        });
-
-        // Menyembunyikan menu dropdown ketika mengklik di luar area menu
-        document.addEventListener('click', (event) => {
-            if (!optionsButton.contains(event.target) && !optionsMenu.contains(event.target)) {
-                optionsMenu.classList.add('hidden');
-            }
-        });
-    </script>
-@endpush
 @endsection
-
-

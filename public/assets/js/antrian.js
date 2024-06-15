@@ -47,7 +47,7 @@ async function refreshTable(){
             </tr>
         `;
 
-        const response = await fetch('/admin/antrian/tanggal', {
+        const response = await fetch('/antrian/tanggal', {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
@@ -72,7 +72,14 @@ async function refreshTable(){
                             <div class="dropdown" data-placement="right">
                                 ${(() => {
                                     if(item.status == 'Menunggu'){
-                                        return `<button class="dropdown-toggle bg-yellow-500 text-white px-3 py-1 rounded tombol-ubah shadow flex items-center" id="${item.id}">`;
+                                        const todayDateObj = new Date(todayDate);
+                                        const inputDateObj = new Date(inputTanggal.value);
+
+                                        if(inputDateObj > todayDateObj){
+                                            return `<button class="dropdown-toggle bg-yellow-300 text-white px-3 py-1 rounded tombol-ubah shadow flex items-center" disabled>`;
+                                        }else{
+                                            return `<button class="dropdown-toggle bg-yellow-500 text-white px-3 py-1 rounded tombol-ubah shadow flex items-center" id="${item.id}">`;
+                                        }
                                     }else{
                                         return `<button class="dropdown-toggle bg-yellow-300 text-white px-3 py-1 rounded tombol-ubah shadow flex items-center" disabled>`;
                                     }
@@ -222,7 +229,7 @@ renderTombolUbah(document);
 
 async function ubahStatus(status){
     try {
-        const response = await fetch('/admin/antrian/update', {
+        const response = await fetch('/antrian/update', {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',

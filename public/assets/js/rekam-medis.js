@@ -47,7 +47,7 @@ async function refreshTable(){
         });
     
         const data = await response.json();
-        console.log(data)
+
         if(data.rekam_medis.length){ // kalau ada
             isiTabel.innerHTML = '';
             isiTabelString = '';
@@ -76,9 +76,7 @@ async function refreshTable(){
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">${item.nama_pasien}</td>
                         <td class="px-6 py-4 text-md text-gray-900">
-                            <textarea>
-                                ${item.diagnosa}
-                            </textarea>
+                            <textarea class="rounded-lg h-40">${item.diagnosa}</textarea>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-md">
                             <div class="flex flex-col gap-2">

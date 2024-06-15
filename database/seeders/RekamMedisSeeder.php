@@ -24,7 +24,7 @@ class RekamMedisSeeder extends Seeder {
             "diagnosa" => fake()->paragraph($nbSentences = 3, $variableNbSentences = true),
             "therapie" => fake()->paragraph($nbSentences = 3, $variableNbSentences = true),
         ]);
-        RekamMedis::create([ // 1
+        /* RekamMedis::create([ // 2
             "nama_pasien" => "Hengky Kurniawan",
             "umur" => 20,
             "jenis_kelamin" => fake()->randomElement($array = array('P', 'L')),
@@ -37,7 +37,7 @@ class RekamMedisSeeder extends Seeder {
             "diagnosa" => fake()->paragraph($nbSentences = 3, $variableNbSentences = true),
             "therapie" => fake()->paragraph($nbSentences = 3, $variableNbSentences = true),
         ]);
-        RekamMedis::create([ // 1
+        RekamMedis::create([ // 3
             "nama_pasien" => "Susanti Kiranti",
             "umur" => 2,
             "jenis_kelamin" => fake()->randomElement($array = array('P', 'L')),
@@ -49,6 +49,6 @@ class RekamMedisSeeder extends Seeder {
             "keluhan" => fake()->paragraph($nbSentences = 3, $variableNbSentences = true),
             "diagnosa" => fake()->paragraph($nbSentences = 3, $variableNbSentences = true),
             "therapie" => fake()->paragraph($nbSentences = 3, $variableNbSentences = true),
-        ]);
+        ]); */
     }
 }

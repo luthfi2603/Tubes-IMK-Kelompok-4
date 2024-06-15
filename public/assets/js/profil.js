@@ -8,8 +8,8 @@ const tombolHapusFoto = document.getElementById('hapus-foto');
 const tombolBatal = document.getElementById('batal');
 const tombolSimpan = document.getElementById('simpan');
 const successHtml = document.getElementById('success');
-const successPhp = document.getElementById('success-php');
-const failedPhp = document.getElementById('failed');
+// const successPhp = document.getElementById('success-php');
+// const failedPhp = document.getElementById('failed');
 const failedUbahProfil = document.getElementById('failed-ubah-profil');
 
 tombolUbahFoto.addEventListener('click', () => {
@@ -56,7 +56,7 @@ tombolBatal.addEventListener('click', () => {
     location.reload();
 });
 
-const klikTombolHapusFoto = () => {
+function klikTombolHapusFoto(url){
     tombolUbahFoto.classList.add('hidden');
     tombolHapusFoto.classList.add('hidden');
     tombolSimpan.classList.remove('hidden');
@@ -64,10 +64,10 @@ const klikTombolHapusFoto = () => {
     defaultIcon.classList.remove('hidden')
     divFoto.classList.add('hidden');
     errorMessage.classList.add('hidden');
-    tombolSimpan.setAttribute('onclick', 'hapus()');
+    tombolSimpan.setAttribute('onclick', `hapus('${url}')`);
 };
 
-const simpan =  async (csrf, jenis) => {
+async function simpan(csrf, jenis, url){
     const form = document.createElement('form');
     form.setAttribute('enctype', 'multipart/form-data')
     const inputCsrf = document.createElement('input');
@@ -97,7 +97,7 @@ const simpan =  async (csrf, jenis) => {
         if('success' in data){
             localStorage.setItem('successMessage', data.success);
 
-            document.location.href = '/profil';
+            location.href = url;
         }else{
             if('foto' in data.errors){
                 errorMessage.classList.remove('hidden');
@@ -109,7 +109,7 @@ const simpan =  async (csrf, jenis) => {
     }
 };
 
-const hapus =  async () => {
+async function hapus(url){
     const form = document.createElement('form');
     const inputCsrf = document.createElement('input');
     inputCsrf.setAttribute('name', '_token');
@@ -132,7 +132,7 @@ const hapus =  async () => {
         if('success' in data){
             localStorage.setItem('successMessage', data.success);
 
-            document.location.href = '/profil';
+            location.href = url;
         }
     }catch(error){
         console.error(error);
@@ -163,7 +163,7 @@ if(failedMessage){
     }, 3000);
 }
 
-if(successPhp){
+/* if(successPhp){
     setTimeout(() => {
         successPhp.classList.add('hidden');
     }, 3000);
@@ -171,4 +171,4 @@ if(successPhp){
     setTimeout(() => {
         failedPhp.classList.add('hidden');
     }, 3000);
-}
+} */
