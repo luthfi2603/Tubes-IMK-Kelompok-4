@@ -71,6 +71,12 @@
                                         </button>
                                     </form>
                                 @endif
+                                <a href="{{ route('admin.pasien.reservasi', $item->nomor_handphone) }}" class="bg-blue-400 text-white px-2 py-1 rounded shadow hover:bg-blue-500 flex items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                                    </svg>
+                                    Reservasi
+                                </a>
                             </div>
                         </td>
                         <td class="p-4 whitespace-nowrap text-md text-gray-900">

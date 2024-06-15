@@ -4,15 +4,16 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\Models\User;
-use App\Models\Pasien;
-use App\Models\Perawat;
+use App\Models\Admin;
+use App\Models\Waktu;
 use App\Models\Dokter;
-use App\Models\JadwalDokter;
+use App\Models\Pasien;
 // use App\Models\RawatInap;
+use App\Models\Perawat;
 use App\Models\Reservasi;
 use App\Models\RekamMedis;
-use App\Models\Waktu;
 use Illuminate\Support\Str;
+use App\Models\JadwalDokter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -45,6 +46,117 @@ class AdminController extends Controller {
             ->get();
 
         return response()->json(['pasiens' => $pasiens]);
+    }
+
+    public function createPasienReservasi($nomorHandphone){
+        $user = User::where('nomor_handphone', $nomorHandphone)->first();
+
+        if(!$user){
+            return back();
+        }
+
+        $spesialis = Dokter::select('spesialis')
+            ->groupBy('spesialis')
+            ->get();
+
+        return view('admin.pasien-reservasi', compact('spesialis'));
+    }
+
+    public function storePasienReservasi(Request $request, $nomorHandphone){
+        $messages = [
+            'tanggal.required' => 'Silahkan pilih tanggal.',
+            'tanggal.date' => 'Format tanggal tidak valid.',
+            'spesialis.required' => 'Silahkan pilih spesialis dari dokter yang akan dipilih.',
+            'dokter.required' => 'Silahkan pilih dokter.',
+        ];
+
+        $request->validate([
+            'tanggal' => ['required', 'date'],
+            'spesialis' => ['required', 'string'],
+            'dokter' => ['required', 'string'],
+        ], $messages);
+
+        $auth = User::where('nomor_handphone', $nomorHandphone)->first();
+        $umur = Carbon::parse($auth->pasien->tanggal_lahir)->age;
+        $dataDokter = explode('|', $request->dokter);
+
+        // ini untuk membuat waktu rekomendasi untuk antrian
+        $cekAntrian = Reservasi::select('id')
+            ->where('nama_dokter', $dataDokter[0])
+            ->where('tanggal', $request->tanggal)
+            ->where(function($query){
+                $query->where('status', 'Menunggu')
+                      ->orWhere('status', 'Selesai');
+            })
+            ->get();
+
+        $waktuAwal = explode('-', $dataDokter[1]);
+        $waktuAwal = $waktuAwal[0];
+        $waktuAwal = Carbon::createFromFormat('H:i', $waktuAwal);
+        $waktuRekomendasiCarbon = $waktuAwal->addMinutes(count($cekAntrian) * 20);
+        $waktuRekomendasi = $waktuRekomendasiCarbon->format('H:i');
+
+        $today = Carbon::today();
+        $currentTime = Carbon::now();
+        $carbonDateToCheck = Carbon::parse($request->tanggal);
+        $isDateGreaterThanToday = $carbonDateToCheck->gt($today);
+
+        if(!$isDateGreaterThanToday){ // berarti hari ini
+            $waktuAkhir = explode('-', $dataDokter[1]);
+            $waktuAkhir = $waktuAkhir[1];
+            
+            $waktuAkhirCarbon = Carbon::createFromFormat('H:i', $waktuAkhir);
+            $waktuAkhirCarbonKurang1Jam = $waktuAkhirCarbon->subHour();
+            $isCurrentTimeLess = $currentTime->lt($waktuAkhirCarbonKurang1Jam);
+
+            // cek apakah waktu rekomendasi lebih besar dari waktu akhir jadwal dokter
+            $waktuAkhirCarbon = Carbon::createFromFormat('H:i', $waktuAkhir);
+            $waktuAkhirCarbonKurang20Menit = $waktuAkhirCarbon->subMinutes(20);
+            $apakahWaktuRekomendasiLebihDari = $waktuRekomendasiCarbon->gt($waktuAkhirCarbonKurang20Menit);
+            
+            if($isCurrentTimeLess){ // waktu lebih kecil dari 1 jam sebelum
+                if($apakahWaktuRekomendasiLebihDari){
+                    return back()->with('failed', 'Antrian sudah penuh, silahkan pilih hari berikutnya');
+                }
+                Reservasi::create([
+                    'nama_pasien' => $auth->pasien->nama,
+                    'umur' => $umur,
+                    'alamat' => $auth->pasien->alamat,
+                    'nomor_handphone' => $auth->nomor_handphone,
+                    'nama_dokter' => $dataDokter[0],
+                    'spesialis' => $request->spesialis,
+                    'status' => 'Menunggu',
+                    'jenis_kelamin' => $auth->pasien->jenis_kelamin,
+                    'tanggal' => $request->tanggal,
+                    'jam' => $dataDokter[1],
+                    'foto' => $auth->foto,
+                    'created_at' => $currentTime,
+                    'updated_at' => $currentTime,
+                ]);
+
+                return back()->with('success', 'Reservasi berhasil, datanglah sesuai jadwal dokter yang anda pilih');
+            }else{
+                return back()->with('failed', 'Waktu reservasi dokter ini sudah habis, disarankan daftar 1 jam sebelum waktu dokter berakhir');
+            }
+        }else{ // masa depan
+            Reservasi::create([
+                'nama_pasien' => $auth->pasien->nama,
+                'umur' => $umur,
+                'alamat' => $auth->pasien->alamat,
+                'nomor_handphone' => $auth->nomor_handphone,
+                'nama_dokter' => $dataDokter[0],
+                'spesialis' => $request->spesialis,
+                'status' => 'Menunggu',
+                'jenis_kelamin' => $auth->pasien->jenis_kelamin,
+                'tanggal' => $request->tanggal,
+                'jam' => $dataDokter[1],
+                'foto' => $auth->foto,
+                'created_at' => $currentTime,
+                'updated_at' => $currentTime,
+            ]);
+
+            return back()->with('success', 'Reservasi berhasil, datanglah pada hari ' . $carbonDateToCheck->translatedFormat('l, d F Y') . ' jam '. $waktuRekomendasi);
+        }
     }
 
     /* public function dataKaryawan(){
@@ -1116,5 +1228,56 @@ class AdminController extends Controller {
         ->get();
 
         return response()->json(['jadwal_dokters' => $jadwalDokters]);
+    }
+
+    public function editProfil(){
+        return view('admin.profil');
+    }
+
+    public function updateProfil(Request $request){
+        $user = User::find(auth()->user()->id);
+
+        if( // tidak ada yang berubah
+            $request->nama == $user->admin->nama &&
+            $request->nomor_handphone == $user->nomor_handphone &&
+            $request->alamat == $user->admin->alamat &&
+            $request->jenis_kelamin == $user->admin->jenis_kelamin
+        ){
+            return back()->with('failed', 'Gagal diubah, tidak ada perubahan');
+        }
+        
+        $messages = [
+            'nama.required' => 'Kolom nama harus diisi.',
+            'nama.max' => 'Maksimal 255 karakter.',
+            'alamat.required' => 'Kolom alamat harus diisi.',
+            'alamat.max' => 'Maksimal 255 karakter.',
+            'jenis_kelamin.required' => 'Kolom jenis kelamin harus diisi.',
+            'jenis_kelamin.in' => 'Jenis kelamin yang dipilih tidak sesuai.',
+            'nomor_handphone.required' => 'Kolom nomor handphone harus diisi.',
+            'nomor_handphone.numeric' => 'Nomor handphone harus diisi dengan angka.',
+            'nomor_handphone.min_digits' => 'Nomor handphone harus terdiri dari minimal :min digit.',
+            'nomor_handphone.max_digits' => 'Nomor handphone harus terdiri dari maksimal :max digit.',
+            'nomor_handphone.regex' => 'Nomor handphone tidak valid',
+            'nomor_handphone.unique' => 'Nomor handphone sudah terdaftar.',
+        ];
+
+        $request->validate([
+            'nama' => ['required', 'string', 'max:255'],
+            'alamat' => ['required', 'string', 'max:255'],
+            'jenis_kelamin' => ['required', 'in:P,L'],
+            'nomor_handphone' => ['required', 'numeric', 'min_digits:11', 'max_digits:13', 'regex:/\b08\d{9,11}\b/', 'unique:users'],
+        ], $messages);
+
+        User::find(auth()->user()->id)->update([
+            'nomor_handphone' => $request->nomor_handphone
+        ]);
+
+        Admin::where('id_user', auth()->user()->id)->update([
+            'nama' => $request->nama,
+            'alamat' => $request->alamat,
+            'jenis_kelamin' => $request->jenis_kelamin,
+        ]);
+
+        return back()->with('success', 'Profil berhasil diubah');
     }
 }

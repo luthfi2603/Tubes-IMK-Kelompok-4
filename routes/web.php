@@ -29,8 +29,6 @@ Route::middleware(['auth', 'role:Pasien'])->group(function(){
         Route::get('/profil', 'editProfil')
             ->name('pasien.profil');
         Route::put('/profil', 'updateProfil');
-        Route::put('/foto-profil', 'updateFotoProfil');
-        Route::delete('/hapus-foto-profil', 'destroyFotoProfil');
         Route::get('/pasien-verifikasi', 'createVerifikasi')
             ->name('pasien.verifikasi');
         Route::post('/pasien-verifikasi', 'storeVerifikasi');
@@ -43,14 +41,18 @@ Route::middleware(['auth', 'role:Pasien'])->group(function(){
             ->name('akun.destroy');
         Route::post('/cancel-ubah-profil', 'cancelUbahProfil')
             ->name('cancel.ubah.profil');
+
         Route::get('/reservasi', 'indexReservasi')
             ->name('reservasi');
         Route::get('/reservasi/buat', 'createReservasi')
             ->name('buat.reservasi');
-        Route::post('/daftar-dokter', 'storeDaftarDokter');
         Route::post('/reservasi/buat', 'storeReservasi');
         Route::delete('/reservasi/destroy', 'destroyReservasi')
             ->name('destroy.reservasi');
+        Route::get('/reservasi/edit/{pk}', 'editReservasi')
+            ->name('reservasi.edit');
+        Route::put('/reservasi/edit/{pk}', 'updateReservasi');
+
         Route::get('/dokter', 'indexDokter')
             ->name('dokter');
         
@@ -83,6 +85,8 @@ Route::middleware(['auth', 'role:Dokter'])->group(function(){
                 Route::post('/antrian/tanggal', 'indexAntrianTanggal');
                 Route::get('/janji-temu-dokter', 'indexAntrian')
                     ->name('janji.temu');
+                Route::get('/profil', 'showProfil')
+                    ->name('profil');
                 
                 Route::get('/doctors-dokter', function(){
                     return view('dokter.doctors-dokter');
@@ -133,6 +137,9 @@ Route::middleware(['auth', 'role:Perawat'])->group(function(){
                 Route::get('/jadwal-dokter', 'indexJadwalDokter')
                     ->name('jadwal.dokter.index');
                 Route::post('/jadwal-dokter/cari', 'storeCariJadwalDokter');
+
+                Route::get('/profil', 'showProfil')
+                    ->name('profil');
              });
         });
     });
@@ -160,6 +167,9 @@ Route::middleware(['auth', 'role:Admin'])->group(function(){
                     ->name('tambah.pasien');
                 Route::post('/pasien/input', 'storePasien');
                 Route::post('/pasien/cari', 'storeCariPasien');
+                Route::get('/pasien/reservasi/{pk}', 'createPasienReservasi')
+                    ->name('pasien.reservasi');
+                Route::post('/pasien/reservasi/{pk}', 'storePasienReservasi');
 
                 Route::get('/perawat', 'indexPerawat')
                     ->name('perawat.index');
@@ -204,9 +214,22 @@ Route::middleware(['auth', 'role:Admin'])->group(function(){
                 Route::delete('/jadwal-dokter/{pk}', 'destroyJadwalDokter')
                     ->name('jadwal.dokter.destroy');
                 Route::post('/jadwal-dokter/cari', 'storeCariJadwalDokter');
+
+                Route::get('/profil', 'editProfil')
+                    ->name('profil');
+                Route::put('/profil', 'updateProfil');
             });
         });
     });
+});
+
+Route::middleware(['auth', 'role:Pasien,Admin,Perawat,Dokter'])->group(function(){
+    Route::post('/daftar-dokter', [PasienController::class, 'storeDaftarDokter']);
+    Route::put('/foto-profil', [PasienController::class, 'updateFotoProfil']);
+    Route::delete('/hapus-foto-profil', [PasienController::class, 'destroyFotoProfil']);
+    Route::get('/edit-password', [PasienController::class, 'editPassword'])
+            ->name('password.edit');
+    Route::put('/edit-password', [PasienController::class, 'updatePassword']);
 });
 
 /* Route::middleware('auth')->group(function(){

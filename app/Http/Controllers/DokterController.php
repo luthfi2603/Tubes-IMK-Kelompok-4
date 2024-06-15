@@ -205,4 +205,8 @@ class DokterController extends Controller {
 
         return response()->json(['rekam_medis' => $rekamMedis]);
     }
+
+    public function showProfil(){
+        return view('dokter.profil');
+    }
 }

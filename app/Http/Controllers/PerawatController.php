@@ -302,4 +302,8 @@ class PerawatController extends Controller {
 
         return response()->json(['jadwal_dokters' => $jadwalDokters]);
     }
+
+    public function showProfil(){
+        return view('perawat.profil');
+    }
 }

@@ -6,7 +6,7 @@
         <h1 class="text-3xl font-bold text-[#222C67]">Detail Rekam Medis</h1>
         <div class="flex items-center gap-4">
             <button type="button" class="bg-[#E8C51C] hover:bg-[#d3da78] font-semibold text-gray-700 px-4 py-2 rounded-full shadow-md transition duration-300">Cetak</button>
-            <a href="{{ route('rekam.medis') }}" class="bg-[#E8C51C] hover:bg-[#d3da78] font-semibold text-gray-700 px-4 py-2 rounded-full shadow-md transition duration-300">Kembali</a>
+            <button type="button" onclick="history.back()" class="bg-[#E8C51C] hover:bg-[#d3da78] font-semibold text-gray-700 px-4 py-2 rounded-full shadow-md transition duration-300">Kembali</button>
         </div>
     </div>
     <div class="bg-white rounded-lg shadow-md p-6 mb-6">

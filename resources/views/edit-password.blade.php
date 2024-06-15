@@ -28,7 +28,7 @@
                     <input
                         class="w-full px-5 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-400 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
                         type="password" name="old_password" id="old_password"
-                        placeholder="Masukkan kata sandi lama anda" autofocus autocomplete="yes">
+                        placeholder="Masukkan kata sandi lama anda">
                     <i class="fas fa-eye absolute right-3 top-10 cursor-pointer" id="toggle-password-3"></i>
                     @error('old_password')
                         <div class="text-[#B42223] text-bold text-sm">

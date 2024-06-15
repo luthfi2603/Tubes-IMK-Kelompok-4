@@ -47,7 +47,7 @@ async function refreshTable(){
         });
     
         const data = await response.json();
-        console.log(data)
+
         if(data.rekam_medis.length){ // kalau ada
             isiTabel.innerHTML = '';
             isiTabelString = '';
