@@ -14,7 +14,7 @@
 <div id="failed-ubah-profil" class="mb-4 bg-red-300 py-3 px-4 text-white rounded-lg hidden"></div>
 <div class="flex flex-col gap-4">
     <p class="text-2xl md:text-3xl font-bold">Profil</p>
-    <form method="POST" action="{{ route('pasien.profil') }}" class="flex justify-center md:text-lg">
+    <form onsubmit="submitEditForm(event)" method="POST" action="{{ route('pasien.profil') }}" class="flex justify-center md:text-lg">
         @csrf
         @method('PUT')
         <div class="w-full md:max-w-4xl flex flex-col items-center gap-4">
@@ -119,7 +119,7 @@
                 </div>
             </div>
             <button type="submit" class="border-2 rounded-lg border-[#222C67] text-[#222C67] dark:text-white dark:bg-[#222C67] font-semibold px-6 py-2 mt-4">Ubah</button>
-            <span class="text-gray-500">Untuk mengubah data profil, silahkan ubah data yang ditampilkan lalu tekan tombol <b>ubah</b></span>
+            <span class="text-gray-500">Untuk mengubah data profil, silahkan ubah data yang ditampilkan lalu tekan tombol <b>ubah</b>, untuk mengubah data jenis kelamin dan tanggal lahir, hubungi admin klinik RH61</span>
         </div>
     </form>
     <hr class="my-3 h-[2px] bg-gray-300">
@@ -129,7 +129,7 @@
     <hr class="my-3 h-[2px] bg-gray-300">
     <p class="text-[#B42223] text-2xl md:text-3xl font-bold mt-1">Hapus Akun</p>
     <p class="text-justify md:text-lg">Setelah akun Anda dihapus, maka anda tidak dapat lagi mengakses informasi dan fitur dalam website klinik RH61 ini, silahkan daftarkan diri anda lagi jika ingin melihat kembali informasi dan mengakses kembali website ini.</p>
-    <form method="POST" action="{{ route('akun.destroy') }}">
+    <form onsubmit="hapusAkun(event)" method="POST" action="{{ route('akun.destroy') }}">
         @csrf
         @method('DELETE')
         <button type="submit" class="border-2 rounded-lg bg-gray-200 border-gray-300 text-[#B42223] hover:text-white hover:bg-[#B42223] hover:border-[#B42223] font-semibold px-6 py-2 w-min text-nowrap">Hapus akun anda</button>

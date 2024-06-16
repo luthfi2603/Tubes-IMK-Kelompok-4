@@ -19,7 +19,7 @@
                 <p class="text-gray-500 text-sm">Silahkan ubah jadwal dokter yang ada di sistem.</p>
             </div>
         </div>
-    <form action="{{ route('admin.jadwal.dokter.edit', $jadwalDokter->id) }}" method="POST" class="flex justify-center">
+    <form onsubmit="submitEditForm(event)" action="{{ route('admin.jadwal.dokter.edit', $jadwalDokter->id) }}" method="POST" class="flex justify-center">
         @csrf
         @method('PUT')
         <div class="flex flex-col items-center gap-4 w-full">

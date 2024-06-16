@@ -14,7 +14,7 @@
 <div id="failed-ubah-profil" class="mb-4 bg-red-300 py-3 px-4 text-white rounded-lg hidden"></div>
 <div class="flex flex-col gap-4">
     <p class="text-2xl md:text-3xl font-bold">Profil</p>
-    <form method="POST" class="flex justify-center md:text-lg">
+    <form onsubmit="submitEditForm(event)" method="POST" class="flex justify-center md:text-lg">
         @csrf
         @method('PUT')
         <div class="w-full md:max-w-4xl flex flex-col items-center gap-4">

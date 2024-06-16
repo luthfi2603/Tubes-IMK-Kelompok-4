@@ -57,7 +57,7 @@
                                     Ubah
                                 </a>
                                 @if ($item->aktif == 1)
-                                    <form action="{{ route('admin.ban.pasien', $item->nomor_handphone) }}" method="POST">
+                                    <form onsubmit="banPasien(event)" action="{{ route('admin.ban.pasien', $item->nomor_handphone) }}" method="POST">
                                         @csrf
                                         <button class="bg-red-500 text-white px-2 py-1 rounded shadow hover:bg-red-600 flex items-center w-full">
                                             <i class="fa-solid fa-ban mr-2"></i>
@@ -65,7 +65,7 @@
                                         </button>
                                     </form>
                                 @else
-                                    <form action="{{ route('admin.unban.pasien', $item->nomor_handphone) }}" method="POST">
+                                    <form onsubmit="unbanPasien(event)" action="{{ route('admin.unban.pasien', $item->nomor_handphone) }}" method="POST">
                                         @csrf
                                         <button class="bg-green-500 text-white px-2 py-1 rounded shadow hover:bg-green-600 flex items-center">
                                             <i class="fa-solid fa-unlock mr-2"></i>

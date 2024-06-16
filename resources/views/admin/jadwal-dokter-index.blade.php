@@ -64,7 +64,7 @@
                                         <i class="fa-solid fa-pen-to-square mr-2"></i>
                                         Ubah
                                     </a>
-                                    <form action="{{ route('admin.jadwal.dokter.destroy', $item->id) }}" method="POST">
+                                    <form onsubmit="hapusJadwalDokter(event)" action="{{ route('admin.jadwal.dokter.destroy', $item->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button class="bg-red-500 text-white px-2 py-1 rounded shadow hover:bg-red-600 flex items-center">

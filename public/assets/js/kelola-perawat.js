@@ -61,7 +61,7 @@ async function cariData(){
                                 <i class="fa-solid fa-pen-to-square mr-2"></i>
                                 Ubah
                             </a>
-                            <form action="/admin/perawat/destroy/${item.id_user}" method="POST" style="display:inline;">
+                            <form onsubmit="hapusPerawat(event)" action="/admin/perawat/destroy/${item.id_user}" method="POST" style="display:inline;">
                                 <input name="_token" value="${csrf}" type="hidden">
                                 <input name="_method" value="DELETE" type="hidden">
                                 <button class="bg-red-500 text-white px-2 py-1 rounded shadow hover:bg-red-600 flex items-center">

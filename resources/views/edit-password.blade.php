@@ -20,7 +20,7 @@
     </div>
     <div class="w-full flex-1 mt-8">
         <div class="mx-auto max-w-xs">
-            <form method="POST" action="{{ route('password.edit') }}">
+            <form onsubmit="submitEditForm(event)" method="POST" action="{{ route('password.edit') }}">
                 @csrf
                 @method('PUT')
                 <div class="content-center relative">

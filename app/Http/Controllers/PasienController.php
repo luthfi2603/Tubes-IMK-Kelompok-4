@@ -638,7 +638,7 @@ class PasienController extends Controller {
             ]);
         }
 
-        return back();
+        return back()->with('success', 'Reservasi berhasil dibatalkan');
     }
 
     public function indexRekamMedis(){

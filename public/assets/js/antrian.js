@@ -216,11 +216,11 @@ function renderTombolUbah(element){
         });
     
         selesai[i].addEventListener('click', () => {
-            ubahStatus('Selesai');
+            ubahStatusAntrianSelesai();
         });
         
         batal[i].addEventListener('click', () => {
-            ubahStatus('Batal');
+            ubahStatusAntrianBatal();
         });
     }
 };

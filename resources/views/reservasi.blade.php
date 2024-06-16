@@ -68,7 +68,7 @@
                             @endif
                             @if($reservasi->status == 'Menunggu')
                                 <div class="flex gap-2 mt-2">
-                                    <form method="POST" action="{{ route('destroy.reservasi') }}">
+                                    <form onsubmit="batalkanReservasi(event)" method="POST" action="{{ route('destroy.reservasi') }}">
                                         @csrf
                                         @method('DELETE')
                                         <input type="hidden" name="id" value="{{ $reservasi->id }}">

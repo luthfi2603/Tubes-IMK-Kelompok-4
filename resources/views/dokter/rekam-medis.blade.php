@@ -76,7 +76,7 @@
                                     <a href="{{ route('dokter.rekam.medis.edit', $rekam->id) }}" class="bg-yellow-500 text-white px-3 py-1 rounded-lg w-full text-center">
                                         Ubah
                                     </a>
-                                    <form method="POST" action="{{ route('dokter.rekam.medis.destroy', $rekam->id) }}">
+                                    <form onsubmit="hapusRekamMedis(event)" method="POST" action="{{ route('dokter.rekam.medis.destroy', $rekam->id) }}">
                                         @csrf
                                         @method('DELETE')
                                         <button class="bg-[#b02126] rounded-lg w-full py-1 px-3 text-white">Hapus</button>

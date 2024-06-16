@@ -16,7 +16,7 @@
             <img src="{{ asset('assets/img/patient_illustration.png') }}" alt="Patient Illustration" class="w-20 h-20 mr-4">
             <h1 class="text-3xl font-bold text-[#0A0A0A]">Reservasi Pasien</h1>
         </div>
-        <form method="POST" class="space-y-6">
+        <form onsubmit="submitEditForm(event)" method="POST" class="space-y-6">
             @csrf
             @method('PUT')
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">

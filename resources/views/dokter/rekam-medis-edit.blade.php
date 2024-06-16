@@ -17,7 +17,7 @@
 </div>
 <hr class="border-1 border-[#B1B0AF] mb-5 mx-4">
 <div class="container mx-auto p-6 bg-white shadow-lg rounded-lg">
-    <form method="POST">
+    <form onsubmit="submitEditForm(event)" method="POST">
         @csrf
         @method('PUT')
         <div class="mb-4">

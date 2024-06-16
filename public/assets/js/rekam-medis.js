@@ -86,7 +86,7 @@ async function refreshTable(){
                                 <a href="/dokter/rekam-medis/edit/${item.id}" class="bg-yellow-500 text-white px-3 py-1 rounded-lg w-full text-center">
                                     Ubah
                                 </a>
-                                <form method="POST" action="/dokter/rekam-medis/destroy/${item.id}">
+                                <form onsubmit="hapusRekamMedis(event)" method="POST" action="/dokter/rekam-medis/destroy/${item.id}">
                                     <input name="_token" value="${csrf}" type="hidden">
                                     <input name="_method" value="DELETE" type="hidden">
                                     <button class="bg-[#b02126] rounded-lg w-full py-1 px-3 text-white">Hapus</button>

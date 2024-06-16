@@ -101,8 +101,8 @@
                 </div>
                 <div class="flex flex-col w-full"></div>
             </div>
-            {{-- <button type="submit" class="border-2 rounded-lg border-[#222C67] text-[#222C67] dark:text-white dark:bg-[#222C67] font-semibold px-6 py-2 mt-4">Ubah</button>
-            <span class="text-gray-500">Untuk mengubah data profil, silahkan ubah data yang ditampilkan lalu tekan tombol <b>ubah</b></span> --}}
+            {{-- <button type="submit" class="border-2 rounded-lg border-[#222C67] text-[#222C67] dark:text-white dark:bg-[#222C67] font-semibold px-6 py-2 mt-4">Ubah</button> --}}
+            <span class="text-gray-500">Untuk mengubah data profil anda, silahkan hubungi admin klinik RH61.</span>
         </div>
     </form>
     <hr class="my-3 h-[2px] bg-gray-300">

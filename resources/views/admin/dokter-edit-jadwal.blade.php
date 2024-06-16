@@ -19,7 +19,7 @@
                 <p class="text-gray-500 text-md">Silahkan ubah formulir di bawah ini untuk mengubah jadwal dokter di sistem.</p>
             </div>
         </div>
-        <form method="POST" class="space-y-4">
+        <form onsubmit="submitEditForm(event)" method="POST" class="space-y-4">
             @csrf
             @method('PUT')
             <div class="flex flex-col items-center w-full">

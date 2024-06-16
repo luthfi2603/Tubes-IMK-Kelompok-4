@@ -65,7 +65,7 @@ async function cariData(){
                                 ${(() => {
                                     if(item.aktif == 1){
                                         return `
-                                            <form action="/admin/pasien/ban/${item.nomor_handphone}" method="POST">
+                                            <form onsubmit="banPasien(event)" action="/admin/pasien/ban/${item.nomor_handphone}" method="POST">
                                                 <input name="_token" value="${csrf}" type="hidden">
                                                 <button class="bg-red-500 text-white px-2 py-1 rounded shadow hover:bg-red-600 flex items-center w-full">
                                                     <i class="fa-solid fa-ban mr-2"></i>
@@ -75,7 +75,7 @@ async function cariData(){
                                         `;
                                     }else{
                                         return `
-                                            <form action="/admin/pasien/unban/${item.nomor_handphone}" method="POST">
+                                            <form onsubmit="unbanPasien(event)" action="/admin/pasien/unban/${item.nomor_handphone}" method="POST">
                                                 <input name="_token" value="${csrf}" type="hidden">
                                                 <button class="bg-green-500 text-white px-2 py-1 rounded shadow hover:bg-green-600 flex items-center">
                                                     <i class="fa-solid fa-unlock mr-2"></i>

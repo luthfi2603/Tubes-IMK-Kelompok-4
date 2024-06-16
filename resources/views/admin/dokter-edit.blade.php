@@ -19,7 +19,7 @@
                 <p class="text-gray-500 text-md">Silahkan ubah formulir di bawah ini untuk mengubah data diri dokter di sistem.</p>
             </div>
         </div>
-        <form action="{{ route('admin.dokter.edit', $dokter->id_user) }}" method="POST" enctype="multipart/form-data" class="space-y-4">
+        <form onsubmit="submitEditForm(event)" action="{{ route('admin.dokter.edit', $dokter->id_user) }}" method="POST" enctype="multipart/form-data" class="space-y-4">
         @csrf
         @method('PUT')
         <input type="hidden" name="foto_lama" id="foto_lama" value="{{ $dokter->foto }}">

@@ -65,7 +65,7 @@
                                         <i class="fa-solid fa-pen-to-square mr-2"></i>
                                         Ubah Jadwal
                                     </a>
-                                    <form action="{{ route('admin.dokter.destroy', $item->id_user) }}" method="POST">
+                                    <form onsubmit="hapusDokter(event)" action="{{ route('admin.dokter.destroy', $item->id_user) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button class="bg-red-500 text-white px-2 py-1 rounded shadow hover:bg-red-600 flex items-center">
