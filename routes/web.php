@@ -21,11 +21,11 @@ Route::middleware(['auth', 'role:Pasien'])->group(function(){
         Route::get('/dashboard', 'showDashboardPasien')
             ->name('pasien.dashboard');
         Route::get('/tentang-kami', function(){
-                return view('tentang-kami');
-             })->name('pasien.tentang-kami');
+            return view('tentang-kami');
+        })->name('pasien.tentang-kami');
         Route::get('/notifikasi', function(){
-                return view('notifikasi');
-             })->name('pasien.notifikasi-pasien');
+            return view('notifikasi');
+        })->name('pasien.notifikasi-pasien');
         Route::get('/profil', 'editProfil')
             ->name('pasien.profil');
         Route::put('/profil', 'updateProfil');
@@ -89,14 +89,6 @@ Route::middleware(['auth', 'role:Dokter'])->group(function(){
                     ->name('profil');
                 Route::get('/dokter-kami', 'indexDokter')
                     ->name('dokter.kami');
-                
-                Route::get('/detail-dokter', function(){
-                    return view('dokter.detail-dokter');
-                })->name('detail-dokter');
-                
-                Route::get('/setting-dokter', function(){
-                    return view('dokter.setting-dokter');
-                })->name('setting-dokter');
             });
         });
     });
@@ -106,14 +98,12 @@ Route::middleware(['auth', 'role:Perawat'])->group(function(){
     Route::prefix('perawat')->group(function(){
         Route::name('perawat.')->group(function(){
             Route::controller(PerawatController::class)->group(function(){
-                Route::get('/dashboard', 'showDashboardPerawat')->name('dashboard');
-
+                Route::get('/dashboard', 'showDashboardPerawat')
+                    ->name('dashboard');
                 Route::get('/pasien', 'indexPasien')
                     ->name('data.pasien');
-
                 Route::get('/dokter', 'indexDokter')
                     ->name('index.dokter');
-
                 Route::get('/profil', 'showProfil')
                     ->name('profil');
              });
@@ -194,20 +184,24 @@ Route::middleware(['auth', 'role:Admin'])->group(function(){
 });
 
 Route::middleware(['auth', 'role:Pasien,Admin,Perawat,Dokter'])->group(function(){
-    Route::post('/daftar-dokter', [PasienController::class, 'storeDaftarDokter']);
-    Route::put('/foto-profil', [PasienController::class, 'updateFotoProfil']);
-    Route::delete('/hapus-foto-profil', [PasienController::class, 'destroyFotoProfil']);
-    Route::get('/edit-password', [PasienController::class, 'editPassword'])
+    Route::controller(PasienController::class)->group(function(){
+        Route::post('/daftar-dokter', 'storeDaftarDokter');
+        Route::put('/foto-profil', 'updateFotoProfil');
+        Route::delete('/hapus-foto-profil', 'destroyFotoProfil');
+        Route::get('/edit-password', 'editPassword')
             ->name('password.edit');
-    Route::put('/edit-password', [PasienController::class, 'updatePassword']);
+        Route::put('/edit-password', 'updatePassword');
+    });
 });
 
 Route::middleware(['auth', 'role:Admin,Perawat'])->group(function(){
-    Route::get('/antrian', [AdminController::class, 'indexAntrian'])
-        ->name('index.antrian');
-    Route::post('/antrian/tanggal', [AdminController::class, 'indexAntrianTanggal']);
-    Route::put('/antrian/update', [AdminController::class, 'updateStatusAntrian']);
-    Route::post('/pasien/cari', [AdminController::class, 'storeCariPasien']);
+    Route::controller(AdminController::class)->group(function(){
+        Route::get('/antrian', 'indexAntrian')
+            ->name('index.antrian');
+        Route::post('/antrian/tanggal', 'indexAntrianTanggal');
+        Route::put('/antrian/update', 'updateStatusAntrian');
+        Route::post('/pasien/cari', 'storeCariPasien');
+    });
 });
 
 /* Route::middleware('auth')->group(function(){
