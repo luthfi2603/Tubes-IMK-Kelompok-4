@@ -30,22 +30,22 @@
     
         <div class="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             <div class="bg-[#E3EBF3] rounded-lg p-4 text-center shadow-md transition duration-300 transform hover:scale-105">
-                <img src="https://via.placeholder.com/50" alt="Icon" class="mx-auto mb-2">
+                <img src="{{ asset('assets/img/nurse-2.png') }}" alt="Icon" class="w-24 h-24 mx-auto mb-2">
                 <h3 class="text-xl font-bold text-[#222C67]">Pemeriksaan Rutin</h3>
                 <p class="text-[#130D19]">Layanan pemeriksaan kesehatan secara berkala.</p>
             </div>
             <div class="bg-[#E3EBF3] rounded-lg p-4 text-center shadow-md transition duration-300 transform hover:scale-105">
-                <img src="https://via.placeholder.com/50" alt="Icon" class="mx-auto mb-2">
+                <img src="{{ asset('assets/img/nurse-2.png') }}" alt="Icon" class="w-24 h-24 mx-auto mb-2">
                 <h3 class="text-xl font-bold text-[#222C67]">Konsultasi Spesialis</h3>
                 <p class="text-[#130D19]">Konsultasi dengan dokter spesialis terbaik.</p>
             </div>
             <div class="bg-[#E3EBF3] rounded-lg p-4 text-center shadow-md transition duration-300 transform hover:scale-105">
-                <img src="https://via.placeholder.com/50" alt="Icon" class="mx-auto mb-2">
+                <img src="{{ asset('assets/img/nurse-2.png') }}" alt="Icon" class="w-24 h-24 mx-auto mb-2">
                 <h3 class="text-xl font-bold text-[#222C67]">Layanan Darurat</h3>
                 <p class="text-[#130D19]">Siap membantu Anda dalam kondisi darurat.</p>
             </div>
             <div class="bg-[#E3EBF3] rounded-lg p-4 text-center shadow-md transition duration-300 transform hover:scale-105">
-                <img src="https://via.placeholder.com/50" alt="Icon" class="mx-auto mb-2">
+                <img src="{{ asset('assets/img/nurse-2.png') }}" alt="Icon" class="w-24 h-24 mx-auto mb-2">
                 <h3 class="text-xl font-bold text-[#222C67]">Perawatan Intensif</h3>
                 <p class="text-[#130D19]">Fasilitas perawatan intensif yang modern.</p>
             </div>

@@ -246,17 +246,17 @@ async function ubahStatus(status){
 
         if('success' in data){
             successJs.classList.remove('hidden');
-            successJs.innerHTML = data.success;
+            successJs.children[1].innerHTML = data.success;
             setTimeout(() => {
                 successJs.classList.add('hidden');
-                successJs.innerHTML = null;
+                successJs.children[1].innerHTML = null;
             }, 2000);
         }else{
             failedJs.classList.remove('hidden');
-            failedJs.innerHTML = data.failed;
+            failedJs.children[1].innerHTML = data.failed;
             setTimeout(() => {
                 failedJs.classList.add('hidden');
-                failedJs.innerHTML = null;
+                failedJs.children[1].innerHTML = null;
             }, 3000);
         }
 

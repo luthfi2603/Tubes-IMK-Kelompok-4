@@ -142,7 +142,7 @@ async function hapus(url){
 const successMessage = localStorage.getItem('successMessage');
 if(successMessage){
     successHtml.classList.remove('hidden');
-    successHtml.innerHTML = successMessage
+    successHtml.children[1].innerHTML = successMessage;
     
     localStorage.removeItem('successMessage');
     
@@ -154,7 +154,7 @@ if(successMessage){
 const failedMessage = localStorage.getItem('failedMessage');
 if(failedMessage){
     failedUbahProfil.classList.remove('hidden');
-    failedUbahProfil.innerHTML = failedMessage
+    failedUbahProfil.children[1].innerHTML = failedMessage;
     
     localStorage.removeItem('failedMessage');
     

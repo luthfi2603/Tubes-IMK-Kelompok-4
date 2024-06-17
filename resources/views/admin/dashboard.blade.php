@@ -8,12 +8,12 @@
             <div class="flex flex-col md:flex-row justify-between items-center max-[760px]:items-start">
                 <div class="font-body text-white mb-4 md:mb-0">
                     <h1 class="text-xl font-bold text-white py-2">Welcome back,</h1>
-                    <h2 class="text-2xl font-semibold font-body text-white py-2">Dr Siti Nurhaji</h2>
-                    <p class="text-white py-1">MD, DM (Cardiology), FACC, FESC</p>
-                    <p class="pt-3 pb-1">You have total <span class="font-bold text-[#E8C51C]">12 Appointments</span> today!</p>
+                    <h2 class="text-2xl font-semibold font-body text-white pt-2 pb-1">Siti Nurhaji</h2>
+                    <p class="text-white">Perawat</p>
+                    <p class="pt-3 pb-1">Hari ini terdapat<span class="font-bold text-[#E8C51C]"> 12 Reservasi</span></p>
                 </div>
                 <div class="flex-shrink-0">
-                    <img src="{{ asset('assets/img/staff.png') }}" alt="Doctor Avatar" class="w-full h-40 lg:block md:block max-[760px]:hidden">
+                    <img src="{{ asset('assets/img/perawat.png') }}" alt="Doctor Avatar" class="w-full h-40 lg:block md:block max-[760px]:hidden">
                 </div>
             </div>
         </div>
@@ -28,25 +28,14 @@
                     </select>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div class="bg-blue-100 p-4 rounded-lg flex flex-col items-center space-y-2">
+                    <div class="bg-blue-100 p-4 rounded-lg flex flex-col items-center space-y-2 col-span-3">
                         <div class="text-4xl font-bold text-blue-800">105</div>
                         <div>
                             <p class="text-gray-600 text-center">Total Pasien</p>
                         </div>
                     </div>
-                    <div class="bg-red-100 p-4 rounded-lg flex flex-col items-center space-y-2">
-                        <div class="text-4xl font-bold text-red-800">89</div>
-                        <div>
-                            <p class="text-gray-600 text-center">Konsultasi</p>
-                        </div>
-                    </div>
-                    <div class="bg-yellow-100 p-4 rounded-lg flex flex-col items-center space-y-2">
-                        <div class="text-4xl font-bold text-yellow-800">72</div>
-                        <div>
-                            <p class="text-gray-600 text-center">Rawat Inap & Jalan</p>
-                        </div>
-                    </div>
                 </div>
+                
             </div>
         </div>
 
@@ -56,56 +45,56 @@
             </div>
         </div>
         <div class="relative w-full max-w-5xl mt-3">
-            <div class="flex flex-col pb-5 px-5 rounded-xl bg-white shadow-lg w-full overflow-x-auto pt-4">
-                <label for="table-search" class="sr-only">Search</label>
-                <div class="relative my-1 flex items-center justify-between">
-                    <div class="relative">
-                        <input type="text" class="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg shadow-sm focus:outline-none focus:ring focus:ring-opacity-60 focus:ring-gray-200 bg-gray-100" placeholder="Search for items">
-                        <div class="absolute inset-y-0 left-0 flex items-center pl-3">
-                            <svg class="w-5 h-5 text-gray-400" viewBox="0 0 24 24" fill="none">
-                                <path d="M21 21l-4.35-4.35M16.65 11.65a7 7 0 1 1-14 0 7 7 0 0 1 14 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="relative inline-block text-left">
-                        <button id="options-button" type="button" class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                            <a href="{{ route('index.antrian') }}" class="block text-sm text-gray-700">
-                                Lihat lebih lanjut
-                                <i class="fa-solid fa-angles-right ml-2"></i>
-                            </a>
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="overflow-x-auto">
-                    <table class="min-w-full bg-white">
-                        <thead>
-                            <tr>
-                                <th class="py-2 text-left text-gray-600">#</th>
-                                <th class="py-2 text-left text-gray-600">Patient Name</th>
-                                <th class="py-2 text-left text-gray-600">Gender</th>
-                                <th class="py-2 text-left text-gray-600">Last Visit</th>
-                                <th class="py-2 text-left text-gray-600">Diseases</th>
-                                <th class="py-2 text-left text-gray-600">Report</th>
-                                <th class="py-2 text-left text-gray-600">Details</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="py-2">1</td>
-                                <td class="py-2">John Doe</td>
-                                <td class="py-2">Male</td>
-                                <td class="py-2">12/05/2016</td>
-                                <td class="py-2"><span class="bg-red-200 text-red-800 py-1 px-3 rounded-full text-xs">Fever</span></td>
-                                <td class="py-2"><a href="#" class="text-blue-500"><i class="material-icons">picture_as_pdf</i></a></td>
-                                <td class="py-2"><a href="#" class="text-blue-500">Details</a></td>
-                            </tr>
-                            <!-- Repeat the above tr for each row -->
-                        </tbody>
-                    </table>
+    <div class="flex flex-col pb-5 px-5 rounded-xl bg-white shadow-lg w-full overflow-x-auto pt-4 space-y-4">
+        <label for="table-search" class="sr-only">Search</label>
+        <div class="relative my-1 flex items-center justify-between">
+            <div class="relative">
+                <input type="text" class="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg shadow-sm focus:outline-none focus:ring focus:ring-opacity-60 focus:ring-gray-200 bg-gray-100" placeholder="Search for items">
+                <div class="absolute inset-y-0 left-0 flex items-center pl-3">
+                    <svg class="w-5 h-5 text-gray-400" viewBox="0 0 24 24" fill="none">
+                        <path d="M21 21l-4.35-4.35M16.65 11.65a7 7 0 1 1-14 0 7 7 0 0 1 14 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
                 </div>
             </div>
+            <div class="relative inline-block text-left">
+                <button id="options-button" type="button" class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    <a href="{{ route('index.antrian') }}" class="block text-sm text-gray-700">
+                        <i class="fa-solid fa-angles-right"></i>
+                    </a>
+                </button>
+            </div>
         </div>
+        
+        <div class="overflow-x-auto">
+            <table class="min-w-full bg-white">
+                <thead>
+                    <tr>
+                        <th class="py-2 text-left text-gray-600">#</th>
+                        <th class="py-2 text-left text-gray-600">Patient Name</th>
+                        <th class="py-2 text-left text-gray-600">Gender</th>
+                        <th class="py-2 text-left text-gray-600">Last Visit</th>
+                        <th class="py-2 text-left text-gray-600">Diseases</th>
+                        <th class="py-2 text-left text-gray-600">Report</th>
+                        <th class="py-2 text-left text-gray-600">Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="py-2">1</td>
+                        <td class="py-2">John Doe</td>
+                        <td class="py-2">Male</td>
+                        <td class="py-2">12/05/2016</td>
+                        <td class="py-2"><span class="bg-red-200 text-red-800 py-1 px-3 rounded-full text-xs">Fever</span></td>
+                        <td class="py-2"><a href="#" class="text-blue-500"><i class="material-icons">picture_as_pdf</i></a></td>
+                        <td class="py-2"><a href="#" class="text-blue-500">Details</a></td>
+                    </tr>
+                    <!-- Repeat the above tr for each row -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
 
         <div class="mt-6 grid grid-cols-1 lg:grid-cols-2">
             <div class="">
@@ -125,10 +114,10 @@
                         </div>
                     </div>
                     <div class="relative inline-block text-left">
-                        <button id="options-button" type="button" class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                            <a href="{{ route('admin.data.pasien') }}" class="block text-sm text-gray-700">
-                                Lihat lebih lanjut
-                                <i class="fa-solid fa-angles-right ml-2"></i>
+                        <button id="options-button-2" type="button" class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            <a href="{{ route('perawat.data.pasien') }}" class="block text-sm text-gray-700">
+                                {{-- <span class="hidden md:inline">Lihat lebih lanjut</span> --}}
+                                <i class="fa-solid fa-angles-right"></i>
                             </a>
                         </button>
                     </div>
@@ -163,9 +152,8 @@
                 </div>
             </div>
         </div>
-
-        
     </div>
+
     <!-- Right Sidebar -->
     <div class="w-full lg:w-1/3">
         <div class="bg-white p-6 rounded-lg shadow-lg">
@@ -214,8 +202,8 @@
                 <div class="flex justify-between items-center">
                     <h2 class="text-2xl font-bold mb-2">Daftar Dokter</h2>
                     <div class="relative inline-block text-left">
-                        <button id="options-button" type="button" class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                            <a href="{{ route('admin.index.dokter') }}" class="block text-sm text-gray-700">
+                        <button id="options-button-3" type="button" class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            <a href="{{ route('perawat.index.dokter') }}" class="block text-sm text-gray-700">
                                 <i class="fa-solid fa-angles-right"></i>
                             </a>
                         </button>
@@ -351,4 +339,5 @@
             </div>
         </div>
     </div>
+</div>
 @endsection

@@ -2,8 +2,14 @@
 
 @section('container')
 @if(session()->has('success'))
-    <div id="success-php" class="mb-4 bg-green-300 py-3 text-white px-4 rounded-lg">
-        {{ session('success') }}
+    <div id="success-php" class="bg-[#d1e7dd] text-[#0f5132] border-2 border-[#badbcc] px-4 py-3 rounded-lg fixed z-[999] inset-x-6 md:inset-x-[296px]">
+        <i class="fa-regular fa-circle-check mr-1"></i>
+        <span>{{ session('success') }}</span>
+    </div>
+@elseif(session()->has('failed'))
+    <div id="failed-php" class="bg-[#f8d7da] text-[#842029] border-2 border-[#f5c2c7] px-4 py-3 rounded-lg fixed z-[999] inset-x-6 md:inset-x-[296px]">
+        <i class="fa-solid fa-circle-exclamation mr-1"></i>
+        <span>{{ session('failed') }}</span>
     </div>
 @endif
 <div class="flex justify-between items-center mb-4 mx-4">
@@ -56,19 +62,19 @@
                         <tr class="bg-white hover:bg-[#d1e4f2] transition duration-200">
                             <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">{{ $i }}</td>
                             <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">
-                                <div class="flex flex-col gap-2">
-                                    <a href="{{ route('admin.dokter.edit', $item->nomor_handphone) }}" class="bg-yellow-400 text-white px-2 py-1 rounded shadow hover:bg-yellow-500 flex items-center w-min">
+                                <div class="flex flex-col gap-2 h-full">
+                                    <a href="{{ route('admin.dokter.edit', $item->nomor_handphone) }}" class="bg-yellow-400 text-white px-3 py-2 rounded shadow hover:bg-yellow-500 flex items-center">
                                         <i class="fa-solid fa-pen-to-square mr-2"></i>
                                         Ubah
                                     </a>
-                                    <a href="{{ route('admin.dokter.edit.jadwal', $item->id_dokter) }}" class="bg-cyan-400 text-white px-2 py-1 rounded shadow hover:bg-cyan-500 flex items-center">
+                                    <a href="{{ route('admin.dokter.edit.jadwal', $item->id_dokter) }}" class="bg-cyan-400 text-white px-3 py-2 rounded shadow hover:bg-cyan-500 flex items-center">
                                         <i class="fa-solid fa-pen-to-square mr-2"></i>
                                         Ubah Jadwal
                                     </a>
                                     <form onsubmit="hapusDokter(event)" action="{{ route('admin.dokter.destroy', $item->id_user) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
-                                        <button class="bg-red-500 text-white px-2 py-1 rounded shadow hover:bg-red-600 flex items-center">
+                                        <button class="bg-red-500 text-white px-3 py-2 rounded shadow hover:bg-red-600 flex items-center w-full">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                                             </svg>

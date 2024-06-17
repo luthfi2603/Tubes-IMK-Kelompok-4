@@ -31,28 +31,16 @@
         <div class="bg-white p-6 rounded-lg shadow-lg">
             <div class="flex justify-between items-center mb-4">
                 <h3 class="text-lg font-semibold">Report</h3>
-                <select class="border-gray-300 rounded-lg">
+                <select class="border-gray-300 rounded-md">
                     <option>This Month</option>
                     <!-- Add more options as needed -->
                 </select>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div class="bg-blue-100 p-4 rounded-lg flex flex-col items-center space-y-2">
+                <div class="bg-blue-100 p-4 rounded-lg flex flex-col items-center space-y-2 col-span-3">
                     <div class="text-4xl font-bold text-blue-800">105</div>
                     <div>
                         <p class="text-gray-600 text-center">Total Pasien</p>
-                    </div>
-                </div>
-                <div class="bg-red-100 p-4 rounded-lg flex flex-col items-center space-y-2">
-                    <div class="text-4xl font-bold text-red-800">89</div>
-                    <div>
-                        <p class="text-gray-600 text-center">Konsultasi</p>
-                    </div>
-                </div>
-                <div class="bg-yellow-100 p-4 rounded-lg flex flex-col items-center space-y-2">
-                    <div class="text-4xl font-bold text-yellow-800">72</div>
-                    <div>
-                        <p class="text-gray-600 text-center">Rawat Inap & Jalan</p>
                     </div>
                 </div>
             </div>
@@ -64,7 +52,7 @@
         <div class="bg-white p-6 rounded-lg shadow-lg h-full">
             <div class="flex justify-between items-center mb-4">
                 <h3 class="text-lg font-semibold">Patients</h3>
-                <select class="border-gray-300 rounded-lg">
+                <select class="border-gray-300 rounded-md">
                     <option>This Week</option>
                     
                 </select>
@@ -76,7 +64,7 @@
         <div class="bg-white p-6 rounded-lg shadow-lg h-full">
             <div class="flex justify-between items-center mb-4">
                 <h3 class="text-lg font-semibold">Gender</h3>
-                <select class="border-gray-300 rounded-lg">
+                <select class="border-gray-300 rounded-md">
                     <option>2023</option>
                     
                 </select>

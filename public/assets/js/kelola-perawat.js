@@ -6,11 +6,23 @@ const pagination = document.getElementById('pagination');
 const trNull = document.createElement('tr');
 const tdNull = document.createElement('td');
 tdNull.setAttribute('colspan', 7);
-tdNull.innerHTML = 'Data Tidak Ditemukan';
-tdNull.classList.add('text-center');
-tdNull.classList.add('text-xl');
-tdNull.classList.add('py-3');
+tdNull.classList.add('text-center', 'py-3');
+
+const divNull = document.createElement('div');
+divNull.classList.add('bg-gray-100', 'rounded-lg', 'p-4', 'inline-flex', 'items-center', 'text-gray-500');
+
+const iconNull = document.createElement('i');
+iconNull.classList.add('fa-regular', 'fa-file', 'mr-3');
+
+const spanNull = document.createElement('span');
+spanNull.classList.add('text-lg', 'font-semibold');
+spanNull.textContent = 'Data tidak ada';
+
+divNull.appendChild(iconNull);
+divNull.appendChild(spanNull);
+tdNull.appendChild(divNull);
 trNull.appendChild(tdNull);
+
 
 let i = 1;
 let isiTabelString = '';

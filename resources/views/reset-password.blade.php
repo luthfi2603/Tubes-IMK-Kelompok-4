@@ -70,7 +70,10 @@
     <div class="max-w-screen-xl m-0 sm:m-20 bg-white shadow sm:rounded-lg flex justify-center flex-1">
         <div class="lg:w-1/2 xl:w-5/12 p-6 sm:p-12 flex justify-center">
             <div class="mt-12 flex flex-col items-center">
-                <div id="success" class="hidden mb-4 bg-green-300 py-3 text-white px-4 rounded-lg max-w-xs"></div>
+                <div id="success" class="bg-[#d1e7dd] text-[#0f5132] border-2 border-[#badbcc] px-4 py-3 rounded-lg fixed inset-x-4 md:inset-x-[296px] top-4 z-[999] hidden">
+                    <i class="fa-regular fa-circle-check mr-1"></i>
+                    <span></span>
+                </div>
                 <h2 class="text-3xl font-bold text-[#222C67]">
                     Ganti Kata Sandi
                 </h2>
@@ -125,11 +128,16 @@
     </div>
     <script>
         const successMessage = localStorage.getItem('successMessage');
+        const successJs = document.getElementById('success');
         if(successMessage){
-            document.getElementById('success').classList.remove('hidden');
-            document.getElementById('success').innerHTML = successMessage
+            successJs.classList.remove('hidden');
+            successJs.children[1].innerHTML = successMessage;
 
             localStorage.removeItem('successMessage');
+
+            setTimeout(() => {
+                successJs.classList.add('hidden');
+            }, 3000);
         }
     </script>
     <script src="{{ asset('assets/js/show-password.js') }}"></script>
