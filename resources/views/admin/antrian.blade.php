@@ -1,8 +1,10 @@
 @extends('layouts.main')
 
 @section('container')
-<div id="success-js" class="hidden bg-green-300 py-3 text-white px-4 mx-6 rounded-lg fixed inset-x-4 top-4 z-[99]"></div>
-<div id="failed-js" class="hidden bg-red-300 py-3 text-white px-4 mx-6 rounded-lg fixed inset-x-4 top-4 z-[99]"></div>
+<div id="success-js" class="hidden bg-[#d1e7dd] text-[#0f5132] border-2 border-[#badbcc] px-4 py-3 rounded-lg fixed inset-x-[296px] z-[999]"><i class="fa-regular fa-circle-check mr-1"></i></div>
+<div id="failed-js" class="hidden bg-[#f8d7da] text-[#842029] border-2 border-[#f5c2c7] px-4 py-3 rounded-lg fixed inset-x-[296px] z-[999]"><i class="fa-solid fa-circle-exclamation mr-1"></i></div>
+
+
 <div class="flex justify-between items-center px-4 mb-4">
     <div class="font-body font-bold">
         <h1 class="text-3xl font-bold">Antrian</h1>
@@ -34,13 +36,10 @@
                 @if($antrians->isEmpty())
                     <tr>
                         <td colspan="9" class="text-center text-2xl py-3">
-                            <div class="flex justify-center items-center">
-                                <div class="bg-[#E3EBF3] text-center p-4 rounded-lg shadow-md font-bold w-3/4 flex items-center justify-center space-x-4">
-                                    <img src="{{ asset('assets/img/nurse-2.png') }}" alt="No Appointments" class="w-16 h-16">
-                                    <p class="text-xl text-[#222C67]">Belum ada Data</p>
-                                    <img src="{{ asset('assets/img/nurse-2.png') }}" alt="No Appointments" class="w-16 h-16">
+                                <div class="bg-gray-100 rounded-lg p-4 inline-flex items-center text-gray-500 ">
+                                    <i class="fa-regular fa-file mr-3"></i>  
+                                    <span class="text-lg font-semibold">Data tidak ada</span>
                                 </div>
-                            </div>
                         </td>
                     </tr>
                 @else

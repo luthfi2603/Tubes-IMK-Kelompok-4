@@ -2,12 +2,14 @@
 
 @section('container')
 @if(session()->has('success'))
-    <div id="success-php" class="mb-4 bg-green-300 py-3 text-white px-4 rounded-lg">
-        {{ session('success') }}
+    <div id="success-php" class="bg-[#d1e7dd] text-[#0f5132] border-2 border-[#badbcc] px-4 py-3 rounded-lg fixed inset-x-[296px] z-[999]">
+        <i class="fa-regular fa-circle-check mr-1"></i>
+        <span>{{ session('success') }}</span>
     </div>
 @elseif(session()->has('failed'))
-    <div id="failed-php" class="mb-4 bg-red-300 py-3 text-white px-4 rounded-lg">
-        {{ session('failed') }}
+    <div id="failed-php" class="bg-[#f8d7da] text-[#842029] border-2 border-[#f5c2c7] px-4 py-3 rounded-lg fixed inset-x-[296px] z-[999]">
+        <i class="fa-solid fa-circle-exclamation mr-1"></i>
+        <span>{{ session('failed') }}</span>
     </div>
 @endif
 <div class="container mx-auto px-4 py-6">
@@ -32,8 +34,8 @@
                         <img id="tampilkan-foto" alt="foto-profil" class="object-cover object-top w-full h-full">
                     </div>
                     <div class="flex gap-2">
-                        <button id="tombol-pilih-foto" type="button" class="bg-blue-500 hover:bg-blue-600 text-white rounded-lg py-2 px-4 w-min text-nowrap">Pilih Foto</button>
-                        <button id="tombol-hapus-foto-tidak-ada-foto" type="button" class="hidden bg-red-500 hover:bg-red-600 text-white rounded-lg py-2 px-4 w-min text-nowrap">Hapus Foto</button>
+                        <button id="tombol-pilih-foto" type="button" class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-lg text-md px-5 py-2.5 text-center me-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800"><i class="fa-solid fa-pen-to-square mr-2"></i>Pilih Foto</button>
+                        <button id="tombol-hapus-foto-tidak-ada-foto" type="button" class="text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-semibold rounded-lg text-md px-5 py-2.5 text-center me-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900"><i class="fa-solid fa-trash mr-2"></i>Hapus Foto</button>
                     </div>
                 {{-- ada foto --}}
                 @else
@@ -45,9 +47,9 @@
                         <img id="tampilkan-foto" alt="foto-profil" class="object-cover object-top w-full h-full">
                     </div>
                     <div class="flex gap-2">
-                        <button id="tombol-pilih-foto" type="button" class="bg-blue-500 hover:bg-blue-600 text-white rounded-lg py-2 px-4 w-min text-nowrap">Pilih Foto</button>
-                        <button id="tombol-hapus-foto" type="button" class="bg-red-500 hover:bg-red-600 text-white rounded-lg py-2 px-4 w-min text-nowrap">Hapus Foto</button>
-                        <button id="tombol-batal" type="button" class="hidden bg-cyan-500 hover:bg-cyan-600 text-white rounded-lg py-2 px-4 w-min text-nowrap">Batal</button>
+                        <button id="tombol-pilih-foto" type="button" class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-lg text-md px-5 py-2.5 text-center me-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800"><i class="fa-solid fa-pen-to-square mr-2"></i>Pilih Foto</button>
+                        <button id="tombol-hapus-foto" type="button" class="text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-semibold rounded-lg text-md px-5 py-2.5 text-center me-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900"><i class="fa-solid fa-trash mr-2"></i>Hapus Foto</button>
+                        <button id="tombol-batal" type="button" class="text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-semibold rounded-lg text-md px-5 py-2.5 text-center me-2 mb-2 hidden dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800"><i class="fa-solid fa-xmark mr-2"></i>Batal</button>
                     </div>
                 @endif
                 <input type="file" name="foto" id="foto" class="hidden">

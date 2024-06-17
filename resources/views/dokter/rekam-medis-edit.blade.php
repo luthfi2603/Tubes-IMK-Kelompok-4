@@ -1,13 +1,15 @@
 @extends('layouts.main')
 
 @section('container')
-@if(session()->has('failed'))
-    <div id="failed" class="mb-4 bg-red-300 py-3 text-white px-4 rounded-lg">
-        {{ session('failed') }}
+@if(session()->has('success'))
+    <div id="success-php" class="bg-[#d1e7dd] text-[#0f5132] border-2 border-[#badbcc] px-4 py-3 rounded-lg fixed inset-x-[296px] z-[999]">
+        <i class="fa-regular fa-circle-check mr-1"></i>
+        <span>{{ session('success') }}</span>
     </div>
-@elseif(session()->has('success'))
-    <div id="success-php" class="mb-4 bg-green-300 py-3 text-white px-4 rounded-lg">
-        {{ session('success') }}
+@elseif(session()->has('failed'))
+    <div id="failed-php" class="bg-[#f8d7da] text-[#842029] border-2 border-[#f5c2c7] px-4 py-3 rounded-lg fixed inset-x-[296px] z-[999]">
+        <i class="fa-solid fa-circle-exclamation mr-1"></i>
+        <span>{{ session('failed') }}</span>
     </div>
 @endif
 <div class="flex justify-between items-center px-4 mb-3">
@@ -49,11 +51,11 @@
         </div>
         <div class="flex items-center justify-between mt-6 mb-4">
             <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-                Ubah
+                <i class="fa-solid fa-pen-to-square mr-2"></i>Ubah
             </button>
             <div>
                 <a href="{{ route('dokter.rekam.medis') }}" class="inline-block align-baseline font-bold text-md text-yellow-500 hover:text-yellow-800">
-                    Kembali
+                    <i class="fa-solid fa-arrow-left mr-2"></i>Kembali
                 </a>
             </div>
         </div>

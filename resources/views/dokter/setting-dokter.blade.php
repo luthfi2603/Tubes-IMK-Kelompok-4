@@ -83,7 +83,7 @@
             </div>
         </div>
         <div class="mt-8">
-            <button class="bg-[#222C67] text-white p-3 rounded shadow hover:bg-blue-700">Save Changes</button>
+            <button class="bg-[#222C67] text-white p-3 rounded shadow hover:bg-blue-700"><i class="fa-solid fa-floppy-disk mr-2"></i>Save Changes</button>
         </div>
     </div>
 </div>

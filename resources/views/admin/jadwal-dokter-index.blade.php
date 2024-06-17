@@ -1,13 +1,15 @@
 @extends('layouts.main')
 
 @section('container')
-@if(session()->has('failed'))
-    <div id="failed-php" class="mb-4 mx-4 bg-red-300 py-3 text-[#130D19] px-4 rounded-lg">
-        {{ session('failed') }}
+@if(session()->has('success'))
+    <div id="success-php" class="bg-[#d1e7dd] text-[#0f5132] border-2 border-[#badbcc] px-4 py-3 rounded-lg fixed inset-x-[296px] z-[999]">
+        <i class="fa-regular fa-circle-check mr-1"></i>
+        <span>{{ session('success') }}</span>
     </div>
-@elseif(session()->has('success'))
-    <div id="success-php" class="mb-4 mx-4 bg-green-300 py-3 text-[#130D19] px-4 rounded-lg">
-        {{ session('success') }}
+@elseif(session()->has('failed'))
+    <div id="failed-php" class="bg-[#f8d7da] text-[#842029] border-2 border-[#f5c2c7] px-4 py-3 rounded-lg fixed inset-x-[296px] z-[999]">
+        <i class="fa-solid fa-circle-exclamation mr-1"></i>
+        <span>{{ session('failed') }}</span>
     </div>
 @endif
 <div class="flex justify-between items-center mb-4 mx-4">
@@ -27,23 +29,20 @@
         <table class="min-w-full bg-white">
             <thead>
                 <tr>
-                    <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">No</th>
-                    <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">Aksi</th> 
-                    <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">Hari</th>
-                    <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">Jam</th>
+                    <th class="px-3 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">No</th>
+                    <th class="px-3 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">Aksi</th> 
+                    <th class="px-3 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">Hari</th>
+                    <th class="px-3 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">Jam</th>
                 </tr>
             </thead>
             <tbody id="isi-tabel" class="divide-y divide-gray-200">
                 @if($jadwals->isEmpty())
                     <tr>
                         <td colspan="3" class="text-center text-2xl py-3">
-                            <div class="flex justify-center items-center">
-                                <div class="bg-[#E3EBF3] text-center p-4 rounded-lg shadow-md font-bold w-3/4 flex items-center justify-center space-x-4">
-                                    <img src="{{ asset('assets/img/nurse-2.png') }}" alt="No Appointments" class="w-16 h-16">
-                                    <p class="text-xl text-[#222C67]">Belum ada Data</p>
-                                    <img src="{{ asset('assets/img/nurse-2.png') }}" alt="No Appointments" class="w-16 h-16">
+                                <div class="bg-gray-100 rounded-lg p-4 inline-flex items-center text-gray-500 ">
+                                    <i class="fa-regular fa-file mr-3"></i>  
+                                    <span class="text-lg font-semibold">Data tidak ada</span>
                                 </div>
-                            </div>
                         </td>
                     </tr>
                 @else
@@ -58,7 +57,7 @@
                     @foreach ($jadwals as $item)
                         <tr class="hover:bg-[#d1e4f2] transition duration-200">
                             <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">{{ $i }}</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">
+                            <td class="px-3 py-4 whitespace-nowrap text-md text-gray-900">
                                 <div class="flex gap-2">
                                     <a href="{{ route('admin.jadwal.dokter.edit', $item->id) }}" class="bg-yellow-400 text-white px-2 py-1 rounded shadow hover:bg-yellow-500 flex items-center">
                                         <i class="fa-solid fa-pen-to-square mr-2"></i>
@@ -76,8 +75,8 @@
                                     </form>
                                 </div>
                             </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">{{ $item->hari }}</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">{{ $item->jam }}</td>
+                            <td class="px-3 py-4 whitespace-nowrap text-md text-gray-900">{{ $item->hari }}</td>
+                            <td class="px-3 py-4 whitespace-nowrap text-md text-gray-900">{{ $item->jam }}</td>
                         </tr>
                         @php $i++; @endphp
                     @endforeach
