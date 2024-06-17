@@ -18,9 +18,9 @@
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="font-body text-white mb-4 md:mb-0">
                     <h1 class="text-xl font-bold text-white py-2">Welcome,</h1>
-                    <h2 class="text-2xl font-semibold font-body text-white py-2">Najwa Amanda</h2>
-                    <p class="text-white py-1">"Ingat untuk tetap terhidrasi dan minum obat tepat waktu."</p>
-                    <button class="mt-4 bg-white font-bold text-blue-600 px-4 py-2 rounded-lg">Buat Janji Temu</button>
+                    <h2 class="text-2xl font-semibold font-body text-white py-2">{{ auth()->user()->pasien->nama }}</h2>
+                    <p class="text-white py-1 mb-4">"Ingat untuk tetap terhidrasi dan minum obat tepat waktu."</p>
+                    <a href="{{ route('buat.reservasi') }}" class="bg-white font-bold text-blue-600 px-4 py-2 rounded-lg">Buat Janji Temu</a>
                 </div>
                 <div class="flex-shrink-0">
                     <img src="{{ asset('assets/img/patient_illustration.png') }}" alt="Doctor Avatar" class="w-44 h-44">

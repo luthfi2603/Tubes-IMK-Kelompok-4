@@ -195,3 +195,299 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 3000);
     }
 });
+
+function submitEditForm(event){
+    event.preventDefault();
+
+    Swal.fire({
+        title: "Perubahan akan tersimpan!",
+        text: "Tekan Ubah untuk menyimpan atau Batal untuk mengedit kembali",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#006633",
+        cancelButtonColor: "#6b6767",
+        confirmButtonText: "Ubah",
+        cancelButtonText: "Batal",
+    }).then((result) => {
+        if(result.isConfirmed){
+            event.target.submit();
+        }
+    });
+}
+
+function hapusAkun(event){
+    event.preventDefault();
+
+    Swal.fire({
+        title: "Hapus Akun",
+        text: "Apakah anda yakin untuk menghapus akun anda?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#D80032",
+        cancelButtonColor: "#6b6767",
+        confirmButtonText: "Hapus",
+        cancelButtonText: "Batal",
+    }).then((result) => {
+        if(result.isConfirmed){
+            Swal.fire({
+                title: "Hapus Akun",
+                text: "Jika anda benar-benar ingin menghapus akun ini, maka anda tidak dapat lagi mengakses informasi dan fitur dalam website klinik RH61 ini, silahkan daftarkan diri anda lagi jika ingin melihat kembali informasi dan mengakses kembali website ini!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#D80032",
+                cancelButtonColor: "#6b6767",
+                confirmButtonText: "Hapus",
+                cancelButtonText: "Batal",
+            }).then((result) => {
+                if(result.isConfirmed){
+                    Swal.fire({
+                        title: "Hapus Akun",
+                        text: "Apakah anda benar-benar yakin?!",
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#D80032",
+                        cancelButtonColor: "#6b6767",
+                        confirmButtonText: "Hapus",
+                        cancelButtonText: "Batal",
+                    }).then((result) => {
+                        if(result.isConfirmed){
+                            event.target.submit();
+                        }
+                    });
+                }
+            });
+        }
+    });
+}
+
+function batalkanReservasi(event){
+    event.preventDefault();
+
+    Swal.fire({
+        title: "Batalkan Reservasi",
+        text: "Apakah anda yakin untuk membatalkan reservasi ini?!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#D80032",
+        cancelButtonColor: "#6b6767",
+        confirmButtonText: "Batalkan",
+        cancelButtonText: "Batal",
+    }).then((result) => {
+        if(result.isConfirmed){
+            Swal.fire({
+                title: "Batalkan Reservasi",
+                text: "Kalau anda membatalkannya, maka tidak akan bisa diubah kembali, apa anda yakin?!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#D80032",
+                cancelButtonColor: "#6b6767",
+                confirmButtonText: "Batalkan",
+                cancelButtonText: "Batal",
+            }).then((result) => {
+                if(result.isConfirmed){
+                    event.target.submit();
+                }
+            });
+        }
+    });
+}
+
+function hapusRekamMedis(event){
+    event.preventDefault();
+
+    Swal.fire({
+        title: "Hapus Rekam Medis",
+        text: "Apakah anda yakin untuk menghapus rekam medis ini?!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#D80032",
+        cancelButtonColor: "#6b6767",
+        confirmButtonText: "Hapus",
+        cancelButtonText: "Batal",
+    }).then((result) => {
+        if(result.isConfirmed){
+            event.target.submit();
+        }
+    });
+}
+
+function banPasien(event){
+    event.preventDefault();
+
+    Swal.fire({
+        title: "Ban Pasien",
+        text: "Apakah anda yakin untuk memblokir pasien ini?!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#D80032",
+        cancelButtonColor: "#6b6767",
+        confirmButtonText: "Ban",
+        cancelButtonText: "Batal",
+    }).then((result) => {
+        if(result.isConfirmed){
+            event.target.submit();
+        }
+    });
+}
+
+function unbanPasien(event){
+    event.preventDefault();
+
+    Swal.fire({
+        title: "Unban Pasien",
+        text: "Apakah anda yakin untuk membuka blokir pasien ini?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#006633",
+        cancelButtonColor: "#6b6767",
+        confirmButtonText: "Unban",
+        cancelButtonText: "Batal",
+    }).then((result) => {
+        if(result.isConfirmed){
+            event.target.submit();
+        }
+    });
+}
+
+function hapusDokter(event){
+    event.preventDefault();
+
+    Swal.fire({
+        title: "Hapus Dokter",
+        text: "Apakah anda yakin untuk menghapus dokter ini?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#D80032",
+        cancelButtonColor: "#6b6767",
+        confirmButtonText: "Hapus",
+        cancelButtonText: "Batal",
+    }).then((result) => {
+        if(result.isConfirmed){
+            Swal.fire({
+                title: "Hapus Dokter",
+                text: "Jika anda benar-benar ingin menghapus dokter ini, maka dokter tersebut tidak dapat dikembalikan jika sudah dihapus!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#D80032",
+                cancelButtonColor: "#6b6767",
+                confirmButtonText: "Hapus",
+                cancelButtonText: "Batal",
+            }).then((result) => {
+                if(result.isConfirmed){
+                    Swal.fire({
+                        title: "Hapus Dokter",
+                        text: "Apakah anda benar-benar yakin?!",
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#D80032",
+                        cancelButtonColor: "#6b6767",
+                        confirmButtonText: "Hapus",
+                        cancelButtonText: "Batal",
+                    }).then((result) => {
+                        if(result.isConfirmed){
+                            event.target.submit();
+                        }
+                    });
+                }
+            });
+        }
+    });
+}
+
+function hapusJadwalDokter(event){
+    event.preventDefault();
+
+    Swal.fire({
+        title: "Hapus Jadwal Dokter",
+        text: "Apakah anda yakin untuk menghapus jadwal dokter ini?!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#D80032",
+        cancelButtonColor: "#6b6767",
+        confirmButtonText: "Hapus",
+        cancelButtonText: "Batal",
+    }).then((result) => {
+        if(result.isConfirmed){
+            event.target.submit();
+        }
+    });
+}
+
+function hapusPerawat(event){
+    event.preventDefault();
+
+    Swal.fire({
+        title: "Hapus Perawat",
+        text: "Apakah anda yakin untuk menghapus perawat ini?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#D80032",
+        cancelButtonColor: "#6b6767",
+        confirmButtonText: "Hapus",
+        cancelButtonText: "Batal",
+    }).then((result) => {
+        if(result.isConfirmed){
+            Swal.fire({
+                title: "Hapus Perawat",
+                text: "Jika anda benar-benar ingin menghapus perawat ini, maka perawat tersebut tidak dapat dikembalikan jika sudah dihapus!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#D80032",
+                cancelButtonColor: "#6b6767",
+                confirmButtonText: "Hapus",
+                cancelButtonText: "Batal",
+            }).then((result) => {
+                if(result.isConfirmed){
+                    Swal.fire({
+                        title: "Hapus Perawat",
+                        text: "Apakah anda benar-benar yakin?!",
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#D80032",
+                        cancelButtonColor: "#6b6767",
+                        confirmButtonText: "Hapus",
+                        cancelButtonText: "Batal",
+                    }).then((result) => {
+                        if(result.isConfirmed){
+                            event.target.submit();
+                        }
+                    });
+                }
+            });
+        }
+    });
+}
+
+function ubahStatusAntrianSelesai(){
+    Swal.fire({
+        title: "Ubah Status Antrian",
+        text: "Jika anda mengubah status antrian, maka status tersebut tidak akan dapat dirubah lagi!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#006633",
+        cancelButtonColor: "#6b6767",
+        confirmButtonText: "Ubah",
+        cancelButtonText: "Batal",
+    }).then((result) => {
+        if(result.isConfirmed){
+            ubahStatus('Selesai');
+        }
+    });
+}
+
+function ubahStatusAntrianBatal(){
+    Swal.fire({
+        title: "Ubah Status Antrian",
+        text: "Jika anda mengubah status antrian, maka status tersebut tidak akan dapat dirubah lagi!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#006633",
+        cancelButtonColor: "#6b6767",
+        confirmButtonText: "Ubah",
+        cancelButtonText: "Batal",
+    }).then((result) => {
+        if(result.isConfirmed){
+            ubahStatus('Batal');
+        }
+    });
+}

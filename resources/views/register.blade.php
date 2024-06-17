@@ -19,7 +19,7 @@
         <div class="w-full p-6 sm:p-12">
             <div class=" flex flex-col items-center">
                 @if(session()->has('failed'))
-                    <div class="bg-[#f8d7da] text-[#842029] border-2 border-[#f5c2c7] px-4 py-3 rounded-lg fixed inset-x-[296px] z-[999]">
+                    <div class="bg-[#f8d7da] text-[#842029] border-2 border-[#f5c2c7] px-4 py-3 rounded-lg fixed z-[999] inset-x-6 md:inset-x-[296px]">
                         <i class="fa-solid fa-circle-exclamation mr-1"></i>
                         <span>{{ session('failed') }}</span>
                     </div>

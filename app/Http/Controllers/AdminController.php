@@ -1261,12 +1261,17 @@ class AdminController extends Controller {
             'nomor_handphone.unique' => 'Nomor handphone sudah terdaftar.',
         ];
 
-        $request->validate([
+        $rules = [
             'nama' => ['required', 'string', 'max:255'],
             'alamat' => ['required', 'string', 'max:255'],
             'jenis_kelamin' => ['required', 'in:P,L'],
-            'nomor_handphone' => ['required', 'numeric', 'min_digits:11', 'max_digits:13', 'regex:/\b08\d{9,11}\b/', 'unique:users'],
-        ], $messages);
+        ];
+
+        if($request->nomor_handphone != $user->nomor_handphone){
+            $rules['nomor_handphone'] = ['required', 'numeric', 'min_digits:11', 'max_digits:13', 'regex:/\b08\d{9,11}\b/', 'unique:users'];
+        }
+
+        $request->validate($rules, $messages);
 
         User::find(auth()->user()->id)->update([
             'nomor_handphone' => $request->nomor_handphone

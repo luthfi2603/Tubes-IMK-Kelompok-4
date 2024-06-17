@@ -19,18 +19,19 @@
         <div class="lg:w-1/2 xl:w-5/12 p-6 sm:p-12">
             <div class="mt-12 flex flex-col items-center">
                 @if(session()->has('success'))
-                    <div class="mb-4 bg-green-300 py-3 text-white px-4 rounded-lg w-full md:w-80 flex items-center">
-                        <i class="fa-solid fa-check mr-2"></i>
-                        {{ session('success') }}
+                    <div id="success-php" class="bg-[#d1e7dd] text-[#0f5132] border-2 border-[#badbcc] px-4 py-3 rounded-lg fixed inset-x-4 md:inset-x-[296px] top-4 z-[999]">
+                        <i class="fa-regular fa-circle-check mr-1"></i>
+                        <span>{{ session('success') }}</span>
                     </div>
                 @elseif(session()->has('failed'))
-                    <div class="mb-4 bg-red-300 py-3 text-white px-4 rounded-lg w-full max-w-xs flex items-center">
-                        <i class="fa-solid fa-times mr-2"></i>
-                        {{ session('failed') }}
+                    <div id="failed-php" class="bg-[#f8d7da] text-[#842029] border-2 border-[#f5c2c7] px-4 py-3 rounded-lg fixed inset-x-4 md:inset-x-[296px] top-4 z-[999]">
+                        <i class="fa-solid fa-circle-exclamation mr-1"></i>
+                        <span>{{ session('failed') }}</span>
                     </div>
                 @endif
-                <div id="success" class="hidden mb-4 bg-green-300 py-3 text-white px-4 rounded-lg md:w-80 items-center">
-                    <i class="fa-solid fa-check mr-2"></i>
+                <div id="success" class="bg-[#d1e7dd] text-[#0f5132] border-2 border-[#badbcc] px-4 py-3 rounded-lg fixed inset-x-4 md:inset-x-[296px] top-4 z-[999] hidden">
+                    <i class="fa-regular fa-circle-check mr-1"></i>
+                    <span></span>
                 </div>
                 <h2 class="text-3xl font-bold text-[#222C67]">
                     Selamat Datang
@@ -97,10 +98,23 @@
     </div>
     <script>
         const successMessage = localStorage.getItem('successMessage');
+        const successJs = document.getElementById('success');
+        const successPhp = document.getElementById('success-php');
         if(successMessage){
-            document.getElementById('success').classList.remove('hidden');
-            document.getElementById('success').innerHTML = '<i class="fa-solid fa-check mr-2"></i>' + successMessage;
+            successJs.classList.remove('hidden');
+            successJs.children[1].innerHTML = successMessage;
+
             localStorage.removeItem('successMessage');
+
+            setTimeout(() => {
+                successJs.classList.add('hidden');
+            }, 3000);
+        }
+
+        if(successPhp){
+            setTimeout(() => {
+                successPhp.classList.add('hidden');
+            }, 3000);
         }
     </script>
     <script src="{{ asset('assets/js/show-password.js') }}"></script>

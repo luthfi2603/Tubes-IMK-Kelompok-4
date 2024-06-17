@@ -1,10 +1,14 @@
 @extends('layouts.main')
 
 @section('container')
-<div id="success-js" class="hidden bg-[#d1e7dd] text-[#0f5132] border-2 border-[#badbcc] px-4 py-3 rounded-lg fixed inset-x-[296px] z-[999]"><i class="fa-regular fa-circle-check mr-1"></i></div>
-<div id="failed-js" class="hidden bg-[#f8d7da] text-[#842029] border-2 border-[#f5c2c7] px-4 py-3 rounded-lg fixed inset-x-[296px] z-[999]"><i class="fa-solid fa-circle-exclamation mr-1"></i></div>
-
-
+<div id="success-js" class="bg-[#d1e7dd] text-[#0f5132] border-2 border-[#badbcc] px-4 py-3 rounded-lg fixed z-[999] inset-x-6 md:inset-x-[296px] hidden">
+    <i class="fa-regular fa-circle-check mr-1"></i>
+    <span></span>
+</div>
+<div id="failed-js" class="bg-[#f8d7da] text-[#842029] border-2 border-[#f5c2c7] px-4 py-3 rounded-lg fixed z-[999] inset-x-6 md:inset-x-[296px] hidden">
+    <i class="fa-solid fa-circle-exclamation mr-1"></i>
+    <span></span>
+</div>
 <div class="flex justify-between items-center px-4 mb-4">
     <div class="font-body font-bold">
         <h1 class="text-3xl font-bold">Antrian</h1>

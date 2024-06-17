@@ -2,12 +2,12 @@
 
 @section('container')
 @if(session()->has('success'))
-    <div id="success-php" class="bg-[#d1e7dd] text-[#0f5132] border-2 border-[#badbcc] px-4 py-3 rounded-lg fixed inset-x-[296px] z-[999]">
+    <div id="success-php" class="bg-[#d1e7dd] text-[#0f5132] border-2 border-[#badbcc] px-4 py-3 rounded-lg fixed z-[999] inset-x-6 md:inset-x-[296px]">
         <i class="fa-regular fa-circle-check mr-1"></i>
         <span>{{ session('success') }}</span>
     </div>
 @elseif(session()->has('failed'))
-    <div id="failed-php" class="bg-[#f8d7da] text-[#842029] border-2 border-[#f5c2c7] px-4 py-3 rounded-lg fixed inset-x-[296px] z-[999]">
+    <div id="failed-php" class="bg-[#f8d7da] text-[#842029] border-2 border-[#f5c2c7] px-4 py-3 rounded-lg fixed z-[999] inset-x-6 md:inset-x-[296px]">
         <i class="fa-solid fa-circle-exclamation mr-1"></i>
         <span>{{ session('failed') }}</span>
     </div>
@@ -20,35 +20,31 @@
         </div>
         <form action="{{ route('buat.reservasi') }}" method="POST" class="space-y-6">
             @csrf
-            
-            
-                <div>
-                    <label for="tanggal" class="block text-md font-medium text-[#130D19]">Tanggal Reservasi</label>
-                    <input type="date" id="tanggal" name="tanggal" class="mt-1 block w-full px-4 py-2 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50"
-                    value="{{ old('tanggal', $tanggal) }}" >
-                    <p id="informasi-hari" class="hidden text-[#130D19] font-semibold"></p> 
-                        @error('tanggal')
-                            <div class="text-[#B42223] text-bold text-md">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                </div>
-            
-           
-                <div>
-                    <label for="spesialis" class="block text-md font-medium text-[#130D19]">Spesialis</label>
-                    <select id="spesialis" name="spesialis" class="mt-1 block w-full px-4 py-2 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
-                        <option value="">Pilih Spesialis</option>
-                        @foreach($spesialis as $item)
-                            <option {{ old('spesialis', $spesialisQuery) === $item->spesialis ? 'selected' : '' }}>{{ $item->spesialis }}</option>
-                        @endforeach
-                    </select>
-                    @error('spesialis')
+            <div>
+                <label for="tanggal" class="block text-md font-medium text-[#130D19]">Tanggal Reservasi</label>
+                <input type="date" id="tanggal" name="tanggal" class="mt-1 block w-full px-4 py-2 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50"
+                value="{{ old('tanggal', $tanggal) }}" >
+                <p id="informasi-hari" class="hidden text-[#130D19] font-semibold"></p> 
+                    @error('tanggal')
                         <div class="text-[#B42223] text-bold text-md">
                             {{ $message }}
                         </div>
-                     @enderror
-                </div>
+                    @enderror
+            </div>
+            <div>
+                <label for="spesialis" class="block text-md font-medium text-[#130D19]">Spesialis</label>
+                <select id="spesialis" name="spesialis" class="mt-1 block w-full px-4 py-2 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
+                    <option value="">Pilih Spesialis</option>
+                    @foreach($spesialis as $item)
+                        <option {{ old('spesialis', $spesialisQuery) === $item->spesialis ? 'selected' : '' }}>{{ $item->spesialis }}</option>
+                    @endforeach
+                </select>
+                @error('spesialis')
+                    <div class="text-[#B42223] text-bold text-md">
+                        {{ $message }}
+                    </div>
+                    @enderror
+            </div>
             <div>
                 <label for="dokter" class="block text-md font-medium text-[#130D19]">Dokter</label>
                 <select id="dokter" name="dokter" disabled class="mt-1 block w-full px-4 py-2 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
@@ -62,12 +58,11 @@
             </div>
             <div class="flex justify-end gap-2">
                 <button type="submit" class="bg-blue-500 hover:bg-blue-400 text-white font-semibold px-4 py-2 rounded-md shadow-md transition duration-300"><i class="fa-solid fa-calendar-check mr-2"></i>Buat Reservasi</button>
-                <a href="{{ route('reservasi') }}" class="bg-yellow-500 hover:bg-yellow-600 text-white rounded-lg py-2 px-4 w-min text-nowrap"><i class="fa-solid fa-arrow-left mr-2"></i>Kembali</a>
+                <a href="{{ route('reservasi') }}" class="bg-yellow-500 hover:bg-yellow-600 text-white rounded-lg py-2 px-4 w-min text-nowrap flex items-center"><i class="fa-solid fa-arrow-left mr-2"></i>Kembali</a>
             </div>
         </form>
     </div>
 </div>
-
 @push('scripts')
     <script>
         const csrf = '{{ csrf_token() }}';

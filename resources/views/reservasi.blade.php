@@ -3,12 +3,12 @@
 @section('container')
 
 @if(session()->has('success'))
-    <div id="success-php" class="bg-[#d1e7dd] text-[#0f5132] border-2 border-[#badbcc] px-4 py-3 rounded-lg fixed inset-x-[296px] z-[999]">
+    <div id="success-php" class="bg-[#d1e7dd] text-[#0f5132] border-2 border-[#badbcc] px-4 py-3 rounded-lg fixed z-[999] inset-x-6 md:inset-x-[296px]">
         <i class="fa-regular fa-circle-check mr-1"></i>
         <span>{{ session('success') }}</span>
     </div>
 @elseif(session()->has('failed'))
-    <div id="failed-php" class="bg-[#f8d7da] text-[#842029] border-2 border-[#f5c2c7] px-4 py-3 rounded-lg fixed inset-x-[296px] z-[999]">
+    <div id="failed-php" class="bg-[#f8d7da] text-[#842029] border-2 border-[#f5c2c7] px-4 py-3 rounded-lg fixed z-[999] inset-x-6 md:inset-x-[296px]">
         <i class="fa-solid fa-circle-exclamation mr-1"></i>
         <span>{{ session('failed') }}</span>
     </div>
@@ -72,19 +72,24 @@
                             @endif
                             @if($reservasi->status == 'Menunggu')
                                 <div class="flex gap-2 mt-2">
-                                    <form method="POST" action="{{ route('destroy.reservasi') }}">
+                                    <form onsubmit="batalkanReservasi(event)" method="POST" action="{{ route('destroy.reservasi') }}">
                                         @csrf
                                         @method('DELETE')
                                         <input type="hidden" name="id" value="{{ $reservasi->id }}">
-                                        <button class="bg-[#b02126] hover:bg-red-500 rounded-lg py-1.5 px-3 text-white w-min">Batalkan</button>
+                                        <button class="bg-[#b02126] hover:bg-red-500 rounded-lg py-1.5 px-3 text-white w-min flex items-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                            </svg>
+                                            Batalkan
+                                        </button>
                                     </form>
-                                    <a href="{{ route('reservasi.edit', $reservasi->id) }}" class="bg-yellow-500 hover:bg-yellow-400 rounded-lg py-1.5 px-3 text-white w-min text-nowrap">Ubah</a>
+                                    <a href="{{ route('reservasi.edit', $reservasi->id) }}" class="bg-yellow-500 hover:bg-yellow-400 rounded-lg py-1.5 px-3 text-white w-min text-nowrap"><i class="fa-solid fa-pen-to-square mr-2"></i>Ubah</a>
                                 </div>
                             @elseif($reservasi->status == 'Selesai')
                                 @if($reservasi->id_rekam_medis)
-                                    <a href="{{ route('rekam.medis.detail', $reservasi->id_rekam_medis) }}" class="bg-blue-500 hover:bg-blue-400 rounded-lg py-1 px-3 text-white w-min mt-2 text-nowrap">Rekam Medis</a>
+                                    <a href="{{ route('rekam.medis.detail', $reservasi->id_rekam_medis) }}" class="bg-blue-500 hover:bg-blue-400 rounded-lg py-1 px-3 text-white w-min mt-2 text-nowrap"><i class="fa-solid fa-circle-info mr-2"></i>Rekam Medis</a>
                                 @else
-                                    <span class="bg-blue-300 rounded-lg py-1 px-3 text-white w-min text-nowrap mt-2">Rekam Medis Belum Ada</span>
+                                    <span class="bg-blue-300 rounded-lg py-1 px-3 text-white w-min text-nowrap mt-2"><i class="fa-solid fa-hourglass-half mr-2"></i>Rekam Medis Belum Ada</span>
                                 @endif
                             @endif
                         </div>

@@ -5,7 +5,7 @@ const pagination = document.getElementById('pagination');
 
 const trNull = document.createElement('tr');
 const tdNull = document.createElement('td');
-tdNull.setAttribute('colspan', 7);
+tdNull.setAttribute('colspan', 8);
 tdNull.classList.add('text-center', 'py-3');
 
 const divNull = document.createElement('div');
@@ -22,7 +22,6 @@ divNull.appendChild(iconNull);
 divNull.appendChild(spanNull);
 tdNull.appendChild(divNull);
 trNull.appendChild(tdNull);
-
 
 let i = 1;
 let isiTabelString = '';
@@ -78,7 +77,7 @@ async function cariData(){
                                     <i class="fa-solid fa-pen-to-square mr-2"></i>
                                     Ubah Jadwal
                                 </a>
-                                <form action="/admin/dokter/destroy/${item.id_user}" method="POST">
+                                <form onsubmit="hapusDokter(event)" action="/admin/dokter/destroy/${item.id_user}" method="POST">
                                     <input name="_token" value="${csrf}" type="hidden">
                                     <input name="_method" value="DELETE" type="hidden">
                                     <button class="bg-red-500 text-white px-2 py-1 rounded shadow hover:bg-red-600 flex items-center">

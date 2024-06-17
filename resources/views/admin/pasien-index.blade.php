@@ -2,12 +2,12 @@
 
 @section('container')
 @if(session()->has('success'))
-    <div id="success-php" class="bg-[#d1e7dd] text-[#0f5132] border-2 border-[#badbcc] px-4 py-3 rounded-lg fixed inset-x-[296px] z-[999]">
+    <div id="success-php" class="bg-[#d1e7dd] text-[#0f5132] border-2 border-[#badbcc] px-4 py-3 rounded-lg fixed z-[999] inset-x-6 md:inset-x-[296px]">
         <i class="fa-regular fa-circle-check mr-1"></i>
         <span>{{ session('success') }}</span>
     </div>
 @elseif(session()->has('failed'))
-    <div id="failed-php" class="bg-[#f8d7da] text-[#842029] border-2 border-[#f5c2c7] px-4 py-3 rounded-lg fixed inset-x-[296px] z-[999]">
+    <div id="failed-php" class="bg-[#f8d7da] text-[#842029] border-2 border-[#f5c2c7] px-4 py-3 rounded-lg fixed z-[999] inset-x-6 md:inset-x-[296px]">
         <i class="fa-solid fa-circle-exclamation mr-1"></i>
         <span>{{ session('failed') }}</span>
     </div>
@@ -57,7 +57,7 @@
                                     Ubah
                                 </a>
                                 @if ($item->aktif == 1)
-                                    <form action="{{ route('admin.ban.pasien', $item->nomor_handphone) }}" method="POST">
+                                    <form onsubmit="banPasien(event)" action="{{ route('admin.ban.pasien', $item->nomor_handphone) }}" method="POST">
                                         @csrf
                                         <button class="bg-red-500 text-white px-3 py-2 rounded shadow hover:bg-red-600 flex items-center w-full">
                                             <i class="fa-solid fa-ban mr-2"></i>
@@ -65,7 +65,7 @@
                                         </button>
                                     </form>
                                 @else
-                                    <form action="{{ route('admin.unban.pasien', $item->nomor_handphone) }}" method="POST">
+                                    <form onsubmit="unbanPasien(event)" action="{{ route('admin.unban.pasien', $item->nomor_handphone) }}" method="POST">
                                         @csrf
                                         <button class="bg-green-500 text-white px-3 py-2 rounded shadow hover:bg-green-600 flex items-center">
                                             <i class="fa-solid fa-unlock mr-2"></i>

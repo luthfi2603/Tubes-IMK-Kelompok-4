@@ -55,7 +55,7 @@ async function refreshTable(){
 
             data.rekam_medis.forEach(item => {
                 isiTabelString += `
-                    <tr>
+                    <tr class="bg-white hover:bg-[#d1e4f2] transition duration-200">
                         <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">${i}</td>
                         <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">
                             ${(() => {
@@ -80,16 +80,17 @@ async function refreshTable(){
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-md">
                             <div class="flex flex-col gap-2">
-                                <a href="/dokter/rekam-medis/detail/${item.id}" class="bg-blue-500 text-white px-3 py-1 rounded-lg w-full text-center">
-                                    Detail
-                                </a>
-                                <a href="/dokter/rekam-medis/edit/${item.id}" class="bg-yellow-500 text-white px-3 py-1 rounded-lg w-full text-center">
-                                    Ubah
-                                </a>
-                                <form method="POST" action="/dokter/rekam-medis/destroy/${item.id}">
+                                <a href="/dokter/rekam-medis/detail/${item.id}" class="bg-blue-600 hover:bg-blue-500 text-white px-3 py-1 rounded-lg w-full text-center transition-colors duration-300"><i class="fa-solid fa-circle-info mr-2"></i>Detail</a>
+                                <a href="/dokter/rekam-medis/edit/${item.id}" class="bg-yellow-600 hover:bg-yellow-500 text-white px-3 py-1 rounded-lg w-full text-center transition-colors duration-300"><i class="fa-solid fa-pen-to-square mr-2"></i>Ubah</a>
+                                <form onsubmit="hapusRekamMedis(event)" method="POST" action="/dokter/rekam-medis/destroy/${item.id}">
                                     <input name="_token" value="${csrf}" type="hidden">
                                     <input name="_method" value="DELETE" type="hidden">
-                                    <button class="bg-[#b02126] rounded-lg w-full py-1 px-3 text-white">Hapus</button>
+                                    <button class="bg-red-600 hover:bg-red-500 rounded-lg w-full py-1 px-3 text-white transition-colors duration-300 flex items-center justify-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                        </svg>
+                                        Hapus
+                                    </button>
                                 </form>
                             </div>
                         </td>
@@ -104,10 +105,10 @@ async function refreshTable(){
             isiTabel.innerHTML = `
                 <tr>
                     <td colspan="5" class="text-center py-3">
-                    <div class="bg-gray-100 rounded-lg p-4 inline-flex items-center text-gray-500 ">
-                        <i class="fa-regular fa-file mr-3"></i>  
-                        <span class="text-lg font-semibold">Data tidak ada</span>
-                    </div>
+                        <div class="bg-gray-100 rounded-lg p-4 inline-flex items-center text-gray-500 ">
+                            <i class="fa-regular fa-file mr-3"></i>  
+                            <span class="text-lg font-semibold">Data tidak ada</span>
+                        </div>
                     </td>
                 </tr>
             `;
