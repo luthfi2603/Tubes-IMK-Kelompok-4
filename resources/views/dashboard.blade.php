@@ -17,7 +17,7 @@
         <div class="bg-[#222C67] p-6 rounded-lg shadow-lg mb-6 xl:mb-0">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="font-body text-white mb-4 md:mb-0">
-                    <h1 class="text-xl font-bold text-white py-2">Welcome,</h1>
+                    <h1 class="text-xl font-bold text-white py-2">Selamat Datang,</h1>
                     <h2 class="text-2xl font-semibold font-body text-white py-2">{{ auth()->user()->pasien->nama }}</h2>
                     <p class="text-white py-1 mb-4">"Ingat untuk tetap terhidrasi dan minum obat tepat waktu."</p>
                     <a href="{{ route('buat.reservasi') }}" class="bg-white font-bold text-blue-600 px-4 py-2 rounded-lg">Buat Janji Temu</a>
@@ -34,17 +34,41 @@
                 <i class="fas fa-heartbeat text-teal-600 text-2xl"></i>
             </div>
             <div class="ml-4">
-                <h3 class="text-xl font-bold text-[#222C67]">Health Tips</h3>
-                <p class="text-gray-600">Stay Hydrated - Minum setidaknya 8 gelas air sehari.</p>
-                <p class="text-gray-600">Regular Exercise - Lakukan olahraga minimal 30 menit setiap hari.</p>
+                <h3 class="text-xl font-bold text-[#222C67]">Tips Sehat</h3>
+                <p class="text-gray-600">Tetap terhidrasi - Minum setidaknya 8 gelas air sehari.</p>
+                <p class="text-gray-600">Sering berolahraga - Lakukan olahraga minimal 30 menit setiap hari.</p>
             </div>
         </div>
 
+        <!-- Medical Records Card -->
+        @if(!$rekamMedis)
+            <div class="bg-white rounded-lg shadow-md p-6 flex items-center mt-6">
+                <div class="flex-shrink-0 bg-green-100 rounded-full p-3">
+                    <i class="fas fa-file-medical text-green-600 text-2xl"></i>
+                </div>
+                <div class="ml-4 space-y-3">
+                    <h3 class="text-xl font-bold text-[#222C67]">Rekam Medis Terbaru</h3>
+                    <p class="text-gray-600">Anda belum memiliki rekam medis</p>
+                </div>
+            </div>
+        @else
+            <div class="bg-white rounded-lg shadow-md p-6 flex items-center mt-6">
+                <div class="flex-shrink-0 bg-green-100 rounded-full p-3">
+                    <i class="fas fa-file-medical text-green-600 text-2xl"></i>
+                </div>
+                <div class="ml-4 space-y-3">
+                    <h3 class="text-xl font-bold text-[#222C67]">Rekam Medis Terbaru</h3>
+                    <p class="text-gray-600">{{ $rekamMedis->nama_dokter }} - {{ \Carbon\Carbon::parse($rekamMedis->created_at)->translatedFormat('l, d F Y') }}</p>
+                    <a href="{{ route('rekam.medis.detail', $rekamMedis->id) }}" class="text-blue-600 hover:underline">Lihat</a>
+                </div>
+            </div>
+        @endif
+
         <!-- Health Metrics Chart -->
-        <div class="bg-white rounded-lg shadow-md p-6 mt-6">
+        {{-- <div class="bg-white rounded-lg shadow-md p-6 mt-6">
             <h3 class="text-xl font-bold text-[#222C67] mb-4">Health Metrics</h3>
             <canvas id="healthMetricsChart"></canvas>
-        </div>
+        </div> --}}
 
         {{-- <!-- Appointment Statistics Chart -->
         <div class="bg-white rounded-lg shadow-md p-6 mt-6">
@@ -53,7 +77,7 @@
         </div> --}}
 
         <!-- Notifications Card -->
-        <div class="bg-white border-l-4 border-yellow-600 rounded-lg shadow-md p-4 flex items-center justify-between mt-6">
+        {{-- <div class="bg-white border-l-4 border-yellow-600 rounded-lg shadow-md p-4 flex items-center justify-between mt-6">
             <div class="flex items-center space-x-4">
                 <span class="text-yellow-600 text-2xl">•</span>
                 <div>
@@ -64,13 +88,13 @@
                     </p>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
 
     <!-- Right Sidebar -->
     <div class="w-full xl:w-1/3 flex flex-col space-y-6">
         <!-- Appointments Card -->
-        <div class="bg-white p-6 rounded-lg shadow-lg max-[1280px]:hidden">
+        {{-- <div class="bg-white p-6 rounded-lg shadow-lg max-[1280px]:hidden">
             <div class="bg-gray-200 py-3 px-4 rounded-t-lg">
                 <h3 class="text-lg font-semibold">Your Appointments</h3>
             </div>
@@ -80,35 +104,36 @@
                     <div inline-datepicker data-date="02/02/2022"></div>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
         <!-- Upcoming Appointments Card -->
-        <div class="bg-white rounded-lg shadow-md p-6 flex items-center">
-            <div class="flex-shrink-0 bg-blue-100 rounded-full p-3">
-                <i class="fas fa-calendar-check text-blue-600 text-2xl"></i>
+        @if($reservasis->isEmpty())
+            <div class="bg-white rounded-lg shadow-md p-6 flex items-center">
+                <div class="flex-shrink-0 bg-blue-100 rounded-full p-3">
+                    <i class="fas fa-calendar-check text-blue-600 text-2xl"></i>
+                </div>
+                <div class="ml-4">
+                    <h3 class="text-xl font-bold text-[#222C67]">Janji Temu yang Akan Datang</h3>
+                    <p class="text-gray-600 my-2">Anda belum memiliki janji temu</p>
+                </div>
             </div>
-            <div class="ml-4">
-                <h3 class="text-xl font-bold text-[#222C67]">Upcoming Appointments</h3>
-                <p class="text-gray-600 my-2">Dr. blabla - 1 Januari 2024, 10:00 AM</p>
-                <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-lg">Menunggu</span>
-            </div>
-        </div>
-
-        <!-- Medical Records Card -->
-        <div class="bg-white rounded-lg shadow-md p-6 flex items-center">
-            <div class="flex-shrink-0 bg-green-100 rounded-full p-3">
-                <i class="fas fa-file-medical text-green-600 text-2xl"></i>
-            </div>
-            <div class="ml-4 space-y-3">
-                <h3 class="text-xl font-bold text-[#222C67]">Recent Medical Records</h3>
-                <p class="text-gray-600">Dr. yaya - 10 Februari 2024</p>
-                <a href="{{ route('rekam.medis') }}" class="text-blue-600 hover:underline">View</a>
-            </div>
-        </div>
+        @else
+            @foreach($reservasis as $item)
+                <div class="bg-white rounded-lg shadow-md p-6 flex items-center">
+                    <div class="flex-shrink-0 bg-blue-100 rounded-full p-3">
+                        <i class="fas fa-calendar-check text-blue-600 text-2xl"></i>
+                    </div>
+                    <div class="ml-4">
+                        <h3 class="text-xl font-bold text-[#222C67]">Janji Temu yang Akan Datang</h3>
+                        <p class="text-gray-600 my-2">{{ $item->nama_dokter }} - {{ \Carbon\Carbon::parse($item->tanggal)->translatedFormat('l, d F Y') }}, {{ $item->waktu_rekomendasi }}</p>
+                        <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-lg">Menunggu</span>
+                    </div>
+                </div>
+            @endforeach
+        @endif
     </div>
 </div>
-
-@push('scripts')
+{{-- @push('scripts')
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         // Health Metrics Chart
@@ -176,5 +201,5 @@
             }
         });
     </script>
-@endpush
+@endpush --}}
 @endsection

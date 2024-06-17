@@ -12,7 +12,37 @@ use Illuminate\Support\Facades\Auth;
 
 class DokterController extends Controller {
     public function showDashboardDokter(){
-        return view('dokter.dashboard');
+        $tanggalHariIni = Carbon::now()->format('Y-m-d');
+
+        $jumlahReservasi = DB::table('view_reservasi')
+            ->select('nama_pasien')
+            ->where('nama_dokter', auth()->user()->dokter->nama)
+            ->where('tanggal', $tanggalHariIni)
+            ->count();
+
+        $jumlahPasien = DB::table('view_reservasi')
+            ->select('nama_pasien')
+            ->where('nama_dokter', auth()->user()->dokter->nama)
+            ->groupBy('nama_pasien')
+            ->get();
+
+        $dokters = DB::table('view_data_dokter')
+            ->limit(4)
+            ->get();
+
+        $antrians = DB::table('view_reservasi')
+            ->orderByRaw('ISNULL(waktu_rekomendasi), waktu_rekomendasi')
+            ->where('tanggal', $tanggalHariIni)
+            ->where('nama_dokter', auth()->user()->dokter->nama)
+            ->limit(4)
+            ->get();
+
+        $rekamMedis = RekamMedis::where('nama_dokter', auth()->user()->dokter->nama)
+            ->whereDate('created_at', $tanggalHariIni)
+            ->oldest()
+            ->get();
+
+        return view('dokter.dashboard', compact('jumlahReservasi', 'jumlahPasien', 'dokters', 'antrians', 'rekamMedis'));
     }
     
     public function indexRekamMedis(){
@@ -184,7 +214,14 @@ class DokterController extends Controller {
             ->where('nama_dokter', auth()->user()->dokter->nama)
             ->get();
         
-        return view('dokter.appointment-dokter', compact('antrians'));
+        $jumlahPasien = DB::table('view_reservasi')
+            ->select('nama_pasien')
+            ->where('nama_dokter', auth()->user()->dokter->nama)
+            ->where('tanggal', $tanggalHariIni)
+            ->groupBy('nama_pasien')
+            ->get();
+        
+        return view('dokter.appointment-dokter', compact('antrians', 'jumlahPasien'));
     }
 
     public function indexAntrianTanggal(Request $request){

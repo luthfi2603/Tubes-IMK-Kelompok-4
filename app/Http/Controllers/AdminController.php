@@ -20,7 +20,26 @@ use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller {
     public function showDashboardAdmin(){
-        return view('admin.dashboard');
+        $dokters = DB::table('view_data_dokter')
+            ->limit(4)
+            ->get();
+
+        $tanggalHariIni = Carbon::now()->format('Y-m-d');
+
+        $antrians = DB::table('view_reservasi')
+            ->orderByRaw('ISNULL(waktu_rekomendasi), waktu_rekomendasi')
+            ->where('tanggal', $tanggalHariIni)
+            ->limit(4)
+            ->get();
+
+        $jumlahPasien = Pasien::count();
+
+        $pasiens = DB::table('view_data_pasien')
+            ->inRandomOrder()
+            ->limit(4)
+            ->get();
+
+        return view('admin.dashboard', compact('dokters', 'antrians', 'jumlahPasien', 'pasiens'));
     }
 
     public function indexPasien(){
