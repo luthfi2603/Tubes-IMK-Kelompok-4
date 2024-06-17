@@ -17,7 +17,31 @@ use Illuminate\Support\Facades\Storage;
 
 class PerawatController extends Controller {
     public function showDashboardPerawat(){
-        return view('perawat.dashboard');
+        $tanggalHariIni = Carbon::now()->format('Y-m-d');
+
+        $jumlahReservasi = DB::table('view_reservasi')
+            ->select('nama_pasien')
+            ->where('tanggal', $tanggalHariIni)
+            ->count();
+        
+        $dokters = DB::table('view_data_dokter')
+            ->limit(4)
+            ->get();
+
+        $antrians = DB::table('view_reservasi')
+            ->orderByRaw('ISNULL(waktu_rekomendasi), waktu_rekomendasi')
+            ->where('tanggal', $tanggalHariIni)
+            ->limit(4)
+            ->get();
+
+        $jumlahPasien = Pasien::count();
+
+        $pasiens = DB::table('view_data_pasien')
+            ->inRandomOrder()
+            ->limit(4)
+            ->get();
+
+        return view('perawat.dashboard', compact('dokters', 'antrians', 'jumlahPasien', 'pasiens', 'jumlahReservasi'));
     }
 
     public function indexPasien(){

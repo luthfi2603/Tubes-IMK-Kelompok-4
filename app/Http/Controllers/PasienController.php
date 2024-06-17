@@ -20,7 +20,18 @@ use Twilio\Rest\Serverless\V1\Service\FunctionInstance;
 
 class PasienController extends Controller {
     public function showDashboardPasien(){
-        return view('dashboard');
+        $reservasis = DB::table('view_reservasi')
+            ->where('status', 'Menunggu')
+            ->where('nama_pasien', auth()->user()->pasien->nama)
+            ->orderBy('tanggal')
+            ->limit(3)
+            ->get();
+        
+        $rekamMedis = RekamMedis::where('nama_pasien', auth()->user()->pasien->nama)
+            ->latest()
+            ->first();
+
+        return view('dashboard', compact('reservasis', 'rekamMedis'));
     }
     
     public function editProfil(){
