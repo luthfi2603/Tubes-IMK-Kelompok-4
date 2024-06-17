@@ -1,5 +1,5 @@
 <!-- sidenav -->
-<div class="fixed left-0 top-0 w-64 h-full bg-[#E3EBF3] dark:bg-slate-800 p-4 z-50 sidebar-menu transition-all -translate-x-full md:translate-x-0">
+<div class="fixed left-0 top-0 w-64 h-full bg-[#E3EBF3] dark:bg-slate-700 p-4 z-50 sidebar-menu transition-all -translate-x-full md:translate-x-0">
     <a href="/" class="flex items-center pb-4 border-b border-b-gray-800" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
         <img src="{{ asset('assets/img/logo.png') }}" class="w-30 h-24" alt="Logo">
     </a>

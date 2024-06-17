@@ -3,89 +3,87 @@
 @section('container')
 <div class="container mx-auto p-4">
     <div class="flex justify-between items-center mb-6">
-        <h1 class="text-3xl font-bold text-[#222C67]">Detail Rekam Medis</h1>
+        <h1 class="text-3xl font-bold text-[#222C67] dark:text-white">Detail Rekam Medis</h1>
         <div class="flex items-center gap-4">
-            <button type="button" class="bg-[#222C67] hover:bg-[#6c7cda] font-semibold text-white px-4 py-2 rounded-md shadow-md transition duration-300"><i class="fa-solid fa-print mr-2"></i>Cetak</button>
-            <button type="button" onclick="history.back()" class="bg-[#E8C51C] hover:bg-[#d3da78] font-semibold text-white px-4 py-2 rounded-md shadow-md transition duration-300"><i class="fa-solid fa-arrow-left mr-2"></i>Kembali</button>
+            <button type="button" class="bg-[#222C67] dark:bg-slate-600 hover:bg-[#6c7cda] dark:hover:bg-slate-500 font-semibold text-white px-4 py-2 rounded-md shadow-md transition duration-300"><i class="fa-solid fa-print mr-2"></i>Cetak</button>
+            <button type="button" onclick="history.back()" class="bg-[#E8C51C] dark:bg-yellow-600 hover:bg-[#d3da78] dark:hover:bg-yellow-500 font-semibold text-white px-4 py-2 rounded-md shadow-md transition duration-300"><i class="fa-solid fa-arrow-left mr-2"></i>Kembali</button>
         </div>
     </div>
 
-    <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+    <div class="bg-white dark:bg-slate-700 rounded-lg shadow-md p-6 mb-6">
         <div class="flex flex-col items-center mb-6">
             <div class="flex flex-col lg:flex-row w-full mb-4">
                 <div class="flex w-full lg:w-1/5 mb-4 lg:mb-0 items-center max-[1024px]:justify-center">
                     <img src="{{ asset('assets/img/logo.png') }}" class="w-32 h-32" alt="logo">
                 </div>
                 <div class="w-full lg:w-3/5 text-center lg:text-center">
-                    <p class="text-xl font-bold">{{ $rekamMedis->nama_dokter }}</p>
-                    <p>{{ $rekamMedis->spesialis }}</p>
-                    <p>RH61 Clinic, Jl. Ringroad (Jl. Gagak Hitam)</p>
-                    <p>Komplek Ruko OCBC No. 61, Medan</p>
-                    <p>Telp. (061) 42081004 - 42081005 HP. 08116176661</p>
+                    <p class="text-xl font-bold dark:text-white">{{ $rekamMedis->nama_dokter }}</p>
+                    <p class="dark:text-gray-300">{{ $rekamMedis->spesialis }}</p>
+                    <p class="dark:text-gray-300">RH61 Clinic, Jl. Ringroad (Jl. Gagak Hitam)</p>
+                    <p class="dark:text-gray-300">Komplek Ruko OCBC No. 61, Medan</p>
+                    <p class="dark:text-gray-300">Telp. (061) 42081004 - 42081005 HP. 08116176661</p>
                 </div>
                 <div class="w-full lg:w-1/5 text-center lg:text-right lg:pl-5">
-                    <p>Jam Hadir: {{ \Carbon\Carbon::parse($rekamMedis->created_at)->format('H:i') }}</p>
+                    <p class="dark:text-gray-300">Jam Hadir: {{ \Carbon\Carbon::parse($rekamMedis->created_at)->format('H:i') }}</p>
                 </div>
             </div>
-            <p class="underline text-lg mb-8 font-bold">Kartu Berobat</p>
+            <p class="underline text-lg mb-8 font-bold dark:text-white">Kartu Berobat</p>
             <div class="flex flex-col lg:flex-row w-full mb-4">
                 <div class="w-full lg:w-1/2 ml-5">
                     <div class="flex mb-2">
-                        <div class="w-4/12 font-semibold">No.</div>
-                        <div class="w-1/12">:</div>
-                        <div class="w-7/12">{{ $rekamMedis->id }}</div>
+                        <div class="w-4/12 font-semibold dark:text-white">No.</div>
+                        <div class="w-1/12 dark:text-white">:</div>
+                        <div class="w-7/12 dark:text-gray-300">{{ $rekamMedis->id }}</div>
                     </div>
                     <div class="flex mb-2">
-                        <div class="w-4/12 font-semibold">Nama</div>
-                        <div class="w-1/12">:</div>
-                        <div class="w-7/12">{{ $rekamMedis->nama_pasien }}</div>
+                        <div class="w-4/12 font-semibold dark:text-white">Nama</div>
+                        <div class="w-1/12 dark:text-white">:</div>
+                        <div class="w-7/12 dark:text-gray-300">{{ $rekamMedis->nama_pasien }}</div>
                     </div>
                     <div class="flex mb-2">
-                        <div class="w-4/12 font-semibold">Umur</div>
-                        <div class="w-1/12">:</div>
-                        <div class="w-7/12">{{ $rekamMedis->umur }}</div>
+                        <div class="w-4/12 font-semibold dark:text-white">Umur</div>
+                        <div class="w-1/12 dark:text-white">:</div>
+                        <div class="w-7/12 dark:text-gray-300">{{ $rekamMedis->umur }}</div>
                     </div>
                     <div class="flex mb-2">
-                        <div class="w-4/12 font-semibold">Tanggal</div>
-                        <div class="w-1/12">:</div>
-                        <div class="w-7/12">{{ \Carbon\Carbon::parse($rekamMedis->created_at)->format('Y-m-d') }}</div>
+                        <div class="w-4/12 font-semibold dark:text-white">Tanggal</div>
+                        <div class="w-1/12 dark:text-white">:</div>
+                        <div class="w-7/12 dark:text-gray-300">{{ \Carbon\Carbon::parse($rekamMedis->created_at)->format('Y-m-d') }}</div>
                     </div>
                 </div>
                 <div class="w-full lg:w-1/2 ml-5">
                     <div class="flex mb-2">
-                        <div class="w-4/12 font-semibold">Pekerjaan</div>
-                        <div class="w-1/12">:</div>
-                        <div class="w-7/12">{{ $rekamMedis->pekerjaan }}</div>
+                        <div class="w-4/12 font-semibold dark:text-white">Pekerjaan</div>
+                        <div class="w-1/12 dark:text-white">:</div>
+                        <div class="w-7/12 dark:text-gray-300">{{ $rekamMedis->pekerjaan }}</div>
                     </div>
                     <div class="flex mb-2">
-                        <div class="w-4/12 font-semibold">Alamat</div>
-                        <div class="w-1/12">:</div>
-                        <div class="w-1/2">{{ $rekamMedis->alamat }}</div>
+                        <div class="w-4/12 font-semibold dark:text-white">Alamat</div>
+                        <div class="w-1/12 dark:text-white">:</div>
+                        <div class="w-1/2 dark:text-gray-300">{{ $rekamMedis->alamat }}</div>
                     </div>
                     <div class="flex mb-2">
-                        <div class="w-4/12 font-semibold">Nomor Handphone</div>
-                        <div class="w-1/12">:</div>
-                        <div class="w-7/12">{{ $rekamMedis->nomor_handphone }}</div>
+                        <div class="w-4/12 font-semibold dark:text-white">Nomor Handphone</div>
+                        <div class="w-1/12 dark:text-white">:</div>
+                        <div class="w-7/12 dark:text-gray-300">{{ $rekamMedis->nomor_handphone }}</div>
                     </div>
-                    
                 </div>
             </div>
-            <hr class="w-full mb-4">
-            
+            <hr class="w-full mb-4 dark:border-gray-600">
             <div class="w-full overflow-x-auto">
-                <table class="min-w-full bg-white border border-gray-300">
-                    <thead class="bg-gray-200">
+                <table class="min-w-full bg-white dark:bg-slate-700 border border-gray-300 dark:border-gray-600">
+                    <thead class="bg-gray-200 dark:bg-slate-600">
                         <tr>
-                            <th class="px-6 py-3 text-left text-sm font-semibold text-gray-600">Keluhan</th>
-                            <th class="px-6 py-3 text-left text-sm font-semibold text-gray-600">Diagnosa</th>
-                            <th class="px-6 py-3 text-left text-sm font-semibold text-gray-600">Therapie</th>
+                            <th class="px-6 py-3 text-left text-sm font-semibold text-gray-600 dark:text-gray-300">Keluhan</th>
+                            <th class="px-6 py-3 text-left text-sm font-semibold text-gray-600 dark:text-gray-300">Diagnosa</th>
+                            <th class="px-6 py-3 text-left text-sm font-semibold text-gray-600 dark:text-gray-300">Therapie</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="px-6 py-4 border-t border-gray-300">{{ $rekamMedis->keluhan }}</td>
-                            <td class="px-6 py-4 border-t border-gray-300">{{ $rekamMedis->diagnosa }}</td>
-                            <td class="px-6 py-4 border-t border-gray-300">{{ $rekamMedis->therapie }}</td>
+                            <td class="px-6 py-4 border-t border-gray-300 dark:border-gray-600 dark:text-gray-300">{{ $rekamMedis->keluhan }}</td>
+                            <td class="px-6 py-4 border-t border-gray-300 dark:border-gray-600 dark:text-gray-300">{{ $rekamMedis->diagnosa }}</td>
+                            <td class="px-6 py-4 border-t border-gray-300 dark:border-gray-600 dark:text-gray-300">{{ $rekamMedis->therapie }}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -93,5 +91,4 @@
         </div>
     </div>
 </div>
-
 @endsection
