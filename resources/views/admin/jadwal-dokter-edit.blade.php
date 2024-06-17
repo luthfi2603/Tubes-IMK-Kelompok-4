@@ -2,12 +2,12 @@
 
 @section('container')
 @if(session()->has('success'))
-    <div id="success-php" class="bg-[#d1e7dd] text-[#0f5132] border-2 border-[#badbcc] px-4 py-3 rounded-lg fixed inset-x-[296px] z-[999]">
+    <div id="success-php" class="bg-[#d1e7dd] text-[#0f5132] border-2 border-[#badbcc] px-4 py-3 rounded-lg fixed z-[999] inset-x-6 md:inset-x-[296px]">
         <i class="fa-regular fa-circle-check mr-1"></i>
         <span>{{ session('success') }}</span>
     </div>
 @elseif(session()->has('failed'))
-    <div id="failed-php" class="bg-[#f8d7da] text-[#842029] border-2 border-[#f5c2c7] px-4 py-3 rounded-lg fixed inset-x-[296px] z-[999]">
+    <div id="failed-php" class="bg-[#f8d7da] text-[#842029] border-2 border-[#f5c2c7] px-4 py-3 rounded-lg fixed z-[999] inset-x-6 md:inset-x-[296px]">
         <i class="fa-solid fa-circle-exclamation mr-1"></i>
         <span>{{ session('failed') }}</span>
     </div>
@@ -21,7 +21,7 @@
                 <p class="text-gray-500 text-sm">Silahkan ubah jadwal dokter yang ada di sistem.</p>
             </div>
         </div>
-    <form action="{{ route('admin.jadwal.dokter.edit', $jadwalDokter->id) }}" method="POST" class="flex justify-center">
+    <form onsubmit="submitEditForm(event)" action="{{ route('admin.jadwal.dokter.edit', $jadwalDokter->id) }}" method="POST" class="flex justify-center">
         @csrf
         @method('PUT')
         <div class="flex flex-col items-center gap-4 w-full">

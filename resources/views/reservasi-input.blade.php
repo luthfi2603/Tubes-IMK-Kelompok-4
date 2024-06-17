@@ -2,12 +2,12 @@
 
 @section('container')
 @if(session()->has('success'))
-    <div id="success-php" class="bg-[#d1e7dd] text-[#0f5132] dark:bg-[#1e5128] dark:text-[#d1e7dd] border-2 border-[#badbcc] dark:border-[#1e5128] px-4 py-3 rounded-lg fixed inset-x-[296px] z-[999]">
+    <div id="success-php" class="bg-[#d1e7dd] text-[#0f5132] dark:bg-[#1e5128] dark:text-[#d1e7dd] border-2 border-[#badbcc] dark:border-[#1e5128] px-4 py-3 rounded-lg fixed z-[999] inset-x-6 md:inset-x-[296px]">
         <i class="fa-regular fa-circle-check mr-1"></i>
         <span>{{ session('success') }}</span>
     </div>
 @elseif(session()->has('failed'))
-    <div id="failed-php" class="bg-[#f8d7da] text-[#842029] dark:bg-[#3b0a0a] dark:text-[#f8d7da] border-2 border-[#f5c2c7] dark:border-[#3b0a0a] px-4 py-3 rounded-lg fixed inset-x-[296px] z-[999]">
+    <div id="failed-php" class="bg-[#f8d7da] text-[#842029] dark:bg-[#3b0a0a] dark:text-[#f8d7da] border-2 border-[#f5c2c7] dark:border-[#3b0a0a] px-4 py-3 rounded-lg fixed z-[999] inset-x-6 md:inset-x-[296px]">
         <i class="fa-solid fa-circle-exclamation mr-1"></i>
         <span>{{ session('failed') }}</span>
     </div>
@@ -58,12 +58,11 @@
             </div>
             <div class="flex justify-end gap-2">
                 <button type="submit" class="bg-blue-500 hover:bg-blue-400 text-white font-semibold px-4 py-2 rounded-md shadow-md transition duration-300"><i class="fa-solid fa-calendar-check mr-2"></i>Buat Reservasi</button>
-                <a href="{{ route('reservasi') }}" class="bg-yellow-500 hover:bg-yellow-600 text-white rounded-lg py-2 px-4 w-min text-nowrap"><i class="fa-solid fa-arrow-left mr-2"></i>Kembali</a>
+                <a href="{{ route('reservasi') }}" class="bg-yellow-500 hover:bg-yellow-600 text-white rounded-lg py-2 px-4 w-min text-nowrap flex items-center"><i class="fa-solid fa-arrow-left mr-2"></i>Kembali</a>
             </div>
         </form>
     </div>
 </div>
-
 @push('scripts')
     <script>
         const csrf = '{{ csrf_token() }}';

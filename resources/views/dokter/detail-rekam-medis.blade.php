@@ -4,7 +4,7 @@
 <div class="container mx-auto p-4">
     <div class="flex justify-between items-center mb-6">
         <h1 class="text-3xl font-bold text-[#222C67]">Detail Rekam Medis</h1>
-        <a href="{{ route('dokter.rekam.medis') }}" class="bg-[#E8C51C] hover:bg-[#d3da78] font-semibold text-gray-700 px-4 py-2 rounded-full shadow-md transition duration-300"><i class="fa-solid fa-arrow-left mr-2"></i>Kembali</a>
+        <a href="{{ route('dokter.rekam.medis') }}" class="bg-[#E8C51C] hover:bg-[#d3da78] font-semibold text-white px-4 py-2 rounded-lg shadow-md transition duration-300 flex justify-center items-center"><i class="fa-solid fa-arrow-left mr-2"></i>Kembali</a>
     </div>
     <div class="bg-white rounded-lg shadow-md p-6 mb-6">
         <div class="flex flex-col items-center mb-6">
@@ -79,9 +79,15 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="px-6 py-4 border-t border-gray-300">{{ $rekamMedis->keluhan }}</td>
-                            <td class="px-6 py-4 border-t border-gray-300">{{ $rekamMedis->diagnosa }}</td>
-                            <td class="px-6 py-4 border-t border-gray-300">{{ $rekamMedis->therapie }}</td>
+                            <td class="px-6 py-4 border-t border-gray-300 align-top">
+                                <pre class="text-wrap font-body">{{ $rekamMedis->keluhan }}</pre>
+                            </td>
+                            <td class="px-6 py-4 border-t border-gray-300 align-top">
+                                <pre class="text-wrap font-body">{{ $rekamMedis->diagnosa }}</pre>
+                            </td>
+                            <td class="px-6 py-4 border-t border-gray-300 align-top">
+                                <pre class="text-wrap font-body">{{ $rekamMedis->therapie }}</pre>
+                            </td>
                         </tr>
                     </tbody>
                 </table>

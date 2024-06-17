@@ -35,11 +35,14 @@
         <span class="text-md">Tentang Kami</span>
         <i class="ri-arrow-right-s-line ml-auto transition-transform duration-200"></i>
     </a>
-    <ul class="pl-7 mt-2 hidden" id="child-link">
-        <li class="mb-4">
+    <ul class="pl-12 hidden mt-2" id="child-link">
+        <li class="mb-2">
+            <a href="{{ route('pasien.tentang-kami') }}#" class="text-gray-900 text-md font-semibold flex items-center hover:font-bold hover:text-[#222C67] dark:text-gray-400 dark:hover:text-gray-50">Tentang Kami</a>
+        </li> 
+        <li class="mb-2">
             <a href="{{ route('pasien.tentang-kami') }}#peta-lokasi" class="text-gray-900 text-md font-semibold flex items-center hover:font-bold hover:text-[#222C67] dark:text-gray-400 dark:hover:text-gray-50">Peta dan Lokasi</a>
         </li> 
-        <li class="mb-4">
+        <li class="mb-2">
             <a href="{{ route('pasien.tentang-kami') }}#kontak-darurat" class="text-gray-900 text-md font-semibold flex items-center hover:font-bold hover:text-[#222C67] dark:text-gray-400 dark:hover:text-gray-50">Kontak Darurat</a>
         </li> 
     </ul>

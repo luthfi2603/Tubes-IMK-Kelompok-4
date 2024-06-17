@@ -2,12 +2,12 @@
 
 @section('container')
 @if(session()->has('success'))
-    <div id="success-php" class="bg-[#d1e7dd] dark:bg-green-800 text-[#0f5132] dark:text-green-200 border-2 border-[#badbcc] dark:border-green-700 px-4 py-3 rounded-lg fixed inset-x-[296px] z-[999]">
+    <div id="success-php" class="bg-[#d1e7dd] text-[#0f5132]  dark:bg-green-800 dark:text-green-200 border-2 border-[#badbcc] dark:border-green-700 px-4 py-3 rounded-lg fixed z-[999] inset-x-6 md:inset-x-[296px]">
         <i class="fa-regular fa-circle-check mr-1"></i>
         <span>{{ session('success') }}</span>
     </div>
 @elseif(session()->has('failed'))
-    <div id="failed-php" class="bg-[#f8d7da] dark:bg-red-800 text-[#842029] dark:text-red-200 border-2 border-[#f5c2c7] dark:border-red-700 px-4 py-3 rounded-lg fixed inset-x-[296px] z-[999]">
+    <div id="failed-php" class="bg-[#f8d7da] text-[#842029] dark:bg-red-800 border-2 dark:text-red-200 border-[#f5c2c7] dark:border-red-700 px-4 py-3 rounded-lg fixed z-[999] inset-x-6 md:inset-x-[296px]">
         <i class="fa-solid fa-circle-exclamation mr-1"></i>
         <span>{{ session('failed') }}</span>
     </div>
@@ -22,7 +22,7 @@
     </div>
     <div class="w-full flex-1">
         <div class="mx-auto max-w-md">
-            <form method="POST" action="{{ route('password.edit') }}">
+            <form onsubmit="submitEditForm(event)" method="POST" action="{{ route('password.edit') }}">
                 @csrf
                 @method('PUT')
                 <div class="content-center relative">

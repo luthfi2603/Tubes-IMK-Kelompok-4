@@ -1,8 +1,8 @@
 @extends('layouts.main')
 
 @section('container')
-<div id="success-js" class="hidden bg-[#d1e7dd] text-[#0f5132] border-2 border-[#badbcc] px-4 py-3 rounded-lg fixed inset-x-[296px] z-[999]"><i class="fa-regular fa-circle-check mr-1"></i></div>
-<div id="failed-js" class="hidden bg-[#f8d7da] text-[#842029] border-2 border-[#f5c2c7] px-4 py-3 rounded-lg fixed inset-x-[296px] z-[999]"><i class="fa-solid fa-circle-exclamation mr-1"></i></div>
+<div id="success-js" class="hidden bg-[#d1e7dd] text-[#0f5132] border-2 border-[#badbcc] px-4 py-3 rounded-lg fixed z-[999] inset-x-6 md:inset-x-[296px]"><i class="fa-regular fa-circle-check mr-1"></i></div>
+<div id="failed-js" class="hidden bg-[#f8d7da] text-[#842029] border-2 border-[#f5c2c7] px-4 py-3 rounded-lg fixed z-[999] inset-x-6 md:inset-x-[296px]"><i class="fa-solid fa-circle-exclamation mr-1"></i></div>
 
 <div class="flex justify-between items-center px-4 mb-3">
     <div class="font-body font-bold text-[#222C67]">
@@ -69,21 +69,24 @@
                             }
                         @endphp
                         @foreach ($antrians as $item)
-                            <tr>
+                            <tr class="bg-white hover:bg-[#d1e4f2] transition duration-200">
                                 <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">{{ $i }}</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-md text-center">
+                                <td class="px-6 py-4 whitespace-nowrap text-md">
                                     @if($item->id_rekam_medis)
                                         <a class="px-4 py-2 bg-green-300 text-white rounded-lg" disabled>
                                             Rekam medis telah dibuat
                                         </a>
                                     @else
                                         @if($item->status == 'Batal')
-                                            <a class="px-4 py-2 bg-green-300 text-white rounded-lg" disabled>
+                                            <a class="px-4 py-2 bg-red-300 text-white rounded-lg" disabled>
                                                 Reservasi dibatalkan
                                             </a>
                                         @else
-                                            <a href="{{ route('dokter.rekam.medis.create', $item->id) }}" class="px-4 py-2 bg-green-500 text-white rounded-lg">
-                                                Tambah Rekam Medis
+                                            <a href="{{ route('dokter.rekam.medis.create', $item->id) }}" class="px-4 py-2 bg-green-500 hover:bg-green-700 w-min text-white rounded-lg flex items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                                                </svg>
+                                                Rekam Medis
                                             </a>
                                         @endif
                                     @endif

@@ -95,7 +95,10 @@ async function kirim(url){
             }
         }else if('failed' in data){
             notif.classList.remove('hidden');
-            notif.innerHTML = data.failed;
+            notif.children[1].innerHTML = data.failed;
+            setTimeout(() => {
+                notif.classList.add('hidden');
+            }, 3000);
             errorMessage.classList.add('hidden');
             success2.classList.add('hidden');
             form.reset();
@@ -104,7 +107,7 @@ async function kirim(url){
                 success.classList.add('hidden');
             }
 
-            window.scrollTo({top: 0, behavior: 'smooth'});
+            // window.scrollTo({top: 0, behavior: 'smooth'});
         }else{
             if('kode_verifikasi' in data.errors){
                 errorMessage.classList.remove('hidden');
@@ -152,18 +155,21 @@ const kirimUlang =  async (csrf, url) => {
         kirimUlangTag2.classList.remove('hidden');
         interval2 = setInterval(stopwatch2, 1000);
 
-        success2.classList.add('hidden');
-        window.scrollTo({top: 0, behavior: 'smooth'});
-        setTimeout(() => {
+        // success2.classList.add('hidden');
+        // window.scrollTo({top: 0, behavior: 'smooth'});
+        // setTimeout(() => {
             success2.classList.remove('hidden');
-            success2.innerHTML = data.success;
+            success2.children[1].innerHTML = data.success;
+            setTimeout(() => {
+                success2.classList.add('hidden');
+            }, 3000);
             errorMessage.classList.add('hidden');
             notif.classList.add('hidden');
 
             if(success != null){ // kalo ada
                 success.classList.add('hidden');
             }
-        }, 100);
+        // }, 100);
     }catch(error){
         console.error(error);
     }
@@ -194,3 +200,9 @@ const batal =  async (csrf) => {
         console.error(error);
     }
 };
+
+if(success){
+    setTimeout(() => {
+        success.classList.add('hidden');
+    }, 3000);
+}

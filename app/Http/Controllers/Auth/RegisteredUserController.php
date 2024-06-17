@@ -6,7 +6,9 @@ use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Pasien;
 use Twilio\Rest\Client;
+use App\Models\Reservasi;
 use Illuminate\View\View;
+use App\Models\RekamMedis;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules;
 use App\Http\Controllers\Controller;
@@ -166,6 +168,17 @@ class RegisteredUserController extends Controller {
                     'tanggal_lahir' => $request0['tanggal_lahir'],
                     'pekerjaan' => $request0['pekerjaan'],
                     'id_user' => User::latest()->first()->id
+                ]);
+
+                Reservasi::where('nomor_handphone', $request0['nomor_handphone'])->update([
+                    'nama_pasien' => $request0['nama'],
+                    'alamat' => $request0['alamat'],
+                ]);
+            
+                RekamMedis::where('nomor_handphone', $request0['nomor_handphone'])->update([
+                    'nama_pasien' => $request0['nama'],
+                    'pekerjaan' => $request0['pekerjaan'],
+                    'alamat' => $request0['alamat'],
                 ]);
             }else{
                 // kalau ada

@@ -5,12 +5,13 @@
     <div class="flex justify-between items-center mb-6">
         <h1 class="text-3xl font-bold text-[#222C67] dark:text-white">Detail Rekam Medis</h1>
         <div class="flex items-center gap-4">
-            <button type="button" class="bg-[#222C67] dark:bg-slate-600 hover:bg-[#6c7cda] dark:hover:bg-slate-500 font-semibold text-white px-4 py-2 rounded-md shadow-md transition duration-300"><i class="fa-solid fa-print mr-2"></i>Cetak</button>
+            <button type="button" class="bg-[#222C67] hover:bg-[#6c7cda]  dark:bg-slate-600 dark:hover:bg-slate-500 font-semibold text-white px-4 py-2 rounded-md shadow-md transition duration-300"><i class="fa-solid fa-print mr-2"></i>Cetak</button>
             <button type="button" onclick="history.back()" class="bg-[#E8C51C] dark:bg-yellow-600 hover:bg-[#d3da78] dark:hover:bg-yellow-500 font-semibold text-white px-4 py-2 rounded-md shadow-md transition duration-300"><i class="fa-solid fa-arrow-left mr-2"></i>Kembali</button>
         </div>
     </div>
+    <div id="print" class="bg-white rounded-lg shadow-md p-6 mb-6">
 
-    <div class="bg-white dark:bg-slate-700 rounded-lg shadow-md p-6 mb-6">
+    <div class="bg-white rounded-lg shadow-md p-6 mb-6">
         <div class="flex flex-col items-center mb-6">
             <div class="flex flex-col lg:flex-row w-full mb-4">
                 <div class="flex w-full lg:w-1/5 mb-4 lg:mb-0 items-center max-[1024px]:justify-center">
@@ -81,9 +82,9 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="px-6 py-4 border-t border-gray-300 dark:border-gray-600 dark:text-gray-300">{{ $rekamMedis->keluhan }}</td>
-                            <td class="px-6 py-4 border-t border-gray-300 dark:border-gray-600 dark:text-gray-300">{{ $rekamMedis->diagnosa }}</td>
-                            <td class="px-6 py-4 border-t border-gray-300 dark:border-gray-600 dark:text-gray-300">{{ $rekamMedis->therapie }}</td>
+                            <td class="px-6 py-4 border-t border-gray-300">{{ $rekamMedis->keluhan }}</td>
+                            <td class="px-6 py-4 border-t border-gray-300">{{ $rekamMedis->diagnosa }}</td>
+                            <td class="px-6 py-4 border-t border-gray-300">{{ $rekamMedis->therapie }}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -91,4 +92,5 @@
         </div>
     </div>
 </div>
+
 @endsection

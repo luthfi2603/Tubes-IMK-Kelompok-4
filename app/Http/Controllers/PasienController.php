@@ -336,6 +336,14 @@ class PasienController extends Controller {
             Storage::delete(auth()->user()->foto);
         }
 
+        Reservasi::where('nomor_handphone', auth()->user()->nomor_handphone)->update([
+            'foto' => null
+        ]);
+        
+        RekamMedis::where('nomor_handphone', auth()->user()->nomor_handphone)->update([
+            'foto' => null
+        ]);
+
         User::find(auth()->user()->id)->delete();
 
         return redirect('/');
@@ -630,7 +638,7 @@ class PasienController extends Controller {
             ]);
         }
 
-        return back();
+        return back()->with('success', 'Reservasi berhasil dibatalkan');
     }
 
     public function indexRekamMedis(){

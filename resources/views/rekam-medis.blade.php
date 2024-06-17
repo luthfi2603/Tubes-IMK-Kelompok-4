@@ -33,7 +33,9 @@
                         <h2 class="text-2xl font-bold text-[#222C67] dark:text-white mb-2">{{ $item->nama_dokter }}</h2>
                         <p class="text-lg text-gray-600 dark:text-gray-300 mb-4">{{ $item->spesialis }}</p>
                         <p class="text-md text-gray-600 dark:text-gray-300 mb-4">Waktu Kunjungan: {{ \Carbon\Carbon::parse($item->created_at)->translatedFormat('l, d F Y, H:i') }}</p>
-                        <p class="text-md text-gray-600 dark:text-gray-300 break-all overflow-hidden">Diagnosa: {{ $item->diagnosa }}</p>
+                        <p class="text-md text-gray-600 dark:text-gray-300 break-all overflow-hidden">Diagnosa:</p>
+                        {{-- <textarea class="rounded-lg w-full h-[200px]">{{ $item->diagnosa }}</textarea> --}}
+                        <pre class="text-wrap font-body h-[200px] dark:text-gray-300 overflow-hidden">{{ $item->diagnosa }}</pre>
                     </div>
                     <div class="mt-4">
                         <a href="{{ route('rekam.medis.detail', $item->id) }}">
