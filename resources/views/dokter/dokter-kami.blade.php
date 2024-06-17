@@ -8,12 +8,12 @@
 </div>
 <hr class="border-1 border-[#B1B0AF] mb-4 mx-4">
 <div class="flex flex-col gap-4 p-5">
-    <div class="bg-[#222C67] text-white p-4 max-[640px]:p-3 rounded-lg mb-2 flex items-center">
+    <div class="bg-[#7f89c0] text-white p-4 max-[640px]:p-3 rounded-lg flex items-center mb-4">
         <div class="flex-1">
             <p class="font-vold text-lg sm:text-md max-[640px]:text-sm">"Kami menyediakan dokter berpengalaman yang siap memberikan perawatan terbaik untuk setiap pasien kami. Kesehatan Anda adalah prioritas utama kami."</p>
         </div>
         <div>
-            <img src="{{ asset('assets/img/picture-quotes.png') }}" alt="Doctor" class="w-24 h-25 max-[640px]:w-17 max-[640px]:h-17">
+            <img src="{{ asset('assets/img/dokter-3.png') }}" alt="Doctor" class="w-25 h-24 max-[640px]:w-17 max-[640px]:h-17">
         </div>
     </div>
     @if($dokters->isEmpty())
@@ -29,7 +29,7 @@
             }
         @endphp
         @foreach($dokters as $item)
-            <div class="border-gray-300 rounded-2xl flex border-4 shadow-lg">
+            <div class="border-gray-300 rounded-2xl flex border-4 shadow-lg py-2">
                 <div class="w-1/4 flex pl-2">
                     @if($item->foto)
                         <img src="{{ asset('storage/' . $item->foto) }}" alt="dokter" class="m-auto mt-2 md:m-auto md:max-h-44 rounded-lg">

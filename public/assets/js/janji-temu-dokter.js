@@ -139,7 +139,12 @@ async function refreshTable(){
         }else{ // kalau tidak ada
             isiTabel.innerHTML = `
                 <tr>
-                    <td colspan="7" class="text-center text-2xl py-3">Data tidak ada</td>
+                    <td colspan="7" class="text-center py-3">
+                    <div class="bg-gray-100 rounded-lg p-4 inline-flex items-center text-gray-500 ">
+                        <i class="fa-regular fa-file mr-3"></i>  
+                        <span class="text-lg font-semibold">Data tidak ada</span>
+                    </div>
+                    </td>
                 </tr>
             `;
         }

@@ -36,13 +36,15 @@
     </form>
 </div> --}}
 
-@if(session()->has('failed'))
-    <div class="bg-red-300 py-3 text-white px-4 rounded-lg">
-        {{ session('failed') }}
+@if(session()->has('success'))
+    <div id="success-php" class="bg-[#d1e7dd] text-[#0f5132] border-2 border-[#badbcc] px-4 py-3 rounded-lg fixed inset-x-[296px] z-[999]">
+        <i class="fa-regular fa-circle-check mr-1"></i>
+        <span>{{ session('success') }}</span>
     </div>
-@elseif(session()->has('success'))
-    <div id="success" class="bg-green-300 py-3 text-white px-4 rounded-lg">
-        {{ session('success') }}
+@elseif(session()->has('failed'))
+    <div id="failed-php" class="bg-[#f8d7da] text-[#842029] border-2 border-[#f5c2c7] px-4 py-3 rounded-lg fixed inset-x-[296px] z-[999]">
+        <i class="fa-solid fa-circle-exclamation mr-1"></i>
+        <span>{{ session('failed') }}</span>
     </div>
 @endif
 <div id="success-2" class="bg-green-300 py-3 text-white px-4 rounded-lg hidden"></div>

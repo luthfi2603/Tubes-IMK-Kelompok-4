@@ -2,13 +2,12 @@
 
 @section('container')
 <!-- Dashboard Header -->
-<div class="flex justify-between items-center px-4 mb-3">
-    <div class="font-body font-bold text-[#222C67]">
-        <h1 class="text-3xl font-bold">Dashboard</h1>
-    </div>
-</div>
 
-<hr class="border-1 border-[#B1B0AF] mb-4 mx-4">
+    <div class="flex flex-col md:flex-row justify-between items-center mb-6 px-4 pt-4">
+        <h1 class="text-3xl font-bold text-[#222C67] mb-4 md:mb-0">Dashboard</h1>
+    </div>
+
+    <hr class="border-1 border-[#B1B0AF] mb-6 mx-4">
 
 <!-- Main Layout -->
 <div class="flex flex-col xl:flex-row w-full p-4 space-y-6 xl:space-y-0 xl:space-x-6">
@@ -108,6 +107,7 @@
         </div>
     </div>
 </div>
+
 @push('scripts')
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>

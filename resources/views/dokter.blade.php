@@ -1,19 +1,20 @@
 @extends('layouts.main')
 
 @section('container')
-<div class="flex flex-col gap-4">
-    <div class="flex justify-between items-center ml-4">
-        <h1 class="text-3xl font-bold text-[#222C67]">Dokter Kami</h1>
-    </div>
 
-    <hr class="border-1 border-[#B1B0AF] mb-4 mx-4">
+<div class="container mx-auto p-4">
+        <div class="flex flex-col md:flex-row justify-between items-center mb-6">
+            <h1 class="text-3xl font-bold text-[#222C67] mb-4 md:mb-0">Dokter Kami</h1>
+        </div>
 
-    <div class="bg-[#222C67] text-white p-4 max-[640px]:p-3 rounded-lg flex items-center mb-4">
+    <hr class="border-1 border-[#B1B0AF] mb-4">
+
+    <div class="bg-[#7f89c0] text-white p-4 max-[640px]:p-3 rounded-lg flex items-center mb-6">
         <div class="flex-1">
             <p class="font-vold text-lg sm:text-md max-[640px]:text-sm">"Kami menyediakan dokter berpengalaman yang siap memberikan perawatan terbaik untuk setiap pasien kami. Kesehatan Anda adalah prioritas utama kami."</p>
         </div>
         <div>
-            <img src="{{ asset('assets/img/picture-quotes.png') }}" alt="Doctor" class="w-24 h-25 max-[640px]:w-17 max-[640px]:h-17">
+            <img src="{{ asset('assets/img/dokter-3.png') }}" alt="Doctor" class="w-25 h-24 max-[640px]:w-17 max-[640px]:h-17">
         </div>
     </div>
     
@@ -30,7 +31,7 @@
             }
         @endphp
         @foreach($dokters as $item)
-            <div class="border-gray-300 rounded-2xl flex border-4 shadow-lg">
+            <div class="border-gray-300 rounded-2xl flex border-4 shadow-lg py-3 my-5">
                 <div class="w-1/4 flex pl-2">
                     @if($item->foto)
                         <img src="{{ asset('storage/' . $item->foto) }}" alt="dokter" class="m-auto mt-2 md:m-auto md:max-h-44 rounded-lg">
@@ -342,8 +343,8 @@
                         </div>
                     </div>
                     <div class="flex items-center mt-2 md:mt-4 md:justify-end">
-                        <a href="/reservasi/buat?tanggal={{ $tanggalRekomendasi }}&spesialis={{ $item->spesialis }}&nama={{ $item->nama }}&waktu={{ $jamRekomendasi }}" class="text-blue-900 font-bold leading-none mr-3">Buat janji temu</a>
-                        <svg class="w-[16px] h-[16px] fill-blue-900 mt-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg>
+                        <a href="/reservasi/buat?tanggal={{ $tanggalRekomendasi }}&spesialis={{ $item->spesialis }}&nama={{ $item->nama }}&waktu={{ $jamRekomendasi }}" class="text-blue-900 font-bold leading-none mr-3 hover:text-green-600">Buat janji temu <span><i class="ml-1 fa-solid fa-arrow-right"></i></span></a>
+                        
                     </div>
                 </div>
             </div>

@@ -2,12 +2,14 @@
 
 @section('container')
 @if(session()->has('success'))
-    <div id="success-php" class="mb-4 bg-green-300 py-3 text-white px-4 rounded-lg">
-        {{ session('success') }}
+    <div id="success-php" class="bg-[#d1e7dd] text-[#0f5132] border-2 border-[#badbcc] px-4 py-3 rounded-lg fixed inset-x-[296px] z-[999]">
+        <i class="fa-regular fa-circle-check mr-1"></i>
+        <span>{{ session('success') }}</span>
     </div>
 @elseif(session()->has('failed'))
-    <div id="failed-php" class="mb-4 bg-red-300 py-3 text-white px-4 rounded-lg">
-        {{ session('failed') }}
+    <div id="failed-php" class="bg-[#f8d7da] text-[#842029] border-2 border-[#f5c2c7] px-4 py-3 rounded-lg fixed inset-x-[296px] z-[999]">
+        <i class="fa-solid fa-circle-exclamation mr-1"></i>
+        <span>{{ session('failed') }}</span>
     </div>
 @endif
 <div class="container mx-auto px-4 py-6">
@@ -50,8 +52,8 @@
                 @enderror
             </div>
             <div class="flex justify-end w-full">
-                <button class="mr-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg py-2 px-4 w-min text-nowrap mt-1">Tambah</button>
-                <a href="{{ route('admin.jadwal.dokter.index') }}" class="bg-yellow-500 hover:bg-yellow-600 text-white rounded-lg py-2 px-4 w-min text-nowrap mt-1">Kembali</a>
+                <button class="mr-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg py-2 px-4 w-min text-nowrap mt-1"><i class="fa-solid fa-floppy-disk mr-2"></i>Tambah</button>
+                <a href="{{ route('admin.jadwal.dokter.index') }}" class="bg-yellow-500 hover:bg-yellow-600 text-white rounded-lg py-2 px-4 w-min text-nowrap mt-1"><i class="fa-solid fa-arrow-left mr-2"></i>Kembali</a>
             </div>
         </div>
     </form>

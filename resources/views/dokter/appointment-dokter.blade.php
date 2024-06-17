@@ -1,11 +1,12 @@
 @extends('layouts.main')
 
 @section('container')
-<div id="success-js" class="hidden bg-green-300 py-3 text-white px-4 rounded-lg fixed inset-x-4 top-4 z-[99]"></div>
-<div id="failed-js" class="hidden bg-red-300 py-3 text-white px-4 rounded-lg fixed inset-x-4 top-4 z-[99]"></div>
+<div id="success-js" class="hidden bg-[#d1e7dd] text-[#0f5132] border-2 border-[#badbcc] px-4 py-3 rounded-lg fixed inset-x-[296px] z-[999]"><i class="fa-regular fa-circle-check mr-1"></i></div>
+<div id="failed-js" class="hidden bg-[#f8d7da] text-[#842029] border-2 border-[#f5c2c7] px-4 py-3 rounded-lg fixed inset-x-[296px] z-[999]"><i class="fa-solid fa-circle-exclamation mr-1"></i></div>
+
 <div class="flex justify-between items-center px-4 mb-3">
     <div class="font-body font-bold text-[#222C67]">
-        <h1 class="text-3xl font-bold">Janji temu</h1>
+        <h1 class="text-3xl font-bold">Daftar Reservasi</h1>
     </div>
     <div class="flex items-center gap-4">
         <svg id="tombol-refresh" class="cursor-pointer"  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-refresh"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4" /><path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4" /></svg>
@@ -15,11 +16,24 @@
 <hr class="border-1 border-[#B1B0AF] mb-4 mx-4">
 <div class="flex-1 p-6">
     <div class="grid grid-cols-4 gap-4 mb-6">
-        <div class="bg-blue-100 p-4 rounded-lg text-center">
-            <div class="text-3xl font-bold">105</div>
-            <div>Total Patient</div>
+        <div class="bg-blue-100 p-4 rounded-lg text-center flex items-center justify-center">
+            <div>
+                <div class="text-3xl font-bold">105</div>
+                <div>Total Pasien</div>
+            </div>
+        </div>
+        <div class="bg-[#7f89c0] text-white p-4 max-w-full rounded-lg flex items-center col-span-3">
+            <div class="flex-1">
+                <p class="font-bold text-lg sm:text-md max-[640px]:text-sm">Selamat datang, Dokter! Manajemen reservasi yang lebih baik untuk pelayanan yang lebih maksimal.</p>
+            </div>
+            <div>
+                <img src="{{ asset('assets/img/dokter-3.png') }}" alt="Doctor" class="w-24 h-24 max-[640px]:w-16 max-[640px]:h-16">
+            </div>
         </div>
     </div>
+    
+    
+    
     <div class="bg-white shadow-lg rounded-lg overflow-hidden">
         <div class="block w-full overflow-x-auto">
             <table class="min-w-full bg-white shadow-md">
@@ -36,10 +50,16 @@
                 </thead>
                 <tbody id="isi-tabel">
                     @if($antrians->isEmpty())
-                        <tr>
-                            <td colspan="7" class="text-center text-2xl py-3">Data tidak ada</td>
-                        </tr>
+                    <tr>
+                        <td colspan="7" class="text-center py-3">
+                            <div class="bg-gray-100 rounded-lg p-4 inline-flex items-center text-gray-500 ">
+                                <i class="fa-regular fa-file mr-3"></i>  
+                                <span class="text-lg font-semibold">Data tidak ada</span>
+                            </div>
+                        </td>
+                    </tr>
                     @else
+
                         @php
                             $halamanSekarang = request('page');
                             if(empty($halamanSekarang)){
@@ -51,7 +71,7 @@
                         @foreach ($antrians as $item)
                             <tr>
                                 <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">{{ $i }}</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-center">
+                                <td class="px-6 py-4 whitespace-nowrap text-md text-center">
                                     @if($item->id_rekam_medis)
                                         <a class="px-4 py-2 bg-green-300 text-white rounded-lg" disabled>
                                             Rekam medis telah dibuat

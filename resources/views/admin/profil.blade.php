@@ -2,18 +2,25 @@
 
 @section('container')
 @if(session()->has('failed'))
-    <div id="failed" class="mb-4 bg-red-300 py-3 text-white px-4 rounded-lg">
+    <div id="failed" class="bg-[#f8d7da] text-[#842029] border-2 border-[#f5c2c7] px-4 py-3 rounded-lg fixed inset-x-[296px] z-[999]">
         {{ session('failed') }}
     </div>
 @elseif(session()->has('success'))
-    <div id="success-php" class="mb-4 bg-green-300 py-3 text-white px-4 rounded-lg">
+    <div id="success-php" class="bg-[#d1e7dd] text-[#0f5132] border-2 border-[#badbcc] px-4 py-3 rounded-lg fixed inset-x-[296px] z-[999]">
         {{ session('success') }}
     </div>
 @endif
-<div id="success" class="mb-4 bg-green-300 py-3 px-4 text-white rounded-lg hidden"></div>
-<div id="failed-ubah-profil" class="mb-4 bg-red-300 py-3 px-4 text-white rounded-lg hidden"></div>
+
+<div class="container mx-auto p-4">
+
+    <div id="success" class="bg-[#d1e7dd] text-[#0f5132] border-2 border-[#badbcc] px-4 py-3 rounded-lg fixed inset-x-[296px] z-[999] hidden"></div>
+    <div id="failed-ubah-profil" class="bg-[#f8d7da] text-[#842029] border-2 border-[#f5c2c7] px-4 py-3 rounded-lg fixed inset-x-[296px] z-[999] hidden"></div>
+    
 <div class="flex flex-col gap-4">
-    <p class="text-2xl md:text-3xl font-bold">Profil</p>
+    <p class="text-2xl md:text-3xl font-bold text-[#222C67]">Profil</p>
+
+    <hr class="border-1 border-[#B1B0AF] mb-8">
+
     <form method="POST" class="flex justify-center md:text-lg">
         @csrf
         @method('PUT')
@@ -26,9 +33,9 @@
                 </div>
                 <div class="flex flex-col gap-2 items-center">
                     <div class="flex gap-2">
-                        <span id="ubah-foto" class="border-2 rounded-lg border-[#8E8D8B] text-[#8E8D8B] font-semibold px-3 py-2 cursor-pointer w-min text-nowrap">Ubah Foto</span>
-                        <span id="simpan" onclick="simpan('{{ csrf_token() }}', 'tambah', '/admin/profil')" class="border-2 rounded-lg border-[#8E8D8B] text-[#8E8D8B] font-semibold px-3 py-2 cursor-pointer w-min text-nowrap hidden">Simpan</span>
-                        <span id="batal" class="border-2 rounded-lg border-[#8E8D8B] text-[#8E8D8B] font-semibold px-3 py-2 cursor-pointer w-min text-nowrap hidden">Batal</span>
+                        <button id="ubah-foto" type="button" class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-lg text-md px-5 py-2.5 text-center me-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800"><i class="fa-solid fa-pen-to-square mr-2"></i>Ubah Foto</button>
+                        <span id="simpan" onclick="simpan('{{ csrf_token() }}', 'tambah', '/admin/profil')" type="button" class="text-green-700 hover:text-white border border-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-semibold rounded-lg text-md px-5 py-2.5 text-center me-2 mb-2 hidden dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:hover:bg-green-600 dark:focus:ring-green-800"><i class="fa-solid fa-floppy-disk mr-2"></i>Simpan</span>
+                        <button id="batal" type="button" class="text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-semibold rounded-lg text-md px-5 py-2.5 text-center me-2 mb-2 hidden dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800"><i class="fa-solid fa-xmark mr-2"></i>Batal</button>
                     </div>
                     <span id="error-message" class="text-red-500 hidden">Silakan pilih file gambar (jpg, jpeg, png).</span>
                 </div>
@@ -40,10 +47,10 @@
                 </div>
                 <div class="flex flex-col gap-2 items-center">
                     <div class="flex gap-2">
-                        <span id="ubah-foto" class="border-2 rounded-lg border-[#8E8D8B] text-[#8E8D8B] font-semibold px-3 py-2 cursor-pointer w-min text-nowrap">Ubah Foto</span>
-                        <span id="hapus-foto" onclick="klikTombolHapusFoto('/admin/profil')" class="border-2 rounded-lg border-[#8E8D8B] text-[#8E8D8B] font-semibold px-3 py-2 cursor-pointer w-min text-nowrap">Hapus Foto</span>
-                        <span id="simpan" onclick="simpan('{{ csrf_token() }}', 'ubah', '/admin/profil')" class="border-2 rounded-lg border-[#8E8D8B] text-[#8E8D8B] font-semibold px-3 py-2 cursor-pointer w-min text-nowrap hidden">Simpan</span>
-                        <span id="batal" class="border-2 rounded-lg border-[#8E8D8B] text-[#8E8D8B] font-semibold px-3 py-2 cursor-pointer w-min text-nowrap hidden">Batal</span>
+                        <button id="ubah-foto" type="button" class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-lg text-md px-5 py-2.5 text-center me-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800"><i class="fa-solid fa-pen-to-square mr-2"></i>Ubah Foto</button>
+                        <button id="hapus-foto" onclick="klikTombolHapusFoto('/admin/profil')" type="button" class="text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-semibold rounded-lg text-md px-5 py-2.5 text-center me-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900"><i class="fa-solid fa-trash mr-2"></i>Hapus Foto</button>
+                        <span id="simpan" onclick="simpan('{{ csrf_token() }}', 'ubah', '/admin/profil')" type="button" class="text-green-700 hover:text-white border border-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-semibold rounded-lg text-md px-5 py-2.5 text-center me-2 mb-2 hidden dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:hover:bg-green-600 dark:focus:ring-green-800"><i class="fa-solid fa-floppy-disk mr-2"></i>Simpan</span>
+                        <button id="batal" type="button" class="text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-semibold rounded-lg text-md px-5 py-2.5 text-center me-2 mb-2 hidden dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800"><i class="fa-solid fa-xmark mr-2"></i>Batal</button>
                     </div>
                     <span id="error-message" class="text-red-500 hidden">Silakan pilih file gambar (jpg, jpeg, png).</span>
                 </div>
@@ -89,14 +96,16 @@
                     </div>
                 </div>
             </div>
-            <button type="submit" class="border-2 rounded-lg border-[#222C67] text-[#222C67] dark:text-white dark:bg-[#222C67] font-semibold px-6 py-2 mt-4">Ubah</button>
+            <button type="submit" class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-lg text-md text-center me-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800 px-6 py-2 mt-4"><i class="fa-solid fa-pen-to-square mr-2"></i>Ubah</button>
             <span class="text-gray-500">Untuk mengubah data profil, silahkan ubah data yang ditampilkan lalu tekan tombol <b>ubah</b></span>
         </div>
     </form>
     <hr class="my-3 h-[2px] bg-gray-300">
     <p class="text-2xl md:text-3xl font-bold mt-1">Ubah Kata Sandi</p>
     <p class="md:text-lg">Ubah kata sandi untuk mengamankan akun anda</p>
-    <a href="{{ route('password.edit') }}" class="border-2 rounded-lg border-[#222C67] text-[#222C67] dark:text-white dark:bg-[#222C67] font-semibold px-6 py-2 w-min text-nowrap">Ubah Kata Sandi</a>
+    <a href="{{ route('password.edit') }}">
+        <button type="button" class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-lg text-md px-5 py-2.5 text-center me-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800"><i class="fa-solid fa-pen-to-square mr-2"></i>Ubah Kata Sandi</button>
+    </a>
 </div>
 @push('scripts')
     <script>
