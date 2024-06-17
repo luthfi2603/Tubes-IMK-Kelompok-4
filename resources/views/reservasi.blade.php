@@ -16,7 +16,7 @@
 
 <div class="container mx-auto p-4 mb-44">
     <div class="flex flex-col md:flex-row justify-between items-center mb-6">
-        <h1 class="text-3xl font-bold text-[#222C67] dark:text-white mb-4 md:mb-0">Reservasi</h1>
+        <h1 class="text-3xl font-bold text-[#222c67] dark:text-white text-[#222C67] dark:text-white mb-4 md:mb-0">Reservasi</h1>
         <a href="{{ route('buat.reservasi') }}">
             <button class="bg-[#222C67] dark:bg-blue-700 hover:bg-[#6c7cda] dark:hover:bg-blue-600 text-white px-4 py-2 rounded-full shadow-md transition duration-300">+ Buat Reservasi</button>
         </a>

@@ -3,7 +3,7 @@
 @section('container')
 <div class="container mx-auto p-4">
     <div class="flex justify-between items-center mb-6">
-        <h1 class="text-3xl font-bold text-[#222C67] dark:text-white">Detail Rekam Medis</h1>
+        <h1 class="text-3xl font-bold text-[#222c67] dark:text-white text-[#222C67] dark:text-white">Detail Rekam Medis</h1>
         <div class="flex items-center gap-4">
             <button type="button" class="bg-[#222C67] hover:bg-[#6c7cda]  dark:bg-slate-600 dark:hover:bg-slate-500 font-semibold text-white px-4 py-2 rounded-md shadow-md transition duration-300"><i class="fa-solid fa-print mr-2"></i>Cetak</button>
             <button type="button" onclick="history.back()" class="bg-[#E8C51C] dark:bg-yellow-600 hover:bg-[#d3da78] dark:hover:bg-yellow-500 font-semibold text-white px-4 py-2 rounded-md shadow-md transition duration-300"><i class="fa-solid fa-arrow-left mr-2"></i>Kembali</button>

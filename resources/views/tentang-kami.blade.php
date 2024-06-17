@@ -4,7 +4,7 @@
 
 <div class="flex justify-between items-center px-4 mb-3">
     <div class="font-body font-bold text-[#222C67] dark:text-white">
-        <h1 class="text-3xl font-bold">Tentang Kami</h1>
+        <h1 class="text-3xl font-bold text-[#222c67] dark:text-white">Tentang Kami</h1>
     </div>
 </div>
 

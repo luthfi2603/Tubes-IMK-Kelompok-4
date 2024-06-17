@@ -3,7 +3,7 @@
 @section('container')
 <div class="container mx-auto p-4 mb-44">
     <div class="flex justify-between items-center mb-4">
-        <h1 class="text-3xl font-bold text-[#222C67] dark:text-white">Rekam Medis Pasien</h1>
+        <h1 class="text-3xl font-bold text-[#222c67] dark:text-white text-[#222C67] dark:text-white">Rekam Medis Pasien</h1>
     </div>
 
     <hr class="border-1 border-[#B1B0AF] dark:border-gray-700 mb-8">
@@ -35,7 +35,7 @@
                         <p class="text-md text-gray-600 dark:text-gray-300 mb-4">Waktu Kunjungan: {{ \Carbon\Carbon::parse($item->created_at)->translatedFormat('l, d F Y, H:i') }}</p>
                         <p class="text-md text-gray-600 dark:text-gray-300 break-all overflow-hidden">Diagnosa:</p>
                         {{-- <textarea class="rounded-lg w-full h-[200px]">{{ $item->diagnosa }}</textarea> --}}
-                        <pre class="text-wrap font-body h-[200px] dark:text-gray-300 overflow-hidden">{{ $item->diagnosa }}</pre>
+                        <pre class="text-wrap font-body dark:text-gray-300 overflow-hidden">{{ $item->diagnosa }}</pre>
                     </div>
                     <div class="mt-4">
                         <a href="{{ route('rekam.medis.detail', $item->id) }}">

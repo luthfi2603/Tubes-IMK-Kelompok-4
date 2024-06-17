@@ -4,7 +4,7 @@
 <!-- Dashboard Header -->
 
 <div class="flex flex-col md:flex-row justify-between items-center mb-6 px-4 pt-4">
-    <h1 class="text-3xl font-bold text-[#222C67] dark:text-white mb-4 md:mb-0">Dashboard</h1>
+    <h1 class="text-3xl font-bold text-[#222c67] dark:text-white text-[#222C67] dark:text-white mb-4 md:mb-0">Dashboard</h1>
 </div>
 
 <hr class="border-1 border-[#B1B0AF] dark:border-gray-600 mb-6 mx-4">

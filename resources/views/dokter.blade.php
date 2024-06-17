@@ -3,7 +3,7 @@
 @section('container')
 <div class="container mx-auto p-4">
     <div class="flex flex-col md:flex-row justify-between items-center mb-6">
-        <h1 class="text-3xl font-bold text-[#222C67] dark:text-white mb-4 md:mb-0">Dokter Kami</h1>
+        <h1 class="text-3xl font-bold text-[#222c67] dark:text-white text-[#222C67] dark:text-white mb-4 md:mb-0">Dokter Kami</h1>
     </div>
 
     <hr class="border-1 border-[#B1B0AF] dark:border-gray-700 mb-4">
@@ -18,8 +18,10 @@
     </div>
     
     @if($dokters->isEmpty())
-        <div class="mt-4 text-center">
-            <p class="text-xl font-bold dark:text-white">Dokter tidak ada</p>
+    <div class="bg-[#E3EBF3] dark:bg-gray-900 text-center p-4 rounded-lg shadow-md font-bold w-full md:w-3/4 flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-4">
+            <img src="{{ asset('assets/img/nurse-2.png') }}" alt="No Appointments" class="w-16 h-16">
+            <p class="text-xl text-[#222C67] dark:text-gray-300">Belum ada Dokter yang Terdaftar</p>
+            <img src="{{ asset('assets/img/nurse-2.png') }}" alt="No Appointments" class="hidden md:block w-16 h-16">
         </div>
     @else
         @php

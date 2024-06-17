@@ -186,13 +186,10 @@ async function refreshTable(){
             isiTabel.innerHTML = `
                 <tr>
                     <td colspan="9" class="text-center text-2xl py-3">
-                        <div class="flex justify-center items-center">
-                            <div class="bg-[#E3EBF3] text-center p-4 rounded-lg shadow-md font-bold w-3/4 flex items-center justify-center space-x-4">
-                                <img src="/assets/img/nurse-2.png" alt="No Appointments" class="w-16 h-16">
-                                <p class="text-xl text-[#222C67]">Belum ada Data</p>
-                                <img src="/assets/img/nurse-2.png" alt="No Appointments" class="w-16 h-16">
+                        <div class="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 inline-flex items-center text-gray-500 dark:text-gray-400">
+                                <i class="fa-regular fa-file mr-3"></i>  
+                                <span class="text-lg font-semibold">Data tidak ada</span>
                             </div>
-                        </div>
                     </td>
                 </tr>
             `;
