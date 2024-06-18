@@ -27,7 +27,7 @@ class PasienController extends Controller {
             ->limit(3)
             ->get();
         
-        $rekamMedis = RekamMedis::where('nama_pasien', auth()->user()->pasien->nama)
+        $rekamMedis = RekamMedis::where('nomor_handphone', auth()->user()->nomor_handphone)
             ->latest()
             ->first();
 
@@ -676,7 +676,7 @@ class PasienController extends Controller {
     }
 
     public function showNotifikasi(){
-        $notifikasi = DB::table('view_reservasi')->where('nama_pasien', auth()->user()->pasien->nama)
+        $notifikasi = DB::table('view_reservasi')->where('nomor_handphone', auth()->user()->nomor_handphone)
             ->orderBy('updated_at', 'DESC')
             ->get();
 

@@ -3,7 +3,7 @@
 @section('container')
 <div class="container mx-auto p-4 mb-44">
     <div class="flex justify-between items-center mb-4">
-        <h1 class="text-3xl font-bold text-[#222c67] dark:text-white text-[#222C67] dark:text-white">Rekam Medis Pasien</h1>
+        <h1 class="text-3xl font-bold text-[#222c67] dark:text-white">Rekam Medis Pasien</h1>
     </div>
 
     <hr class="border-1 border-[#B1B0AF] dark:border-gray-700 mb-8">
