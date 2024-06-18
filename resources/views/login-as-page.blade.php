@@ -6,19 +6,17 @@
     <title>Klinik RH61</title>
     <link rel="icon" href="{{ asset('assets/img/logo.png') }}" type="image/png">
     <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}">
-    <script src="{{ asset('assets/js/custom-check.js') }}"></script>
+    {{-- <script src="{{ asset('assets/js/custom-check.js') }}"></script> --}}
 </head>
-<body class="bg-neutral-100 dark:bg-slate-800 min-h-screen flex flex-col items-center">
+<body class="bg-[#E3EBF3] dark:bg-slate-800 min-h-screen flex flex-col items-center">
     <div class="mx-auto">
         <div class="flex items-center justify-center mb-1">
             <img class="size-52 md:size-64 mx-auto" src="{{ asset('assets/img/logo.png') }}" />
         </div>
-
         <div class="text-center mb-4">
             <div class="text-zinc-900 dark:text-white text-xl md:text-2xl font-bold leading-[38px]">Mari bergabung bersama kami</div>
             <div class="text-neutral-400 dark:text-slate-50 text-base md:text-lg font-semibold">Silakan pilih pengguna untuk melanjutkan</div>
         </div>
-
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 mb-8">
             <!-- Patient Card -->
             <a href="{{ route('login') }}" class="cursor-pointer bg-neutral-100 rounded-[18px] p-4 flex items-center space-x-4 hover:bg-[#bbbbbb] mx-auto">
@@ -36,7 +34,6 @@
                     <div class="text-neutral-400 text-base font-medium mt-2">Pilih untuk lanjut ke halaman pasien</div>
                 </div>
             </a>
-
             <!-- Doctor Card -->
             <a href="{{ route('login') }}" class="cursor-pointer bg-neutral-100 rounded-[18px] p-4 flex items-center space-x-4 hover:bg-[#bbbbbb] mx-auto">
                 <div class="size-16 bg-white rounded-[13px] flex items-center justify-center">
@@ -54,8 +51,7 @@
                     <div class="text-neutral-400 text-base font-medium mt-2">Pilih untuk lanjut ke halaman dokter</div>
                 </div>
             </a>
-
-            {{-- Nurse Card --}}
+            <!-- Nurse Card -->
             <a href="{{ route('login') }}" class="cursor-pointer bg-neutral-100 rounded-[18px] p-4 flex items-center space-x-4 hover:bg-[#bbbbbb] mx-auto">
                 <div class="size-16 bg-blue-950 rounded-[13px] flex items-center justify-center">
                     <svg  xmlns="http://www.w3.org/2000/svg"  class="text-white w-10"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-nurse">
@@ -70,8 +66,7 @@
                     <div class="text-neutral-400 text-base font-medium mt-2">Pilih untuk lanjut ke halaman perawat</div>
                 </div>
             </a>
-
-            {{-- Admin Card --}}
+            <!-- Admin Card -->
             <a href="{{ route('login') }}" class="cursor-pointer bg-neutral-100 rounded-[18px] p-4 flex items-center space-x-4 hover:bg-[#bbbbbb] mx-auto">
                 <div class="size-16 bg-white rounded-[13px] flex items-center justify-center">
                     <svg  xmlns="http://www.w3.org/2000/svg"  class="text-black w-10"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-device-desktop-analytics">
@@ -92,7 +87,6 @@
                 </div>
             </a>
         </div>
-
         <div class="justify-center my-8 hidden">
             <a href="{{ route('login') }}" class="bg-[#222C67] hover:bg-[#525985] text-[#f5f5f5] font-bold py-2 px-4 border-b-4 border-[#222C67] hover:border-[#525985] rounded font-body">
                 Lanjutkan

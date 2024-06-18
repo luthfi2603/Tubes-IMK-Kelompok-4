@@ -21,7 +21,7 @@
         </div>
         <!-- End Content -->
     </main>
-    <script src="{{ asset('assets/framework/date-picker.js') }}"></script>
+    {{-- <script src="{{ asset('assets/framework/date-picker.js') }}"></script> --}}
     <script src="{{ asset('assets/framework/popper.min.js') }}"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
     <script src="{{ asset('assets/js/custom.js') }}"></script>

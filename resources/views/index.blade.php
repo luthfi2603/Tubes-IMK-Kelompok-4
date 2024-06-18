@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
-    <script src="{{ asset('assets/js/custom-check.js') }}"></script>
+    {{-- <script src="{{ asset('assets/js/custom-check.js') }}"></script> --}}
 </head>
 <body class="font-body bg-[#E3EBF3] dark:bg-slate-800">
     <div class="container mx-auto px-4">
