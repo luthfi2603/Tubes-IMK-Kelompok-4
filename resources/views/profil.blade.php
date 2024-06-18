@@ -134,7 +134,7 @@
                 </div>
             </div>
             <button type="submit" class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-lg text-md text-center me-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800 px-6 py-2 mt-4"><i class="fa-solid fa-pen-to-square mr-2"></i>Ubah</button>
-            <span class="text-gray-500 dark:text-gray-300">Untuk mengubah data profil, silahkan ubah data yang ditampilkan lalu tekan tombol <b>ubah</b></span>
+            <span class="text-gray-500 dark:text-gray-300">Untuk mengubah data profil, silahkan ubah data yang ditampilkan lalu tekan tombol <b>ubah</b>, untuk mengubah data jenis kelamin dan tanggal lahir, hubungi admin klinik RH61</span>
         </div>
     </form>
     <hr class="my-3 h-[2px] bg-gray-300 dark:bg-gray-700">

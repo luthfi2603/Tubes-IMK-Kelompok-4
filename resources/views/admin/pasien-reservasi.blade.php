@@ -16,7 +16,7 @@
     <div class="bg-[#d3e2f1] dark:bg-gray-900 rounded-lg shadow-lg p-6 mb-6">
         <div class="flex justify-start items-center mb-4">
             <img src="{{ asset('assets/img/patient_illustration.png') }}" alt="Patient Illustration" class="w-20 h-20 mr-4">
-            <h1 class="text-3xl font-bold text-[#222c67] dark:text-white text-[#0A0A0A] dark:text-white">Reservasi Pasien</h1>
+            <h1 class="text-3xl font-bold text-[#222c67] dark:text-white">Reservasi Pasien</h1>
         </div>
         <form method="POST" class="space-y-6">
             @csrf

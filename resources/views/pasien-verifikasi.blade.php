@@ -23,7 +23,7 @@
 </div>
 <div class="pb-4 flex flex-col items-center font-body">
     <div class="py-3 lg:w-96 sm:w-80 md:w-96 text-center">
-        <h1 class="text-3xl font-bold text-[#222c67] dark:text-white text-[#222C67] dark:text-white mb-4">Verifikasi No HP</h1>
+        <h1 class="text-3xl font-bold text-[#222c67] dark:text-white mb-4">Verifikasi No HP</h1>
         <p class="text-gray-600 dark:text-gray-300 text-md font-semibold">Silahkan masukkan Kode OTP yang telah terkirim ke nomor handphone yang baru</p>
     </div>
     <div class="flex justify-center">
