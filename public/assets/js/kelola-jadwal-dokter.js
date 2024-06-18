@@ -8,7 +8,7 @@ tdNull.setAttribute('colspan', 4);
 tdNull.classList.add('text-center', 'py-3');
 
 const divNull = document.createElement('div');
-divNull.classList.add('bg-gray-100', 'rounded-lg', 'p-4', 'inline-flex', 'items-center', 'text-gray-500');
+divNull.classList.add('bg-gray-100', 'dark:bg-gray-800', 'rounded-lg', 'p-4', 'inline-flex', 'items-center', 'text-gray-500', 'dark:text-gray-400');
 
 const iconNull = document.createElement('i');
 iconNull.classList.add('fa-regular', 'fa-file', 'mr-3');
@@ -64,9 +64,9 @@ async function cariData(){
 
             data.jadwal_dokters.forEach(item => {
                 isiTabelString += `
-                    <tr class="hover:bg-[#d1e4f2] transition duration-200">
-                        <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">${i}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">
+                    <tr class="hover:bg-[#d1e4f2] dark:hover:bg-gray-700 transition duration-200">
+                        <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900 dark:text-gray-300">${i}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900 dark:text-gray-300">
                             <div class="flex gap-2">
                                 <a href="/admin/jadwal-dokter/edit/${item.id}" class="bg-yellow-400 text-white px-2 py-1 rounded shadow hover:bg-yellow-500 flex items-center">
                                     <i class="fa-solid fa-pen-to-square mr-2"></i>
@@ -84,8 +84,8 @@ async function cariData(){
                                 </form>
                             </div>
                         </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">${item.hari}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">${item.jam}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900 dark:text-gray-300">${item.hari}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900 dark:text-gray-300">${item.jam}</td>
                     </tr>
                 `;
 

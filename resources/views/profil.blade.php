@@ -149,7 +149,7 @@
     <form onsubmit="hapusAkun(event)" method="POST" action="{{ route('akun.destroy') }}">
         @csrf
         @method('DELETE')
-        <button type="submit" class="border-2 rounded-lg bg-gray-200 dark:bg-gray-700 dark:text-red-300 border-gray-300 dark:border-gray-600 text-[#B42223] hover:text-white hover:bg-[#B42223] hover:border-[#B42223] font-semibold px-6 py-2 w-min text-nowrap"><i class="fa-solid fa-trash mr-2"></i>Hapus akun anda</button>
+        <button type="submit" class="border-2 rounded-lg bg-gray-200 dark:bg-gray-700 dark:text-red-300 border-gray-300 dark:border-gray-600 text-[#B42223] hover:text-white hover:bg-[#B42223] dark:hover:bg-[#B42223] hover:border-[#B42223] dark:hover:border-[#B42223] font-semibold px-6 py-2 w-min text-nowrap"><i class="fa-solid fa-trash mr-2"></i>Hapus akun anda</button>
     </form>
 </div>
 </div>

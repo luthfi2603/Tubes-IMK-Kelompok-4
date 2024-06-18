@@ -55,9 +55,9 @@ async function refreshTable(){
 
             data.rekam_medis.forEach(item => {
                 isiTabelString += `
-                    <tr class="bg-white hover:bg-[#d1e4f2] transition duration-200">
-                        <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">${i}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">
+                    <tr class="bg-white dark:bg-gray-900 hover:bg-[#d1e4f2] transition duration-200">
+                        <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900 dark:text-gray-300">${i}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900 dark:text-gray-300">
                             ${(() => {
                                 if (item.foto) {
                                     return `
@@ -74,9 +74,9 @@ async function refreshTable(){
                                 }
                             })()}
                         </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">${item.nama_pasien}</td>
-                        <td class="px-6 py-4 text-md text-gray-900">
-                            <textarea class="rounded-lg h-40">${item.diagnosa}</textarea>
+                        <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900 dark:text-gray-300">${item.nama_pasien}</td>
+                        <td class="px-6 py-4 text-md text-gray-900 dark:text-gray-300">
+                            <textarea class="rounded-lg h-40 dark:bg-gray-700 dark:text-gray-300">${item.diagnosa}</textarea>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-md">
                             <div class="flex flex-col gap-2">
@@ -105,7 +105,7 @@ async function refreshTable(){
             isiTabel.innerHTML = `
                 <tr>
                     <td colspan="5" class="text-center py-3">
-                        <div class="bg-gray-100 rounded-lg p-4 inline-flex items-center text-gray-500 ">
+                        <div class="bg-gray-100 dark:bg-gray-700 rounded-lg p-4 inline-flex items-center text-gray-500 dark:text-gray-300">
                             <i class="fa-regular fa-file mr-3"></i>  
                             <span class="text-lg font-semibold">Data tidak ada</span>
                         </div>

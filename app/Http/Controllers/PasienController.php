@@ -644,8 +644,11 @@ class PasienController extends Controller {
         if($reservasi->isEmpty()){
             abort(404);
         }else{
+            $saatIni = Carbon::now();
+
             $reservasi[0]->update([
-                'status' => 'Batal'
+                'status' => 'Batal',
+                'updated_at' => $saatIni,
             ]);
         }
 
@@ -670,5 +673,13 @@ class PasienController extends Controller {
         }
 
         return view('detail-rekam-medis', compact('rekamMedis'));
+    }
+
+    public function showNotifikasi(){
+        $notifikasi = DB::table('view_reservasi')->where('nama_pasien', auth()->user()->pasien->nama)
+            ->orderBy('updated_at', 'DESC')
+            ->get();
+
+        return view('notifikasi', compact('notifikasi'));
     }
 }
