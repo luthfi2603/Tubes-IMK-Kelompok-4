@@ -1,5 +1,5 @@
 <!-- sidenav -->
-<div class="fixed left-0 top-0 w-64 h-full bg-[#E3EBF3] dark:bg-slate-800 p-4 z-50 sidebar-menu transition-all -translate-x-full md:translate-x-0">
+<div class="fixed left-0 top-0 w-64 h-full bg-[#E3EBF3] dark:bg-slate-700 p-4 z-50 sidebar-menu transition-all -translate-x-full md:translate-x-0">
     <a href="/" class="flex items-center pb-4 border-b border-b-gray-800" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
         <img src="{{ asset('assets/img/logo.png') }}" class="w-30 h-24" alt="Logo">
     </a>
@@ -25,7 +25,7 @@
 <div class="fixed top-0 left-0 w-full h-full bg-black/50 z-40 md:hidden sidebar-overlay hidden"></div>
 <!-- end sidenav -->
 
-<main id="main" class="w-full md:w-[calc(100%-256px)] md:ml-64 bg-[#F5f5f5] min-h-screen transition-all main">
+<main id="main" class="w-full md:w-[calc(100%-256px)] md:ml-64 bg-[#F5f5f5] min-h-screen transition-all main dark:bg-slate-800">
     <!-- navbar -->
     <div class="py-2 px-6 bg-[#f8f4f3] dark:bg-slate-800 transition-colors flex items-center shadow-md shadow-black/9 sticky top-0 left-0 z-30">
         <button type="button" class="text-lg text-gray-900 dark:text-white font-semibold sidebar-toggle">

@@ -66,9 +66,9 @@ async function refreshTable(){
 
             data.antrians.forEach(item => {
                 isiTabelString += `
-                    <tr class="bg-white hover:bg-[#d1e4f2] transition duration-200">
-                        <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">${i}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">
+                    <tr class="bg-white dark:bg-gray-900 hover:bg-[#d1e4f2] dark:hover:bg-gray-700 transition duration-200">
+                        <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900 dark:text-gray-200">${i}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900 dark:text-gray-200">
                             <div class="dropdown" data-placement="right">
                                 ${(() => {
                                     if(item.status == 'Menunggu'){
@@ -76,9 +76,9 @@ async function refreshTable(){
                                         const inputDateObj = new Date(inputTanggal.value);
 
                                         if(inputDateObj > todayDateObj){
-                                            return `<button class="dropdown-toggle bg-yellow-300 text-white px-3 py-1 rounded tombol-ubah shadow flex items-center" disabled>`;
+                                            return `<button class="dropdown-toggle bg-yellow-300 dark:bg-yellow-400 text-white px-3 py-1 rounded tombol-ubah shadow flex items-center" disabled>`;
                                         }else{
-                                            return `<button class="dropdown-toggle bg-yellow-500 text-white px-3 py-1 rounded tombol-ubah shadow flex items-center" id="${item.id}">`;
+                                            return `<button class="dropdown-toggle bg-yellow-500 dark:bg-yellow-600 text-white px-3 py-1 rounded tombol-ubah shadow flex items-center" id="${item.id}">`;
                                         }
                                     }else{
                                         return `<button class="dropdown-toggle bg-yellow-300 text-white px-3 py-1 rounded tombol-ubah shadow flex items-center" disabled>`;
@@ -87,12 +87,12 @@ async function refreshTable(){
                                     <i class="fa-solid fa-pen-to-square mr-2"></i>
                                     Ubah
                                 </button>
-                                <div class="dropdown-menu hidden p-4 rounded-lg bg-[#F5F5F5]">
+                                <div class="dropdown-menu hidden p-4 rounded-lg bg-[#F5F5F5] dark:bg-gray-900">
                                     <div class="flex flex-col gap-4">
-                                        <button id="selesai" class="bg-green-100 text-green-800 text-sm px-2 py-1 leading-5 font-semibold rounded shadow w-full">
+                                        <button id="selesai" class="bg-green-100 dark:bg-green-600 dark:text-green-200 text-green-800 text-sm px-2 py-1 leading-5 font-semibold rounded shadow w-full">
                                             Selesai
                                         </button>
-                                        <button id="batal" class="bg-red-100 text-red-800 text-sm px-2 py-1 leading-5 font-semibold rounded shadow w-full">
+                                        <button id="batal" class="bg-red-100 dark:bg-red-600 dark:text-red-200 text-red-800 text-sm px-2 py-1 leading-5 font-semibold rounded shadow w-full">
                                             Batal
                                         </button>
                                     </div>
@@ -103,7 +103,7 @@ async function refreshTable(){
                             ${(() => {
                                 if (item.foto) {
                                     return `
-                                        <div class="w-20 h-20 aspect-square overflow-hidden rounded-full border-2 border-gray-300">
+                                        <div class="w-20 h-20 aspect-square overflow-hidden rounded-full border-2 border-gray-300 dark:border-gray-600">
                                             <img src="../storage/${item.foto}" alt="pasien" class="object-cover object-top w-full h-full">
                                         </div>
                                     `;
@@ -119,17 +119,17 @@ async function refreshTable(){
                         <td class="px-6 py-4 whitespace-nowrap text-md">
                             ${(() => {
                                 if(item.status == 'Selesai'){
-                                    return `<span class="bg-green-100 text-green-800 text-sm px-2 py-1 inline-flex leading-5 font-semibold rounded shadow">Selesai</span>`;
+                                    return `<span class="bg-green-100 dark:bg-green-600 dark:text-green-200 text-green-800 text-sm px-2 py-1 inline-flex leading-5 font-semibold rounded shadow">Selesai</span>`;
                                 }else if(item.status == 'Menunggu'){
-                                    return `<span class="bg-yellow-100 text-yellow-800 text-sm px-2 py-1 inline-flex leading-5 font-semibold rounded shadow">Menunggu</span>`;
+                                    return `<span class="bg-yellow-100 dark:bg-yellow-600 dark:text-yellow-200 text-yellow-800 text-sm px-2 py-1 inline-flex leading-5 font-semibold rounded shadow">Menunggu</span>`;
                                 }else{
-                                    return `<span class="bg-red-100 text-red-800 text-sm px-2 py-1 inline-flex leading-5 font-semibold rounded shadow">Batal</span>`;
+                                    return `<span class="bg-red-100 dark:bg-red-600 dark:text-red-200 text-red-800 text-sm px-2 py-1 inline-flex leading-5 font-semibold rounded shadow">Batal</span>`;
                                 }
                             })()}
                         </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">${item.nama_pasien}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">${item.nama_dokter}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">
+                        <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900 dark:text-gray-200">${item.nama_pasien}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900 dark:text-gray-200">${item.nama_dokter}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900 dark:text-gray-200">
                             ${(() => {
                                 if(item.waktu_rekomendasi){
                                     return item.waktu_rekomendasi;
@@ -139,8 +139,8 @@ async function refreshTable(){
                                 }
                             })()}
                         </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">${item.nomor_handphone}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">${item.alamat}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900 dark:text-gray-200">${item.nomor_handphone}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900 dark:text-gray-200">${item.alamat}</td>
                     </tr>
                 `;
                 /* <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">
@@ -186,13 +186,10 @@ async function refreshTable(){
             isiTabel.innerHTML = `
                 <tr>
                     <td colspan="9" class="text-center text-2xl py-3">
-                        <div class="flex justify-center items-center">
-                            <div class="bg-[#E3EBF3] text-center p-4 rounded-lg shadow-md font-bold w-3/4 flex items-center justify-center space-x-4">
-                                <img src="/assets/img/nurse-2.png" alt="No Appointments" class="w-16 h-16">
-                                <p class="text-xl text-[#222C67]">Belum ada Data</p>
-                                <img src="/assets/img/nurse-2.png" alt="No Appointments" class="w-16 h-16">
+                        <div class="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 inline-flex items-center text-gray-500 dark:text-gray-400">
+                                <i class="fa-regular fa-file mr-3"></i>  
+                                <span class="text-lg font-semibold">Data tidak ada</span>
                             </div>
-                        </div>
                     </td>
                 </tr>
             `;
