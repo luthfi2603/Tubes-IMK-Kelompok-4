@@ -66,7 +66,7 @@
                             }
                         @endphp
                         @foreach ($antrians as $item)
-                            <tr class="bg-white dark:bg-gray-900 hover:bg-[#d1e4f2] transition duration-200">
+                            <tr class="bg-white dark:bg-gray-900 hover:bg-[#d1e4f2] dark:hover:bg-gray-600 transition duration-200">
                                 <td class="px-6 py-4 whitespace-nowrap text-md dark:text-[#c7d1d9] text-gray-900">{{ $i }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap text-md">
                                     @if($item->id_rekam_medis)

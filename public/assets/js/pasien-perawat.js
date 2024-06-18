@@ -9,7 +9,7 @@ tdNull.setAttribute('colspan', 7);
 tdNull.classList.add('text-center', 'py-3');
 
 const divNull = document.createElement('div');
-divNull.classList.add('bg-gray-100', 'rounded-lg', 'p-4', 'inline-flex', 'items-center', 'text-gray-500');
+divNull.classList.add('bg-gray-100', 'dark:bg-gray-800', 'rounded-lg', 'p-4', 'inline-flex', 'items-center', 'text-gray-500', 'dark:text-gray-400');
 
 const iconNull = document.createElement('i');
 iconNull.classList.add('fa-regular', 'fa-file', 'mr-3');
@@ -66,9 +66,9 @@ async function cariData(){
 
             data.pasiens.forEach(item => {
                 isiTabelString += `
-                    <tr class="bg-white hover:bg-[#d1e4f2] transition duration-200">
-                        <td class="p-4 whitespace-nowrap text-md text-gray-900">${i}</td>
-                        <td class="p-4 whitespace-nowrap text-md text-gray-900">
+                    <tr class="bg-white dark:bg-gray-900 hover:bg-[#d1e4f2] dark:hover:bg-gray-700 transition duration-200">
+                        <td class="p-4 whitespace-nowrap text-md text-gray-900 dark:text-gray-200">${i}</td>
+                        <td class="p-4 whitespace-nowrap text-md text-gray-900 dark:text-gray-200">
                             ${(() => {
                                 if (item.foto) {
                                     return `
@@ -85,9 +85,9 @@ async function cariData(){
                                 }
                             })()}
                         </td>
-                        <td class="p-4 whitespace-nowrap text-md text-gray-900">${item.nama}</td>
-                        <td class="p-4 whitespace-nowrap text-md text-gray-900">${item.nomor_handphone}</td>
-                        <td class="p-4 whitespace-nowrap text-md text-gray-900">
+                        <td class="p-4 whitespace-nowrap text-md text-gray-900 dark:text-gray-200">${item.nama}</td>
+                        <td class="p-4 whitespace-nowrap text-md text-gray-900 dark:text-gray-200">${item.nomor_handphone}</td>
+                        <td class="p-4 whitespace-nowrap text-md text-gray-900 dark:text-gray-200">
                             ${(() => {
                                 if(item.jenis_kelamin == 'L'){
                                     return 'Laki-laki'
@@ -96,7 +96,7 @@ async function cariData(){
                                 }
                             })()}
                         </td>
-                        <td class="p-4 whitespace-nowrap text-md text-gray-900">${item.alamat}</td>
+                        <td class="p-4 whitespace-nowrap text-md text-gray-900 dark:text-gray-200">${item.alamat}</td>
                     </tr>
                 `;
 

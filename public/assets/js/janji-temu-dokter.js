@@ -60,13 +60,13 @@ async function refreshTable(){
 
             data.antrians.forEach(item => {
                 isiTabelString += `
-                    <tr class="bg-white hover:bg-[#d1e4f2] transition duration-200">
-                        <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">${i}</td>
+                    <tr class="bg-white dark:bg-gray-900 hover:bg-[#d1e4f2] dark:hover:bg-gray-600 transition duration-200">
+                        <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900 dark:text-[#c7d1d9]">${i}</td>
                         <td class="px-6 py-4 whitespace-nowrap text-md">
                             ${(() => {
                                 if(item.id_rekam_medis){
                                     return `
-                                        <a class="px-4 py-2 bg-green-300 text-white rounded-lg" disabled>
+                                        <a class="px-4 py-2 bg-green-300 dark:bg-[#4a7c59] text-white rounded-lg" disabled>
                                             Rekam medis telah dibuat
                                         </a>
                                     `;
@@ -76,20 +76,20 @@ async function refreshTable(){
 
                                     if(inputDateObj > todayDateObj){
                                         return `
-                                            <a class="px-4 py-2 bg-yellow-300 text-white rounded-lg" disabled>
+                                            <a class="px-4 py-2 bg-yellow-300 dark:bg-yellow-200 text-white rounded-lg" disabled>
                                                 Rekam medis belum bisa dibuat
                                             </a>
                                         `;
                                     }else{
                                         if(item.status == 'Batal'){
                                             return `
-                                                <a class="px-4 py-2 bg-red-300 text-white rounded-lg" disabled>
+                                                <a class="px-4 py-2 bg-red-300 dark:bg-[#8b3a3a] text-white rounded-lg" disabled>
                                                     Reservasi dibatalkan
                                                 </a>
                                             `;
                                         }else{
                                             return `
-                                                <a href="/dokter/janji-temu-dokter/rekam-medis/create/${item.id}" class="px-4 py-2 bg-green-500 hover:bg-green-700 w-min text-white rounded-lg flex items-center">
+                                                <a href="/dokter/janji-temu-dokter/rekam-medis/create/${item.id}" class="px-4 py-2 bg-green-500 dark:bg-[#1f7a3a] hover:bg-green-700 dark:hover:bg-[#14572a] w-min text-white rounded-lg flex items-center">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                                                     </svg>
@@ -101,7 +101,7 @@ async function refreshTable(){
                                 }
                             })()}
                         </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">
+                        <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900 dark:text-[#c7d1d9]">
                             ${(() => {
                                 if (item.foto) {
                                     return `
@@ -118,9 +118,9 @@ async function refreshTable(){
                                 }
                             })()}
                         </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-md text-blue-500">${item.nama_pasien}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-md text-blue-500 dark:text-[#60a5fa]">${item.nama_pasien}</td>
                         <td class="px-6 py-4 whitespace-nowrap text-md text-center">
-                            <span class="px-4 py-1 inline-flex text-md leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+                            <span class="px-4 py-1 inline-flex text-md leading-5 font-semibold rounded-full bg-blue-100 text-blue-800 dark:bg-[#1e40af] dark:text-[#60a5fa]">
                             ${(() => {
                                 if(item.jenis_kelamin == 'L'){
                                     return 'Laki-laki';
@@ -130,8 +130,8 @@ async function refreshTable(){
                             })()}
                             </span>
                         </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">${item.umur}</td>  
-                        <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900">${item.nomor_handphone}</td>         
+                        <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900 dark:text-[#c7d1d9]">${item.umur}</td>  
+                        <td class="px-6 py-4 whitespace-nowrap text-md text-gray-900 dark:text-[#c7d1d9]">${item.nomor_handphone}</td>         
                     </tr>
                 `;
 
@@ -143,7 +143,7 @@ async function refreshTable(){
             isiTabel.innerHTML = `
                 <tr>
                     <td colspan="7" class="text-center py-3">
-                        <div class="bg-gray-100 rounded-lg p-4 inline-flex items-center text-gray-500 ">
+                        <div class="bg-gray-100 dark:bg-[#374151] rounded-lg p-4 inline-flex items-center text-gray-500 dark:text-[#c7d1d9]">
                             <i class="fa-regular fa-file mr-3"></i>  
                             <span class="text-lg font-semibold">Data tidak ada</span>
                         </div>

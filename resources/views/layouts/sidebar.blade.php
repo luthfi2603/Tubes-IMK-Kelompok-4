@@ -17,10 +17,10 @@
     </a>
 </li>
 <li class="mb-1 group">
-    <a href="{{ route('pasien.notifikasi-pasien') }}" class="flex font-semibold items-center py-2 px-4 dark:text-gray-400 text-gray-900 hover:bg-[#222C67] dark:hover:text-gray-50 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100 {{ request()->is('notifikasi*') ? 'bg-[#222C67] text-white dark:text-white' : '' }}">
+    <a href="{{ route('pasien.notifikasi') }}" class="flex font-semibold items-center py-2 px-4 dark:text-gray-400 text-gray-900 hover:bg-[#222C67] dark:hover:text-gray-50 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100 {{ request()->is('notifikasi*') ? 'bg-[#222C67] text-white dark:text-white' : '' }}">
         <i class="fa-solid fa-bell mr-4 text-lg"></i>
         <span class="text-md">Notifikasi</span>
-        <span class=" md:block px-2 py-0.5 ml-auto text-xs font-medium tracking-wide text-red-600 bg-red-200 rounded-full">5</span>
+        {{-- <span class=" md:block px-2 py-0.5 ml-auto text-xs font-medium tracking-wide text-red-600 bg-red-200 rounded-full">5</span> --}}
     </a>
 </li>
 <li class="mb-1 group">

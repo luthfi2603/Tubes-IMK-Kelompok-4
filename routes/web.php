@@ -23,9 +23,8 @@ Route::middleware(['auth', 'role:Pasien'])->group(function(){
         Route::get('/tentang-kami', function(){
             return view('tentang-kami');
         })->name('pasien.tentang-kami');
-        Route::get('/notifikasi', function(){
-            return view('notifikasi');
-        })->name('pasien.notifikasi-pasien');
+        Route::get('/notifikasi', 'showNotifikasi')
+            ->name('pasien.notifikasi');
         Route::get('/profil', 'editProfil')
             ->name('pasien.profil');
         Route::put('/profil', 'updateProfil');

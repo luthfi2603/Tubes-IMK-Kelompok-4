@@ -9,7 +9,7 @@ tdNull.setAttribute('colspan', 7);
 tdNull.classList.add('text-center', 'py-3');
 
 const divNull = document.createElement('div');
-divNull.classList.add('bg-gray-100', 'rounded-lg', 'p-4', 'inline-flex', 'items-center', 'text-gray-500');
+divNull.classList.add('bg-gray-100', 'dark:bg-gray-800', 'rounded-lg', 'p-4', 'inline-flex', 'items-center', 'text-gray-500', 'dark:text-gray-400');
 
 const iconNull = document.createElement('i');
 iconNull.classList.add('fa-regular', 'fa-file', 'mr-3');
@@ -66,9 +66,9 @@ async function cariData(){
 
             data.perawats.forEach(item => {
                 isiTabelString += `
-                    <tr class="bg-white hover:bg-[#d1e4f2] transition duration-200">
-                        <td class="p-4 whitespace-nowrap text-md text-gray-900">${i}</td>
-                        <td class="p-4 whitespace-nowrap text-md text-gray-900 flex flex-col gap-2">
+                    <tr class="bg-white dark:bg-gray-900 hover:bg-[#d1e4f2] dark:hover:bg-gray-600 transition duration-200">
+                        <td class="p-4 whitespace-nowrap text-md text-gray-900 dark:text-gray-300">${i}</td>
+                        <td class="p-4 whitespace-nowrap text-md text-gray-900 dark:text-gray-300 flex flex-col gap-2">
                             <a href="/admin/perawat/edit/${item.nomor_handphone}" class="bg-yellow-400 text-white px-2 py-1 rounded shadow hover:bg-yellow-500 flex items-center">
                                 <i class="fa-solid fa-pen-to-square mr-2"></i>
                                 Ubah
@@ -84,7 +84,7 @@ async function cariData(){
                                 </button>
                             </form>
                         </td>
-                        <td class="p-4 whitespace-nowrap text-md text-gray-900">
+                        <td class="p-4 whitespace-nowrap text-md text-gray-900 dark:text-gray-300">
                             ${(() => {
                                 if (item.foto) {
                                     return `
@@ -101,9 +101,9 @@ async function cariData(){
                                 }
                             })()}
                         </td>
-                        <td class="p-4 whitespace-nowrap text-md text-gray-900">${item.nama}</td>
-                        <td class="p-4 whitespace-nowrap text-md text-gray-900">${item.nomor_handphone}</td>
-                        <td class="p-4 whitespace-nowrap text-md text-gray-900">
+                        <td class="p-4 whitespace-nowrap text-md text-gray-900 dark:text-gray-300">${item.nama}</td>
+                        <td class="p-4 whitespace-nowrap text-md text-gray-900 dark:text-gray-300">${item.nomor_handphone}</td>
+                        <td class="p-4 whitespace-nowrap text-md text-gray-900 dark:text-gray-300">
                             ${(() => {
                                 if(item.jenis_kelamin == 'L'){
                                     return 'Laki-laki'
@@ -112,7 +112,7 @@ async function cariData(){
                                 }
                             })()}
                         </td>
-                        <td class="p-4 whitespace-nowrap text-md text-gray-900">${item.alamat}</td>
+                        <td class="p-4 whitespace-nowrap text-md text-gray-900 dark:text-gray-300">${item.alamat}</td>
                     </tr>
                 `;
 
