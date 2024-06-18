@@ -461,7 +461,7 @@ function hapusPerawat(event){
 function ubahStatusAntrianSelesai(){
     Swal.fire({
         title: "Ubah Status Antrian",
-        text: "Jika anda mengubah status antrian, maka status tersebut tidak akan dapat dirubah lagi!",
+        text: "Jika anda mengubah status antrian, maka status tersebut tidak akan dapat diubah lagi!",
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#006633",
@@ -478,7 +478,7 @@ function ubahStatusAntrianSelesai(){
 function ubahStatusAntrianBatal(){
     Swal.fire({
         title: "Ubah Status Antrian",
-        text: "Jika anda mengubah status antrian, maka status tersebut tidak akan dapat dirubah lagi!",
+        text: "Jika anda mengubah status antrian, maka status tersebut tidak akan dapat diubah lagi!",
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#006633",

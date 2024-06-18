@@ -2,28 +2,28 @@
 
 @section('container')
 @if(session()->has('success'))
-    <div id="success-php" class="bg-[#d1e7dd] text-[#0f5132] border-2 border-[#badbcc] px-4 py-3 rounded-lg fixed z-[999] inset-x-6 md:inset-x-[296px]">
+    <div id="success-php" class="bg-[#d1e7dd] dark:bg-green-800 text-[#0f5132] dark:text-green-200 border-2 border-[#badbcc] dark:border-green-700 px-4 py-3 rounded-lg fixed z-[999] inset-x-6 md:inset-x-[296px]">
         <i class="fa-regular fa-circle-check mr-1"></i>
         <span>{{ session('success') }}</span>
     </div>
 @elseif(session()->has('failed'))
-    <div id="failed-php" class="bg-[#f8d7da] text-[#842029] border-2 border-[#f5c2c7] px-4 py-3 rounded-lg fixed z-[999] inset-x-6 md:inset-x-[296px]">
+    <div id="failed-php" class="bg-[#f8d7da] dark:bg-red-800 text-[#842029] dark:text-red-200 border-2 border-[#f5c2c7] dark:border-red-700 px-4 py-3 rounded-lg fixed z-[999] inset-x-6 md:inset-x-[296px]">
         <i class="fa-solid fa-circle-exclamation mr-1"></i>
         <span>{{ session('failed') }}</span>
     </div>
 @endif
 <div class="container mx-auto p-4">
-    <div id="success" class="bg-[#d1e7dd] text-[#0f5132] border-2 border-[#badbcc] px-4 py-3 rounded-lg fixed z-[999] inset-x-6 md:inset-x-[296px] hidden">
+    <div id="success" class="bg-[#d1e7dd] dark:bg-green-800 text-[#0f5132] dark:text-green-200 border-2 border-[#badbcc] dark:border-green-700 px-4 py-3 rounded-lg fixed z-[999] inset-x-6 md:inset-x-[296px] hidden">
         <i class="fa-regular fa-circle-check mr-1"></i>
         <span></span>
     </div>
-    <div id="failed-ubah-profil" class="bg-[#f8d7da] text-[#842029] border-2 border-[#f5c2c7] px-4 py-3 rounded-lg fixed z-[999] inset-x-6 md:inset-x-[296px] hidden">
+    <div id="failed-ubah-profil" class="bg-[#f8d7da] dark:bg-red-800 text-[#842029] dark:text-red-200 border-2 border-[#f5c2c7] dark:border-red-700 px-4 py-3 rounded-lg fixed z-[999] inset-x-6 md:inset-x-[296px] hidden">
         <i class="fa-solid fa-circle-exclamation mr-1"></i>
         <span></span>
     </div>
     <div class="flex flex-col gap-4">
-        <p class="text-2xl md:text-3xl font-bold text-[#222C67]">Profil</p>
-        <hr class="border-1 border-[#B1B0AF] mb-8">
+        <p class="text-2xl md:text-3xl font-bold text-[#222C67] dark:text-white">Profil</p>
+        <hr class="border-1 border-[#B1B0AF] dark:border-gray-700 mb-8">
         <form method="POST" class="flex justify-center md:text-lg">
             @csrf
             @method('PUT')
@@ -45,7 +45,7 @@
                 {{-- ada foto --}}
                 @else
                     <svg id="ikon-bawaan" class="w-2/5 h-2/5 md:w-52 md:h-52 hidden" xmlns="http://www.w3.org/2000/svg"  width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#222c67" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M12 10m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /><path d="M6.168 18.849a4 4 0 0 1 3.832 -2.849h4a4 4 0 0 1 3.834 2.855" /></svg>
-                    <div id="div-foto" class="w-1/3 h-1/3 md:w-40 md:h-40 aspect-square overflow-hidden rounded-full border-2 border-gray-300">
+                    <div id="div-foto" class="w-1/3 h-1/3 md:w-40 md:h-40 aspect-square overflow-hidden rounded-full border-2 border-gray-300 dark:border-gray-600">
                         <img id="tampilkan-foto" src="{{ asset('storage/' . auth()->user()->foto) }}" alt="foto-profil" class="object-cover object-top w-full h-full">
                     </div>
                     <div class="flex flex-col gap-2 items-center">
@@ -61,8 +61,8 @@
                 <input id="foto" type="file" class="hidden">
                 <div class="w-full flex flex-col md:flex-row gap-4">
                     <div class="flex flex-col w-full">
-                        <label class="font-semibold" for="nama">Nama</label>
-                        <input type="text" name="nama" id="nama" class="rounded-lg" placeholder="Masukkan nama lengkap" value="{{ old('nama', auth()->user()->dokter->nama) }}" readonly>
+                        <label class="font-semibold dark:text-gray-300" for="nama">Nama</label>
+                        <input type="text" name="nama" id="nama" class="rounded-lg dark:bg-gray-700 dark:text-gray-300 dark:placeholder-gray-400" placeholder="Masukkan nama lengkap" value="{{ old('nama', auth()->user()->dokter->nama) }}" readonly>
                         @error('nama')
                             <div class="text-red-500">
                                 {{ $message }}
@@ -70,8 +70,8 @@
                         @enderror
                     </div>
                     <div class="flex flex-col w-full">
-                        <label class="font-semibold" for="nomor_handphone">Nomor Handphone</label>
-                        <input type="number" pattern="^\d+$" name="nomor_handphone" id="nomor_handphone" class="rounded-lg" placeholder="Contoh: 081234567890" value="{{ old('nomor_handphone', auth()->user()->nomor_handphone) }}" readonly>
+                        <label class="font-semibold dark:text-gray-300" for="nomor_handphone">Nomor Handphone</label>
+                        <input type="number" pattern="^\d+$" name="nomor_handphone" id="nomor_handphone" class="rounded-lg dark:bg-gray-700 dark:text-gray-300 dark:placeholder-gray-400" placeholder="Contoh: 081234567890" value="{{ old('nomor_handphone', auth()->user()->nomor_handphone) }}" readonly>
                         @error('nomor_handphone')
                             <div class="text-red-500">
                                 {{ $message }}
@@ -81,8 +81,8 @@
                 </div>
                 <div class="w-full flex flex-col md:flex-row gap-4">
                     <div class="flex flex-col w-full">
-                        <label class="font-semibold" for="alamat">Alamat</label>
-                        <input type="text" name="alamat" id="alamat" class="rounded-lg" placeholder="Masukkan alamat" value="{{ old('alamat', auth()->user()->dokter->alamat) }}" readonly>
+                        <label class="font-semibold dark:text-gray-300" for="alamat">Alamat</label>
+                        <input type="text" name="alamat" id="alamat" class="rounded-lg dark:bg-gray-700 dark:text-gray-300 dark:placeholder-gray-400" placeholder="Masukkan alamat" value="{{ old('alamat', auth()->user()->dokter->alamat) }}" readonly>
                         @error('alamat')
                             <div class="text-red-500">
                                 {{ $message }}
@@ -90,19 +90,19 @@
                         @enderror
                     </div>
                     <div class="flex flex-col w-full">
-                        <label class="font-semibold" for="alamat">Jenis Kelamin</label>
+                        <label class="font-semibold dark:text-gray-300" for="alamat">Jenis Kelamin</label>
                         <div>
                             <input type="radio" name="jenis_kelamin" id="L" value="L" {{ old('jenis_kelamin', auth()->user()->dokter->jenis_kelamin) == 'L' ? 'checked' : '' }} disabled>
-                            <label class="font-semibold mr-2" for="L">Laki-laki</label>
+                            <label class="font-semibold mr-2 dark:text-gray-300" for="L">Laki-laki</label>
                             <input type="radio" name="jenis_kelamin" id="P" value="P" {{ old('jenis_kelamin', auth()->user()->dokter->jenis_kelamin) == 'P' ? 'checked' : '' }} disabled>
-                            <label class="font-semibold" for="P">Perempuan</label>
+                            <label class="font-semibold dark:text-gray-300" for="P">Perempuan</label>
                         </div>
                     </div>
                 </div>
                 <div class="w-full flex flex-col md:flex-row gap-4">
                     <div class="flex flex-col w-full">
-                        <label class="font-semibold" for="nama">Spesialis</label>
-                        <input type="text" name="spesialis" id="spesialis" class="rounded-lg" placeholder="Pilih spesialis" value="{{ old('spesialis', auth()->user()->dokter->spesialis) }}" readonly>
+                        <label class="font-semibold dark:text-gray-300" for="nama">Spesialis</label>
+                        <input type="text" name="spesialis" id="spesialis" class="rounded-lg dark:bg-gray-700 dark:text-gray-300 dark:placeholder-gray-400" placeholder="Pilih spesialis" value="{{ old('spesialis', auth()->user()->dokter->spesialis) }}" readonly>
                         @error('spesialis')
                             <div class="text-red-500">
                                 {{ $message }}
@@ -111,13 +111,12 @@
                     </div>
                     <div class="flex flex-col w-full"></div>
                 </div>
-                {{-- <button type="submit" class="border-2 rounded-lg border-[#222C67] text-[#222C67] dark:text-white dark:bg-[#222C67] font-semibold px-6 py-2 mt-4">Ubah</button> --}}
-                <span class="text-gray-500">Untuk mengubah data profil anda, silahkan hubungi admin klinik RH61.</span>
+                <span class="text-gray-500 dark:text-gray-300">Untuk mengubah data profil anda, silahkan hubungi admin klinik RH61.</span>
             </div>
         </form>
-        <hr class="my-3 h-[2px] bg-gray-300">
-        <p class="text-2xl md:text-3xl font-bold mt-1">Ubah Kata Sandi</p>
-        <p class="md:text-lg">Ubah kata sandi untuk mengamankan akun anda</p>
+        <hr class="my-3 h-[2px] bg-gray-300 dark:bg-gray-700">
+        <p class="text-2xl md:text-3xl font-bold mt-1 dark:text-white">Ubah Kata Sandi</p>
+        <p class="md:text-lg dark:text-gray-300">Ubah kata sandi untuk mengamankan akun anda</p>
         <a href="{{ route('password.edit') }}">
             <button type="button" class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-lg text-md px-5 py-2.5 text-center me-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800"><i class="fa-solid fa-pen-to-square mr-2"></i>Ubah Kata Sandi</button>
         </a>
