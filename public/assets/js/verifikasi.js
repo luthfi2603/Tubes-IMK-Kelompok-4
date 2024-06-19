@@ -71,18 +71,30 @@ const notif =  document.getElementById('failed');
 const success =  document.getElementById('success');
 const success2 =  document.getElementById('success-2');
 const errorMessage = document.getElementById('error-message');
+let notifTimeout;
 
-async function kirim(url){
-    const formData = new FormData(form);
-    const response = await fetch(url, {
-        method: "POST",
-        body: formData
-    });
-
+async function kirim(url, event){
     try {
+        event.preventDefault();
+        errorMessage.classList.add('hidden');
+        notif.classList.add('hidden');
+        if(notifTimeout){ // ini agar setTimeout tidak terjadi bug langsung ke tutup
+            clearTimeout(notifTimeout);
+        }
+
+        const formData = new FormData(form);
+        const response = await fetch(url, {
+            method: "POST",
+            body: formData
+        });
+
+        if(!response.ok){
+            throw new Error(`HTTP error! ${response.status} (${response.statusText})`);
+        }
+
         const data = await response.json();
         
-        if('success' in data){
+        if(data.success){
             if(url == 'http://127.0.0.1:8000/verifikasi'){
                 localStorage.setItem('successMessage', data.success);
                 document.location.href = 'login';
@@ -93,40 +105,46 @@ async function kirim(url){
                 localStorage.setItem('successMessage', data.success);
                 document.location.href = 'profil';
             }
-        }else if('failed' in data){
+        }else if(data.failed){
             notif.classList.remove('hidden');
             notif.children[1].innerHTML = data.failed;
-            setTimeout(() => {
+            notifTimeout = setTimeout(() => { // buat timeout untuk notifikasi gagal
                 notif.classList.add('hidden');
             }, 3000);
             errorMessage.classList.add('hidden');
             success2.classList.add('hidden');
-            form.reset();
+            // form.reset();
 
-            if(success != null){ // kalo ada
+            if(success){ // kalo ada
                 success.classList.add('hidden');
             }
 
             // window.scrollTo({top: 0, behavior: 'smooth'});
-        }else{
-            if('kode_verifikasi' in data.errors){
-                errorMessage.classList.remove('hidden');
-                errorMessage.innerHTML = data.errors.kode_verifikasi;
-                notif.classList.add('hidden');
-                success2.classList.add('hidden');
-                form.reset();
+        }else if (data.errors && data.errors.kode_verifikasi){
+            errorMessage.classList.remove('hidden');
+            errorMessage.innerHTML = data.errors.kode_verifikasi;
+            notif.classList.add('hidden');
+            success2.classList.add('hidden');
+            // form.reset();
 
-                if(success != null){ // kalo ada
-                    success.classList.add('hidden');
-                }
+            if(success){ // kalo ada
+                success.classList.add('hidden');
             }
         }
     }catch(error){
-        console.error(error)
+        // console.error('Error:', error);
+        notif.classList.remove('hidden');
+        notif.children[1].innerHTML = error.message;
+        if(notifTimeout){ // ini agar setTimeout tidak terjadi bug langsung ke tutup
+            clearTimeout(notifTimeout);
+        }
+        notifTimeout = setTimeout(() => {
+            notif.classList.add('hidden');
+        }, 3000);
     }
 };
 
-const kirimUlang =  async (csrf, url) => {
+async function kirimUlang(csrf, url){
     const form = document.createElement('form');
     const input = document.createElement('input');
     input.setAttribute('name', '_token');
@@ -175,7 +193,7 @@ const kirimUlang =  async (csrf, url) => {
     }
 };
 
-const batal =  async (csrf) => {
+async function batal(csrf){
     const form = document.createElement('form');
     const inputCsrf = document.createElement('input');
     inputCsrf.setAttribute('name', '_token');

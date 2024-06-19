@@ -22,7 +22,7 @@
             @csrf
                 <div>
                     <label for="tanggal" class="block text-md font-medium text-[#130D19] dark:text-gray-300">Tanggal Reservasi</label>
-                    <input type="date" id="tanggal" name="tanggal" class="mt-1 block w-full px-4 py-2 border-gray-300 dark:border-gray-600 dark:bg-gray-700 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50"
+                    <input type="date" id="tanggal" name="tanggal" class="mt-1 block w-full px-4 py-2 border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50"
                      value="{{ old('tanggal') }}">
                     <p id="informasi-hari" class="hidden text-[#130D19] dark:text-gray-300 font-semibold"></p>
                     @error('tanggal')
@@ -33,7 +33,7 @@
                 </div>
                 <div>
                     <label for="spesialis" class="block text-md font-medium text-[#130D19] dark:text-gray-300">Spesialis</label>
-                    <select id="spesialis" name="spesialis" class="mt-1 block w-full px-4 py-2 border-gray-300 dark:border-gray-600 dark:bg-gray-700 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
+                    <select id="spesialis" name="spesialis" class="mt-1 block w-full px-4 py-2 border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
                         <option value="">Pilih Spesialis</option>
                         @foreach($spesialis as $item)
                             <option {{ old('spesialis') == $item->spesialis ? 'selected' : '' }}>{{ $item->spesialis }}</option>
@@ -47,7 +47,7 @@
                 </div>
             <div>
                 <label for="dokter" class="block text-md font-medium text-[#130D19] dark:text-gray-300">Dokter</label>
-                <select id="dokter" name="dokter" disabled class="mt-1 block w-full px-4 py-2 border-gray-300 dark:border-gray-600 dark:bg-gray-700 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
+                <select id="dokter" name="dokter" disabled class="mt-1 block w-full px-4 py-2 border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
                     <option value="">Pilih Tanggal dan Spesialis Dulu</option>
                 </select>
                 @error('dokter')

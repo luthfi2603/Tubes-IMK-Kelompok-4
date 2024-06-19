@@ -38,7 +38,7 @@
                 <p class="w-72 text-center mt-2 text-sm text-gray-500">Silahkan masukkan verifikasi kode yang telah dikirimkan ke nomor handphone anda</p>
                 <div class="w-full flex-1 mt-8">
                     <div class="mx-auto max-w-xs">
-                        <form id="form" onsubmit="return false;">
+                        <form id="form" onsubmit="kirim('{{ route('verifikasi.otp.reset.password') }}', event)">
                             @csrf
                             <input type="hidden" name="nomor_handphone" value="{{ session()->get('request')['nomor_handphone_dimodifikasi'] }}">
                             <div class="content-center">
@@ -60,12 +60,9 @@
                                 <p id="kirim-ulang-2">Kirim ulang kode OTP dalam <span id="waktu-2" class="font-bold my-1">00:30</span></p>
                                 <span onclick="kirimUlang('{{ csrf_token() }}', '{{ route('kirim.ulang.kode.otp') }}')" id="kirim-ulang" class="font-bold underline text-blue-500 cursor-pointer hidden">Kirim Ulang</span>
                             </div>
-                            <button onclick="kirim('{{ route('verifikasi.otp.reset.password') }}')" type="button"
-                                class="mt-5 tracking-wide font-semibold bg-[#374280] text-gray-100 w-full py-4 rounded-lg hover:bg-[#222C67] transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
+                            <button class="mt-5 tracking-wide font-semibold bg-[#374280] text-gray-100 w-full py-4 rounded-lg hover:bg-[#222C67] transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
                                 <i class="fa-solid fa-right-to-bracket"></i>
-                                <span class="ml-3">
-                                    Kirim
-                                </span>
+                                <span class="ml-3">Kirim</span>
                             </button>
                         </form>
                     </div>
