@@ -100,6 +100,8 @@
         const successMessage = localStorage.getItem('successMessage');
         const successJs = document.getElementById('success');
         const successPhp = document.getElementById('success-php');
+        const failedPhp = document.getElementById('failed-php');
+        let failedPhpTimeout;
         if(successMessage){
             successJs.classList.remove('hidden');
             successJs.children[1].innerHTML = successMessage;
@@ -114,6 +116,16 @@
         if(successPhp){
             setTimeout(() => {
                 successPhp.classList.add('hidden');
+            }, 3000);
+        }
+        
+        if(failedPhp){
+            if(failedPhpTimeout){
+                clearTimeout(failedPhpTimeout);
+            }
+
+            failedPhpTimeout = setTimeout(() => {
+                failedPhp.classList.add('hidden');
             }, 3000);
         }
     </script>

@@ -135,9 +135,6 @@ async function kirim(url, event){
         // console.error('Error:', error);
         notif.classList.remove('hidden');
         notif.children[1].innerHTML = error.message;
-        if(notifTimeout){ // ini agar setTimeout tidak terjadi bug langsung ke tutup
-            clearTimeout(notifTimeout);
-        }
         notifTimeout = setTimeout(() => {
             notif.classList.add('hidden');
         }, 3000);

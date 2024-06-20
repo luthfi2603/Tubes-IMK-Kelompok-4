@@ -1,3 +1,4 @@
+const cari = document.getElementById('cari');
 const inputTanggal = document.getElementById('tanggal');
 const isiTabel = document.getElementById('isi-tabel');
 // const pagination = document.getElementById('pagination');
@@ -16,6 +17,8 @@ inputTanggal.value = todayDate;
 
 let i = 1;
 let isiTabelString = '';
+let failedJsTimeout;
+let statusCariAntrian = false;
 
 inputTanggal.addEventListener('change', () => {
     refreshTable();
@@ -34,6 +37,10 @@ tombolRefresh.addEventListener('click', () => {
     }, 2000); */
 });
 
+cari.addEventListener('input', () => {
+    refreshTable();
+});
+
 async function refreshTable(){
     try {
         isiTabel.innerHTML = `
@@ -47,6 +54,11 @@ async function refreshTable(){
             </tr>
         `;
 
+        failedJs.classList.add('hidden');
+        if(failedJsTimeout){ // ini agar setTimeout tidak terjadi bug langsung ke tutup
+            clearTimeout(failedJsTimeout);
+        }
+
         const response = await fetch('/antrian/tanggal', {
             method: "POST",
             headers: {
@@ -54,15 +66,21 @@ async function refreshTable(){
                 'X-CSRF-TOKEN': csrf,
             },
             body: JSON.stringify({
-                'tanggal': inputTanggal.value
+                'tanggal': inputTanggal.value,
+                'kata_kunci': cari.value
             })
         });
+
+        if(!response.ok){
+            throw new Error(`HTTP error! ${response.status} (${response.statusText})`);
+        }
     
         const data = await response.json();
         
         if(data.antrians.length){ // kalau ada
             isiTabelString = '';
             i = 1;
+            statusCariAntrian = false;
 
             data.antrians.forEach(item => {
                 isiTabelString += `
@@ -193,9 +211,15 @@ async function refreshTable(){
                     </td>
                 </tr>
             `;
+
+            statusCariAntrian = true;
         }
     }catch(error){
-        console.error(error);
+        failedJs.classList.remove('hidden');
+        failedJs.children[1].innerHTML = error.message;
+        failedJsTimeout = setTimeout(() => {
+            failedJs.classList.add('hidden');
+        }, 3000);
     }
 };
 
@@ -264,3 +288,23 @@ async function ubahStatus(status){
 };
 
 // setInterval(refreshTable, 2500);
+
+cari.addEventListener('blur', () => {
+    if(statusCariAntrian){
+        cari.value = null;
+
+        refreshTable();
+    }
+});
+
+cari.addEventListener('focus', () => {
+    document.addEventListener('keydown', (event) => {
+        if(event.key === 'Escape'){
+            if(statusCariAntrian){
+                cari.value = null;
+        
+                refreshTable();
+            }
+        }
+    });
+});

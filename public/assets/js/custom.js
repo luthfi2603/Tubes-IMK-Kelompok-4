@@ -3,7 +3,7 @@ const html = document.querySelector('html');
 const moon = document.getElementById('moon');
 const sun = document.getElementById('sun');
 
-const toggleDark = () => {
+function toggleDark(){
     html.classList.add('dark');
     localStorage.theme = 'dark';
     sun.classList.toggle('scale-0');
@@ -12,7 +12,7 @@ const toggleDark = () => {
     sun.classList.add('duration-300');
 };
 
-const toggleLight = () => {
+function toggleLight(){
     html.classList.remove('dark');
     localStorage.theme = 'light';
     moon.classList.toggle('scale-0');

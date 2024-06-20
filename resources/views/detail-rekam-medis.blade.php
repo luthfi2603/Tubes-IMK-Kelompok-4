@@ -104,7 +104,8 @@
             document.body.innerHTML = printContents;
             setTimeout(() => {
                 print();
-                document.body.innerHTML = orginialContents;
+                // document.body.innerHTML = orginialContents;
+                location.reload();
             }, 300);
         }
     </script>

@@ -23,7 +23,7 @@
     </div>
 
     <div class="flex flex-col gap-4">
-         <p class="text-2xl md:text-3xl font-bold text-[#222C67] dark:text-white">Profil</p>
+        <p class="text-2xl md:text-3xl font-bold text-[#222C67] dark:text-white">Profil</p>
 
         <hr class="border-1 border-[#B1B0AF] dark:border-gray-700 mb-8">
 

@@ -607,9 +607,30 @@ class AdminController extends Controller {
     }
 
     public function indexAntrianTanggal(Request $request){
+        $kataKunci = $request->kata_kunci;
+
         $antrians = DB::table('view_reservasi')
-            ->orderByRaw('ISNULL(waktu_rekomendasi), waktu_rekomendasi')
             ->where('tanggal', $request->tanggal)
+            ->when($kataKunci, function($query) use ($kataKunci){
+                $query->where(function($query) use ($kataKunci){
+                    $query->where('nama_pasien', 'LIKE', '%' . $kataKunci . '%')
+                        ->orWhere('jenis_kelamin', 'LIKE', '%' . $kataKunci . '%')
+                        ->orWhere('nomor_handphone', 'LIKE', '%' . $kataKunci . '%')
+                        ->orWhere('nama_dokter', 'LIKE', '%' . $kataKunci . '%')
+                        ->orWhere('status', 'LIKE', '%' . $kataKunci . '%')
+                        /* ->orWhere('waktu_rekomendasi', 'LIKE', '%' . $kataKunci . '%') */;
+                    /* $query->whereNotNull('waktu_rekomendasi')
+                        ->where(function($query) use ($kataKunci) {
+                            $query->where('nama_pasien', 'LIKE', '%' . $kataKunci . '%')
+                                ->orWhere('jenis_kelamin', 'LIKE', '%' . $kataKunci . '%')
+                                ->orWhere('nomor_handphone', 'LIKE', '%' . $kataKunci . '%')
+                                ->orWhere('nama_dokter', 'LIKE', '%' . $kataKunci . '%')
+                                ->orWhere('status', 'LIKE', '%' . $kataKunci . '%')
+                                ->orWhere('waktu_rekomendasi', 'LIKE', '%' . $kataKunci . '%');
+                        }); */
+                });
+            })
+            ->orderByRaw('ISNULL(waktu_rekomendasi), waktu_rekomendasi')
             ->get();
 
         return response()->json(['antrians' => $antrians]);
