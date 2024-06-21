@@ -618,16 +618,7 @@ class AdminController extends Controller {
                         ->orWhere('nomor_handphone', 'LIKE', '%' . $kataKunci . '%')
                         ->orWhere('nama_dokter', 'LIKE', '%' . $kataKunci . '%')
                         ->orWhere('status', 'LIKE', '%' . $kataKunci . '%')
-                        /* ->orWhere('waktu_rekomendasi', 'LIKE', '%' . $kataKunci . '%') */;
-                    /* $query->whereNotNull('waktu_rekomendasi')
-                        ->where(function($query) use ($kataKunci) {
-                            $query->where('nama_pasien', 'LIKE', '%' . $kataKunci . '%')
-                                ->orWhere('jenis_kelamin', 'LIKE', '%' . $kataKunci . '%')
-                                ->orWhere('nomor_handphone', 'LIKE', '%' . $kataKunci . '%')
-                                ->orWhere('nama_dokter', 'LIKE', '%' . $kataKunci . '%')
-                                ->orWhere('status', 'LIKE', '%' . $kataKunci . '%')
-                                ->orWhere('waktu_rekomendasi', 'LIKE', '%' . $kataKunci . '%');
-                        }); */
+                        ->orWhere(DB::raw('waktu_rekomendasi COLLATE utf8mb4_unicode_ci'), 'LIKE', DB::raw("'%" . $kataKunci . "%' COLLATE utf8mb4_unicode_ci"));
                 });
             })
             ->orderByRaw('ISNULL(waktu_rekomendasi), waktu_rekomendasi')

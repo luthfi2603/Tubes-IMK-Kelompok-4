@@ -70,21 +70,21 @@
                 <table class="min-w-full bg-white dark:bg-[#1f2937] border border-gray-300 dark:border-gray-700">
                     <thead class="bg-gray-200 dark:bg-gray-700">
                         <tr>
-                            <th class="px-6 py-3 text-left text-sm font-semibold text-gray-600 dark:text-gray-300">Keluhan</th>
-                            <th class="px-6 py-3 text-left text-sm font-semibold text-gray-600 dark:text-gray-300">Diagnosa</th>
-                            <th class="px-6 py-3 text-left text-sm font-semibold text-gray-600 dark:text-gray-300">Therapie</th>
+                            <th class="pl-6 pr-3 py-3 text-left text-sm font-semibold text-gray-600 dark:text-gray-300">Keluhan</th>
+                            <th class="px-3 py-3 text-left text-sm font-semibold text-gray-600 dark:text-gray-300">Diagnosa</th>
+                            <th class="pl-3 pr-6 py-3 text-left text-sm font-semibold text-gray-600 dark:text-gray-300">Therapie</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="px-6 py-4 border-t border-gray-300 dark:border-gray-700 align-top">
-                                <pre class="text-wrap font-body dark:text-gray-300">{{ $rekamMedis->keluhan }}</pre>
+                            <td class="pl-6 pr-3 py-4 border-t border-gray-300 dark:border-gray-700 align-top">
+                                <pre class="font-body dark:text-gray-300">{{ $rekamMedis->keluhan }}</pre>
                             </td>
-                            <td class="px-6 py-4 border-t border-gray-300 dark:border-gray-700 align-top">
-                                <pre class="text-wrap font-body dark:text-gray-300">{{ $rekamMedis->diagnosa }}</pre>
+                            <td class="px-3 py-4 border-t border-gray-300 dark:border-gray-700 align-top">
+                                <pre class="font-body dark:text-gray-300">{{ $rekamMedis->diagnosa }}</pre>
                             </td>
-                            <td class="px-6 py-4 border-t border-gray-300 dark:border-gray-700 align-top">
-                                <pre class="text-wrap font-body dark:text-gray-300">{{ $rekamMedis->therapie }}</pre>
+                            <td class="pl-3 pr-6 py-4 border-t border-gray-300 dark:border-gray-700 align-top">
+                                <pre class="font-body dark:text-gray-300">{{ $rekamMedis->therapie }}</pre>
                             </td>
                         </tr>
                     </tbody>

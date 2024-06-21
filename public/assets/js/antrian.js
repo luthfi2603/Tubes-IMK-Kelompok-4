@@ -175,7 +175,7 @@ async function refreshTable(){
 
             renderTombolUbah(isiTabel);
 
-            isiTabel.querySelectorAll('.dropdown').forEach(function(item, index){
+            isiTabel.querySelectorAll('.dropdown').forEach((item, index) => {
                 const popperId = 'popper-' + index
                 const toggle = item.querySelector('.dropdown-toggle')
                 const menu = item.querySelector('.dropdown-menu')
