@@ -117,9 +117,7 @@
         <hr class="my-3 h-[2px] bg-gray-300 dark:bg-gray-700">
         <p class="text-2xl md:text-3xl font-bold mt-1 dark:text-white">Ubah Kata Sandi</p>
         <p class="md:text-lg dark:text-gray-300">Ubah kata sandi untuk mengamankan akun anda</p>
-        <a href="{{ route('password.edit') }}">
-            <button type="button" class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-lg text-md px-5 py-2.5 text-center me-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800"><i class="fa-solid fa-pen-to-square mr-2"></i>Ubah Kata Sandi</button>
-        </a>
+        <a href="{{ route('password.edit') }}" class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-lg text-md px-5 py-2.5 text-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800 w-min text-nowrap"><i class="fa-solid fa-pen-to-square mr-2"></i>Ubah Kata Sandi</a>
     </div>
 </div>
 @push('scripts')

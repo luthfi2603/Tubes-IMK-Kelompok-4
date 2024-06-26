@@ -19,6 +19,7 @@ let i = 1;
 let isiTabelString = '';
 let failedJsTimeout;
 let statusCariAntrian = false;
+let debounceTimer;
 
 inputTanggal.addEventListener('change', () => {
     refreshTable();
@@ -38,7 +39,10 @@ tombolRefresh.addEventListener('click', () => {
 });
 
 cari.addEventListener('input', () => {
-    refreshTable();
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(() => {
+        refreshTable();
+    }, 500);
 });
 
 async function refreshTable(){

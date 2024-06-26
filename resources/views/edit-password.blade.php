@@ -27,8 +27,7 @@
                 @method('PUT')
                 <div class="content-center relative">
                     <label for="old_password" class="ml-2 text-md font-bold text-gray-700 dark:text-gray-300 tracking-wide">Kata Sandi Lama</label>
-                    <input
-                        class="w-full px-5 py-4 rounded-lg font-medium bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 placeholder-gray-400 dark:placeholder-gray-400 text-md focus:outline-none focus:border-gray-400 focus:bg-white dark:focus:bg-gray-600"
+                    <input class="dark:text-white w-full px-5 py-4 rounded-lg font-medium bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 placeholder-gray-400 dark:placeholder-gray-400 text-md focus:outline-none focus:border-gray-400 focus:bg-white dark:focus:bg-gray-600"
                         type="password" name="old_password" id="old_password"
                         placeholder="Masukkan kata sandi lama anda">
                     <i class="fas fa-eye absolute right-3 top-10 cursor-pointer text-gray-700 dark:text-gray-300" id="toggle-password-3"></i>
@@ -40,8 +39,7 @@
                 </div>
                 <div class="content-center relative mt-4">
                     <label for="password" class="ml-2 text-md font-bold text-gray-700 dark:text-gray-300 tracking-wide">Kata Sandi Baru</label>
-                    <input
-                        class="w-full px-5 py-4 rounded-lg font-medium bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 placeholder-gray-400 dark:placeholder-gray-400 text-md focus:outline-none focus:border-gray-400 focus:bg-white dark:focus:bg-gray-600"
+                    <input class="dark:text-white w-full px-5 py-4 rounded-lg font-medium bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 placeholder-gray-400 dark:placeholder-gray-400 text-md focus:outline-none focus:border-gray-400 focus:bg-white dark:focus:bg-gray-600"
                         type="password" name="password" id="password"
                         placeholder="Masukkan kata sandi baru anda">
                     <i class="fas fa-eye absolute right-3 top-10 cursor-pointer text-gray-700 dark:text-gray-300" id="toggle-password"></i>
@@ -53,8 +51,7 @@
                 </div>
                 <div class="content-center relative mt-4">
                     <label for="konfirmasi_password" class="ml-2 text-md font-bold text-gray-700 dark:text-gray-300 tracking-wide">Konfirmasi Kata Sandi Baru</label>
-                    <input
-                        class="w-full px-5 py-4 rounded-lg font-medium bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 placeholder-gray-400 dark:placeholder-gray-400 text-md focus:outline-none focus:border-gray-400 focus:bg-white dark:focus:bg-gray-600"
+                    <input class="dark:text-white w-full px-5 py-4 rounded-lg font-medium bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 placeholder-gray-400 dark:placeholder-gray-400 text-md focus:outline-none focus:border-gray-400 focus:bg-white dark:focus:bg-gray-600"
                         type="password" name="konfirmasi_password" id="konfirmasi_password"
                         placeholder="Masukkan konfirmasi kata sandi baru anda">
                     <i class="fas fa-eye absolute right-3 top-10 cursor-pointer text-gray-700 dark:text-gray-300" id="toggle-password-2"></i>

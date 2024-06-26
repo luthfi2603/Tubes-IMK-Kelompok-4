@@ -26,6 +26,7 @@ trNull.appendChild(tdNull);
 let i = 1;
 let isiTabelString = '';
 let statusCariJadwalDokter = false;
+let debounceTimer;
 
 async function cariData(){
     try {
@@ -105,9 +106,12 @@ async function cariData(){
 };
 
 cari.addEventListener('input', () => {
-    cariData();
-    
-    pagination.remove();
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(() => {
+        cariData();
+        
+        pagination.remove();
+    }, 500);
 });
 
 cari.addEventListener('focus', () => {
