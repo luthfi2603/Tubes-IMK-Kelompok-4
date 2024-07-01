@@ -23,7 +23,7 @@
 </div>
 <hr class="border-1 border-[#B1B0AF] mb-4 mx-4 dark:border-gray-600">
 <div class="mb-3 flex ml-5 justify-start items-center gap-4">
-    <input type="text" id="cari-pasien" placeholder="Cari pasien..." class="rounded-lg dark:bg-gray-700 dark:text-white" autofocus>
+    <input type="search" id="cari-pasien" placeholder="Cari pasien..." class="rounded-lg dark:bg-gray-700 dark:text-white" autofocus autocomplete="off">
     <a id="tombol-tambah" class="hidden bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-lg h-min">Tambah</a>
 </div>
 <div class="container mx-auto p-4">

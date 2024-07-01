@@ -55,7 +55,7 @@
                 <div class="dropdown-menu shadow-md shadow-black/5 z-30 hidden max-w-xs w-full bg-white rounded-md border border-gray-100">
                     <form onsubmit="return false" class="p-4 border-b border-b-gray-100">
                         <div class="relative w-full">
-                            <input id="cari" type="text" class="py-2 pr-4 pl-10 bg-gray-50 w-full outline-none border border-gray-100 rounded-md text-sm focus:border-blue-500" placeholder="Cari...">
+                            <input id="cari" type="search" class="py-2 pr-4 pl-10 bg-gray-50 w-full outline-none border border-gray-100 rounded-md text-sm focus:border-blue-500" placeholder="Cari..." autocomplete="off">
                             <i class="ri-search-line absolute top-1/2 left-4 -translate-y-1/2 text-gray-900"></i>
                         </div>
                     </form>
